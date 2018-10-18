@@ -28,19 +28,23 @@ public class LoginServlet extends HttpServlet {
         usuarioDTO.setNomeConta(login);
         usuarioDTO.setSenha(senha);
 
-        boolean logado = false;
+        String logado = "";
+
         try {
             logado = loginService.login(usuarioDTO);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
-        if (logado) {
+        if ("administrador".equalsIgnoreCase(logado)) {
             req.getSession().setAttribute("usuario.logado", usuarioDTO);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/menus/menuOperador.jsp");
             requestDispatcher.forward(req, resp);
-        } else {
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/erro.jsp");
+        } else  if ("usuarioInexistente".equalsIgnoreCase(logado)){
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.jsp");
+            requestDispatcher.forward(req, resp);
+        } else if ("primeiroAcesso".equalsIgnoreCase(logado)){
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/novaSenha.jsp");
             requestDispatcher.forward(req, resp);
         }
     }
