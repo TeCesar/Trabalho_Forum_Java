@@ -38,23 +38,7 @@
             <td><strong>Status</strong></td>
         </tr>
     </table>
-     
-    <div id="divLogin">
-        <div id="login-box-interno">
-            <form action="login" method="post">
-                <div id="login-box-label">Bem vindo a D.R.T</div>
-                <div class="input-div" id="input-usuario">
-                    <input type="text" placeholder="Usuário" name="nomeUsuario">
-                </div>
-                <div class="input-div" id="input-senha">
-                    <input type="password" placeholder="Senha" name="senha">
-                </div>
-                <div id="botoes">
-                        <input type="submit" value="Logar" class="botao">
-                    <div id="lembrar-senha"><input type="checkbox">Lembrar minha senha</div>
-                </div>
-            </form>
-        </div>
-    </div>
+
+   
 </body>
 </html>
