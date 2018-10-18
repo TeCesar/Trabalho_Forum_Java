@@ -10,7 +10,8 @@ public class SQLConnectionProvider {
     public static String usuario = "root";
     public static String senha = "";
 
-    public static Connection openConnection() throws SQLException {
+    public static Connection openConnection() throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.jdbc.Driver");
         return DriverManager.getConnection(url, usuario, senha);
     }
 

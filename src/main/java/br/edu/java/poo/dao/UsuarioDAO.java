@@ -4,6 +4,6 @@ import br.edu.java.poo.model.usuario.UsuarioDTO;
 
 public interface UsuarioDAO {
 
-    UsuarioDTO buscarUsuario(UsuarioDTO usuarioDTO);
+    UsuarioDTO buscarUsuario(UsuarioDTO usuarioDTO) throws ClassNotFoundException;
 
 }

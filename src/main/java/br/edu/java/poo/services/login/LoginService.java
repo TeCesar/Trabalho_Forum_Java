@@ -11,7 +11,7 @@ public class LoginService {
         this.usuarioDAO = new UsuarioDAOImpl();
     }
 
-    public boolean login(UsuarioDTO usuarioDTO) {
+    public boolean login(UsuarioDTO usuarioDTO) throws ClassNotFoundException {
         UsuarioDTO confere = usuarioDAO.buscarUsuario(usuarioDTO);
         if (confere != null) {
             return true;

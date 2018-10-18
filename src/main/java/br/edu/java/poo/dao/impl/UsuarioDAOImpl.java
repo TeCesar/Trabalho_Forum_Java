@@ -1,7 +1,7 @@
 package br.edu.java.poo.dao.impl;
 
 import br.edu.java.poo.dao.UsuarioDAO;
-import br.edu.java.poo.dao.conexao.ProvedorDeConexao;
+import br.edu.java.poo.dao.conexao.SQLConnectionProvider;
 import br.edu.java.poo.model.usuario.UsuarioDTO;
 
 import java.sql.Connection;
@@ -11,9 +11,9 @@ import java.sql.SQLException;
 
 public class UsuarioDAOImpl implements UsuarioDAO {
 
-    public UsuarioDTO buscarUsuario(UsuarioDTO usuarioDTO) {
+    public UsuarioDTO buscarUsuario(UsuarioDTO usuarioDTO) throws ClassNotFoundException {
         UsuarioDTO usuarioBusca = new UsuarioDTO();
-        try (Connection connection = ProvedorDeConexao.abrirConexao()) {
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM usuarios WHERE usuario_nomeConta = '" + usuarioDTO.getNomeConta() + "'" +
                     " AND usuario_senha = '" + usuarioDTO.getSenha() + "'");
 
