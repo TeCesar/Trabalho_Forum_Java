@@ -47,10 +47,19 @@
 </div>
 
 <script>
-    function mensagemErro() {
         var erro = document.getElementById("erro").value;
-        alert(erro);
-    }
+
+        if (erro == "É necessário digitar pelo menos 8 caracteres.") {
+            alert(erro);
+        }
+
+        if (erro == "É necessário ter ao menos 1(um) caractere especial (@, # ou .)") {
+            alert(erro);
+        }
+
+        if (erro == "As senhas não conferem") {
+            alert(erro);
+        }
 </script>
 
 </body>

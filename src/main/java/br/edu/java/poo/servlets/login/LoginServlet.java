@@ -4,7 +4,6 @@ import br.edu.java.poo.model.usuario.UsuarioDTO;
 import br.edu.java.poo.model.usuario.UsuarioSession;
 import br.edu.java.poo.services.login.LoginService;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

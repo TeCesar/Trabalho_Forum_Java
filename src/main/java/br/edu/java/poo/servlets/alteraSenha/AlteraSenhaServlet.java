@@ -25,9 +25,9 @@ public class AlteraSenhaServlet extends HttpServlet {
         String confirmaSenha = req.getParameter("confirmaSenha");
         UsuarioSession usuario = (UsuarioSession) req.getSession().getAttribute("usuario");
         alteraSenhaService = new AlteraSenhaService();
-        boolean sucesso = alteraSenhaService.atualizaSenha(senha,confirmaSenha, usuario.getNomeConta());
+        String sucesso = alteraSenhaService.atualizaSenha(senha,confirmaSenha, usuario.getNomeConta());
 
-        if (sucesso) {
+        if ("sucesso".equalsIgnoreCase(sucesso)) {
             if ("administrador".equalsIgnoreCase(usuario.getTipoAcesso())){
                 req.getRequestDispatcher("WEB-INF/menus/menuAdministrador.jsp").forward(req, resp);
             } else if ("operador".equalsIgnoreCase(usuario.getTipoAcesso())){
@@ -37,8 +37,17 @@ public class AlteraSenhaServlet extends HttpServlet {
             } else if ("usuario".equalsIgnoreCase(usuario.getTipoAcesso())){
                 req.getRequestDispatcher("WEB-INF/menus/menuUsuario.jsp").forward(req, resp);
             }
+        } else if ("caracteres".equalsIgnoreCase(sucesso)){
+            req.getSession().setAttribute("erro", "É necessário digitar pelo menos 8 caracteres.");
+            req.getRequestDispatcher("WEB-INF/novaSenha.jsp").forward(req, resp);
+        } else if ("caractereEspecial".equalsIgnoreCase(sucesso)){
+            req.getSession().setAttribute("erro", "É necessário ter ao menos 1(um) caractere especial (@, # ou .)");
+            req.getRequestDispatcher("WEB-INF/novaSenha.jsp").forward(req, resp);
+        } else if ("senhasDiferentes".equalsIgnoreCase(sucesso)){
+            req.getSession().setAttribute("erro", "As senhas não conferem");
+            req.getRequestDispatcher("WEB-INF/novaSenha.jsp").forward(req, resp);
         } else {
-            req.getSession().setAttribute("erro", erro);
+            req.getSession().setAttribute("erro", "");
         }
 
     }

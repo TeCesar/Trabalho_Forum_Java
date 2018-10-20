@@ -10,18 +10,24 @@ public class AlteraSenhaService {
     UsuarioBusiness usuarioBusiness;
     UsuarioDAO usuarioDAO;
 
-    public AlteraSenhaService (){
+    public AlteraSenhaService() {
         this.usuarioBusiness = new UsuarioBusinessImpl();
         this.usuarioDAO = new UsuarioDAOImpl();
     }
 
-    public boolean atualizaSenha (String senha, String confirmaSenha, String nomeConta){
-        boolean senhaValida = usuarioBusiness.confereNovaSenha(senha, confirmaSenha);
-        if (senhaValida){
-            if(usuarioDAO.alteraSenha(senha, nomeConta)){
-               return true;
+    public String atualizaSenha(String senha, String confirmaSenha, String nomeConta) {
+        String senhaValida = usuarioBusiness.confereNovaSenha(senha, confirmaSenha);
+        if (senhaValida == "sucesso") {
+            if (usuarioDAO.alteraSenha(senha, nomeConta)) {
+                return "sucesso";
             }
+        } else if ("caracteres".equalsIgnoreCase(senhaValida)) {
+            return "caracteres";
+        } else if ("caractereEspecial".equalsIgnoreCase(senhaValida)) {
+            return "caractereEspecial";
+        } else if ("senhasDiferentes".equalsIgnoreCase(senhaValida)){
+            return "senhasDiferentes";
         }
-        return false;
+        return "invalida";
     }
 }
