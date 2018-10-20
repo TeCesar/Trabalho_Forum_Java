@@ -14,5 +14,4 @@ public class SQLConnectionProvider {
         Class.forName("com.mysql.jdbc.Driver");
         return DriverManager.getConnection(url, usuario, senha);
     }
-
 }

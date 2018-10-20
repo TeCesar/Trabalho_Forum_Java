@@ -6,4 +6,8 @@ public interface UsuarioDAO {
 
     UsuarioDTO buscarUsuario(UsuarioDTO usuarioDTO) throws ClassNotFoundException;
 
+    boolean alteraSenha(String senha, String nomeConta);
+
+
+
 }

@@ -44,7 +44,8 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.jsp");
             requestDispatcher.forward(req, resp);
         } else if ("primeiroAcesso".equalsIgnoreCase(logado)){
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/novaSenha.jsp");
+            req.setAttribute("nomeConta", login);
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/novaSenha.jsp");
             requestDispatcher.forward(req, resp);
         }
     }

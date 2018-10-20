@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UsuarioDAOImpl implements UsuarioDAO {
+public class UsuarioDAOImpl implements UsuarioDAO  {
 
     public UsuarioDTO buscarUsuario(UsuarioDTO usuarioDTO) throws ClassNotFoundException {
         UsuarioDTO usuarioBusca = null;
@@ -32,6 +32,28 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             System.out.println("Falha na conexao");
         }
         return usuarioBusca;
+    }
+
+    @Override
+    public boolean alteraSenha(String senha, String nomeConta) {
+
+        try (Connection connection = SQLConnectionProvider.openConnection()){
+
+            PreparedStatement preparedStatement = connection.prepareStatement("update usuarios SET usuario_senha = ? where usuario_nomeConta = '"+ nomeConta +"'");
+
+                preparedStatement.setString(1, senha);
+                int resultado = preparedStatement.executeUpdate();
+
+                if (resultado == 1){
+                    return true;
+                }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
 }

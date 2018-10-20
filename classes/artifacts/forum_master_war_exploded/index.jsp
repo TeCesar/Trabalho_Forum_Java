@@ -12,7 +12,6 @@
 
     <style><%@include file="/WEB-INF/estilo/estilo.css"%></style>
 
-
 </head>
 <body>
 
