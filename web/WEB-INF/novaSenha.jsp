@@ -27,25 +27,20 @@
     </center>
 <div id="divLogin">
     <div id="login-box-interno">
-        <form action="/novaSenha?nomeConta=<c:out value="nomeConta"" method="post">
+        <form action="/novaSenha"  method="post">
             <div id="login-box-label">NOVA SENHA</div>
             <div class="input-div" id="input-usuario">
-                <input type="text" name="novaSenha" placeholder="NOVA SENHA">
+                <input type="password" name="novaSenha" placeholder="NOVA SENHA">
             </div>
             <div class="input-div" id="input-senha">
-                <input type="text" name="confirmaSenha" placeholder="REPETIR SENHA"><br>
+                <input type="password" name="confirmaSenha" placeholder="REPETIR SENHA"><br>
             </div>
             <div id="botoes">
                 <input type="submit" value="SALVAR">
             </div>
+
         </form>
     </div>
 </div>
-
-
-
-
-
-
 </body>
 </html>

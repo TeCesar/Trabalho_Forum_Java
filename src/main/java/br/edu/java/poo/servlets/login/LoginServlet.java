@@ -1,6 +1,7 @@
 package br.edu.java.poo.servlets.login;
 
 import br.edu.java.poo.model.usuario.UsuarioDTO;
+import br.edu.java.poo.model.usuario.UsuarioSession;
 import br.edu.java.poo.services.login.LoginService;
 
 import javax.servlet.RequestDispatcher;
@@ -32,12 +33,13 @@ public class LoginServlet extends HttpServlet {
 
         try {
             logado = loginService.login(usuarioDTO);
+            UsuarioSession usuarioSession = new UsuarioSession(usuarioDTO.getId(), usuarioDTO.getNomeConta(), usuarioDTO.getTipoAcesso());
+            req.getSession().setAttribute("usuario", usuarioSession);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
         if ("administrador".equalsIgnoreCase(logado)) {
-            req.getSession().setAttribute("usuario.logado", usuarioDTO);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/menus/menuOperador.jsp");
             requestDispatcher.forward(req, resp);
         } else  if ("usuarioInexistente".equalsIgnoreCase(logado)){
