@@ -2,13 +2,13 @@ package br.edu.java.poo.model.usuario;
 
 public class UsuarioSession {
 
-    private int Id;
+    private int id;
     private String nomeConta;
     private String tipoAcesso;
     private boolean logado;
 
     public UsuarioSession(int id, String nomeConta, String tipoAcesso) {
-        Id = id;
+        this.id = id;
         this.nomeConta = nomeConta;
         this.tipoAcesso = tipoAcesso;
         logado = true;
@@ -19,7 +19,7 @@ public class UsuarioSession {
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public String getNomeConta() {

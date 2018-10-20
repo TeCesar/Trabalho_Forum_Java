@@ -5,6 +5,6 @@ import br.edu.java.poo.model.usuario.UsuarioDTO;
 public interface UsuarioBusiness {
 
     boolean conferePrimeiroLogin(UsuarioDTO usuarioDTO);
-    boolean confereNovaSenha(String senha, String confirmaSenha);
+    String confereNovaSenha(String senha, String confirmaSenha);
 
 }

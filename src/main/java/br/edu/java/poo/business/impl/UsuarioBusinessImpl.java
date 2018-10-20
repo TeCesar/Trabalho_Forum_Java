@@ -14,15 +14,23 @@ public class UsuarioBusinessImpl implements UsuarioBusiness  {
     }
 
     @Override
-    public boolean confereNovaSenha(String senha, String confirmaSenha) {
+    public String confereNovaSenha(String senha, String confirmaSenha) {
         if (senha != null && confirmaSenha != null){
             if (senha.equalsIgnoreCase(confirmaSenha)){
                 if (!"12345".equalsIgnoreCase(senha)){
-                    return true;
+                    if (senha.length() < 8){
+                        return "caracteres";
+                    }
+
+                    if (!senha.contains("@") && !senha.contains(".") && !senha.contains("#")){
+                        return "caractereEspecial";
+                    }
+
+                    return "sucesso";
                 }
             }
         }
-        return false;
+        return "vazia";
     }
 
 }

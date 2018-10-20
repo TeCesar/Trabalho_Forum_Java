@@ -37,18 +37,19 @@ public class LoginServlet extends HttpServlet {
             req.getSession().setAttribute("usuario", usuarioSession);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            System.out.println("Falha na conexao");
         }
 
         if ("administrador".equalsIgnoreCase(logado)) {
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/menus/menuOperador.jsp");
-            requestDispatcher.forward(req, resp);
+            req.getRequestDispatcher("WEB-INF/menus/menuAdministrador.jsp").forward(req, resp);
         } else  if ("usuarioInexistente".equalsIgnoreCase(logado)){
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.jsp");
-            requestDispatcher.forward(req, resp);
+            req.getRequestDispatcher("/login.jsp").forward(req, resp);
         } else if ("primeiroAcesso".equalsIgnoreCase(logado)){
-            req.setAttribute("nomeConta", login);
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/novaSenha.jsp");
-            requestDispatcher.forward(req, resp);
+            req.getRequestDispatcher("WEB-INF/novaSenha.jsp").forward(req, resp);
+        } else if ("operador".equalsIgnoreCase(logado)){
+            req.getRequestDispatcher("WEB-INF/menus/menuOperador.jsp").forward(req, resp);
+        } else if ("cliente".equalsIgnoreCase(logado)){
+            req.getRequestDispatcher("WEB-INF/menus/menuCliente.jsp").forward(req, resp);
         }
     }
 }

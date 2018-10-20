@@ -23,14 +23,22 @@ public class AlteraSenhaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String senha = req.getParameter("novaSenha");
         String confirmaSenha = req.getParameter("confirmaSenha");
-        String nomeConta = req.getParameter("nomeConta");
         UsuarioSession usuario = (UsuarioSession) req.getSession().getAttribute("usuario");
         alteraSenhaService = new AlteraSenhaService();
         boolean sucesso = alteraSenhaService.atualizaSenha(senha,confirmaSenha, usuario.getNomeConta());
 
         if (sucesso) {
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.jsp");
-            requestDispatcher.forward(req, resp);
+            if ("administrador".equalsIgnoreCase(usuario.getTipoAcesso())){
+                req.getRequestDispatcher("WEB-INF/menus/menuAdministrador.jsp").forward(req, resp);
+            } else if ("operador".equalsIgnoreCase(usuario.getTipoAcesso())){
+                req.getRequestDispatcher("WEB-INF/menus/menuOperador.jsp").forward(req, resp);
+            } else if ("cliente".equalsIgnoreCase(usuario.getTipoAcesso())){
+                req.getRequestDispatcher("WEB-INF/menus/menuCliente.jsp").forward(req, resp);
+            } else if ("usuario".equalsIgnoreCase(usuario.getTipoAcesso())){
+                req.getRequestDispatcher("WEB-INF/menus/menuUsuario.jsp").forward(req, resp);
+            }
+        } else {
+            req.getSession().setAttribute("erro", erro);
         }
 
     }

@@ -22,10 +22,19 @@ public class LoginService {
             boolean primeiroAcesso = usuarioBusiness.conferePrimeiroLogin(usuarioBusca);
 
             if (primeiroAcesso) {
-                return "PrimeiroAcesso";
+                return "primeiroAcesso";
             }
             if ("administrador".equalsIgnoreCase(usuarioBusca.getTipoAcesso())) {
                 return "administrador";
+            }
+            if ("operador".equalsIgnoreCase(usuarioBusca.getTipoAcesso())){
+                return "operador";
+            }
+            if ("cliente".equalsIgnoreCase(usuarioBusca.getTipoAcesso())){
+                return "cliente";
+            }
+            if ("usuario".equalsIgnoreCase(usuarioBusca.getTipoAcesso())){
+                return "usuario";
             }
         }
         return "usuarioInexistente";

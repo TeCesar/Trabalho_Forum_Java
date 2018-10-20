@@ -16,7 +16,6 @@ public class AlteraSenhaService {
     }
 
     public boolean atualizaSenha (String senha, String confirmaSenha, String nomeConta){
-
         boolean senhaValida = usuarioBusiness.confereNovaSenha(senha, confirmaSenha);
         if (senhaValida){
             if(usuarioDAO.alteraSenha(senha, nomeConta)){
@@ -24,6 +23,5 @@ public class AlteraSenhaService {
             }
         }
         return false;
-
     }
 }
