@@ -32,17 +32,9 @@
             </ul>
         </li>
         <li><a href="#">Relatórios</a></li>
-        <li><a href="#">Tickets</a></li>
+        <li><a href="../WEB-INF/ticket/ticket.jsp">Tickets</a></li>
         <li><a href="#">Tópicos</a></li>
     </ul>
 </nav>
-
-
-
-
-
-
-
-
 </body>
 </html>
