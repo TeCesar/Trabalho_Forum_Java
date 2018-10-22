@@ -1,4 +1,4 @@
-package br.edu.java.poo.model.usuario;
+package br.edu.java.poo.model.ticket;
 
 import java.sql.Timestamp;
 
