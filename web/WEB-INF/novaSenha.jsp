@@ -29,7 +29,7 @@
 </center>
 <div id="divLogin">
     <div id="login-box-interno">
-        <form action="/novaSenha" method="post">
+        <form action="/controller?acao=novaSenha" method="post">
             <div id="login-box-label">NOVA SENHA</div>
             <div class="input-div" id="input-usuario">
                 <input type="password" name="novaSenha" placeholder="NOVA SENHA">

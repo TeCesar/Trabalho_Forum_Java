@@ -1,4 +1,4 @@
-package br.edu.java.poo.dao;
+package br.edu.java.poo.dao.usuario;
 
 import br.edu.java.poo.model.usuario.UsuarioDTO;
 

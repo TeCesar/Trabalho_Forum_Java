@@ -2,8 +2,8 @@ package br.edu.java.poo.services.alteraSenha;
 
 import br.edu.java.poo.business.UsuarioBusiness;
 import br.edu.java.poo.business.impl.UsuarioBusinessImpl;
-import br.edu.java.poo.dao.UsuarioDAO;
-import br.edu.java.poo.dao.impl.UsuarioDAOImpl;
+import br.edu.java.poo.dao.usuario.UsuarioDAO;
+import br.edu.java.poo.dao.usuario.impl.UsuarioDAOImpl;
 
 public class AlteraSenhaService {
 

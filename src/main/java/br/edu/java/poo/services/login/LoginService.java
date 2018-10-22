@@ -2,8 +2,8 @@ package br.edu.java.poo.services.login;
 
 import br.edu.java.poo.business.UsuarioBusiness;
 import br.edu.java.poo.business.impl.UsuarioBusinessImpl;
-import br.edu.java.poo.dao.UsuarioDAO;
-import br.edu.java.poo.dao.impl.UsuarioDAOImpl;
+import br.edu.java.poo.dao.usuario.UsuarioDAO;
+import br.edu.java.poo.dao.usuario.impl.UsuarioDAOImpl;
 import br.edu.java.poo.model.usuario.UsuarioDTO;
 
 public class LoginService {
@@ -27,13 +27,13 @@ public class LoginService {
             if ("administrador".equalsIgnoreCase(usuarioBusca.getTipoAcesso())) {
                 return "WEB-INF/menus/menuAdministrador.jsp";
             }
-            if ("operador".equalsIgnoreCase(usuarioBusca.getTipoAcesso())){
+            if ("operador".equalsIgnoreCase(usuarioBusca.getTipoAcesso())) {
                 return "WEB-INF/menus/menuOperador.jsp";
             }
-            if ("cliente".equalsIgnoreCase(usuarioBusca.getTipoAcesso())){
+            if ("cliente".equalsIgnoreCase(usuarioBusca.getTipoAcesso())) {
                 return "WEB-INF/menus/menuCliente.jsp";
             }
-            if ("usuario".equalsIgnoreCase(usuarioBusca.getTipoAcesso())){
+            if ("usuario".equalsIgnoreCase(usuarioBusca.getTipoAcesso())) {
                 return "WEB-INF/menus/menuCliente.jsp";
             }
         }

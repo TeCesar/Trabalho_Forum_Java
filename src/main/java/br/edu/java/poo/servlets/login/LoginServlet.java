@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
             e.printStackTrace();
             System.out.println("Falha na conexao");
         }
-        
+
         req.getRequestDispatcher(logado).forward(req, resp);
     }
 }

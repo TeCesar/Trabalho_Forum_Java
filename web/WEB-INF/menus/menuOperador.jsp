@@ -32,7 +32,7 @@
             </ul>
         </li>
         <li><a href="#">Relatórios</a></li>
-        <li><a href="../ticket/ticket.jsp">Tickets</a></li>
+        <li><a href="controller?acao=ticket">Tickets</a></li>
         <li><a href="#">Tópicos</a></li>
     </ul>
 </nav>

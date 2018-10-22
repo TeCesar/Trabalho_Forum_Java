@@ -1,6 +1,6 @@
-package br.edu.java.poo.dao.impl;
+package br.edu.java.poo.dao.usuario.impl;
 
-import br.edu.java.poo.dao.UsuarioDAO;
+import br.edu.java.poo.dao.usuario.UsuarioDAO;
 import br.edu.java.poo.dao.conexao.SQLConnectionProvider;
 import br.edu.java.poo.model.usuario.UsuarioDTO;
 
