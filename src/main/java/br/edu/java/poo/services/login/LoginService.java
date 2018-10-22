@@ -22,22 +22,22 @@ public class LoginService {
             boolean primeiroAcesso = usuarioBusiness.conferePrimeiroLogin(usuarioBusca);
 
             if (primeiroAcesso) {
-                return "primeiroAcesso";
+                return "WEB-INF/novaSenha.jsp";
             }
             if ("administrador".equalsIgnoreCase(usuarioBusca.getTipoAcesso())) {
-                return "administrador";
+                return "WEB-INF/menus/menuAdministrador.jsp";
             }
             if ("operador".equalsIgnoreCase(usuarioBusca.getTipoAcesso())){
-                return "operador";
+                return "WEB-INF/menus/menuOperador.jsp";
             }
             if ("cliente".equalsIgnoreCase(usuarioBusca.getTipoAcesso())){
-                return "cliente";
+                return "WEB-INF/menus/menuCliente.jsp";
             }
             if ("usuario".equalsIgnoreCase(usuarioBusca.getTipoAcesso())){
-                return "usuario";
+                return "WEB-INF/menus/menuCliente.jsp";
             }
         }
-        return "usuarioInexistente";
+        return "/login.jsp";
     }
 
 }

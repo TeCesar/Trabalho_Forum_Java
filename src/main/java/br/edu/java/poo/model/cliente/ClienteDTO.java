@@ -2,6 +2,7 @@ package br.edu.java.poo.model.cliente;
 
 import br.edu.java.poo.model.empresa.EmpresaDTO;
 import br.edu.java.poo.model.endereco.EnderecoDTO;
+import br.edu.java.poo.model.usuario.UsuarioDTO;
 
 public class ClienteDTO {
     private int id;
@@ -10,6 +11,7 @@ public class ClienteDTO {
     private String dtNascimento;
     private EnderecoDTO enderecoDTO;
     private EmpresaDTO empresaDTO;
+    private UsuarioDTO usuarioDTO;
 
     public int getId() {
         return id;
@@ -57,5 +59,13 @@ public class ClienteDTO {
 
     public void setEmpresaDTO(EmpresaDTO empresaDTO) {
         this.empresaDTO = empresaDTO;
+    }
+
+    public UsuarioDTO getUsuarioDTO() {
+        return usuarioDTO;
+    }
+
+    public void setUsuarioDTO(UsuarioDTO usuarioDTO) {
+        this.usuarioDTO = usuarioDTO;
     }
 }
