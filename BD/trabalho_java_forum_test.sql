@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 22-Out-2018 às 20:48
+-- Generation Time: 23-Out-2018 às 04:16
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -69,17 +69,18 @@ CREATE TABLE `enderecos` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `ticket`
+-- Estrutura da tabela `tickets`
 --
 
-CREATE TABLE `ticket` (
+CREATE TABLE `tickets` (
   `id` int(11) NOT NULL,
   `ticket_titulo` varchar(100) NOT NULL,
   `ticket_mensagem` varchar(500) NOT NULL,
   `ticket_status` varchar(20) NOT NULL,
   `ticket_tempoInicio` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `usuario_id` int(11) NOT NULL,
-  `ticket_tempoFim` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `ticket_tempoFim` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `ticket_estado` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -160,9 +161,9 @@ ALTER TABLE `enderecos`
   ADD PRIMARY KEY (`endereco_id`);
 
 --
--- Indexes for table `ticket`
+-- Indexes for table `tickets`
 --
-ALTER TABLE `ticket`
+ALTER TABLE `tickets`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -206,9 +207,9 @@ ALTER TABLE `enderecos`
   MODIFY `endereco_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `ticket`
+-- AUTO_INCREMENT for table `tickets`
 --
-ALTER TABLE `ticket`
+ALTER TABLE `tickets`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
