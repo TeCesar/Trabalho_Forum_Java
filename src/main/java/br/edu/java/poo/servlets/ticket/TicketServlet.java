@@ -39,7 +39,7 @@ public class TicketServlet extends HttpServlet {
 
         if ("inicioTicket".equalsIgnoreCase(tipo)) {
             ticketDTO.setEstado("Incompleto");
-            ticketDTO.setTempoInicio();
+            ticketDTO.setTempoInicio(date);
             UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuario");
             ticketBusiness.cadastroTicket(ticketDTO, usuarioSession.getId());
         }
