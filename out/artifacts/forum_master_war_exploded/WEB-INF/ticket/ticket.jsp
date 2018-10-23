@@ -8,9 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Criacao de Tickets</title>
 </head>
 <body>
-<h1>Robson Viado</h1>
+<fieldset>
+    <legend>Ticket</legend>
+    <input placeholder="Título" name="titulo"><br>
+    <input placeholder="Mensagem" name="mensagem"><br>
+    <input type="submit" value="Postar">
+</fieldset>
 </body>
 </html>

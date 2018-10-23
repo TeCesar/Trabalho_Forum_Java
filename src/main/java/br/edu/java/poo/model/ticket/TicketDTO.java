@@ -1,14 +1,15 @@
 package br.edu.java.poo.model.ticket;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class TicketDTO {
     private int id;
     private String titulo;
     private String mensagem;
     private String status;
-    private Timestamp tempoInicio;
-    private Timestamp tempoFim;
+    private String estado;
+    private java.util.Date tempoInicio;
+    private Date tempoFim;
 
     public int getId() {
         return id;
@@ -42,19 +43,28 @@ public class TicketDTO {
         this.status = status;
     }
 
-    public Timestamp getTempoInicio() {
-        return tempoInicio;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setTempoInicio(Timestamp tempoInicio) {
-        this.tempoInicio = tempoInicio;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
-    public Timestamp getTempoFim() {
+    public Date getTempoFim() {
         return tempoFim;
     }
 
-    public void setTempoFim(Timestamp tempoFim) {
+    public void setTempoFim(Date tempoFim) {
         this.tempoFim = tempoFim;
+    }
+
+    public Date getTempoInicio() {
+
+        return tempoInicio;
+    }
+
+    public void setTempoInicio(Date tempoInicio) {
+        this.tempoInicio = tempoInicio;
     }
 }

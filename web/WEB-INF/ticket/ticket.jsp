@@ -11,6 +11,13 @@
     <title>Criacao de Tickets</title>
 </head>
 <body>
-<h1>Robson Viado</h1>
+<form action="controller?acao=criarTicket" method="post">
+<fieldset>
+    <legend>Ticket</legend>
+    <input placeholder="Título" name="titulo"><br>
+    <input placeholder="Mensagem" name="mensagem"><br>
+    <input type="submit" value="Postar">
+</fieldset>
+</form>
 </body>
 </html>

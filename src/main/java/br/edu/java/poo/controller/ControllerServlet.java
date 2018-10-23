@@ -21,6 +21,9 @@ public class ControllerServlet extends HttpServlet {
         if ("novaSenha".equalsIgnoreCase(acao)){
             req.getRequestDispatcher("novaSenha").forward(req, resp);
         }
+        if("criarTicket".equalsIgnoreCase(acao)){
+            req.getRequestDispatcher("ticket?tipo=fimTicket").forward(req, resp);
+        }
 
 
     }
@@ -30,7 +33,8 @@ public class ControllerServlet extends HttpServlet {
         String acao = req.getParameter("acao");
 
         if ("ticket".equalsIgnoreCase(acao)){
-            req.getRequestDispatcher("WEB-INF/ticket/ticket.jsp").forward(req, resp);
+            req.getRequestDispatcher("ticket?tipo=inicioTicket").forward(req, resp);
         }
+
     }
 }

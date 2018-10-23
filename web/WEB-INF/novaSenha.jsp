@@ -29,7 +29,7 @@
 </center>
 <div id="divLogin">
     <div id="login-box-interno">
-        <form action="/controller?acao=novaSenha" method="post">
+        <form action="/controller?acao=novaSenha" method="post" id="formNovaSenha">
             <div id="login-box-label">NOVA SENHA</div>
             <div class="input-div" id="input-usuario">
                 <input type="password" name="novaSenha" placeholder="NOVA SENHA">
@@ -39,7 +39,7 @@
             </div>
             <input type="hidden" value="${erro}" id="erro">
             <div id="botoes">
-                <input type="submit" value="SALVAR">
+                <input type="submit" value="SALVAR" onclick="chamaErro()">
             </div>
 
         </form>
@@ -47,19 +47,19 @@
 </div>
 
 <script>
-        var erro = document.getElementById("erro").value;
+    var erro = document.getElementById("erro").value;
 
-        if (erro == "É necessário digitar pelo menos 8 caracteres.") {
-            alert(erro);
-        }
+    if (erro == "É necessário digitar pelo menos 8 caracteres.") {
+        alert(erro);
+    }
 
-        if (erro == "É necessário ter ao menos 1(um) caractere especial (@, # ou .)") {
-            alert(erro);
-        }
+    if (erro == "É necessário ter ao menos 1(um) caractere especial (@, # ou .)") {
+        alert(erro);
+    }
 
-        if (erro == "As senhas não conferem") {
-            alert(erro);
-        }
+    if (erro == "As senhas não conferem") {
+        alert(erro);
+    }
 </script>
 
 </body>
