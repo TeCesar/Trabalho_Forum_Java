@@ -9,6 +9,7 @@ public class ClienteDTO {
     private String nome;
     private String sobrenome;
     private String dtNascimento;
+    private char sexo;
     private EnderecoDTO enderecoDTO;
     private EmpresaDTO empresaDTO;
     private UsuarioDTO usuarioDTO;
@@ -43,6 +44,14 @@ public class ClienteDTO {
 
     public void setDtNascimento(String dtNascimento) {
         this.dtNascimento = dtNascimento;
+    }
+
+    public char getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
     }
 
     public EnderecoDTO getEnderecoDTO() {

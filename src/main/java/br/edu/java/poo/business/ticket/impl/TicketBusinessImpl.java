@@ -5,7 +5,6 @@ import br.edu.java.poo.model.ticket.TicketDTO;
 
 public class TicketBusinessImpl implements TicketBusiness {
 
-
     @Override
     public boolean cadastroTicket(TicketDTO ticketDTO, int usuarioId) {
         if(ticketDTO != null){
