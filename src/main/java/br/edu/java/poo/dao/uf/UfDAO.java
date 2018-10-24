@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface UfDAO {
 
-    List<UfDTO> buscarUfs();
+    List<UfDTO> buscarListaUfs();
+
+    UfDTO buscarUf(int id);
 
 }

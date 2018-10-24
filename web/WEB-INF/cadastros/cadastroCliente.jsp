@@ -30,7 +30,7 @@
     <label>Bairro: </label><input type="text" name="clienteBairro"><br><br>
     <label>Cidade: </label><input type="text" name="clienteCidade"><br><br>
     <label>UF</label>
-    <select name="clienteUf">
+    <select name="clienteUfId">
         <option>Selecione uma opção</option>
         <%for (UfDTO uf : listaUfs) { %>
             <option value="<%= uf.getId()%>"><%= uf.getSigla()%></option>
@@ -38,13 +38,14 @@
     </select>
     <br><br>
     <label>Selecione uma empresa para o seu cliente</label>
-    <select name="clienteEmpresa">
+    <select name="clienteEmpresaId">
         <option>Selecione uma Opção</option>
         <%for (EmpresaDTO empresa : listaEmpresas) { %>
         <option value="<%= empresa.getId()%>"><%= empresa.getNomeFantasia()%></option>
         <%}%>
     </select>
     <br><br>
+    <label>Nome de Usuário:</label><input type="text" name="clienteNomeUsuario">
     <input type="reset" value="Limpar Campos">
     <input type="submit" value="Cadastrar">
 </form>

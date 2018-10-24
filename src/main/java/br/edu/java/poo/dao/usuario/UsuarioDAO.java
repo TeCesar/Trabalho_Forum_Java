@@ -8,6 +8,8 @@ public interface UsuarioDAO {
 
     boolean alteraSenha(String senha, String nomeConta);
 
+    int criarUsuarioCliente(UsuarioDTO usuarioDTO);
+
 
 
 }

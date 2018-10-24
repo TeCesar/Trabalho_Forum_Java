@@ -4,10 +4,7 @@ import br.edu.java.poo.dao.usuario.UsuarioDAO;
 import br.edu.java.poo.dao.conexao.SQLConnectionProvider;
 import br.edu.java.poo.model.usuario.UsuarioDTO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class UsuarioDAOImpl implements UsuarioDAO {
 
@@ -51,6 +48,32 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         }
 
         return false;
+    }
+
+    @Override
+    public int criarUsuarioCliente(UsuarioDTO usuarioDTO) {
+        int id = 0;
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO usuarios(usuario_nomeConta, usuario_senha," +
+                    "usuario_tipoAcesso) VALUES (?, ?, ? )", Statement.RETURN_GENERATED_KEYS);
+
+            preparedStatement.setString(1, usuarioDTO.getNomeConta());
+            preparedStatement.setString(2, usuarioDTO.getSenha());
+            preparedStatement.setString(3, usuarioDTO.getTipoAcesso());
+
+            preparedStatement.executeUpdate();
+
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+
+            while (resultSet.next()){
+                id = resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return id;
     }
 
 }

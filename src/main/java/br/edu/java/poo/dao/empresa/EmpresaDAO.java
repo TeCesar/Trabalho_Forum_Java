@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface EmpresaDAO {
 
-    List<EmpresaDTO> buscarEmpresas();
+    List<EmpresaDTO> buscarListaEmpresas();
+
+    EmpresaDTO buscarEmpresa(int id);
 
 }

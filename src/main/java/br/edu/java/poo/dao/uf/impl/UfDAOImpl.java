@@ -14,16 +14,16 @@ import java.util.List;
 public class UfDAOImpl implements UfDAO {
 
     @Override
-    public List<UfDTO> buscarUfs() {
+    public List<UfDTO> buscarListaUfs() {
         List<UfDTO> listaUfs = null;
 
-        try (Connection connection = SQLConnectionProvider.openConnection()){
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
             listaUfs = new ArrayList<UfDTO>();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM ufs");
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 UfDTO ufDTO = new UfDTO();
                 ufDTO.setId(resultSet.getInt("uf_id"));
                 ufDTO.setSigla(resultSet.getString("uf_sigla"));
@@ -37,5 +37,30 @@ public class UfDAOImpl implements UfDAO {
             e.printStackTrace();
         }
         return listaUfs;
+    }
+
+    @Override
+    public UfDTO buscarUf(int id) {
+        UfDTO uf = null;
+
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
+            uf = new UfDTO();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM ufs WHERE uf_id = ?");
+
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                uf.setId(resultSet.getInt("uf_id"));
+                uf.setSigla(resultSet.getString("uf_sigla"));
+                uf.setNome(resultSet.getString("uf_nome"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return uf;
     }
 }
