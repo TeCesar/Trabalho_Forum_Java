@@ -24,12 +24,7 @@
         <a>Cadastrar</a>
     </div>
 </div>
-<h1>...........</h1>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-
+<br><br><br><br>
 <input type="text" name="buscar" placeholder="BUSCAR" class="busca">
 
 <table width="90%" align="center" cellpadding="10">
