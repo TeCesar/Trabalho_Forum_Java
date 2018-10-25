@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 23-Out-2018 às 04:16
--- Versão do servidor: 10.1.33-MariaDB
--- PHP Version: 7.2.6
+-- Generation Time: 25-Out-2018 às 18:05
+-- Versão do servidor: 10.1.36-MariaDB
+-- versão do PHP: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -118,6 +118,7 @@ CREATE TABLE `ufs` (
 
 CREATE TABLE `usuarios` (
   `usuario_id` int(11) NOT NULL,
+  `usuario_nome` varchar(50) NOT NULL,
   `usuario_nomeConta` varchar(50) NOT NULL,
   `usuario_senha` varchar(50) NOT NULL,
   `usuario_tipoAcesso` varchar(50) NOT NULL,
@@ -133,9 +134,9 @@ CREATE TABLE `usuarios` (
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`usuario_id`, `usuario_nomeConta`, `usuario_senha`, `usuario_tipoAcesso`, `usuario_dataDeCadastro`, `usuario_dataDeAlteracao`, `usuario_apelido`, `usuario_nomeEmpresa`, `usuario_errosLogin`, `usuario_ticketResolvidos`) VALUES
-(1, 'admin', '12345', 'administrador', '0000-00-00', '0000-00-00', 'Master', 'drt', 1, 0),
-(2, 'operador', '123456789@', 'operador', '0000-00-00', '0000-00-00', 'oi', 'drt', 0, 0);
+INSERT INTO `usuarios` (`usuario_id`, `usuario_nome`, `usuario_nomeConta`, `usuario_senha`, `usuario_tipoAcesso`, `usuario_dataDeCadastro`, `usuario_dataDeAlteracao`, `usuario_apelido`, `usuario_nomeEmpresa`, `usuario_errosLogin`, `usuario_ticketResolvidos`) VALUES
+(1, 'Administrador', 'admin', '12345', 'administrador', '0000-00-00', '0000-00-00', 'Master', 'drt', 1, 0),
+(2, 'Operador', 'operador', '123456789@', 'operador', '0000-00-00', '0000-00-00', 'oi', 'drt', 0, 0);
 
 --
 -- Indexes for dumped tables

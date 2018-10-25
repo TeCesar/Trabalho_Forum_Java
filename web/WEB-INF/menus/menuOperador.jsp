@@ -9,7 +9,9 @@
 <html>
 <head>
     <title>Menu Principal</title>
-    <style><%@include file="/WEB-INF/estilo/estilo.css"%></style>
+    <style>
+        <%@include file="/WEB-INF/estilo/estilo.css" %>
+    </style>
 </head>
 <body>
 
@@ -31,8 +33,19 @@
 
             </ul>
         </li>
-        <li><a href="#">Relatórios</a></li>
-        <li><a href="controller?acao=ticket">Tickets</a></li>
+
+        <li><a href="#">Relatórios</a>
+            <ul>
+                <li><a href="#">Cliente</a></li>
+                <li><a href="#">Empresa</a></li>
+                <li><a href="#">Venda</a></li>
+                <li><a href="#">Estoque</a></li>
+            </ul>
+        </li>
+
+        <li><a href="#">Tickets</a>
+
+
         <li><a href="#">Tópicos</a></li>
     </ul>
 </nav>
