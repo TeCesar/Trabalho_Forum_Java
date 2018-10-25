@@ -4,12 +4,14 @@ import br.edu.java.poo.dao.cliente.ClienteDAO;
 import br.edu.java.poo.dao.cliente.impl.ClienteDAOImpl;
 import br.edu.java.poo.dao.empresa.EmpresaDAO;
 import br.edu.java.poo.dao.empresa.impl.EmpresaDAOImpl;
+import br.edu.java.poo.dao.endereco.EnderecoDAO;
 import br.edu.java.poo.dao.uf.UfDAO;
 import br.edu.java.poo.dao.uf.impl.UfDAOImpl;
 import br.edu.java.poo.dao.usuario.UsuarioDAO;
 import br.edu.java.poo.dao.usuario.impl.UsuarioDAOImpl;
 import br.edu.java.poo.model.cliente.ClienteDTO;
 import br.edu.java.poo.model.empresa.EmpresaDTO;
+import br.edu.java.poo.model.endereco.EnderecoDTO;
 import br.edu.java.poo.model.endereco.UfDTO;
 
 import javax.servlet.ServletException;
@@ -26,10 +28,12 @@ public class CadastroServlet extends HttpServlet {
     EmpresaDAO empresaDAO;
     ClienteDAO clienteDAO;
     UsuarioDAO usuarioDAO;
+    EnderecoDAO enderecoDAO;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ufDAO = new UfDAOImpl();
+        empresaDAO = new EmpresaDAOImpl();
         clienteDAO = new ClienteDAOImpl();
         usuarioDAO = new UsuarioDAOImpl();
 
@@ -50,24 +54,27 @@ public class CadastroServlet extends HttpServlet {
         clienteDTO.setSobrenome(sobrenome);
         clienteDTO.setDtNascimento(dtNasc);
         clienteDTO.setSexo(sexo.charAt(0));
-        clienteDTO.getEnderecoDTO().setRua(nomeRua);
-        clienteDTO.getEnderecoDTO().setNumeroCasa(Integer.parseInt(numeroCasa));
-        clienteDTO.getEnderecoDTO().setBairro(bairro);
-        clienteDTO.getEnderecoDTO().setCidade(cidade);
 
+        EnderecoDTO enderecoBusca = new EnderecoDTO();
+        enderecoBusca.setRua(nomeRua);
+        enderecoBusca.setNumeroCasa(Integer.parseInt(numeroCasa));
+        enderecoBusca.setBairro(bairro);
+        enderecoBusca.setCidade(cidade);
+        enderecoBusca = enderecoDAO.buscaEndereco(enderecoBusca, Integer.parseInt(idUf));
         UfDTO ufBusca = ufDAO.buscarUf(Integer.parseInt(idUf));
-        clienteDTO.getEnderecoDTO().setUfDTO(ufBusca);
-
         EmpresaDTO empresaBusca = empresaDAO.buscarEmpresa(Integer.parseInt(idEmpresa));
-        clienteDTO.setEmpresaDTO(empresaBusca);
+
 
         clienteDTO.getUsuarioDTO().setNomeConta(nomeUsuario);
         clienteDTO.getUsuarioDTO().setSenha("12345");
         clienteDTO.getUsuarioDTO().setTipoAcesso("Cliente");
         clienteDTO.getUsuarioDTO().setId(usuarioDAO.criarUsuarioCliente(clienteDTO.getUsuarioDTO()));
 
-        clienteDAO.cadastrarCliente(clienteDTO);
+        clienteDTO.setEnderecoDTO(enderecoBusca);
+        clienteDTO.setEmpresaDTO(empresaBusca);
+        clienteDTO.getEnderecoDTO().setUfDTO(ufBusca);
 
+        clienteDAO.cadastrarCliente(clienteDTO);
     }
 
     @Override

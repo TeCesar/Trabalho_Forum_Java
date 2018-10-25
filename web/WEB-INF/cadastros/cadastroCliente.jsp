@@ -89,6 +89,8 @@
     <input type="reset" value="Limpar Campos" class="btns">
     <input type="submit" value="Cadastrar" class="btne">
 </form>
+<br>
+<a href="/controller?acao=menuPrincipal"><button style="align: center">Voltar</button></a>
 
 </body>
 </html>

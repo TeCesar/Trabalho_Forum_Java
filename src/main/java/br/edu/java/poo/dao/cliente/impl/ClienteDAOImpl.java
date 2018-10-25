@@ -23,6 +23,9 @@ public class ClienteDAOImpl implements ClienteDAO {
             preparedStatement.setString(1, clienteDTO.getNome());
             preparedStatement.setString(2, clienteDTO.getSobrenome());
             preparedStatement.setDate(3, (Date) dateFormat.parse(clienteDTO.getDtNascimento()));
+            preparedStatement.setInt(4, clienteDTO.getEnderecoDTO().getId());
+            preparedStatement.setInt(5, clienteDTO.getEmpresaDTO().getId());
+            preparedStatement.setInt(6, clienteDTO.getUsuarioDTO().getId());
 
             resultado = preparedStatement.executeUpdate();
 
