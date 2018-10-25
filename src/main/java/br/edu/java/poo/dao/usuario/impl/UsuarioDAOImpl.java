@@ -67,7 +67,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
 
-            while (resultSet.next()){
+            if (resultSet.next()){
                 id = resultSet.getInt(1);
             }
         } catch (SQLException e) {

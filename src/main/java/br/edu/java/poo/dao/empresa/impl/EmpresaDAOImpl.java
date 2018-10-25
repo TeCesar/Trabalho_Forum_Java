@@ -54,7 +54,7 @@ public class EmpresaDAOImpl implements EmpresaDAO {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 empresa.setId(resultSet.getInt("empresa_id"));
                 empresa.setNomeFantasia(resultSet.getString("empresa_nomeFantasia"));
                 empresa.setCnpj(resultSet.getString("empresa_cnpj"));

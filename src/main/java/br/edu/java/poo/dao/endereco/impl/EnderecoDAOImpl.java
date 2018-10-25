@@ -38,8 +38,13 @@ public class EnderecoDAOImpl implements EnderecoDAO {
                 preparedStatement.executeUpdate();
                 resultSet = preparedStatement.getGeneratedKeys();
 
-                while (resultSet.next()) {
+                if (resultSet.next()) {
                     enderecoBusca.setId(resultSet.getInt("endereco_id"));
+                    enderecoBusca.setRua(resultSet.getString("endereco_rua"));
+                    enderecoBusca.setNumeroCasa(resultSet.getInt("endereco_numero"));
+                    enderecoBusca.setBairro(resultSet.getString("endereco_bairro"));
+                    enderecoBusca.setCidade(resultSet.getString("endereco_cidade"));
+                    enderecoBusca.getUfDTO().setId(resultSet.getInt("uf_id"));
                 }
             }
         } catch (SQLException e) {
