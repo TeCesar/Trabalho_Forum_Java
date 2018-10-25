@@ -29,7 +29,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
-<input type="button" name="novo" value="Novo Tópico" class="novo">
+
 <input type="text" name="buscar" placeholder="BUSCAR" class="busca">
 
 <table width="90%" align="center" cellpadding="10">

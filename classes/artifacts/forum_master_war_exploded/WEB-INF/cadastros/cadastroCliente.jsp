@@ -1,6 +1,6 @@
+<%@ page import="br.edu.java.poo.model.empresa.EmpresaDTO" %>
 <%@ page import="br.edu.java.poo.model.endereco.UfDTO" %>
-<%@ page import="java.util.List" %>
-<%@ page import="br.edu.java.poo.model.empresa.EmpresaDTO" %><%--
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Archibald
   Date: 24/10/2018
@@ -11,43 +11,83 @@
 <html>
 <head>
     <title>Cadastro de Cliente</title>
+
+    <style>
+        <%@include file="/WEB-INF/estilo/estilo.css" %>
+    </style>
 </head>
 <body>
+
+
 <%
     List<UfDTO> listaUfs = (List<UfDTO>) request.getSession().getAttribute("listaUfs");
     List<EmpresaDTO> listaEmpresas = (List<EmpresaDTO>) request.getSession().getAttribute("listaEmpresas");
 %>
-<form method="post" action="/controller?acao=cadastro" style="text-align: center">
-    <label>Nome: </label><input type="text" name="clienteNome"><br><br>
-    <label>Sobrenome: </label><input type="text" name="clienteSobrenome"><br><br>
-    <label>Dt. Nascimento: </label><input type="text" name="clienteDtNasc"><br><br>
-    <label>Sexo: </label>
-    <input type="radio" name="clienteSexo" value="M" checked="checked">Masculino
-    <input type="radio" name="clienteSexo" value="F">Feminino
-    <br><br>
-    <label>Nome da Rua: </label><input type="text" name="clienteNomeRua"><br><br>
-    <label>Número da Casa: </label><input type="text" name="clienteNumeroCasa"><br><br>
-    <label>Bairro: </label><input type="text" name="clienteBairro"><br><br>
-    <label>Cidade: </label><input type="text" name="clienteCidade"><br><br>
-    <label>UF</label>
-    <select name="clienteUfId">
-        <option>Selecione uma opção</option>
-        <%for (UfDTO uf : listaUfs) { %>
-            <option value="<%= uf.getId()%>"><%= uf.getSigla()%></option>
-        <%}%>
-    </select>
-    <br><br>
-    <label>Selecione uma empresa para o seu cliente</label>
-    <select name="clienteEmpresaId">
-        <option>Selecione uma Opção</option>
-        <%for (EmpresaDTO empresa : listaEmpresas) { %>
-        <option value="<%= empresa.getId()%>"><%= empresa.getNomeFantasia()%></option>
-        <%}%>
-    </select>
-    <br><br>
-    <label>Nome de Usuário:</label><input type="text" name="clienteNomeUsuario">
-    <input type="reset" value="Limpar Campos">
-    <input type="submit" value="Cadastrar">
+
+
+<div id="barra">
+    <label>Bem vindo</label>
+    <div id="login">
+        <a href="../../index.jsp">Sair</a>
+
+    </div>
+</div>
+
+<nav>
+    <ul class="menu">
+
+        <li><a href="#">Cadastrar</a>
+            <ul>
+                <li><a href="controller?acao=cadastro">Cliente</a></li>
+                <li><a href="#">Empresa</a></li>
+
+            </ul>
+        </li>
+        <li><a href="#">Relatórios</a></li>
+        <li><a href="controller?acao=ticket">Tickets</a></li>
+        <li><a href="#">Tópicos</a></li>
+    </ul>
+</nav>
+<br><br><br>
+
+<h1 class="titulo">Cadastro de Cliente</h1>
+
+<form method="post" action="/controller?acao=cadastro">
+    <div style="text-align: center">
+
+        <label class="txt">Nome: </label><input type="text" name="clienteNome" class="campo"><br><br>
+        <label class="txt">Sobrenome: </label><input type="text" name="clienteSobrenome" class="campo"><br><br>
+        <label class="txt">Dt. Nascimento: </label><input type="text" name="clienteDtNasc" class="campo"><br><br>
+        <label>Sexo: </label>
+        <input type="radio" name="clienteSexo" value="M" checked="checked">Masculino
+        <input type="radio" name="clienteSexo" value="F">Feminino
+        <br><br>
+        <label class="txt">Nome da Rua: </label><input type="text" name="clienteNomeRua" class="campo"><br><br>
+        <label class="txt">Número da Casa: </label><input type="text" name="clienteNumeroCasa" class="campo"><br><br>
+        <label class="txt">Bairro: </label><input type="text" name="clienteBairro" class="campo"><br><br>
+        <label class="txt">Cidade: </label><input type="text" name="clienteCidade" class="campo"><br><br>
+        <label class="txt">UF:</label>
+        <select name="clienteUfId" class="campo">
+            <option>Selecione uma opção</option>
+            <%for (UfDTO uf : listaUfs) { %>
+            <option value="<%= uf.getId()%>"><%= uf.getSigla()%>
+            </option>
+            <%}%>
+        </select>
+        <br><br>
+        <label class="txt">Selecione uma empresa para o seu cliente</label>
+        <select name="clienteEmpresaId" class="campo">
+            <option>Selecione uma Opção</option>
+            <%for (EmpresaDTO empresa : listaEmpresas) { %>
+            <option value="<%= empresa.getId()%>"><%= empresa.getNomeFantasia()%>
+            </option>
+            <%}%>
+        </select>
+        <br><br>
+        <label class="txt">Nome de Usuário:</label><input type="text" name="clienteNomeUsuario" class="campo"><br><br>
+    </div>
+    <input type="reset" value="Limpar Campos" class="btns">
+    <input type="submit" value="Cadastrar" class="btne">
 </form>
 
 </body>
