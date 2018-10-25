@@ -10,34 +10,36 @@
 <head>
     <title>forum</title>
 
-    <style><%@include file="/WEB-INF/estilo/estilo.css"%></style>
+    <style>
+        <%@include file="/WEB-INF/estilo/estilo.css" %>
+    </style>
 
 </head>
 <body>
 
-     <div id="barra">
-        <label>Bem vindo ao forum</label>
-         <div id="login">
-            <a href="login.jsp">Entrar &nbsp;&nbsp;</a>
-            <a>Cadastrar</a>
-         </div>
-     </div>
-     <h1>...........</h1>
+<div id="barra">
+    <label>Bem vindo ao forum</label>
+    <div id="login">
+        <a href="login.jsp">Entrar &nbsp;&nbsp;</a>
+        <a>Cadastrar</a>
+    </div>
+</div>
+<h1>...........</h1>
 
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
-     <input type="button" name="novo" value="Novo Tópico" class="novo">
-     <input type="text" name="buscar" placeholder="BUSCAR" class="busca">
+<input type="button" name="novo" value="Novo Tópico" class="novo">
+<input type="text" name="buscar" placeholder="BUSCAR" class="busca">
 
-    <table width="90%" align="center" cellpadding="10">
-        <tr align="center" bgcolor="#CCC">
-            <td><strong>Titulo Assunto</strong></td>
-            <td><strong>Mensagem</strong></td>
-            <td><strong>Status</strong></td>
-        </tr>
-    </table>
+<table width="90%" align="center" cellpadding="10">
+    <tr align="center" bgcolor="#CCC">
+        <td><strong>Titulo Assunto</strong></td>
+        <td><strong>Mensagem</strong></td>
+        <td><strong>Status</strong></td>
+    </tr>
+</table>
 
-   
+
 </body>
 </html>

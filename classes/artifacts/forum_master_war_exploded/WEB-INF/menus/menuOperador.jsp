@@ -26,23 +26,15 @@
 
         <li><a href="#">Cadastrar</a>
             <ul>
-                <li><a href="#">Cliente</a></li>
+                <li><a href="controller?acao=cadastro">Cliente</a></li>
                 <li><a href="#">Empresa</a></li>
 
             </ul>
         </li>
         <li><a href="#">Relatórios</a></li>
-        <li><a href="#">Tickets</a></li>
+        <li><a href="controller?acao=ticket">Tickets</a></li>
         <li><a href="#">Tópicos</a></li>
     </ul>
 </nav>
-
-
-
-
-
-
-
-
 </body>
 </html>
