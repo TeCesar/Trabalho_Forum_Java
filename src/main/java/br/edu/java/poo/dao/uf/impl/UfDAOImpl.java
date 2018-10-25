@@ -19,7 +19,7 @@ public class UfDAOImpl implements UfDAO {
 
         try (Connection connection = SQLConnectionProvider.openConnection()) {
             listaUfs = new ArrayList<UfDTO>();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM ufs");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM ufs ORDER BY uf_sigla");
 
             ResultSet resultSet = preparedStatement.executeQuery();
 

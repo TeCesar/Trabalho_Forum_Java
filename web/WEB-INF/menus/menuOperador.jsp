@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Cadastro</title>
+    <title>Menu Principal</title>
     <style><%@include file="/WEB-INF/estilo/estilo.css"%></style>
 </head>
 <body>

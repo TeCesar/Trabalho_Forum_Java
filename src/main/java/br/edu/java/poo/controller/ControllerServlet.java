@@ -1,5 +1,7 @@
 package br.edu.java.poo.controller;
 
+import br.edu.java.poo.model.usuario.UsuarioSession;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,24 +20,36 @@ public class ControllerServlet extends HttpServlet {
             req.getRequestDispatcher("login").forward(req, resp);
         }
 
-        if ("novaSenha".equalsIgnoreCase(acao)){
+        if ("novaSenha".equalsIgnoreCase(acao)) {
             req.getRequestDispatcher("novaSenha").forward(req, resp);
         }
 
-        if("criarTicket".equalsIgnoreCase(acao)){
+        if ("criarTicket".equalsIgnoreCase(acao)) {
             req.getRequestDispatcher("ticket?tipo=fimTicket").forward(req, resp);
         }
+
+        if ("cadastro".equalsIgnoreCase(acao)) {
+            req.getRequestDispatcher("cadastro?tipo=cliente").forward(req, resp);
+        }
+
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String acao = req.getParameter("acao");
 
-        if ("ticket".equalsIgnoreCase(acao)){
+        if ("ticket".equalsIgnoreCase(acao)) {
             req.getRequestDispatcher("ticket?tipo=inicioTicket").forward(req, resp);
         }
 
-        if ("cadastro".equalsIgnoreCase(acao)){
+        if ("menuPrincipal".equalsIgnoreCase(acao)) {
+            UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuario");
+            if ("operador".equalsIgnoreCase(usuarioSession.getTipoAcesso())) {
+                req.getRequestDispatcher("WEB-INF/menus/menuOperador.jsp").forward(req, resp);
+            }
+        }
+
+        if ("cadastro".equalsIgnoreCase(acao)) {
             req.getRequestDispatcher("cadastro?tipo=cliente").forward(req, resp);
         }
 
