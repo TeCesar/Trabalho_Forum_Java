@@ -21,7 +21,7 @@
     <label>Bem vindo ao forum</label>
     <div id="login">
         <a href="login.jsp">Entrar &nbsp;&nbsp;</a>
-        <a>Cadastrar</a>
+        
     </div>
 </div>
 <br><br><br><br>
