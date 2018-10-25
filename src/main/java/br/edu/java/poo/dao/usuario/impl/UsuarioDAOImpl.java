@@ -16,11 +16,13 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
 
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 usuarioDTO.setId(resultSet.getInt("usuario_id"));
                 usuarioDTO.setNomeConta(resultSet.getString("usuario_nomeConta"));
                 usuarioDTO.setSenha(resultSet.getString("usuario_senha"));
                 usuarioDTO.setTipoAcesso(resultSet.getString("usuario_tipoAcesso"));
+            } else {
+                return null;
             }
 
         } catch (SQLException e) {
