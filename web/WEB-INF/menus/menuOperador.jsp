@@ -40,10 +40,12 @@
                 <li><a href="#">Empresa</a></li>
                 <li><a href="#">Venda</a></li>
                 <li><a href="#">Estoque</a></li>
+                <li><a href="#">Tickets</a></li>
+                <li><a href="#">Tópicos</a></li>
             </ul>
         </li>
 
-        <li><a href="#">Tickets</a>
+        <li><a href="controller?acao=tickets">Tickets</a>
 
 
         <li><a href="#">Tópicos</a></li>
