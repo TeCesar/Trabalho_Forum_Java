@@ -179,3 +179,61 @@ a {
     display: block;
     width: 150px;
 }
+
+.titulo {
+    text-align: center;
+    font-family: 'DejaVu Serif', Georgia, "Times New Roman", Times, serif;
+
+}
+
+.campo {
+    border: 1px solid #25692A;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 13px;
+    padding: 6px 10px;
+    text-decoration: none;
+    width: 310px;
+    margin-right: 200px;
+}
+
+.txt {
+    font-family: 'DejaVu Serif', Georgia, "Times New Roman", Times, serif;
+    font-size: 16px;
+    display: inline-block;
+    text-align: right;
+    width: 200px;
+    padding-right: 5px;
+}
+
+.btne {
+    border: 1px solid #25692A;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 6px 10px;
+    text-decoration: none;
+    width: 150px;
+    background-color: #fff;
+}
+
+.btne:hover {
+    cursor: pointer;
+    background-color: lawngreen;
+}
+
+.btns {
+    border: 1px solid #25692A;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 6px 10px;
+    text-decoration: none;
+    margin-left: 807px;
+    width: 150px;
+    background-color: #fff;
+
+}
+
+.btns:hover {
+    cursor: pointer;
+    background-color: orangered;
+}
