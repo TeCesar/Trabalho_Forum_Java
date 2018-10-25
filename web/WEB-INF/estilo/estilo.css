@@ -249,14 +249,12 @@ a {
 .fechado{
     background-color: #90EE90;
 }
-.fechado:hover{
-     background-color: aqua;
-     cursor: pointer;
- }
+
 .aberto{
     background-color: #F08080;
 }
-.aberto:hover{
-    background-color: aqua;
+
+.responder:hover{
     cursor: pointer;
+    background-color: aqua;
 }

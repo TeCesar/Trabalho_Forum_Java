@@ -45,8 +45,13 @@
             </ul>
         </li>
 
-        <li><a href="controller?acao=tickets">Tickets</a>
-
+        <li><a href="#">Tickets</a>
+            <ul>
+                <li><a href="controller?acao=tickets">Todos</a></li>
+                <li><a href="#">Aberto</a></li>
+                <li><a href="#">Fechado</a></li>
+                <li><a href="#">Em Andamento</a></li>
+            </ul>
 
         <li><a href="#">Tópicos</a></li>
     </ul>

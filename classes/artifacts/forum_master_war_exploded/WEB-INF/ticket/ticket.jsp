@@ -12,6 +12,8 @@
     <style>
         <%@include file="/WEB-INF/estilo/estilo.css" %>
     </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
 <body>
 
@@ -45,7 +47,14 @@
             </ul>
         </li>
 
-        <li><a href="controller?acao=tickets">Tickets</a>
+        <li><a href="#">Tickets</a>
+            <ul>
+                <li><a href="controller?acao=tickets">Todos</a></li>
+                <li><a href="#">Aberto</a></li>
+                <li><a href="#">Fechado</a></li>
+                <li><a href="#">Em Andamento</a></li>
+            </ul>
+
         <li><a href="#">Tópicos</a></li>
     </ul>
 </nav>
@@ -61,13 +70,16 @@
             <td><strong>Titulo Assunto</strong></td>
             <td><strong>Mensagem</strong></td>
             <td><strong>Status</strong></td>
+            <td><strong>Responder</strong></td>
         </tr>
 
         <tr class="ticket">
-                <td>TD0001</td>
-                <td>BUG</td>
-                <td>Quando eu clico la bug aqui</td>
-                <td class="aberto">ABERTO</td>
+
+            <td>TD0001</td>
+            <td>BUG</td>
+            <td>Quando eu clico la bug aqui</td>
+            <td class="aberto">ABERTO</td>
+            <td class="responder"><a href="#"><i class="fa fa-edit" style="color:rgba(0,0,0,1.00)"></i></a></td>
         </tr>
 
         <tr class="ticket2">
@@ -75,6 +87,7 @@
             <td>BUG</td>
             <td>Quando eu clico la bug aqui</td>
             <td class="fechado">FECHADO</td>
+            <td class="responder"><a href="#"><i class="fa fa-edit" style="color:rgba(0,0,0,1.00)"></i></a></td>
         </tr>
     </table>
 </form>

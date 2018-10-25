@@ -43,8 +43,26 @@
 
             </ul>
         </li>
-        <li><a href="#">Relatórios</a></li>
-        <li><a href="controller?acao=ticket">Tickets</a></li>
+
+        <li><a href="#">Relatórios</a>
+            <ul>
+                <li><a href="#">Cliente</a></li>
+                <li><a href="#">Empresa</a></li>
+                <li><a href="#">Venda</a></li>
+                <li><a href="#">Estoque</a></li>
+                <li><a href="#">Tickets</a></li>
+                <li><a href="#">Tópicos</a></li>
+            </ul>
+        </li>
+
+        <li><a href="#">Tickets</a>
+            <ul>
+                <li><a href="controller?acao=tickets">Todos</a></li>
+                <li><a href="#">Aberto</a></li>
+                <li><a href="#">Fechado</a></li>
+                <li><a href="#">Em Andamento</a></li>
+            </ul>
+
         <li><a href="#">Tópicos</a></li>
     </ul>
 </nav>
