@@ -3,7 +3,7 @@ package br.edu.java.poo.model.endereco;
 public class EnderecoDTO {
     private int id;
     private String rua;
-    private int numeroCasa;
+    private String numeroCasa;
     private String bairro;
     private String cidade;
     private UfDTO ufDTO;
@@ -24,11 +24,11 @@ public class EnderecoDTO {
         this.rua = rua;
     }
 
-    public int getNumeroCasa() {
+    public String getNumeroCasa() {
         return numeroCasa;
     }
 
-    public void setNumeroCasa(int numeroCasa) {
+    public void setNumeroCasa(String numeroCasa) {
         this.numeroCasa = numeroCasa;
     }
 

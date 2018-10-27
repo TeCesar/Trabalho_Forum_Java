@@ -10,10 +10,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class ClienteDAOImpl implements ClienteDAO {
-    Integer resultado = null;
 
     @Override
     public int cadastrarCliente(ClienteDTO clienteDTO) {
+        int resultado = 0;
         try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO clientes(cliente_nome, cliente_sobrenome, cliente_dtNascimento," +
                     "endereco_id, empresa_id, usuario_id) VALUES (?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
@@ -22,7 +22,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
             preparedStatement.setString(1, clienteDTO.getNome());
             preparedStatement.setString(2, clienteDTO.getSobrenome());
-            preparedStatement.setDate(3, (Date) dateFormat.parse(clienteDTO.getDtNascimento()));
+            preparedStatement.setDate(3, new java.sql.Date(clienteDTO.getDtNascimento().getTime()));
             preparedStatement.setInt(4, clienteDTO.getEnderecoDTO().getId());
             preparedStatement.setInt(5, clienteDTO.getEmpresaDTO().getId());
             preparedStatement.setInt(6, clienteDTO.getUsuarioDTO().getId());
@@ -32,8 +32,6 @@ public class ClienteDAOImpl implements ClienteDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
             e.printStackTrace();
         }
         return resultado;

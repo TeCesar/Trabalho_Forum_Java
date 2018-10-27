@@ -4,11 +4,13 @@ import br.edu.java.poo.model.empresa.EmpresaDTO;
 import br.edu.java.poo.model.endereco.EnderecoDTO;
 import br.edu.java.poo.model.usuario.UsuarioDTO;
 
+import java.util.Date;
+
 public class ClienteDTO {
     private int id;
     private String nome;
     private String sobrenome;
-    private String dtNascimento;
+    private Date dtNascimento;
     private char sexo;
     private EnderecoDTO enderecoDTO;
     private EmpresaDTO empresaDTO;
@@ -38,11 +40,11 @@ public class ClienteDTO {
         this.sobrenome = sobrenome;
     }
 
-    public String getDtNascimento() {
+    public Date getDtNascimento() {
         return dtNascimento;
     }
 
-    public void setDtNascimento(String dtNascimento) {
+    public void setDtNascimento(Date dtNascimento) {
         this.dtNascimento = dtNascimento;
     }
 

@@ -57,13 +57,16 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         int id = 0;
         try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO usuarios(usuario_nomeConta, usuario_senha," +
-                    "usuario_tipoAcesso) VALUES (?, ?, ? )", Statement.RETURN_GENERATED_KEYS);
+                    "usuario_tipoAcesso, usuario_dataDeCadastro, usuario_errosLogin, usuario_ticketResolvidos) VALUES (?, ?, ?, ?, ?, ? )", Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setString(1, usuarioDTO.getNomeConta());
             preparedStatement.setString(2, usuarioDTO.getSenha());
             preparedStatement.setString(3, usuarioDTO.getTipoAcesso());
+            preparedStatement.setDate(4, new java.sql.Date(usuarioDTO.getDataDeCadastro().getTime()));
+            preparedStatement.setInt(5, 0);
+            preparedStatement.setInt(6, 0);
 
-            preparedStatement.executeUpdate();
+            preparedStatement.execute();
 
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
 

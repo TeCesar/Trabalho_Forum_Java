@@ -50,7 +50,7 @@ public class UfDAOImpl implements UfDAO {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 uf.setId(resultSet.getInt("uf_id"));
                 uf.setSigla(resultSet.getString("uf_sigla"));
                 uf.setNome(resultSet.getString("uf_nome"));
