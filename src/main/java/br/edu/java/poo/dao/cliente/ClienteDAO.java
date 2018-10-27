@@ -4,6 +4,6 @@ import br.edu.java.poo.model.cliente.ClienteDTO;
 
 public interface ClienteDAO {
 
-    int cadastrarCliente(ClienteDTO clienteDTO);
+    boolean cadastrarCliente(ClienteDTO clienteDTO);
 
 }

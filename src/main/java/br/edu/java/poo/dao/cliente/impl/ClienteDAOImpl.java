@@ -12,8 +12,7 @@ import java.text.SimpleDateFormat;
 public class ClienteDAOImpl implements ClienteDAO {
 
     @Override
-    public int cadastrarCliente(ClienteDTO clienteDTO) {
-        int resultado = 0;
+    public boolean cadastrarCliente(ClienteDTO clienteDTO) {
         try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO clientes(cliente_nome, cliente_sobrenome, cliente_dtNascimento," +
                     "endereco_id, empresa_id, usuario_id) VALUES (?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
@@ -27,13 +26,16 @@ public class ClienteDAOImpl implements ClienteDAO {
             preparedStatement.setInt(5, clienteDTO.getEmpresaDTO().getId());
             preparedStatement.setInt(6, clienteDTO.getUsuarioDTO().getId());
 
-            resultado = preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+
+            return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return resultado;
+        return false;
     }
 }
