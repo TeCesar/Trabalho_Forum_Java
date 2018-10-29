@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 25-Out-2018 às 18:05
--- Versão do servidor: 10.1.36-MariaDB
--- versão do PHP: 7.2.10
+-- Generation Time: 29-Out-2018 às 15:58
+-- Versão do servidor: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -48,8 +48,17 @@ CREATE TABLE `empresas` (
   `empresa_id` int(11) NOT NULL,
   `empresa_nomeFantasia` varchar(50) NOT NULL,
   `empresa_cnpj` varchar(50) NOT NULL,
-  `empresa_razaoSocial` varchar(50) NOT NULL
+  `empresa_razaoSocial` varchar(50) NOT NULL,
+  `endereco_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `empresas`
+--
+
+INSERT INTO `empresas` (`empresa_id`, `empresa_nomeFantasia`, `empresa_cnpj`, `empresa_razaoSocial`, `endereco_id`) VALUES
+(3, 'Profarma', '192837465', 'Profarmando', 0),
+(4, 'TesteTeste', '123456789', 'Teste', 6);
 
 -- --------------------------------------------------------
 
@@ -65,6 +74,13 @@ CREATE TABLE `enderecos` (
   `endereco_cidade` varchar(50) NOT NULL,
   `uf_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `enderecos`
+--
+
+INSERT INTO `enderecos` (`endereco_id`, `endereco_rua`, `endereco_numero`, `endereco_bairro`, `endereco_cidade`, `uf_id`) VALUES
+(6, 'Rua do Teste', '123', 'Bairro do Teste', 'Cidade do Teste', 1);
 
 -- --------------------------------------------------------
 
@@ -110,6 +126,16 @@ CREATE TABLE `ufs` (
   `uf_nome` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `ufs`
+--
+
+INSERT INTO `ufs` (`uf_id`, `uf_sigla`, `uf_nome`) VALUES
+(1, 'PR', 'Paraná'),
+(2, 'SC', 'Santa Catarina'),
+(5, 'MS', 'Mato Grosso do Sul'),
+(7, 'RJ', 'Rio de janeiro');
+
 -- --------------------------------------------------------
 
 --
@@ -118,14 +144,12 @@ CREATE TABLE `ufs` (
 
 CREATE TABLE `usuarios` (
   `usuario_id` int(11) NOT NULL,
-  `usuario_nome` varchar(50) NOT NULL,
   `usuario_nomeConta` varchar(50) NOT NULL,
   `usuario_senha` varchar(50) NOT NULL,
   `usuario_tipoAcesso` varchar(50) NOT NULL,
   `usuario_dataDeCadastro` date NOT NULL,
-  `usuario_dataDeAlteracao` date NOT NULL,
-  `usuario_apelido` varchar(50) NOT NULL,
-  `usuario_nomeEmpresa` varchar(50) NOT NULL,
+  `usuario_dataDeAlteracao` date DEFAULT NULL,
+  `usuario_apelido` varchar(50) DEFAULT NULL,
   `usuario_errosLogin` int(4) NOT NULL,
   `usuario_ticketResolvidos` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -134,9 +158,9 @@ CREATE TABLE `usuarios` (
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`usuario_id`, `usuario_nome`, `usuario_nomeConta`, `usuario_senha`, `usuario_tipoAcesso`, `usuario_dataDeCadastro`, `usuario_dataDeAlteracao`, `usuario_apelido`, `usuario_nomeEmpresa`, `usuario_errosLogin`, `usuario_ticketResolvidos`) VALUES
-(1, 'Administrador', 'admin', '12345', 'administrador', '0000-00-00', '0000-00-00', 'Master', 'drt', 1, 0),
-(2, 'Operador', 'operador', '123456789@', 'operador', '0000-00-00', '0000-00-00', 'oi', 'drt', 0, 0);
+INSERT INTO `usuarios` (`usuario_id`, `usuario_nomeConta`, `usuario_senha`, `usuario_tipoAcesso`, `usuario_dataDeCadastro`, `usuario_dataDeAlteracao`, `usuario_apelido`, `usuario_errosLogin`, `usuario_ticketResolvidos`) VALUES
+(1, 'admin', '12345', 'administrador', '0000-00-00', '0000-00-00', 'Master', 1, 0),
+(2, 'operador', '123456789@', 'operador', '0000-00-00', '0000-00-00', 'oi', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -193,19 +217,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `cliente_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cliente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `empresas`
 --
 ALTER TABLE `empresas`
-  MODIFY `empresa_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `empresa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `enderecos`
 --
 ALTER TABLE `enderecos`
-  MODIFY `endereco_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `endereco_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tickets`
@@ -223,13 +247,13 @@ ALTER TABLE `topicos`
 -- AUTO_INCREMENT for table `ufs`
 --
 ALTER TABLE `ufs`
-  MODIFY `uf_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `uf_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

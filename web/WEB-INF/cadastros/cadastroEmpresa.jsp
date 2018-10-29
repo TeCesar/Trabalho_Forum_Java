@@ -65,13 +65,13 @@
 
 <h1 class="titulo">Cadastro de Empresa</h1>
 
-<form method="post">
+<form method="post" action="controller?acao=cadastroEmpresa">
     <div style="text-align: center">
         <label class="txt">Razão Social: </label><input type="text" name="razaoSocial" class="campo"><br><br>
         <label class="txt">Nome Fantasia: </label><input type="text" name="nomeFantasia" class="campo"><br><br>
         <label class="txt">CNPJ: </label><input type="text" name="cnpj" class="campo"><br><br>
         <label class="txt">Nome da Rua: </label><input type="text" name="empresaNomeRua" class="campo" required><br><br>
-        <label class="txt">Número do Endereço: </label><input type="text" name="empresaNumeroCasa" class="campo"
+        <label class="txt">Número do Endereço: </label><input type="text" name="empresaNumeroEndereco" class="campo"
                                                           required><br><br>
         <label class="txt">Bairro: </label><input type="text" name="empresaBairro" class="campo" required><br><br>
         <label class="txt">Cidade: </label><input type="text" name="empresaCidade" class="campo" required><br><br>

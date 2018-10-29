@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface EmpresaDAO {
 
+    boolean cadastrarEmpresa(EmpresaDTO empresaDTO);
+
     List<EmpresaDTO> buscarListaEmpresas();
 
     EmpresaDTO buscarEmpresa(int id);

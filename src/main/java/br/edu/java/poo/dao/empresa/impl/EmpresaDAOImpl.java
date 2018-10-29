@@ -4,14 +4,34 @@ import br.edu.java.poo.dao.conexao.SQLConnectionProvider;
 import br.edu.java.poo.dao.empresa.EmpresaDAO;
 import br.edu.java.poo.model.empresa.EmpresaDTO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EmpresaDAOImpl implements EmpresaDAO {
+
+    @Override
+    public boolean cadastrarEmpresa(EmpresaDTO empresaDTO) {
+        try (Connection connection = SQLConnectionProvider.openConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO empresas(empresa_nomeFantasia, empresa_cnpj, empresa_razaoSocial, endereco_id)" +
+                    "VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+
+            preparedStatement.setString(1, empresaDTO.getNomeFantasia());
+            preparedStatement.setString(2, empresaDTO.getCnpj());
+            preparedStatement.setString(3, empresaDTO.getRazaoSocial());
+            preparedStatement.setInt(4, empresaDTO.getEnderecoDTO().getId());
+
+            if (preparedStatement.execute()){
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     @Override
     public List<EmpresaDTO> buscarListaEmpresas() {

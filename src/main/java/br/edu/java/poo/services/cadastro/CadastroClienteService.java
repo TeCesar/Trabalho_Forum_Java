@@ -48,7 +48,7 @@ public class CadastroClienteService {
 
         EnderecoDTO enderecoBusca = new EnderecoDTO();
         enderecoBusca.setRua(nomeRua);
-        enderecoBusca.setNumeroCasa(numeroCasa);
+        enderecoBusca.setNumeroEndereco(numeroCasa);
         enderecoBusca.setBairro(bairro);
         enderecoBusca.setCidade(cidade);
         enderecoBusca = enderecoDAO.buscaEndereco(enderecoBusca, Integer.parseInt(idUf));

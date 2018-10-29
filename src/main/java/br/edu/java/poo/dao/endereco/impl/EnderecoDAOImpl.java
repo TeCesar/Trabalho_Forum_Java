@@ -15,14 +15,14 @@ public class EnderecoDAOImpl implements EnderecoDAO {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM enderecos WHERE endereco_rua = ? AND endereco_numero = ?");
 
             preparedStatement.setString(1, enderecoDTO.getRua());
-            preparedStatement.setString(2, enderecoDTO.getNumeroCasa());
+            preparedStatement.setString(2, enderecoDTO.getNumeroEndereco());
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
                 enderecoBusca.setId(resultSet.getInt("endereco_id"));
                 enderecoBusca.setRua(resultSet.getString("endereco_rua"));
-                enderecoBusca.setNumeroCasa(resultSet.getString("endereco_numero"));
+                enderecoBusca.setNumeroEndereco(resultSet.getString("endereco_numero"));
                 enderecoBusca.setBairro(resultSet.getString("endereco_bairro"));
                 enderecoBusca.setCidade(resultSet.getString("endereco_cidade"));
                 return enderecoBusca;
@@ -45,7 +45,7 @@ public class EnderecoDAOImpl implements EnderecoDAO {
                     "endereco_cidade, uf_id) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setString(1, enderecoDTO.getRua());
-            preparedStatement.setString(2, enderecoDTO.getNumeroCasa());
+            preparedStatement.setString(2, enderecoDTO.getNumeroEndereco());
             preparedStatement.setString(3, enderecoDTO.getBairro());
             preparedStatement.setString(4, enderecoDTO.getCidade());
             preparedStatement.setInt(5, ufId);

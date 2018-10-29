@@ -28,8 +28,12 @@ public class ControllerServlet extends HttpServlet {
             req.getRequestDispatcher("ticket?tipo=fimTicket").forward(req, resp);
         }
 
-        if ("cadastro".equalsIgnoreCase(acao)) {
+        if ("cadastroCliente".equalsIgnoreCase(acao)) {
             req.getRequestDispatcher("cadastro?tipo=cliente").forward(req, resp);
+        }
+
+        if ("cadastroEmpresa".equalsIgnoreCase(acao)) {
+            req.getRequestDispatcher("cadastro?tipo=empresa").forward(req, resp);
         }
 
     }
@@ -49,7 +53,7 @@ public class ControllerServlet extends HttpServlet {
             }
         }
 
-        if ("cadastro".equalsIgnoreCase(acao)) {
+        if ("cadastroCliente".equalsIgnoreCase(acao)) {
             req.getRequestDispatcher("cadastro?tipo=cliente").forward(req, resp);
         }
 

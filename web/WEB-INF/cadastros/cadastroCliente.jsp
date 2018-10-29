@@ -73,7 +73,7 @@
 
 <h1 class="titulo">Cadastro de Cliente</h1>
 
-<form method="post" action="/controller?acao=cadastro">
+<form method="post" action="/controller?acao=cadastroCliente">
     <div style="text-align: center">
 
         <label class="txt">Nome: </label><input type="text" name="clienteNome" class="campo" required><br><br>
@@ -96,7 +96,7 @@
             <%}%>
         </select>
         <br><br>
-        <label class="txt">Selecione uma empresa para o seu cliente</label>
+        <label class="txt">Selecione uma empresa: </label>
         <select name="clienteEmpresaId" class="campo">
             <option>Selecione uma Opção</option>
             <%for (EmpresaDTO empresa : listaEmpresas) { %>
