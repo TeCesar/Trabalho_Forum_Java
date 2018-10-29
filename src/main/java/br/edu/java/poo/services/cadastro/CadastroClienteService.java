@@ -1,5 +1,8 @@
 package br.edu.java.poo.services.cadastro;
 
+import br.edu.java.poo.business.cliente.ClienteBusiness;
+import br.edu.java.poo.business.cliente.impl.ClienteBusinessImpl;
+import br.edu.java.poo.business.exceptions.CadastrarClienteException;
 import br.edu.java.poo.dao.cliente.ClienteDAO;
 import br.edu.java.poo.dao.cliente.impl.ClienteDAOImpl;
 import br.edu.java.poo.dao.empresa.EmpresaDAO;
@@ -27,6 +30,7 @@ public class CadastroClienteService {
     EmpresaDAO empresaDAO;
     UsuarioDAO usuarioDAO;
     ClienteDAO clienteDAO;
+    ClienteBusiness clienteBusiness;
 
     public CadastroClienteService(){
         ufDAO = new UfDAOImpl();
@@ -34,10 +38,13 @@ public class CadastroClienteService {
         empresaDAO = new EmpresaDAOImpl();
         usuarioDAO = new UsuarioDAOImpl();
         clienteDAO = new ClienteDAOImpl();
+        clienteBusiness = new ClienteBusinessImpl();
     }
 
-    public boolean cadastroCliente(String idUf, String nomeRua, String numeroCasa, String bairro, String cidade, String idEmpresa, String nome, String sobrenome, String dtNasc, String sexo, String nomeUsuario) {
+    public boolean cadastroCliente(String idUf, String nomeRua, String numeroCasa, String bairro, String cidade, String idEmpresa, String nome, String sobrenome, String dtNasc, String sexo, String nomeUsuario) throws CadastrarClienteException {
         UfDTO ufBusca = ufDAO.buscarUf(Integer.parseInt(idUf));
+
+        clienteBusiness.validaCliente(nome, sobrenome, dtNasc, sexo);
 
         EnderecoDTO enderecoBusca = new EnderecoDTO();
         enderecoBusca.setRua(nomeRua);

@@ -54,7 +54,7 @@ public class ControllerServlet extends HttpServlet {
         }
 
         if ("cadastroEmpresa".equalsIgnoreCase(acao)){
-            req.getRequestDispatcher("WEB-INF/cadastros/cadastroEmpresa.jsp").forward(req, resp);
+            req.getRequestDispatcher("cadastro?tipo=empresa").forward(req, resp);
         }
 
         if ("tickets".equalsIgnoreCase(acao)){

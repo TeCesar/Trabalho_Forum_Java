@@ -22,6 +22,9 @@
 <%
     List<UfDTO> listaUfs = (List<UfDTO>) request.getSession().getAttribute("listaUfs");
     List<EmpresaDTO> listaEmpresas = (List<EmpresaDTO>) request.getSession().getAttribute("listaEmpresas");
+    String erro = (String) request.getSession().getAttribute("erro");
+    String mostraErro = (String) request.getSession().getAttribute("mostraErro");
+    String cadastroSucess = (String) request.getSession().getAttribute("cadastroSucess");
 %>
 
 
@@ -73,17 +76,17 @@
 <form method="post" action="/controller?acao=cadastro">
     <div style="text-align: center">
 
-        <label class="txt">Nome: </label><input type="text" name="clienteNome" class="campo"><br><br>
-        <label class="txt">Sobrenome: </label><input type="text" name="clienteSobrenome" class="campo"><br><br>
-        <label class="txt">Dt. Nascimento: </label><input type="text" name="clienteDtNasc" class="campo"><br><br>
+        <label class="txt">Nome: </label><input type="text" name="clienteNome" class="campo" required><br><br>
+        <label class="txt">Sobrenome: </label><input type="text" name="clienteSobrenome" class="campo" required><br><br>
+        <label class="txt">Dt. Nascimento: </label><input type="text" name="clienteDtNasc" class="campo" required><br><br>
         <label>Sexo: </label>
         <input type="radio" name="clienteSexo" value="M" checked="checked">Masculino
         <input type="radio" name="clienteSexo" value="F">Feminino
         <br><br>
-        <label class="txt">Nome da Rua: </label><input type="text" name="clienteNomeRua" class="campo"><br><br>
-        <label class="txt">Número da Casa: </label><input type="text" name="clienteNumeroCasa" class="campo"><br><br>
-        <label class="txt">Bairro: </label><input type="text" name="clienteBairro" class="campo"><br><br>
-        <label class="txt">Cidade: </label><input type="text" name="clienteCidade" class="campo"><br><br>
+        <label class="txt">Nome da Rua: </label><input type="text" name="clienteNomeRua" class="campo" required><br><br>
+        <label class="txt">Número da Casa: </label><input type="text" name="clienteNumeroCasa" class="campo" required><br><br>
+        <label class="txt">Bairro: </label><input type="text" name="clienteBairro" class="campo" required><br><br>
+        <label class="txt">Cidade: </label><input type="text" name="clienteCidade" class="campo" required><br><br>
         <label class="txt">UF:</label>
         <select name="clienteUfId" class="campo">
             <option>Selecione uma opção</option>
@@ -102,11 +105,29 @@
             <%}%>
         </select>
         <br><br>
-        <label class="txt">Nome de Usuário:</label><input type="text" name="clienteNomeUsuario" class="campo"><br><br>
+        <label class="txt">Nome de Usuário:</label><input type="text" name="clienteNomeUsuario" class="campo" required><br><br>
     </div>
     <input type="reset" value="Limpar Campos" class="btns">
     <input type="submit" value="Cadastrar" class="btne">
 </form>
+
+<input type="hidden" id="erro" value="<%= erro%>">
+<input type="hidden" id="mostraErro" value="<%= mostraErro%>">
+<input type="hidden" id="sucesso" value="<%= cadastroSucess%>">
+
+<script>
+    var erro = document.getElementById("erro").value;
+    var mostraErro = document.getElementById("mostraErro").value;
+    var cadastroSucess = document.getElementById("cadastroSucess").value;
+
+    if (mostraErro == "mostrar"){
+        alert(erro);
+    }
+
+    if (cadastroSucess == "Cadastro realizado com sucesso."){
+        alert(cadastroSucess);
+    }
+</script>
 
 </body>
 </html>

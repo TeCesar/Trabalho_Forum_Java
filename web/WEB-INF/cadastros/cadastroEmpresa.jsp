@@ -1,4 +1,5 @@
-<%--
+<%@ page import="br.edu.java.poo.model.endereco.UfDTO" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Robson Manfroi
   Date: 25/10/2018
@@ -14,6 +15,11 @@
     </style>
 </head>
 <body>
+<%
+    List<UfDTO> listaUfs = (List<UfDTO>) request.getSession().getAttribute("listaUfs");
+%>
+
+
 <div id="barra">
     <label>Bem vindo</label>
     <div id="login">
@@ -63,9 +69,23 @@
     <div style="text-align: center">
         <label class="txt">Razão Social: </label><input type="text" name="razaoSocial" class="campo"><br><br>
         <label class="txt">Nome Fantasia: </label><input type="text" name="nomeFantasia" class="campo"><br><br>
-        <label class="txt">CNPJ: </label><input type="number" name="cnpj" class="campo"><br><br>
+        <label class="txt">CNPJ: </label><input type="text" name="cnpj" class="campo"><br><br>
+        <label class="txt">Nome da Rua: </label><input type="text" name="empresaNomeRua" class="campo" required><br><br>
+        <label class="txt">Número do Endereço: </label><input type="text" name="empresaNumeroCasa" class="campo"
+                                                          required><br><br>
+        <label class="txt">Bairro: </label><input type="text" name="empresaBairro" class="campo" required><br><br>
+        <label class="txt">Cidade: </label><input type="text" name="empresaCidade" class="campo" required><br><br>
+        <label class="txt">UF:</label>
+        <select name="empresaUfId" class="campo">
+            <option>Selecione uma opção</option>
+            <%for (UfDTO uf : listaUfs) { %>
+            <option value="<%= uf.getId()%>"><%= uf.getSigla()%>
+            </option>
+            <%}%>
+        </select>
 
     </div>
+    <br>
     <input type="reset" value="Limpar Campos" class="btns">
     <input type="submit" value="Cadastrar" class="btne">
 </form>
