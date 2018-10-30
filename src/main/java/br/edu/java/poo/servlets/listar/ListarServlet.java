@@ -2,7 +2,10 @@ package br.edu.java.poo.servlets.listar;
 
 import br.edu.java.poo.dao.cliente.ClienteDAO;
 import br.edu.java.poo.dao.cliente.impl.ClienteDAOImpl;
+import br.edu.java.poo.dao.empresa.EmpresaDAO;
+import br.edu.java.poo.dao.empresa.impl.EmpresaDAOImpl;
 import br.edu.java.poo.model.cliente.ClienteDTO;
+import br.edu.java.poo.model.empresa.EmpresaDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,6 +32,13 @@ public class ListarServlet extends HttpServlet {
             List<ClienteDTO> listaClientes = clienteDAO.listarClientes();
             req.getSession().setAttribute("listaClientes", listaClientes);
             req.getRequestDispatcher("WEB-INF/listas/listaClientes.jsp").forward(req, resp);
+        }
+
+        if ("empresas".equalsIgnoreCase(tipo)){
+            EmpresaDAO empresaDAO = new EmpresaDAOImpl();
+            List<EmpresaDTO> listaEmpresas= empresaDAO.buscarListaEmpresas();
+            req.getSession().setAttribute("listaEmpresas", listaEmpresas);
+            req.getRequestDispatcher("WEB-INF/listas/listaEmpresas.jsp").forward(req, resp);
         }
     }
 }

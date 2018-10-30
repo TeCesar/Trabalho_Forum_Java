@@ -59,7 +59,7 @@
         <li><a href="#">Listar</a>
             <ul>
                 <li><a href="controller?acao=listarClientes">Clientes</a></li>
-                <li><a href="#">Em Andamento</a></li>
+                <li><a href="controller?acao=listarEmpresas">Empresas</a></li>
             </ul>
         </li>
     </ul>
