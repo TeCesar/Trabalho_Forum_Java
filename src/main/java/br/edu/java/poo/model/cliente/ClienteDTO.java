@@ -11,7 +11,7 @@ public class ClienteDTO {
     private String nome;
     private String sobrenome;
     private Date dtNascimento;
-    private char sexo;
+    private String sexo;
     private EnderecoDTO enderecoDTO;
     private EmpresaDTO empresaDTO;
     private UsuarioDTO usuarioDTO;
@@ -48,11 +48,11 @@ public class ClienteDTO {
         this.dtNascimento = dtNascimento;
     }
 
-    public char getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 

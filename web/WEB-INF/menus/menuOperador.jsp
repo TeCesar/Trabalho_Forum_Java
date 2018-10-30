@@ -52,8 +52,17 @@
                 <li><a href="#">Fechado</a></li>
                 <li><a href="#">Em Andamento</a></li>
             </ul>
+        </li>
 
         <li><a href="#">Tópicos</a></li>
+
+        <li><a href="#">Listar</a>
+            <ul>
+                <li><a href="controller?acao=listarClientes">Clientes</a></li>
+                <li><a href="#">Em Andamento</a></li>
+            </ul>
+        </li>
+    </ul>
     </ul>
 </nav>
 </body>

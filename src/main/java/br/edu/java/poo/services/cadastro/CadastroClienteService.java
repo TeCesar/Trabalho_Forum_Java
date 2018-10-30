@@ -64,7 +64,7 @@ public class CadastroClienteService {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        clienteDTO.setSexo(sexo.charAt(0));
+        clienteDTO.setSexo(sexo);
 
         UsuarioDTO usuarioDTO = new UsuarioDTO();
         usuarioDTO.setNomeConta(nomeUsuario);

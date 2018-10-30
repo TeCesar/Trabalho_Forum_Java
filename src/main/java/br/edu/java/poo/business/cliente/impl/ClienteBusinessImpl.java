@@ -21,7 +21,7 @@ public class ClienteBusinessImpl implements ClienteBusiness {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        clienteDTO.setSexo(sexo.charAt(0));
+        clienteDTO.setSexo(sexo);
         if (clienteDTO != null) {
             for (char c : clienteDTO.getNome().toCharArray()) {
                 if (Character.isDigit(c)) {

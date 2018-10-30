@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 29-Out-2018 às 15:58
+-- Generation Time: 30-Out-2018 às 05:10
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -33,10 +33,18 @@ CREATE TABLE `clientes` (
   `cliente_nome` varchar(50) NOT NULL,
   `cliente_sobrenome` varchar(50) NOT NULL,
   `cliente_dtNascimento` date NOT NULL,
+  `cliente_sexo` varchar(1) NOT NULL,
   `endereco_id` int(11) NOT NULL,
   `empresa_id` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `clientes`
+--
+
+INSERT INTO `clientes` (`cliente_id`, `cliente_nome`, `cliente_sobrenome`, `cliente_dtNascimento`, `cliente_sexo`, `endereco_id`, `empresa_id`, `usuario_id`) VALUES
+(9, 'Teste', 'Testando', '1996-11-18', 'M', 8, 5, 9);
 
 -- --------------------------------------------------------
 
@@ -57,8 +65,7 @@ CREATE TABLE `empresas` (
 --
 
 INSERT INTO `empresas` (`empresa_id`, `empresa_nomeFantasia`, `empresa_cnpj`, `empresa_razaoSocial`, `endereco_id`) VALUES
-(3, 'Profarma', '192837465', 'Profarmando', 0),
-(4, 'TesteTeste', '123456789', 'Teste', 6);
+(5, 'TesteTeste', '123456789', 'Teste', 7);
 
 -- --------------------------------------------------------
 
@@ -80,7 +87,8 @@ CREATE TABLE `enderecos` (
 --
 
 INSERT INTO `enderecos` (`endereco_id`, `endereco_rua`, `endereco_numero`, `endereco_bairro`, `endereco_cidade`, `uf_id`) VALUES
-(6, 'Rua do Teste', '123', 'Bairro do Teste', 'Cidade do Teste', 1);
+(7, 'Rua do Teste', '123', 'Bairro do Teste', 'Cidade do Teste', 1),
+(8, 'Teste da Rua', '123', 'Teste do Bairro', 'Teste da Cidade', 1);
 
 -- --------------------------------------------------------
 
@@ -94,9 +102,9 @@ CREATE TABLE `tickets` (
   `ticket_mensagem` varchar(500) NOT NULL,
   `ticket_status` varchar(20) NOT NULL,
   `ticket_tempoInicio` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `usuario_id` int(11) NOT NULL,
   `ticket_tempoFim` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `ticket_estado` varchar(15) NOT NULL
+  `ticket_estado` varchar(15) NOT NULL,
+  `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -134,7 +142,29 @@ INSERT INTO `ufs` (`uf_id`, `uf_sigla`, `uf_nome`) VALUES
 (1, 'PR', 'Paraná'),
 (2, 'SC', 'Santa Catarina'),
 (5, 'MS', 'Mato Grosso do Sul'),
-(7, 'RJ', 'Rio de janeiro');
+(7, 'RJ', 'Rio de janeiro'),
+(8, 'AC', 'Acre'),
+(9, 'AL', 'Alagoas'),
+(10, 'AP', 'Amapa'),
+(11, 'AM', 'Amazonas'),
+(12, 'BA', 'Bahia'),
+(13, 'CE', 'Ceara'),
+(14, 'DF', 'Distrito Federal'),
+(15, 'ES', 'Espirito Santo'),
+(16, 'GO', 'Goias'),
+(17, 'MA', 'Maranhao'),
+(18, 'MT', 'Mato Grosso'),
+(19, 'MG', 'Minas Gerais'),
+(20, 'PA', 'Para'),
+(21, 'PB', 'Paraiba'),
+(22, 'PE', 'Pernambuco'),
+(23, 'PI', 'Piaui'),
+(24, 'RN', 'Rio Grande do Norte'),
+(25, 'RS', 'Rio Grande do Sul'),
+(26, 'RO', 'Rondonia'),
+(27, 'SP', 'Sao Paulo'),
+(28, 'SE', 'Sergipe'),
+(29, 'TO', 'Tocantins');
 
 -- --------------------------------------------------------
 
@@ -160,7 +190,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`usuario_id`, `usuario_nomeConta`, `usuario_senha`, `usuario_tipoAcesso`, `usuario_dataDeCadastro`, `usuario_dataDeAlteracao`, `usuario_apelido`, `usuario_errosLogin`, `usuario_ticketResolvidos`) VALUES
 (1, 'admin', '12345', 'administrador', '0000-00-00', '0000-00-00', 'Master', 1, 0),
-(2, 'operador', '123456789@', 'operador', '0000-00-00', '0000-00-00', 'oi', 0, 0);
+(2, 'operador', '123456789@', 'operador', '0000-00-00', '0000-00-00', 'oi', 0, 0),
+(9, 'TesteTeste', '12345', 'Cliente', '2018-10-30', NULL, NULL, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -170,32 +201,39 @@ INSERT INTO `usuarios` (`usuario_id`, `usuario_nomeConta`, `usuario_senha`, `usu
 -- Indexes for table `clientes`
 --
 ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`cliente_id`);
+  ADD PRIMARY KEY (`cliente_id`),
+  ADD KEY `endereco_id` (`endereco_id`),
+  ADD KEY `empresa_id` (`empresa_id`),
+  ADD KEY `usuario_id` (`usuario_id`);
 
 --
 -- Indexes for table `empresas`
 --
 ALTER TABLE `empresas`
   ADD PRIMARY KEY (`empresa_id`),
-  ADD UNIQUE KEY `empresa_cnpj` (`empresa_cnpj`);
+  ADD UNIQUE KEY `empresa_cnpj` (`empresa_cnpj`),
+  ADD KEY `endereco_id` (`endereco_id`);
 
 --
 -- Indexes for table `enderecos`
 --
 ALTER TABLE `enderecos`
-  ADD PRIMARY KEY (`endereco_id`);
+  ADD PRIMARY KEY (`endereco_id`),
+  ADD KEY `uf_id` (`uf_id`);
 
 --
 -- Indexes for table `tickets`
 --
 ALTER TABLE `tickets`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `usuario_id` (`usuario_id`);
 
 --
 -- Indexes for table `topicos`
 --
 ALTER TABLE `topicos`
-  ADD PRIMARY KEY (`topico_id`);
+  ADD PRIMARY KEY (`topico_id`),
+  ADD KEY `usuario_id` (`usuario_id`);
 
 --
 -- Indexes for table `ufs`
@@ -217,19 +255,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `cliente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `cliente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `empresas`
 --
 ALTER TABLE `empresas`
-  MODIFY `empresa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `empresa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `enderecos`
 --
 ALTER TABLE `enderecos`
-  MODIFY `endereco_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `endereco_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tickets`
@@ -247,13 +285,49 @@ ALTER TABLE `topicos`
 -- AUTO_INCREMENT for table `ufs`
 --
 ALTER TABLE `ufs`
-  MODIFY `uf_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `uf_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Limitadores para a tabela `clientes`
+--
+ALTER TABLE `clientes`
+  ADD CONSTRAINT `clientes_ibfk_1` FOREIGN KEY (`endereco_id`) REFERENCES `enderecos` (`endereco_id`),
+  ADD CONSTRAINT `clientes_ibfk_2` FOREIGN KEY (`empresa_id`) REFERENCES `empresas` (`empresa_id`),
+  ADD CONSTRAINT `clientes_ibfk_3` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`usuario_id`);
+
+--
+-- Limitadores para a tabela `empresas`
+--
+ALTER TABLE `empresas`
+  ADD CONSTRAINT `empresas_ibfk_1` FOREIGN KEY (`endereco_id`) REFERENCES `enderecos` (`endereco_id`);
+
+--
+-- Limitadores para a tabela `enderecos`
+--
+ALTER TABLE `enderecos`
+  ADD CONSTRAINT `enderecos_ibfk_1` FOREIGN KEY (`uf_id`) REFERENCES `ufs` (`uf_id`);
+
+--
+-- Limitadores para a tabela `tickets`
+--
+ALTER TABLE `tickets`
+  ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`usuario_id`);
+
+--
+-- Limitadores para a tabela `topicos`
+--
+ALTER TABLE `topicos`
+  ADD CONSTRAINT `topicos_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`usuario_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

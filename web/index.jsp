@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>forum</title>
+    <title>Fórum</title>
 
     <style>
         <%@include file="/WEB-INF/estilo/estilo.css" %>
