@@ -88,7 +88,7 @@ public class EmpresaDAOImpl implements EmpresaDAO {
         String sql = "SELECT empresas.empresa_id, empresas.empresa_nomeFantasia, empresas.empresa_cnpj, empresas.empresa_razaoSocial," +
                 "enderecos.endereco_id, enderecos.endereco_rua, enderecos.endereco_numero, enderecos.endereco_bairro, enderecos.endereco_cidade," +
                 "ufs.uf_id, ufs.uf_sigla, ufs.uf_nome FROM empresas INNER JOIN enderecos ON empresas.endereco_id = enderecos.endereco_id " +
-                "INNER JOIN ufs ON empresas.uf_id = ufs.uf_id WHERE empresas.empresa_id = ?";
+                "INNER JOIN ufs ON enderecos.uf_id = ufs.uf_id WHERE empresas.empresa_id = ?";
         try (Connection connection = SQLConnectionProvider.openConnection()) {
             empresa = new EmpresaDTO();
 
@@ -123,5 +123,24 @@ public class EmpresaDAOImpl implements EmpresaDAO {
         }
 
         return empresa;
+    }
+
+    @Override
+    public boolean atualizaEmpresa(EmpresaDTO empresaDTO) {
+
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("");
+
+            boolean sucesso = preparedStatement.execute();
+
+            if (sucesso){
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

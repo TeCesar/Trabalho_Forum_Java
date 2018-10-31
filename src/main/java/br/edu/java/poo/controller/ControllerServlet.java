@@ -36,6 +36,10 @@ public class ControllerServlet extends HttpServlet {
             req.getRequestDispatcher("cadastro?tipo=empresa").forward(req, resp);
         }
 
+        if ("editarEmpresa".equalsIgnoreCase(acao)) {
+            req.getRequestDispatcher("editar?tipo=empresa").forward(req, resp);
+        }
+
     }
 
     @Override
@@ -48,34 +52,42 @@ public class ControllerServlet extends HttpServlet {
 
         if ("menuPrincipal".equalsIgnoreCase(acao)) {
             UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuario");
+            String tipo = "";
             if ("operador".equalsIgnoreCase(usuarioSession.getTipoAcesso())) {
-                req.getRequestDispatcher("WEB-INF/menus/menuOperador.jsp").forward(req, resp);
+                tipo = "menuOperador.jsp";
+            } else if ("cliente".equalsIgnoreCase(usuarioSession.getTipoAcesso())) {
+                tipo = "menuCliente.jsp";
+            } else if ("usuario".equalsIgnoreCase(usuarioSession.getTipoAcesso())) {
+                tipo = "menuUsuario.jsp";
+            } else if ("administrador".equalsIgnoreCase(usuarioSession.getTipoAcesso())) {
+                tipo = "menuAdministrador.jsp";
             }
+            req.getRequestDispatcher("WEB-INF/menus/" + tipo).forward(req, resp);
         }
 
         if ("cadastroCliente".equalsIgnoreCase(acao)) {
             req.getRequestDispatcher("cadastro?tipo=cliente").forward(req, resp);
         }
 
-        if ("cadastroEmpresa".equalsIgnoreCase(acao)){
+        if ("cadastroEmpresa".equalsIgnoreCase(acao)) {
             req.getRequestDispatcher("cadastro?tipo=empresa").forward(req, resp);
         }
 
-        if ("tickets".equalsIgnoreCase(acao)){
+        if ("tickets".equalsIgnoreCase(acao)) {
             req.getRequestDispatcher("WEB-INF/ticket/ticket.jsp").forward(req, resp);
         }
 
-        if ("listarClientes".equalsIgnoreCase(acao)){
+        if ("listarClientes".equalsIgnoreCase(acao)) {
             req.getRequestDispatcher("listar?tipo=clientes").forward(req, resp);
         }
 
-        if ("listarEmpresas".equalsIgnoreCase(acao)){
+        if ("listarEmpresas".equalsIgnoreCase(acao)) {
             req.getRequestDispatcher("listar?tipo=empresas").forward(req, resp);
         }
 
-        if ("editarEmpresa".equalsIgnoreCase(acao)){
+        if ("editarEmpresa".equalsIgnoreCase(acao)) {
             String id = req.getParameter("id");
-            req.getRequestDispatcher("editar?tipo=empresa,id="+id).forward(req, resp);
+            req.getRequestDispatcher("editar?tipo=empresa&id=" + id).forward(req, resp);
         }
 
     }

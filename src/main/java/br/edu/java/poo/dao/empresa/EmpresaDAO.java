@@ -12,4 +12,6 @@ public interface EmpresaDAO {
 
     EmpresaDTO buscarEmpresa(int id);
 
+    boolean atualizaEmpresa(EmpresaDTO empresaDTO);
+
 }
