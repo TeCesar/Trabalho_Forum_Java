@@ -28,8 +28,7 @@
     <input type="text" name="numeroEmpresaEdit" value="<%= empresaBusca.getEnderecoDTO().getNumeroEndereco()%>"><br><br>
     <input type="text" name="bairroEmpresaEdit" value="<%= empresaBusca.getEnderecoDTO().getBairro()%>"><br><br>
     <input type="text" name="cidadeEmpresaEdit" value="<%= empresaBusca.getEnderecoDTO().getCidade()%>"><br><br>
-    <input type="hidden" name="ufIdEmpresaEdit" value="<%= empresaBusca.getEnderecoDTO().getUfDTO().getId()%>">
-    <select name="empresaUfIdEdit">
+    <select name="ufIdEmpresaEdit">
         <option value="<%= empresaBusca.getEnderecoDTO().getUfDTO().getId()%>"><%= empresaBusca.getEnderecoDTO().getUfDTO().getSigla()%></option>
         <%for (UfDTO uf : listaUfs) {
         if (uf.getId() != empresaBusca.getEnderecoDTO().getUfDTO().getId()) {%>

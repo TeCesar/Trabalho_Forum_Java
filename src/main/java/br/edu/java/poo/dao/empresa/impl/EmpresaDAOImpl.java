@@ -129,13 +129,20 @@ public class EmpresaDAOImpl implements EmpresaDAO {
     public boolean atualizaEmpresa(EmpresaDTO empresaDTO) {
 
         try (Connection connection = SQLConnectionProvider.openConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE empresas SET empresa_nomeFantasia = ?, " +
+                    "empresa_cnpj = ?, empresa_razaoSocial = ?, endereco_id = ?");
+
+            preparedStatement.setString(1, empresaDTO.getNomeFantasia());
+            preparedStatement.setString(2, empresaDTO.getCnpj());
+            preparedStatement.setString(3, empresaDTO.getRazaoSocial());
+            preparedStatement.setInt(4, empresaDTO.getEnderecoDTO().getId());
 
             boolean sucesso = preparedStatement.execute();
 
             if (sucesso){
                 return true;
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

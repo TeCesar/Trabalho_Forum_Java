@@ -23,7 +23,18 @@ public class EdicaoServlet extends HttpServlet {
         String tipo = req.getParameter("tipo");
 
         if ("empresa".equalsIgnoreCase(tipo)){
+            String idEmpresa = req.getParameter("idEmpresaEdit");
+            String nomeEmpresa = req.getParameter("nomeEmpresaEdit");
+            String cnpjEmpresa = req.getParameter("cnpjEmpresaEdit");
+            String razaoSocialEmpresa = req.getParameter("razaoSocialEmpresaEdit");
+            String enderecoIdEmpresa = req.getParameter("enderecoIdEmpresaEdit");
+            String ruaEmpresa = req.getParameter("ruaEmpresaEdit");
+            String numeroEmpresa = req.getParameter("numeroEmpresaEdit");
+            String bairroEmpresa = req.getParameter("bairroEmpresaEdit");
+            String cidadeEmpresa = req.getParameter("cidadeEmpresaEdit");
+            String idUf = req.getParameter("ufIdEmpresaEdit");
 
+            EmpresaDTO empresaDTO = new EmpresaDTO();
         }
     }
 
