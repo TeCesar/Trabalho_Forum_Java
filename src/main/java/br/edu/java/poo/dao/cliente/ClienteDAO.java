@@ -10,4 +10,6 @@ public interface ClienteDAO {
 
     List<ClienteDTO> listarClientes();
 
+    ClienteDTO buscaCliente(int id);
+
 }

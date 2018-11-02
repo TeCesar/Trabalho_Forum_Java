@@ -5,7 +5,6 @@ import br.edu.java.poo.dao.empresa.impl.EmpresaDAOImpl;
 import br.edu.java.poo.dao.endereco.EnderecoDAO;
 import br.edu.java.poo.dao.endereco.impl.EnderecoDAOImpl;
 import br.edu.java.poo.model.empresa.EmpresaDTO;
-import br.edu.java.poo.model.endereco.EnderecoDTO;
 
 public class EditaEmpresaService {
     EmpresaDAO empresaDAO;
@@ -17,11 +16,10 @@ public class EditaEmpresaService {
     }
 
     public boolean editaEmpresa(EmpresaDTO empresaDTO) {
-        EnderecoDTO enderecoBusca = enderecoDAO.buscaEndereco(empresaDTO.getEnderecoDTO(), empresaDTO.getEnderecoDTO().getUfDTO().getId());
-        empresaDTO.setEnderecoDTO(enderecoBusca);
-
-        if (empresaDAO.atualizaEmpresa(empresaDTO)) {
-            return true;
+        if (enderecoDAO.atualizaEndereco(empresaDTO.getEnderecoDTO())) {
+            if (empresaDAO.atualizaEmpresa(empresaDTO)) {
+                return true;
+            }
         }
         return false;
     }

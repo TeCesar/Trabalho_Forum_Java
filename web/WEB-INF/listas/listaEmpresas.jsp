@@ -36,7 +36,7 @@
             <td><%= empresa.getEnderecoDTO().getBairro()%></td>
             <td><%= empresa.getEnderecoDTO().getCidade()%></td>
             <td><%= empresa.getEnderecoDTO().getUfDTO().getSigla()%></td>
-            <td><a href="controller?acao=editarEmpresa&id=<%=empresa.getId()%>">Editar</a></td>
+            <td><a href="controller?acao=editarEmpresa&idEmpresa=<%=empresa.getId()%>">Editar</a></td>
             <td>Excluir</td>
         </tr>
     <%}%>

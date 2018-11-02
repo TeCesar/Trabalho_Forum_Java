@@ -59,4 +59,29 @@ public class EnderecoDAOImpl implements EnderecoDAO {
         }
         return id;
     }
+
+    public boolean atualizaEndereco(EnderecoDTO enderecoDTO){
+        try (Connection connection = SQLConnectionProvider.openConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE enderecos SET endereco_rua = ?," +
+                    "endereco_numero = ?, endereco_bairro = ?, endereco_cidade = ?, uf_id = ? WHERE endereco_id = ?");
+
+            preparedStatement.setString(1, enderecoDTO.getRua());
+            preparedStatement.setString(2, enderecoDTO.getNumeroEndereco());
+            preparedStatement.setString(3, enderecoDTO.getBairro());
+            preparedStatement.setString(4, enderecoDTO.getCidade());
+            preparedStatement.setInt(5, enderecoDTO.getUfDTO().getId());
+            preparedStatement.setInt(6, enderecoDTO.getId());
+
+            boolean sucesso = preparedStatement.execute();
+
+            if (!sucesso){
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

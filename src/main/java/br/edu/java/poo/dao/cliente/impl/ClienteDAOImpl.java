@@ -111,4 +111,73 @@ public class ClienteDAOImpl implements ClienteDAO {
 
         return listaClientes;
     }
+
+    @Override
+    public ClienteDTO buscaCliente(int id) {
+        ClienteDTO clienteDTO = new ClienteDTO();
+        String sql = "SELECT clientes.cliente_id, clientes.cliente_nome, clientes.cliente_sobrenome," +
+                " clientes.cliente_dtNascimento, clientes.cliente_sexo, empresas.empresa_id, empresas.empresa_nomeFantasia," +
+                " empresas.empresa_cnpj, empresas.empresa_razaoSocial, enderecos.endereco_id, enderecos.endereco_rua," +
+                " enderecos.endereco_numero, enderecos.endereco_bairro, enderecos.endereco_cidade," +
+                " ufs.uf_id, ufs.uf_sigla, ufs.uf_nome, usuarios.usuario_id, usuarios.usuario_nomeConta," +
+                " usuarios.usuario_tipoAcesso, usuarios.usuario_dataDeCadastro, usuarios.usuario_dataDeAlteracao, usuarios.usuario_apelido," +
+                " usuarios.usuario_errosLogin, usuarios.usuario_ticketResolvidos FROM clientes INNER JOIN enderecos ON clientes.endereco_id = enderecos.endereco_id" +
+                " INNER JOIN empresas ON clientes.empresa_id = empresas.empresa_id INNER JOIN usuarios ON clientes.usuario_id = usuarios.usuario_id" +
+                " INNER JOIN ufs ON enderecos.uf_id = ufs.uf_id WHERE clientes.cliente_id = ?";
+
+        try (Connection connection = SQLConnectionProvider.openConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                clienteDTO.setId(resultSet.getInt("cliente_id"));
+                clienteDTO.setNome(resultSet.getString("cliente_nome"));
+                clienteDTO.setSobrenome(resultSet.getString("cliente_sobrenome"));
+                clienteDTO.setDtNascimento(resultSet.getDate("cliente_dtNascimento"));
+                clienteDTO.setSexo(resultSet.getString("cliente_sexo"));
+                EmpresaDTO empresaDTO = new EmpresaDTO();
+                empresaDTO.setId(resultSet.getInt("empresa_id"));
+                empresaDTO.setNomeFantasia(resultSet.getString("empresa_nomeFantasia"));
+                empresaDTO.setCnpj(resultSet.getString("empresa_cnpj"));
+                empresaDTO.setRazaoSocial(resultSet.getString("empresa_razaoSocial"));
+                clienteDTO.setEmpresaDTO(empresaDTO);
+                EnderecoDTO enderecoDTO = new EnderecoDTO();
+                enderecoDTO.setId(resultSet.getInt("endereco_id"));
+                enderecoDTO.setRua(resultSet.getString("endereco_rua"));
+                enderecoDTO.setNumeroEndereco(resultSet.getString("endereco_numero"));
+                enderecoDTO.setBairro(resultSet.getString("endereco_bairro"));
+                enderecoDTO.setCidade(resultSet.getString("endereco_cidade"));
+                UfDTO ufDTO = new UfDTO();
+                ufDTO.setId(resultSet.getInt("uf_id"));
+                ufDTO.setSigla(resultSet.getString("uf_sigla"));
+                ufDTO.setNome(resultSet.getString("uf_nome"));
+                enderecoDTO.setUfDTO(ufDTO);
+                clienteDTO.setEnderecoDTO(enderecoDTO);
+                UsuarioDTO usuarioDTO = new UsuarioDTO();
+                usuarioDTO.setId(resultSet.getInt("usuario_id"));
+                usuarioDTO.setNomeConta(resultSet.getString("usuario_nomeConta"));
+                usuarioDTO.setTipoAcesso(resultSet.getString("usuario_tipoAcesso"));
+                usuarioDTO.setDataDeCadastro(resultSet.getDate("usuario_dataDeCadastro"));
+                usuarioDTO.setDataDeAlteracao(resultSet.getDate("usuario_dataDeAlteracao"));
+                usuarioDTO.setUsuarioApelido(resultSet.getString("usuario_apelido"));
+                usuarioDTO.setErrosLogin(resultSet.getInt("usuario_errosLogin"));
+                usuarioDTO.setTicketsResolvidos(resultSet.getInt("usuario_ticketResolvidos"));
+                clienteDTO.setUsuarioDTO(usuarioDTO);
+            }
+
+            return clienteDTO;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return clienteDTO;
+    }
+
+
 }

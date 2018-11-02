@@ -86,8 +86,13 @@ public class ControllerServlet extends HttpServlet {
         }
 
         if ("editarEmpresa".equalsIgnoreCase(acao)) {
-            String id = req.getParameter("id");
-            req.getRequestDispatcher("editar?tipo=empresa&id=" + id).forward(req, resp);
+            String id = req.getParameter("idEmpresa");
+            req.getRequestDispatcher("editar?tipo=empresa&idEmpresa=" + id).forward(req, resp);
+        }
+
+        if ("editarCliente".equalsIgnoreCase(acao)) {
+            String id = req.getParameter("idCliente");
+            req.getRequestDispatcher("editar?tipo=cliente&idCliente=" + id).forward(req, resp);
         }
 
     }

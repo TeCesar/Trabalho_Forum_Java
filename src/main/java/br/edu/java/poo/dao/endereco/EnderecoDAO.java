@@ -5,4 +5,6 @@ import br.edu.java.poo.model.endereco.EnderecoDTO;
 public interface EnderecoDAO {
 
     EnderecoDTO buscaEndereco(EnderecoDTO enderecoDTO, int ufId);
+
+    boolean atualizaEndereco(EnderecoDTO enderecoDTO);
 }
