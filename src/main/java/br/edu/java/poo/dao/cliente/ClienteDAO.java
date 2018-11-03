@@ -12,4 +12,6 @@ public interface ClienteDAO {
 
     ClienteDTO buscaCliente(int id);
 
+    boolean atualizaCliente(ClienteDTO clienteDTO);
+
 }

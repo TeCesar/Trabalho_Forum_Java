@@ -16,7 +16,7 @@ public class LoginService {
     }
 
     public String login(UsuarioDTO usuarioDTO) throws ClassNotFoundException {
-        UsuarioDTO usuarioBusca = usuarioDAO.buscarUsuario(usuarioDTO);
+        UsuarioDTO usuarioBusca = usuarioDAO.validarUsuario(usuarioDTO);
 
         if (usuarioBusca != null) {
             boolean primeiroAcesso = usuarioBusiness.conferePrimeiroLogin(usuarioBusca);

@@ -48,7 +48,7 @@
         <td><%= cliente.getEnderecoDTO().getUfDTO().getSigla()%></td>
         <td><%= cliente.getEmpresaDTO().getNomeFantasia()%></td>
         <td><%= cliente.getUsuarioDTO().getNomeConta()%></td>
-        <td><a href="controller?acao=editarCliente&idCliente=<%=cliente.getId()%>" Editar</td>
+        <td><a href="controller?acao=editarCliente&idCliente=<%=cliente.getId()%>">Editar</a></td>
         <td>Excluir</td>
     </tr>
     <%

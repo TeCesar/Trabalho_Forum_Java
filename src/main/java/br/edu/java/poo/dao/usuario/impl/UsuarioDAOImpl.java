@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class UsuarioDAOImpl implements UsuarioDAO {
 
-    public UsuarioDTO buscarUsuario(UsuarioDTO usuarioDTO) throws ClassNotFoundException {
+    public UsuarioDTO validarUsuario(UsuarioDTO usuarioDTO) throws ClassNotFoundException {
         try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM usuarios WHERE usuario_nomeConta = '" + usuarioDTO.getNomeConta() + "'" +
                     " AND usuario_senha = '" + usuarioDTO.getSenha() + "'");
@@ -79,6 +79,44 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             e.printStackTrace();
         }
         return id;
+    }
+
+    @Override
+    public boolean atualizaUsuario(UsuarioDTO usuarioDTO, boolean altera) {
+        if (altera) {
+            try (Connection connection = SQLConnectionProvider.openConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE usuarios SET usuario_nomeConta = ?, usuario_senha = ?, " +
+                        "usuario_dataDeAlteracao = ? WHERE usuario_id = ?");
+
+                preparedStatement.setString(1, usuarioDTO.getNomeConta());
+                preparedStatement.setString(2, usuarioDTO.getSenha());
+                usuarioDTO.setDataDeAlteracao(new java.util.Date());
+                preparedStatement.setDate(3, new java.sql.Date(usuarioDTO.getDataDeAlteracao().getTime()));
+                preparedStatement.setInt(4, usuarioDTO.getId());
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public UsuarioDTO buscarUsuario(int id) {
+        UsuarioDTO usuarioBusca = new UsuarioDTO();
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM usuarios WHERE usuario_id = ?");
+
+            preparedStatement.setInt(1, id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return usuarioBusca;
     }
 
 }

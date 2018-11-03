@@ -4,11 +4,15 @@ import br.edu.java.poo.model.usuario.UsuarioDTO;
 
 public interface UsuarioDAO {
 
-    UsuarioDTO buscarUsuario(UsuarioDTO usuarioDTO) throws ClassNotFoundException;
+    UsuarioDTO validarUsuario(UsuarioDTO usuarioDTO) throws ClassNotFoundException;
 
     boolean alteraSenha(String senha, String nomeConta);
 
     int criarUsuarioCliente(UsuarioDTO usuarioDTO);
+
+    boolean atualizaUsuario(UsuarioDTO usuarioDTO, boolean altera);
+
+    UsuarioDTO buscarUsuario(int id);
 
 
 

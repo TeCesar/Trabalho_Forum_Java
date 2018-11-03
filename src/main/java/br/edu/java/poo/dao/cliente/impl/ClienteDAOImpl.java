@@ -119,13 +119,13 @@ public class ClienteDAOImpl implements ClienteDAO {
                 " clientes.cliente_dtNascimento, clientes.cliente_sexo, empresas.empresa_id, empresas.empresa_nomeFantasia," +
                 " empresas.empresa_cnpj, empresas.empresa_razaoSocial, enderecos.endereco_id, enderecos.endereco_rua," +
                 " enderecos.endereco_numero, enderecos.endereco_bairro, enderecos.endereco_cidade," +
-                " ufs.uf_id, ufs.uf_sigla, ufs.uf_nome, usuarios.usuario_id, usuarios.usuario_nomeConta," +
+                " ufs.uf_id, ufs.uf_sigla, ufs.uf_nome, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_senha, " +
                 " usuarios.usuario_tipoAcesso, usuarios.usuario_dataDeCadastro, usuarios.usuario_dataDeAlteracao, usuarios.usuario_apelido," +
                 " usuarios.usuario_errosLogin, usuarios.usuario_ticketResolvidos FROM clientes INNER JOIN enderecos ON clientes.endereco_id = enderecos.endereco_id" +
                 " INNER JOIN empresas ON clientes.empresa_id = empresas.empresa_id INNER JOIN usuarios ON clientes.usuario_id = usuarios.usuario_id" +
                 " INNER JOIN ufs ON enderecos.uf_id = ufs.uf_id WHERE clientes.cliente_id = ?";
 
-        try (Connection connection = SQLConnectionProvider.openConnection()){
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setInt(1, id);
@@ -160,6 +160,7 @@ public class ClienteDAOImpl implements ClienteDAO {
                 usuarioDTO.setId(resultSet.getInt("usuario_id"));
                 usuarioDTO.setNomeConta(resultSet.getString("usuario_nomeConta"));
                 usuarioDTO.setTipoAcesso(resultSet.getString("usuario_tipoAcesso"));
+                usuarioDTO.setSenha(resultSet.getString("usuario_senha"));
                 usuarioDTO.setDataDeCadastro(resultSet.getDate("usuario_dataDeCadastro"));
                 usuarioDTO.setDataDeAlteracao(resultSet.getDate("usuario_dataDeAlteracao"));
                 usuarioDTO.setUsuarioApelido(resultSet.getString("usuario_apelido"));
@@ -177,6 +178,25 @@ public class ClienteDAOImpl implements ClienteDAO {
         }
 
         return clienteDTO;
+    }
+
+    @Override
+    public boolean atualizaCliente(ClienteDTO clienteDTO) {
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE clientes SET cliente_");
+
+            boolean sucesso = preparedStatement.execute();
+
+
+            if (!sucesso){
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 
