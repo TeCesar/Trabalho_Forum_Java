@@ -21,8 +21,16 @@
     <input type="text" name="dtNascClienteEdit"
            value="<fmt:formatDate value="${clienteBusca.dtNascimento}" pattern="dd/MM/yyyy" />" required><br><br>
     <label>Sexo: </label>
-    <input type="radio" name="sexoClienteEdit" value="M" checked="checked">Masculino
-    <input type="radio" name="sexoClienteEdit" value="F">Feminino
+    <c:choose>
+        <c:when test="${clienteBusca.sexo == 'M'}">
+            <input type="radio" name="sexoClienteEdit" value="M" checked="checked">Masculino
+            <input type="radio" name="sexoClienteEdit" value="F">Feminino
+        </c:when>
+        <c:when test="${clienteBusca.sexo == 'F'}">
+            <input type="radio" name="sexoClienteEdit" value="M">Masculino
+            <input type="radio" name="sexoClienteEdit" value="F" checked="checked">Feminino
+        </c:when>
+    </c:choose>
     <br><br>
     <input type="hidden" name="idEnderecoClienteEdit" value="${clienteBusca.enderecoDTO.id}"/>
     <input type="text" name="nomeRuaClienteEdit" value="${clienteBusca.enderecoDTO.rua}" required><br><br>

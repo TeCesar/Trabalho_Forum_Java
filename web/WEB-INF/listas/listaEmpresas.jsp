@@ -1,5 +1,4 @@
-<%@ page import="br.edu.java.poo.model.empresa.EmpresaDTO" %>
-<%@ page import="java.util.List" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Archibald
   Date: 30/10/2018
@@ -29,18 +28,18 @@
 
     <c:forEach var="empresa" items="${listaEmpresas}">
         <c:if test="${empresa.nomeFantasia != 'N/A'}">
-        <tr>
-            <td>${empresa.nomeFantasia}</td>
-            <td>${empresa.cnpj}</td>
-            <td>${empresa.razaoSocial}</td>
-            <td>${empresa.enderecoDTO.rua}</td>
-            <td>${empresa.enderecoDTO.numeroEndereco}</td>
-            <td>${empresa.enderecoDTO.bairro}</td>
-            <td>${empresa.enderecoDTO.cidade}</td>
-            <td>${empresa.enderecoDTO.ufDTO.sigla}</td>
-            <td><a href="controller?acao=editarEmpresa&idEmpresa=${empresa.id}">Editar</a></td>
-            <td><a href="controller?acao=excluirEmpresa&idEmpresa=${empresa.id}">Excluir</a></td>
-        </tr>
+            <tr>
+                <td>${empresa.nomeFantasia}</td>
+                <td>${empresa.cnpj}</td>
+                <td>${empresa.razaoSocial}</td>
+                <td>${empresa.enderecoDTO.rua}</td>
+                <td>${empresa.enderecoDTO.numeroEndereco}</td>
+                <td>${empresa.enderecoDTO.bairro}</td>
+                <td>${empresa.enderecoDTO.cidade}</td>
+                <td>${empresa.enderecoDTO.ufDTO.sigla}</td>
+                <td><a href="controller?acao=editarEmpresa&idEmpresa=${empresa.id}">Editar</a></td>
+                <td><a href="controller?acao=excluirEmpresa&idEmpresa=${empresa.id}">Excluir</a></td>
+            </tr>
         </c:if>
     </c:forEach>
 </table>
