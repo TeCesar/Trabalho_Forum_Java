@@ -47,10 +47,10 @@
 
         <li><a href="#">Tickets</a>
             <ul>
-                <li><a href="controller?acao=tickets">Todos</a></li>
-                <li><a href="#">Aberto</a></li>
-                <li><a href="#">Fechado</a></li>
-                <li><a href="#">Em Andamento</a></li>
+                <li><a href="controller?acao=tickets&tipo=todos">Todos</a></li>
+                <li><a href="controller?acao=tickets&tipo=Aberto">Aberto</a></li>
+                <li><a href="controller?acao=tickets&tipo=Fechado">Fechado</a></li>
+                <li><a href="controller?acao=tickets&tipo=Andamento">Em Andamento</a></li>
             </ul>
         </li>
 

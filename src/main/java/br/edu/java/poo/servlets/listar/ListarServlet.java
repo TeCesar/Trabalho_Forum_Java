@@ -4,8 +4,11 @@ import br.edu.java.poo.dao.cliente.ClienteDAO;
 import br.edu.java.poo.dao.cliente.impl.ClienteDAOImpl;
 import br.edu.java.poo.dao.empresa.EmpresaDAO;
 import br.edu.java.poo.dao.empresa.impl.EmpresaDAOImpl;
+import br.edu.java.poo.dao.ticket.TicketDAO;
+import br.edu.java.poo.dao.ticket.impl.TicketDAOImpl;
 import br.edu.java.poo.model.cliente.ClienteDTO;
 import br.edu.java.poo.model.empresa.EmpresaDTO;
+import br.edu.java.poo.model.ticket.TicketDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,6 +56,14 @@ public class ListarServlet extends HttpServlet {
             List<EmpresaDTO> listaEmpresas = empresaDAO.buscarListaEmpresas();
             req.getSession().setAttribute("listaEmpresas", listaEmpresas);
             req.getRequestDispatcher("WEB-INF/listas/listaEmpresas.jsp").forward(req, resp);
+        }
+
+        if ("tickets".equalsIgnoreCase(tipo)){
+            String situacao = req.getParameter("situacao");
+            TicketDAO ticketDAO = new TicketDAOImpl();
+            List<TicketDTO> listaTickets = ticketDAO.listarTickets(situacao);
+            req.getSession().setAttribute("listaTickets", listaTickets);
+            req.getRequestDispatcher("WEB-INF/listas/listaTickets.jsp").forward(req, resp);
         }
     }
 }

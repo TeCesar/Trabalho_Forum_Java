@@ -1,5 +1,7 @@
 package br.edu.java.poo.model.ticket;
 
+import br.edu.java.poo.model.usuario.UsuarioDTO;
+
 import java.util.Date;
 
 public class TicketDTO {
@@ -7,9 +9,10 @@ public class TicketDTO {
     private String titulo;
     private String mensagem;
     private String status;
-    private String estado;
+    private String situacao;
     private java.util.Date tempoInicio;
     private Date tempoFim;
+    private UsuarioDTO usuarioDTO;
 
     public int getId() {
         return id;
@@ -43,12 +46,12 @@ public class TicketDTO {
         this.status = status;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getSituacao() {
+        return situacao;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
     }
 
     public Date getTempoFim() {
@@ -66,5 +69,13 @@ public class TicketDTO {
 
     public void setTempoInicio(Date tempoInicio) {
         this.tempoInicio = tempoInicio;
+    }
+
+    public UsuarioDTO getUsuarioDTO() {
+        return usuarioDTO;
+    }
+
+    public void setUsuarioDTO(UsuarioDTO usuarioDTO) {
+        this.usuarioDTO = usuarioDTO;
     }
 }
