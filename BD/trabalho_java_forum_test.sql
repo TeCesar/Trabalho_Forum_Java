@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 30-Out-2018 às 05:10
+-- Generation Time: 04-Nov-2018 às 07:36
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -44,7 +44,8 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`cliente_id`, `cliente_nome`, `cliente_sobrenome`, `cliente_dtNascimento`, `cliente_sexo`, `endereco_id`, `empresa_id`, `usuario_id`) VALUES
-(9, 'Teste', 'Testando', '1996-11-18', 'M', 8, 5, 9);
+(9, 'SegundoTeste4', 'TesteSegundo4', '2010-10-10', 'M', 8, 6, 9),
+(10, 'SegundoTeste3', 'TesteSegundo3', '1996-11-18', 'M', 9, 6, 10);
 
 -- --------------------------------------------------------
 
@@ -65,7 +66,7 @@ CREATE TABLE `empresas` (
 --
 
 INSERT INTO `empresas` (`empresa_id`, `empresa_nomeFantasia`, `empresa_cnpj`, `empresa_razaoSocial`, `endereco_id`) VALUES
-(5, 'TesteTeste', '123456789', 'Teste', 7);
+(6, 'N/A', '0', 'N/A', 11);
 
 -- --------------------------------------------------------
 
@@ -87,8 +88,13 @@ CREATE TABLE `enderecos` (
 --
 
 INSERT INTO `enderecos` (`endereco_id`, `endereco_rua`, `endereco_numero`, `endereco_bairro`, `endereco_cidade`, `uf_id`) VALUES
-(7, 'Rua do Teste', '123', 'Bairro do Teste', 'Cidade do Teste', 1),
-(8, 'Teste da Rua', '123', 'Teste do Bairro', 'Teste da Cidade', 1);
+(7, 'Rua Positivo', '432', 'Bairro Alienware', 'Cidade Acer', 8),
+(8, 'Teste da Rua4', '1234', 'Teste do Bairro4', 'Teste da Cidade4', 12),
+(9, 'TesteOi3', '3213', 'OiTeste3', 'OiTesteOi3', 11),
+(10, 'd555', 'a1555', 'a555', 'a555', 15),
+(11, 'N/A', '0', 'N/A', 'N/A', 30),
+(12, 'Rua do Teste', '123', 'Bairro do Teste', 'Cidade do Teste', 1),
+(13, 'Rua do Teste2', '1232', 'Bairro do Teste2', 'Cidade do Teste2', 14);
 
 -- --------------------------------------------------------
 
@@ -164,7 +170,8 @@ INSERT INTO `ufs` (`uf_id`, `uf_sigla`, `uf_nome`) VALUES
 (26, 'RO', 'Rondonia'),
 (27, 'SP', 'Sao Paulo'),
 (28, 'SE', 'Sergipe'),
-(29, 'TO', 'Tocantins');
+(29, 'TO', 'Tocantins'),
+(30, 'N/A', 'N/A');
 
 -- --------------------------------------------------------
 
@@ -191,7 +198,12 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`usuario_id`, `usuario_nomeConta`, `usuario_senha`, `usuario_tipoAcesso`, `usuario_dataDeCadastro`, `usuario_dataDeAlteracao`, `usuario_apelido`, `usuario_errosLogin`, `usuario_ticketResolvidos`) VALUES
 (1, 'admin', '12345', 'administrador', '0000-00-00', '0000-00-00', 'Master', 1, 0),
 (2, 'operador', '123456789@', 'operador', '0000-00-00', '0000-00-00', 'oi', 0, 0),
-(9, 'TesteTeste', '12345', 'Cliente', '2018-10-30', NULL, NULL, 0, 0);
+(9, 'TesteTeste', '12345', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
+(10, 'OiOiOi2', '12345', 'Cliente', '2018-10-30', '2018-11-04', NULL, 0, 0),
+(11, 'memo', '12345', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
+(12, 'memo', '12345', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
+(13, 'memo', '12345', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
+(14, 'memo5', '12345', 'Cliente', '2018-10-30', '2018-11-04', NULL, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -255,19 +267,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `cliente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `cliente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `empresas`
 --
 ALTER TABLE `empresas`
-  MODIFY `empresa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `empresa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `enderecos`
 --
 ALTER TABLE `enderecos`
-  MODIFY `endereco_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `endereco_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tickets`
@@ -285,13 +297,13 @@ ALTER TABLE `topicos`
 -- AUTO_INCREMENT for table `ufs`
 --
 ALTER TABLE `ufs`
-  MODIFY `uf_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `uf_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
