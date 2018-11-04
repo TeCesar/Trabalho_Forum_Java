@@ -9,8 +9,6 @@ import br.edu.java.poo.model.endereco.UfDTO;
 import br.edu.java.poo.model.usuario.UsuarioDTO;
 
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +19,6 @@ public class ClienteDAOImpl implements ClienteDAO {
         try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO clientes(cliente_nome, cliente_sobrenome, cliente_dtNascimento," +
                     "cliente_sexo, endereco_id, empresa_id, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-
-            DateFormat dateFormat = new SimpleDateFormat();
 
             preparedStatement.setString(1, clienteDTO.getNome());
             preparedStatement.setString(2, clienteDTO.getSobrenome());
@@ -196,7 +192,47 @@ public class ClienteDAOImpl implements ClienteDAO {
             boolean sucesso = preparedStatement.execute();
 
 
-            if (!sucesso){
+            if (!sucesso) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean excluirCliente(int id) {
+        try (Connection connection = SQLConnectionProvider.openConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM clientes WHERE cliente_id = ?");
+
+            preparedStatement.setInt(1, id);
+
+            int resultado = preparedStatement.executeUpdate();
+
+            if (resultado != 0){
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean mudarEmpresaClientes(int id) {
+        try (Connection connection = SQLConnectionProvider.openConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE clientes SET empresa_id = 6 WHERE empresa_id = ?");
+
+            preparedStatement.setInt(1, id);
+
+            int resultado = preparedStatement.executeUpdate();
+
+            if (resultado != 0){
                 return true;
             }
         } catch (SQLException e) {

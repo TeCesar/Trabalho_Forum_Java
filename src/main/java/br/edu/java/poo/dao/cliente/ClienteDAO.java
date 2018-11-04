@@ -14,4 +14,8 @@ public interface ClienteDAO {
 
     boolean atualizaCliente(ClienteDTO clienteDTO);
 
+    boolean excluirCliente(int id);
+
+    boolean mudarEmpresaClientes(int id);
+
 }

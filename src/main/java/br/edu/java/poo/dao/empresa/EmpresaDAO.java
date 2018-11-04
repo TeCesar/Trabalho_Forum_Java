@@ -14,4 +14,6 @@ public interface EmpresaDAO {
 
     boolean atualizaEmpresa(EmpresaDTO empresaDTO);
 
+    boolean excluirEmpresa(int id);
+
 }

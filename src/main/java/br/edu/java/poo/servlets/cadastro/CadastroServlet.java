@@ -69,6 +69,7 @@ public class CadastroServlet extends HttpServlet {
             String ufId = req.getParameter("empresaUfId");
 
             cadastroEmpresaService.cadastroEmpresa(razaoSocial, nomeFantasia, cnpj, nomeRua, numeroEndereco, bairro, cidade, ufId);
+            req.getRequestDispatcher("WEB-INF/cadastros/cadastroEmpresa.jsp").forward(req, resp);
         }
     }
 

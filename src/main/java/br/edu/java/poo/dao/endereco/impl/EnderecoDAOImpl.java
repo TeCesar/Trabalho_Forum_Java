@@ -92,7 +92,11 @@ public class EnderecoDAOImpl implements EnderecoDAO {
 
             preparedStatement.setInt(1, id);
 
-            preparedStatement.executeUpdate();
+            int resultado = preparedStatement.executeUpdate();
+
+            if (resultado != 0){
+                return true;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

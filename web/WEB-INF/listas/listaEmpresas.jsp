@@ -7,14 +7,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Listagem de Empresas</title>
 </head>
 <body>
-<%
-    List<EmpresaDTO> listaEmpresas = (List<EmpresaDTO>) request.getSession().getAttribute("listaEmpresas");
-%>
 
 <table>
     <tr>
@@ -22,24 +20,29 @@
         <th>CNPJ</th>
         <th>Razão Social</th>
         <th>Rua</th>
+        <th>Numero do Endereço</th>
         <th>Bairro</th>
         <th>Cidade</th>
         <th>Estado</th>
         <th colspan="2">Ação</th>
     </tr>
-    <% for (EmpresaDTO empresa : listaEmpresas) { %>
+
+    <c:forEach var="empresa" items="${listaEmpresas}">
+        <c:if test="${empresa.nomeFantasia != 'N/A'}">
         <tr>
-            <td><%= empresa.getNomeFantasia()%></td>
-            <td><%= empresa.getCnpj()%></td>
-            <td><%= empresa.getRazaoSocial()%></td>
-            <td><%= empresa.getEnderecoDTO().getRua()%></td>
-            <td><%= empresa.getEnderecoDTO().getBairro()%></td>
-            <td><%= empresa.getEnderecoDTO().getCidade()%></td>
-            <td><%= empresa.getEnderecoDTO().getUfDTO().getSigla()%></td>
-            <td><a href="controller?acao=editarEmpresa&idEmpresa=<%=empresa.getId()%>">Editar</a></td>
-            <td>Excluir</td>
+            <td>${empresa.nomeFantasia}</td>
+            <td>${empresa.cnpj}</td>
+            <td>${empresa.razaoSocial}</td>
+            <td>${empresa.enderecoDTO.rua}</td>
+            <td>${empresa.enderecoDTO.numeroEndereco}</td>
+            <td>${empresa.enderecoDTO.bairro}</td>
+            <td>${empresa.enderecoDTO.cidade}</td>
+            <td>${empresa.enderecoDTO.ufDTO.sigla}</td>
+            <td><a href="controller?acao=editarEmpresa&idEmpresa=${empresa.id}">Editar</a></td>
+            <td><a href="controller?acao=excluirEmpresa&idEmpresa=${empresa.id}">Excluir</a></td>
         </tr>
-    <%}%>
+        </c:if>
+    </c:forEach>
 </table>
 
 </body>

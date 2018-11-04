@@ -151,4 +151,24 @@ public class EmpresaDAOImpl implements EmpresaDAO {
         }
         return false;
     }
+
+    @Override
+    public boolean excluirEmpresa(int id) {
+        try (Connection connection = SQLConnectionProvider.openConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM empresas WHERE empresa_id = ?");
+
+            preparedStatement.setInt(1, id);
+
+            int resultado = preparedStatement.executeUpdate();
+
+            if (resultado != 0){
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

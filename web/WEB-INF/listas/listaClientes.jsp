@@ -1,7 +1,4 @@
-<%@ page import="br.edu.java.poo.model.cliente.ClienteDTO" %>
-<%@ page import="java.text.DateFormat" %>
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.List" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Archibald
   Date: 30/10/2018
@@ -16,10 +13,6 @@
     <title>Listagem de Clientes</title>
 </head>
 <body>
-<%
-    List<ClienteDTO> listaClientes = (List<ClienteDTO>) request.getSession().getAttribute("listaClientes");
-    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-%>
 <table>
     <tr>
         <th>Nome</th>
@@ -40,7 +33,7 @@
         <tr>
             <td>${cliente.nome}</td>
             <td>${cliente.sobrenome}</td>
-            <td><fmt:formatDate value="${clienteBusca.dtNascimento}" pattern="dd/MM/yyyy"/></td>
+            <td><fmt:formatDate value="${cliente.dtNascimento}" pattern="dd/MM/yyyy"/></td>
             <td>${cliente.sexo}</td>
             <td>${cliente.enderecoDTO.rua}</td>
             <td>${cliente.enderecoDTO.numeroEndereco}</td>
@@ -53,31 +46,6 @@
             <td><a href="controller?acao=excluirCliente&idCliente=${cliente.id}">Excluir</a></td>
         </tr>
     </c:forEach>
-
-    <%--<%--%>
-    <%--for (ClienteDTO cliente : listaClientes) { %>--%>
-    <%--<tr>--%>
-    <%--<td><%= cliente.getNome()%></td>--%>
-    <%--<td><%= cliente.getSobrenome()%></td>--%>
-    <%--<td><%= dateFormat.format(cliente.getDtNascimento())%></td>--%>
-    <%--<td><%= cliente.getSexo()%></td>--%>
-    <%--<td><%= cliente.getEnderecoDTO().getRua()%></td>--%>
-    <%--<td><%= cliente.getEnderecoDTO().getNumeroEndereco()%></td>--%>
-    <%--<td><%= cliente.getEnderecoDTO().getBairro()%></td>--%>
-    <%--<td><%= cliente.getEnderecoDTO().getCidade()%></td>--%>
-    <%--<td><%= cliente.getEnderecoDTO().getUfDTO().getSigla()%></td>--%>
-    <%--<td><%= cliente.getEmpresaDTO().getNomeFantasia()%></td>--%>
-    <%--<td><%= cliente.getUsuarioDTO().getNomeConta()%></td>--%>
-    <%--<td><a href="controller?acao=editarCliente&idCliente=<%=cliente.getId()%>">Editar</a></td>--%>
-    <%--<td>Excluir</td>--%>
-    <%--</tr>--%>
-    <%--<%--%>
-    <%--}--%>
-    <%--%>--%>
-
-
 </table>
-
-
 </body>
 </html>

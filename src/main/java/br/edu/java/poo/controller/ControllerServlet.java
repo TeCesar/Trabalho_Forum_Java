@@ -104,5 +104,10 @@ public class ControllerServlet extends HttpServlet {
             req.getRequestDispatcher("excluir?tipo=cliente&idCliente=" + id).forward(req, resp);
         }
 
+        if ("excluirEmpresa".equalsIgnoreCase(acao)){
+            String id = req.getParameter("idEmpresa");
+            req.getRequestDispatcher("excluir?tipo=empresa&idEmpresa=" + id).forward(req, resp);
+        }
+
     }
 }
