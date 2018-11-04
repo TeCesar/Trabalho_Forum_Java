@@ -37,7 +37,7 @@ public class UsuarioBusinessImpl implements UsuarioBusiness {
     }
 
     public boolean confereAlteraUsuario(String nomeContaNovo, String senhaNovo, String nomeContaAntigo, String senhaAntigo){
-        if ((!nomeContaNovo.equalsIgnoreCase(nomeContaAntigo)) || (!senhaNovo.equalsIgnoreCase(senhaAntigo))){
+        if (!nomeContaNovo.equalsIgnoreCase(nomeContaAntigo) || !senhaNovo.equalsIgnoreCase(senhaAntigo)){
             return true;
         }
         return false;

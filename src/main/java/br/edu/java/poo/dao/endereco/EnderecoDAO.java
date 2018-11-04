@@ -7,4 +7,6 @@ public interface EnderecoDAO {
     EnderecoDTO buscaEndereco(EnderecoDTO enderecoDTO, int ufId);
 
     boolean atualizaEndereco(EnderecoDTO enderecoDTO);
+
+    boolean excluirEndreco(int id);
 }

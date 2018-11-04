@@ -82,6 +82,7 @@ public class EdicaoServlet extends HttpServlet {
             String sexoCliente = req.getParameter("sexoClienteEdit");
             String idEnderecoCliente = req.getParameter("idEnderecoClienteEdit");
             String nomeRuaCliente = req.getParameter("nomeRuaClienteEdit");
+            String numeroCasaCliente = req.getParameter("numeroCasaClienteEdit");
             String bairroCliente = req.getParameter("bairroClienteEdit");
             String cidadeCliente = req.getParameter("cidadeClienteEdit");
             String idUfCliente = req.getParameter("idUfClienteEdit");
@@ -90,9 +91,9 @@ public class EdicaoServlet extends HttpServlet {
             String nomeContaCliente = req.getParameter("nomeContaUsuarioClienteEdit");
             String senhaCliente = req.getParameter("senhaUsuarioClienteEdit");
             String nomeContaAntigoCliente = req.getParameter("nomeContaUsuarioAntigoClienteEdit");
-            String senhaAntigoCliente = req.getParameter("senhaAntigoClienteEdit");
+            String senhaAntigoCliente = req.getParameter("senhaUsuarioAntigoClienteEdit");
 
-            boolean altera = usuarioBusiness.confereAlteraUsuario(nomeCliente, senhaCliente, nomeContaAntigoCliente, senhaAntigoCliente);
+            boolean altera = usuarioBusiness.confereAlteraUsuario(nomeContaCliente, senhaCliente, nomeContaAntigoCliente, senhaAntigoCliente);
 
             ClienteDTO clienteDTO = new ClienteDTO();
             EnderecoDTO enderecoDTO = new EnderecoDTO();
@@ -113,6 +114,7 @@ public class EdicaoServlet extends HttpServlet {
 
             enderecoDTO.setId(Integer.parseInt(idEnderecoCliente));
             enderecoDTO.setRua(nomeRuaCliente);
+            enderecoDTO.setNumeroEndereco(numeroCasaCliente);
             enderecoDTO.setBairro(bairroCliente);
             enderecoDTO.setCidade(cidadeCliente);
             ufDTO.setId(Integer.parseInt(idUfCliente));
@@ -126,8 +128,11 @@ public class EdicaoServlet extends HttpServlet {
 
             clienteDTO.setEnderecoDTO(enderecoDTO);
             clienteDTO.setEmpresaDTO(empresaDTO);
+            clienteDTO.setUsuarioDTO(usuarioDTO);
 
             editaClienteService.editaCliente(clienteDTO, altera);
+
+            req.getRequestDispatcher("listar?tipo=clientes").forward(req, resp);
         }
 
     }

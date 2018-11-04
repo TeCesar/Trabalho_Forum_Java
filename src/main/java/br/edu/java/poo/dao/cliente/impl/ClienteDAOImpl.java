@@ -183,7 +183,15 @@ public class ClienteDAOImpl implements ClienteDAO {
     @Override
     public boolean atualizaCliente(ClienteDTO clienteDTO) {
         try (Connection connection = SQLConnectionProvider.openConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE clientes SET cliente_");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE clientes SET cliente_nome = ?, cliente_sobrenome = ?, cliente_dtNascimento = ?, " +
+                    "cliente_sexo = ?, empresa_id = ? WHERE cliente_id = ?");
+
+            preparedStatement.setString(1, clienteDTO.getNome());
+            preparedStatement.setString(2, clienteDTO.getSobrenome());
+            preparedStatement.setDate(3, new java.sql.Date(clienteDTO.getDtNascimento().getTime()));
+            preparedStatement.setString(4, clienteDTO.getSexo());
+            preparedStatement.setInt(5, clienteDTO.getEmpresaDTO().getId());
+            preparedStatement.setInt(6, clienteDTO.getId());
 
             boolean sucesso = preparedStatement.execute();
 

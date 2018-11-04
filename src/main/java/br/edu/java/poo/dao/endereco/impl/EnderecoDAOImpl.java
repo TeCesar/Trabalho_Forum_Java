@@ -84,4 +84,20 @@ public class EnderecoDAOImpl implements EnderecoDAO {
         }
         return false;
     }
+
+    @Override
+    public boolean excluirEndreco(int id) {
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM enderecos WHERE endereco_id = ?");
+
+            preparedStatement.setInt(1, id);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

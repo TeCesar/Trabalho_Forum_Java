@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<form>
+<form method="post" action="controller?acao=editarCliente">
     <input type="hidden" name="idClienteEdit" value="${clienteBusca.id}"/>
     <input type="text" name="nomeClienteEdit" value="${clienteBusca.nome}" required><br><br>
     <input type="text" name="sobrenomeClienteEdit" value="${clienteBusca.sobrenome}" required><br><br>
@@ -48,10 +48,11 @@
     </select>
 
     <input type="hidden" name="idUsuarioClienteEdit" value="${clienteBusca.usuarioDTO.id}"><br><br>
-    <input type="text" name="nomeContaUsuarioClienteEdit" value="${clienteBusca.usuarioDTO.nomeConta}"><br><br>
+    <input type="text" name="nomeContaUsuarioClienteEdit" value="${clienteBusca.usuarioDTO.nomeConta}">
     <input type="hidden" name="nomeContaUsuarioAntigoClienteEdit" value="${clienteBusca.usuarioDTO.nomeConta}"><br><br>
     <input type="text" name="senhaUsuarioClienteEdit" value="${clienteBusca.usuarioDTO.senha}"><br><br>
-    <input type="hidden" name="senhaUsuarioAntigoClienteEdit" value="${clienteBusca.usuarioDTO.senha}"><br><br>
+    <input type="hidden" name="senhaUsuarioAntigoClienteEdit" value="${clienteBusca.usuarioDTO.senha}">
+    <input type="submit" value="Salvar Alterações">
 
 </form>
 

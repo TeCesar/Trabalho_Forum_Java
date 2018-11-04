@@ -40,6 +40,10 @@ public class ControllerServlet extends HttpServlet {
             req.getRequestDispatcher("editar?tipo=empresa").forward(req, resp);
         }
 
+        if ("editarCliente".equalsIgnoreCase(acao)){
+            req.getRequestDispatcher("editar?tipo=cliente").forward(req, resp);
+        }
+
     }
 
     @Override
@@ -93,6 +97,11 @@ public class ControllerServlet extends HttpServlet {
         if ("editarCliente".equalsIgnoreCase(acao)) {
             String id = req.getParameter("idCliente");
             req.getRequestDispatcher("editar?tipo=cliente&idCliente=" + id).forward(req, resp);
+        }
+
+        if ("excluirCliente".equalsIgnoreCase(acao)){
+            String id = req.getParameter("idCliente");
+            req.getRequestDispatcher("excluir?tipo=cliente&idCliente=" + id).forward(req, resp);
         }
 
     }

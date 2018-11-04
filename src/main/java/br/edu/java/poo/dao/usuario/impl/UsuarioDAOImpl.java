@@ -94,6 +94,12 @@ public class UsuarioDAOImpl implements UsuarioDAO {
                 preparedStatement.setDate(3, new java.sql.Date(usuarioDTO.getDataDeAlteracao().getTime()));
                 preparedStatement.setInt(4, usuarioDTO.getId());
 
+                boolean sucesso = preparedStatement.execute();
+
+                if (!sucesso){
+                    return true;
+                }
+
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
