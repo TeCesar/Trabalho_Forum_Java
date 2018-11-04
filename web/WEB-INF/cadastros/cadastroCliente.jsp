@@ -1,6 +1,4 @@
-<%@ page import="br.edu.java.poo.model.empresa.EmpresaDTO" %>
-<%@ page import="br.edu.java.poo.model.endereco.UfDTO" %>
-<%@ page import="java.util.List" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Archibald
   Date: 24/10/2018
@@ -8,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Cadastro de Cliente</title>
@@ -17,17 +16,6 @@
     </style>
 </head>
 <body>
-
-
-<%
-    List<UfDTO> listaUfs = (List<UfDTO>) request.getSession().getAttribute("listaUfs");
-    List<EmpresaDTO> listaEmpresas = (List<EmpresaDTO>) request.getSession().getAttribute("listaEmpresas");
-    String erro = (String) request.getSession().getAttribute("erro");
-    String mostraErro = (String) request.getSession().getAttribute("mostraErro");
-    String cadastroSucess = (String) request.getSession().getAttribute("cadastroSucess");
-%>
-
-
 <div id="barra">
     <label>Bem vindo</label>
     <div id="login">
@@ -36,46 +24,7 @@
     </div>
 </div>
 
-<nav>
-    <ul class="menu">
-
-        <li><a href="#">Cadastrar</a>
-            <ul>
-                <li><a href="controller?acao=cadastro">Cliente</a></li>
-                <li><a href="controller?acao=cadastroEmpresa">Empresa</a></li>
-
-            </ul>
-        </li>
-
-        <li><a href="#">Relatórios</a>
-            <ul>
-                <li><a href="#">Cliente</a></li>
-                <li><a href="#">Empresa</a></li>
-                <li><a href="#">Venda</a></li>
-                <li><a href="#">Estoque</a></li>
-                <li><a href="#">Tickets</a></li>
-                <li><a href="#">Tópicos</a></li>
-            </ul>
-        </li>
-
-        <li><a href="#">Tickets</a>
-            <ul>
-                <li><a href="controller?acao=tickets">Todos</a></li>
-                <li><a href="#">Aberto</a></li>
-                <li><a href="#">Fechado</a></li>
-                <li><a href="#">Em Andamento</a></li>
-            </ul>
-
-        <li><a href="#">Tópicos</a></li>
-
-        <li><a href="#">Listar</a>
-            <ul>
-                <li><a href="controller?acao=listarClientes">Clientes</a></li>
-                <li><a href="controller?acao=listarEmpresas">Empresas</a></li>
-            </ul>
-        </li>
-    </ul>
-</nav>
+<%@include file="/WEB-INF/navbar/navbarOperador.jsp" %>
 <br><br><br>
 
 <h1 class="titulo">Cadastro de Cliente</h1>
@@ -85,56 +34,43 @@
 
         <label class="txt">Nome: </label><input type="text" name="clienteNome" class="campo" required><br><br>
         <label class="txt">Sobrenome: </label><input type="text" name="clienteSobrenome" class="campo" required><br><br>
-        <label class="txt">Dt. Nascimento: </label><input type="text" name="clienteDtNasc" class="campo" required><br><br>
+        <label class="txt">Dt. Nascimento: </label><input type="text" name="clienteDtNasc" class="campo"
+                                                          required><br><br>
         <label>Sexo: </label>
         <input type="radio" name="clienteSexo" value="M" checked="checked">Masculino
         <input type="radio" name="clienteSexo" value="F">Feminino
         <br><br>
         <label class="txt">Nome da Rua: </label><input type="text" name="clienteNomeRua" class="campo" required><br><br>
-        <label class="txt">Número da Casa: </label><input type="text" name="clienteNumeroCasa" class="campo" required><br><br>
+        <label class="txt">Número da Casa: </label><input type="text" name="clienteNumeroCasa" class="campo"
+                                                          required><br><br>
         <label class="txt">Bairro: </label><input type="text" name="clienteBairro" class="campo" required><br><br>
         <label class="txt">Cidade: </label><input type="text" name="clienteCidade" class="campo" required><br><br>
         <label class="txt">UF:</label>
         <select name="clienteUfId" class="campo">
             <option>Selecione uma opção</option>
-            <%for (UfDTO uf : listaUfs) { %>
-            <option value="<%= uf.getId()%>"><%= uf.getSigla()%>
-            </option>
-            <%}%>
+            <c:forEach var="uf" items="${listaUfs}">
+                <c:if test="${uf.sigla != 'N/A'}">
+                    <option value="${uf.id}">${uf.sigla}</option>
+                </c:if>
+            </c:forEach>
         </select>
         <br><br>
         <label class="txt">Selecione uma empresa: </label>
         <select name="clienteEmpresaId" class="campo">
             <option>Selecione uma Opção</option>
-            <%for (EmpresaDTO empresa : listaEmpresas) { %>
-            <option value="<%= empresa.getId()%>"><%= empresa.getNomeFantasia()%>
-            </option>
-            <%}%>
+            <c:forEach var="empresa" items="${listaEmpresas}">
+                <option value="${empresa.id}">${empresa.nomeFantasia}</option>
+            </c:forEach>
         </select>
         <br><br>
-        <label class="txt">Nome de Usuário:</label><input type="text" name="clienteNomeUsuario" class="campo" required><br><br>
+        <label class="txt">Nome de Usuário:</label><input type="text" name="clienteNomeUsuario" class="campo"
+                                                          required><br><br>
     </div>
     <input type="reset" value="Limpar Campos" class="btns">
     <input type="submit" value="Cadastrar" class="btne">
 </form>
 
-<input type="hidden" id="erro" value="<%= erro%>">
-<input type="hidden" id="mostraErro" value="<%= mostraErro%>">
-<input type="hidden" id="sucesso" value="<%= cadastroSucess%>">
-
-<script>
-    var erro = document.getElementById("erro").value;
-    var mostraErro = document.getElementById("mostraErro").value;
-    var cadastroSucess = document.getElementById("cadastroSucess").value;
-
-    if (mostraErro == "mostrar"){
-        alert(erro);
-    }
-
-    if (cadastroSucess == "Cadastro realizado com sucesso."){
-        alert(cadastroSucess);
-    }
-</script>
+    <a href="controller?acao=cadastroEmpresa"><h5>Cadastrar nova empresa</h5></a>
 
 </body>
 </html>

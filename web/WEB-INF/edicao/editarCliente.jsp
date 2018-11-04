@@ -11,8 +11,13 @@
 <html>
 <head>
     <title>Edicao de Cliente</title>
+    <style>
+        <%@include file="/WEB-INF/estilo/estilo.css" %>
+    </style>
 </head>
 <body>
+<%@include file="/WEB-INF/navbar/navbarOperador.jsp" %>
+<br><br><br>
 
 <form method="post" action="controller?acao=editarCliente" style="text-align: center">
     <input type="hidden" name="idClienteEdit" value="${clienteBusca.id}"/>

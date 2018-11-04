@@ -12,8 +12,13 @@
 <html>
 <head>
     <title>Edição de Empresa</title>
+    <style>
+        <%@include file="/WEB-INF/estilo/estilo.css" %>
+    </style>
 </head>
 <body>
+<%@include file="/WEB-INF/navbar/navbarOperador.jsp" %>
+<br><br><br>
 
 <form action="controller?acao=editarEmpresa" method="post">
     <input type="hidden" name="idEmpresaEdit" value="${empresaBusca.id}">

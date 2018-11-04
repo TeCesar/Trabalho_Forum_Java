@@ -23,47 +23,7 @@
     </div>
 </div>
 
-<nav>
-    <ul class="menu">
+<%@include file="/WEB-INF/navbar/navbarOperador.jsp" %>
 
-        <li><a href="#">Cadastrar</a>
-            <ul>
-                <li><a href="controller?acao=cadastroCliente">Cliente</a></li>
-                <li><a href="controller?acao=cadastroEmpresa">Empresa</a></li>
-
-            </ul>
-        </li>
-
-        <li><a href="#">Relatórios</a>
-            <ul>
-                <li><a href="#">Cliente</a></li>
-                <li><a href="#">Empresa</a></li>
-                <li><a href="#">Venda</a></li>
-                <li><a href="#">Estoque</a></li>
-                <li><a href="#">Tickets</a></li>
-                <li><a href="#">Tópicos</a></li>
-            </ul>
-        </li>
-
-        <li><a href="#">Tickets</a>
-            <ul>
-                <li><a href="controller?acao=tickets&tipo=todos">Todos</a></li>
-                <li><a href="controller?acao=tickets&tipo=Aberto">Aberto</a></li>
-                <li><a href="controller?acao=tickets&tipo=Fechado">Fechado</a></li>
-                <li><a href="controller?acao=tickets&tipo=Andamento">Em Andamento</a></li>
-            </ul>
-        </li>
-
-        <li><a href="#">Tópicos</a></li>
-
-        <li><a href="#">Listar</a>
-            <ul>
-                <li><a href="controller?acao=listarClientes">Clientes</a></li>
-                <li><a href="controller?acao=listarEmpresas">Empresas</a></li>
-            </ul>
-        </li>
-    </ul>
-    </ul>
-</nav>
 </body>
 </html>

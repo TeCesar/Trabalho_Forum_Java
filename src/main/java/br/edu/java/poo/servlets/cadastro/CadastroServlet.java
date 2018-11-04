@@ -44,7 +44,6 @@ public class CadastroServlet extends HttpServlet {
 
             try {
                 if (cadastroClienteService.cadastroCliente(idUf, nomeRua, numeroCasa, bairro, cidade, idEmpresa, nome, sobrenome, dtNasc, sexo, nomeUsuario)) {
-                    req.getSession().setAttribute("cadastroSucess", "Cadastro Realizado com sucesso.");
                     req.getRequestDispatcher("WEB-INF/cadastros/cadastroCliente.jsp").forward(req, resp);
                 }
             } catch (CadastrarClienteException e) {
