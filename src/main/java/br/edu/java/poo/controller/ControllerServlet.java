@@ -116,6 +116,8 @@ public class ControllerServlet extends HttpServlet {
                 req.getRequestDispatcher("relatorio?tipo=clienteEmpresa").forward(req, resp);
             } else if ("listaUsuarios".equalsIgnoreCase(tipo)){
                 req.getRequestDispatcher("relatorio?tipo=listaUsuarios").forward(req, resp);
+            } else if ("ticketsCliente".equalsIgnoreCase(tipo)){
+                req.getRequestDispatcher("relatorio?tipo=ticketsCliente").forward(req, resp);
             }
         }
 

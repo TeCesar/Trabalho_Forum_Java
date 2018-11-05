@@ -131,6 +131,22 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     public List<UsuarioDTO> listarUsuarios() {
         List<UsuarioDTO> listaUsuarios = new ArrayList<>();
         try (Connection connection = SQLConnectionProvider.openConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM usuarios");
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                UsuarioDTO usuarioDTO = new UsuarioDTO();
+                usuarioDTO.setId(resultSet.getInt("usuario_id"));
+                usuarioDTO.setNomeConta(resultSet.getString("usuario_nomeConta"));
+                usuarioDTO.setTipoAcesso(resultSet.getString("usuario_tipoAcesso"));
+                usuarioDTO.setDataDeCadastro(resultSet.getDate("usuario_dataDeCadastro"));
+                usuarioDTO.setDataDeAlteracao(resultSet.getDate("usuario_dataDeAlteracao"));
+                usuarioDTO.setUsuarioApelido(resultSet.getString("usuario_apelido"));
+                usuarioDTO.setErrosLogin(resultSet.getInt("usuario_errosLogin"));
+                usuarioDTO.setTicketsResolvidos(resultSet.getInt("usuario_ticketResolvidos"));
+                listaUsuarios.add(usuarioDTO);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

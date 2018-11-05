@@ -17,14 +17,6 @@
 </head>
 <body>
 
-<div id="barra">
-    <label>Bem vindo</label>
-    <div id="login">
-        <a href="../../index.jsp">Sair</a>
-
-    </div>
-</div>
-
 <%@include file="/WEB-INF/navbar/navbarOperador.jsp" %>
 <br><br><br>
 

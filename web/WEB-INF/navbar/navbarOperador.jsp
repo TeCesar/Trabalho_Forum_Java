@@ -12,6 +12,14 @@
 </head>
 <body>
 
+<div id="barra">
+    <label>Bem vindo</label>
+    <div id="login">
+        <a href="../../index.jsp">Sair</a>
+
+    </div>
+</div>
+
 <nav>
     <ul class="menu">
 
@@ -27,7 +35,7 @@
             <ul>
                 <li><a href="controller?acao=relatorio&tipo=clienteEmpresa">Clientes por Empresa</a></li>
                 <li><a href="controller?acao=relatorio&tipo=listaUsuarios">Lista de Usuários</a></li>
-                <li><a href="controller?acao=relatorio">Quantidade de Tickets por Cliente</a></li>
+                <li><a href="controller?acao=relatorio&tipo=ticketsCliente">Quantidade de Tickets por Cliente</a></li>
                 <li><a href="controller?acao=relatorio">Quantidade de Tickets sem Resposta por Cliente</a></li>
                 <li><a href="controller?acao=relatorio">Lista de Tickets sem Resposta por Cliente</a></li>
                 <li><a href="controller?acao=relatorio">Quantidade de Tickets Resolvidos por Cliente</a></li>
