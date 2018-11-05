@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 04-Nov-2018 às 21:19
+-- Generation Time: 05-Nov-2018 às 18:13
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -44,8 +44,9 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`cliente_id`, `cliente_nome`, `cliente_sobrenome`, `cliente_dtNascimento`, `cliente_sexo`, `endereco_id`, `empresa_id`, `usuario_id`) VALUES
-(9, 'SegundoTeste4', 'TesteSegundo4', '2010-10-10', 'M', 8, 6, 9),
-(10, 'SegundoTeste3', 'TesteSegundo3', '1996-11-18', 'M', 9, 9, 10);
+(9, 'SegundoTeste4', 'TesteSegundo4', '2010-10-10', 'M', 8, 9, 9),
+(10, 'SegundoTeste3', 'TesteSegundo3', '1996-11-18', 'M', 9, 9, 10),
+(11, 'titeste', 'testeti', '1997-12-19', 'M', 15, 10, 15);
 
 -- --------------------------------------------------------
 
@@ -67,7 +68,8 @@ CREATE TABLE `empresas` (
 
 INSERT INTO `empresas` (`empresa_id`, `empresa_nomeFantasia`, `empresa_cnpj`, `empresa_razaoSocial`, `endereco_id`) VALUES
 (6, 'N/A', '0', 'N/A', 11),
-(9, 'TesteTeste', '12342', 'Teste', 12);
+(9, 'TesteTeste', '12342', 'Teste', 12),
+(10, 'oioiteste', '2371', 'oioioi', 14);
 
 -- --------------------------------------------------------
 
@@ -95,7 +97,9 @@ INSERT INTO `enderecos` (`endereco_id`, `endereco_rua`, `endereco_numero`, `ende
 (10, 'd555', 'a1555', 'a555', 'a555', 15),
 (11, 'N/A', '0', 'N/A', 'N/A', 30),
 (12, 'Rua do Teste', '123', 'Bairro do Teste', 'Cidade do Teste', 1),
-(13, 'Rua do Teste2', '1232', 'Bairro do Teste2', 'Cidade do Teste2', 14);
+(13, 'Rua do Teste2', '1232', 'Bairro do Teste2', 'Cidade do Teste2', 14),
+(14, 'oioiteste', 'oioiteste2', 'oioiteste3', 'oioiteste4', 2),
+(15, 'ruatesteti', '1324', 'bairrotesteti', 'cidadetesteti', 2);
 
 -- --------------------------------------------------------
 
@@ -111,8 +115,17 @@ CREATE TABLE `tickets` (
   `ticket_tempoInicio` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ticket_tempoFim` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `ticket_situacao` varchar(15) NOT NULL,
+  `ticket_respondido` varchar(20) DEFAULT NULL,
   `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `tickets`
+--
+
+INSERT INTO `tickets` (`ticket_id`, `ticket_titulo`, `ticket_mensagem`, `ticket_status`, `ticket_tempoInicio`, `ticket_tempoFim`, `ticket_situacao`, `ticket_respondido`, `usuario_id`) VALUES
+(1, 'Ticket Teste', 'TesteTesteTesteTesteTeste', 'Completo', '2018-11-05 16:59:54', '2018-11-04 20:30:00', 'Aberto', 'Nao', 10),
+(2, 'Teste2Ticket', 'Segundo Teste De Ticket', 'Completo', '2018-11-05 17:05:31', '2018-11-05 17:00:40', 'Fechado', 'Sim', 15);
 
 -- --------------------------------------------------------
 
@@ -197,14 +210,15 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`usuario_id`, `usuario_nomeConta`, `usuario_senha`, `usuario_tipoAcesso`, `usuario_dataDeCadastro`, `usuario_dataDeAlteracao`, `usuario_apelido`, `usuario_errosLogin`, `usuario_ticketResolvidos`) VALUES
-(1, 'admin', '12345', 'administrador', '0000-00-00', '0000-00-00', 'Master', 1, 0),
-(2, 'operador', '123456789@', 'operador', '0000-00-00', '0000-00-00', 'oi', 0, 0),
+(1, 'admin', '12345', 'administrador', '1996-11-18', NULL, 'Master', 1, 0),
+(2, 'operador', '123456789@', 'operador', '1996-11-18', NULL, 'oi', 0, 0),
 (9, 'TesteTeste', '12345', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
-(10, 'OiOiOi', '12345', 'Cliente', '2018-10-30', '2018-11-04', NULL, 0, 0),
+(10, 'OiOiOi', '12345', 'Cliente', '2018-10-30', '2018-11-05', NULL, 0, 0),
 (11, 'memo', '12345', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
 (12, 'memo', '12345', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
 (13, 'memo', '12345', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
-(14, 'memo5', '12345', 'Cliente', '2018-10-30', '2018-11-04', NULL, 0, 0);
+(14, 'memo5', '12345', 'Cliente', '2018-10-30', '2018-11-04', NULL, 0, 0),
+(15, 'oioitesteti', '12345', 'Cliente', '2018-11-05', NULL, NULL, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -274,19 +288,19 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT for table `empresas`
 --
 ALTER TABLE `empresas`
-  MODIFY `empresa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `empresa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `enderecos`
 --
 ALTER TABLE `enderecos`
-  MODIFY `endereco_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `endereco_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `topicos`
@@ -304,7 +318,7 @@ ALTER TABLE `ufs`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
