@@ -47,11 +47,12 @@ public class RelatoriosServlet extends HttpServlet {
 
         if ("ticketsCliente".equalsIgnoreCase(tipo)){
             ClienteDAO clienteDAO = new ClienteDAOImpl();
-            UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
             TicketDAO ticketDAO = new TicketDAOImpl();
             List<ClienteDTO> listaClientes = clienteDAO.listarClientes();
-            List<UsuarioDTO> listaUsuarios = usuarioDAO.listarUsuarios();
             List<TicketDTO> listaTickets = ticketDAO.listarTickets("todos");
+            req.getSession().setAttribute("listaClientes", listaClientes);
+            req.getSession().setAttribute("listaTickets", listaTickets);
+            req.getRequestDispatcher("WEB-INF/relatorios/ticketsPorClienteRelatorio.jsp").forward(req, resp);
         }
     }
 }

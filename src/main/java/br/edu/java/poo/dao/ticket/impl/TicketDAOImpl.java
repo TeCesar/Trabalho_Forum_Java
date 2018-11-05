@@ -74,7 +74,7 @@ public class TicketDAOImpl implements TicketDAO {
             UsuarioDTO usuarioDTO = new UsuarioDTO();
             usuarioDTO.setId(resultSet.getInt("usuario_id"));
             usuarioDTO.setNomeConta(resultSet.getString("usuario_nomeConta"));
-            usuarioDTO.setNomeConta(resultSet.getString("usuario_tipoAcesso"));
+            usuarioDTO.setTipoAcesso(resultSet.getString("usuario_tipoAcesso"));
             TicketDTO ticketDTO = new TicketDTO();
             ticketDTO.setUsuarioDTO(usuarioDTO);
             ticketDTO.setId(resultSet.getInt("ticket_id"));
