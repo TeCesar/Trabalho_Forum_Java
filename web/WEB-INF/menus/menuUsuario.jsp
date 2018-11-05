@@ -15,6 +15,6 @@
 </head>
 <body>
 
-<%@include file="/WEB-INF/navbar/navbarCliente.jsp" %>
+<%@include file="/WEB-INF/navbar/navbarUsuario.jsp" %>
 </body>
 </html>

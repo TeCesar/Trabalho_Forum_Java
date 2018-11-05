@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>DKRT Fórum</title>
 </head>
 <body>
 <h1>implementar</h1>

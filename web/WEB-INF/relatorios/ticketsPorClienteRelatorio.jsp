@@ -29,14 +29,16 @@
             <th>Mensagem</th>
             <th>Status</th>
             <th>Situação</th>
+            <th>Respondido</th>
         </tr>
         <c:forEach var="ticket" items="${listaTickets}">
-            <c:if test="${cliente.id == ticket.usuarioDTO.id}">
+            <c:if test="${cliente.usuarioDTO.id == ticket.usuarioDTO.id}">
                 <tr>
                     <td>${ticket.titulo}</td>
                     <td>${ticket.mensagem}</td>
                     <td>${ticket.status}</td>
                     <td>${ticket.situacao}</td>
+                    <td>${ticket.respondido}</td>
                 </tr>
             </c:if>
         </c:forEach>

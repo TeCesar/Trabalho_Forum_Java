@@ -28,9 +28,10 @@ public class TicketDAOImpl implements TicketDAO {
     public List<TicketDTO> listarTickets(String situacao) {
         List<TicketDTO> listaTickets = new ArrayList<>();
         String sql;
+        String aux;
         if ("todos".equalsIgnoreCase(situacao)) {
             sql = "SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_mensagem, tickets.ticket_status, tickets.ticket_tempoInicio, " +
-                    "tickets.ticket_tempoFim, tickets.ticket_situacao, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso " +
+                    "tickets.ticket_tempoFim, tickets.ticket_situacao, tickets.ticket_respondido, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso " +
                     "FROM tickets INNER JOIN usuarios ON tickets.usuario_id = usuarios.usuario_id";
 
             try (Connection connection = SQLConnectionProvider.openConnection()) {
@@ -45,25 +46,33 @@ public class TicketDAOImpl implements TicketDAO {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
+            return listaTickets;
+        } else if ("Sem Resposta".equalsIgnoreCase(situacao)) {
+            sql = "SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_mensagem, tickets.ticket_status, tickets.ticket_tempoInicio, " +
+                    "tickets.ticket_tempoFim, tickets.ticket_situacao, tickets.ticket_respondido, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso " +
+                    "FROM tickets INNER JOIN usuarios ON tickets.usuario_id = usuarios.usuario_id WHERE ticket_respondido = ?";
+
+            aux = "Nao";
         } else {
             sql = "SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_mensagem, tickets.ticket_status, tickets.ticket_tempoInicio, " +
-                    "tickets.ticket_tempoFim, tickets.ticket_situacao, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso " +
+                    "tickets.ticket_tempoFim, tickets.ticket_situacao, tickets.ticket_respondido, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso " +
                     "FROM tickets INNER JOIN usuarios ON tickets.usuario_id = usuarios.usuario_id WHERE ticket_situacao = ?";
 
-            try (Connection connection = SQLConnectionProvider.openConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            aux = situacao;
+        }
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-                preparedStatement.setString(1, situacao);
+            preparedStatement.setString(1, aux);
 
-                ResultSet resultSet = preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-                listaTickets = retrieveInformacoes(resultSet);
+            listaTickets = retrieveInformacoes(resultSet);
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
         return listaTickets;
     }
@@ -84,6 +93,7 @@ public class TicketDAOImpl implements TicketDAO {
             ticketDTO.setTempoInicio(resultSet.getDate("ticket_tempoInicio"));
             ticketDTO.setTempoFim(resultSet.getDate("ticket_tempoFim"));
             ticketDTO.setSituacao(resultSet.getString("ticket_situacao"));
+            ticketDTO.setRespondido(resultSet.getString("ticket_respondido"));
             listaTickets.add(ticketDTO);
         }
         return listaTickets;

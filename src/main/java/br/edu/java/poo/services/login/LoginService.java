@@ -34,7 +34,7 @@ public class LoginService {
                 return "WEB-INF/menus/menuCliente.jsp";
             }
             if ("usuario".equalsIgnoreCase(usuarioBusca.getTipoAcesso())) {
-                return "WEB-INF/menus/menuCliente.jsp";
+                return "WEB-INF/menus/menuUsuario.jsp";
             }
         }
         return "/login.jsp";

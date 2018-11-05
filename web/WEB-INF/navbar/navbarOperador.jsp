@@ -36,7 +36,7 @@
                 <li><a href="controller?acao=relatorio&tipo=clienteEmpresa">Clientes por Empresa</a></li>
                 <li><a href="controller?acao=relatorio&tipo=listaUsuarios">Lista de Usuários</a></li>
                 <li><a href="controller?acao=relatorio&tipo=ticketsCliente">Quantidade de Tickets por Cliente</a></li>
-                <li><a href="controller?acao=relatorio">Quantidade de Tickets sem Resposta por Cliente</a></li>
+                <li><a href="controller?acao=relatorio&tipo=ticketsClienteSemResposta">Quantidade de Tickets sem Resposta por Cliente</a></li>
                 <li><a href="controller?acao=relatorio">Lista de Tickets sem Resposta por Cliente</a></li>
                 <li><a href="controller?acao=relatorio">Quantidade de Tickets Resolvidos por Cliente</a></li>
                 <li><a href="controller?acao=relatorio">Quantidade de Tickets Reabertos por Cliente</a></li>

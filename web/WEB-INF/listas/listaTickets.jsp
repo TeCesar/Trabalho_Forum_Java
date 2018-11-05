@@ -17,8 +17,12 @@
           integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
 <body>
-
-<%@include file="/WEB-INF/navbar/navbarOperador.jsp" %>
+<c:if test="${usuario.tipoAcesso == 'Operador'}">
+    <%@include file="/WEB-INF/navbar/navbarOperador.jsp" %>
+</c:if>
+<c:if test="${usuario.tipoAcesso == 'Cliente'}">
+    <%@include file="/WEB-INF/navbar/navbarCliente.jsp" %>
+</c:if>
 <br><br><br><br><br><br>
 
 <h1 class="titulo">Todos Tickets</h1>
@@ -30,6 +34,7 @@
             <td><strong>Número Ticket</strong></td>
             <td><strong>Titulo Assunto</strong></td>
             <td><strong>Situacao</strong></td>
+            <td><strong>Respondido</strong></td>
             <td><strong>Ação</strong></td>
         </tr>
 
@@ -38,6 +43,7 @@
                 <td>${ticket.id}</td>
                 <td>${ticket.titulo}</td>
                 <td>${ticket.situacao}</td>
+                <td>${ticket.respondido}</td>
                 <td><a href="#">Abrir</a></td>
             </tr>
         </c:forEach>

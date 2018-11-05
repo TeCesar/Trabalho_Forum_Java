@@ -12,6 +12,7 @@ public class TicketDTO {
     private String situacao;
     private java.util.Date tempoInicio;
     private Date tempoFim;
+    private String respondido;
     private UsuarioDTO usuarioDTO;
 
     public int getId() {
@@ -69,6 +70,14 @@ public class TicketDTO {
 
     public void setTempoInicio(Date tempoInicio) {
         this.tempoInicio = tempoInicio;
+    }
+
+    public String getRespondido() {
+        return respondido;
+    }
+
+    public void setRespondido(String respondido) {
+        this.respondido = respondido;
     }
 
     public UsuarioDTO getUsuarioDTO() {
