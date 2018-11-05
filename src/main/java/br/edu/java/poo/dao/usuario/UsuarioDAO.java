@@ -2,6 +2,8 @@ package br.edu.java.poo.dao.usuario;
 
 import br.edu.java.poo.model.usuario.UsuarioDTO;
 
+import java.util.List;
+
 public interface UsuarioDAO {
 
     UsuarioDTO validarUsuario(UsuarioDTO usuarioDTO) throws ClassNotFoundException;
@@ -14,6 +16,5 @@ public interface UsuarioDAO {
 
     UsuarioDTO buscarUsuario(int id);
 
-
-
+    List<UsuarioDTO> listarUsuarios();
 }

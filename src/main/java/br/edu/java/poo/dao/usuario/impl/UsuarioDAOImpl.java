@@ -5,6 +5,8 @@ import br.edu.java.poo.dao.conexao.SQLConnectionProvider;
 import br.edu.java.poo.model.usuario.UsuarioDTO;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDAOImpl implements UsuarioDAO {
 
@@ -123,6 +125,19 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             e.printStackTrace();
         }
         return usuarioBusca;
+    }
+
+    @Override
+    public List<UsuarioDTO> listarUsuarios() {
+        List<UsuarioDTO> listaUsuarios = new ArrayList<>();
+        try (Connection connection = SQLConnectionProvider.openConnection()){
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return listaUsuarios;
     }
 
 }

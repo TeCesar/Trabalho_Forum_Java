@@ -15,7 +15,7 @@
 <nav>
     <ul class="menu">
 
-        <li><a href="#">Cadastrar</a>
+        <li><a>Cadastrar</a>
             <ul>
                 <li><a href="controller?acao=cadastroCliente">Cliente</a></li>
                 <li><a href="controller?acao=cadastroEmpresa">Empresa</a></li>
@@ -23,18 +23,22 @@
             </ul>
         </li>
 
-        <li><a href="#">Relatórios</a>
+        <li><a>Relatórios</a>
             <ul>
-                <li><a href="controller?acao=relatorio">Clientes por Empresa</a></li>
-                <li><a href="controller?acao=relatorio">Lista de Usuários</a></li>
+                <li><a href="controller?acao=relatorio&tipo=clienteEmpresa">Clientes por Empresa</a></li>
+                <li><a href="controller?acao=relatorio&tipo=listaUsuarios">Lista de Usuários</a></li>
                 <li><a href="controller?acao=relatorio">Quantidade de Tickets por Cliente</a></li>
                 <li><a href="controller?acao=relatorio">Quantidade de Tickets sem Resposta por Cliente</a></li>
-                <li><a href="#">Tickets</a></li>
-                <li><a href="#">Tópicos</a></li>
+                <li><a href="controller?acao=relatorio">Lista de Tickets sem Resposta por Cliente</a></li>
+                <li><a href="controller?acao=relatorio">Quantidade de Tickets Resolvidos por Cliente</a></li>
+                <li><a href="controller?acao=relatorio">Quantidade de Tickets Reabertos por Cliente</a></li>
+                <li><a href="controller?acao=relatorio">Quantidade de Tópicos por Usuário</a></li>
+                <li><a href="controller?acao=relatorio">Quantidade de Tópicos sem Resposta</a></li>
+                <li><a href="controller?acao=relatorio">Quantidade de Tópicos Marcados como Resolvidos</a></li>
             </ul>
         </li>
 
-        <li><a href="#">Tickets</a>
+        <li><a>Tickets</a>
             <ul>
                 <li><a href="controller?acao=listarTickets&tipo=todos">Todos</a></li>
                 <li><a href="controller?acao=listarTickets&tipo=Aberto">Aberto</a></li>
@@ -43,9 +47,9 @@
             </ul>
         </li>
 
-        <li><a href="#">Tópicos</a></li>
+        <li><a>Tópicos</a></li>
 
-        <li><a href="#">Listar</a>
+        <li><a>Listar</a>
             <ul>
                 <li><a href="controller?acao=listarClientes">Clientes</a></li>
                 <li><a href="controller?acao=listarEmpresas">Empresas</a></li>
