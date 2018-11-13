@@ -48,8 +48,8 @@ public class CadastroServlet extends HttpServlet {
                 }
             } catch (CadastrarClienteException e) {
                 e.printStackTrace();
-                req.getSession().setAttribute("erro", e.getMessage());
-                req.getSession().setAttribute("mostraErroGet", "sim");
+                req.setAttribute("erro", e.getMessage());
+                req.setAttribute("mostraErroGet", "sim");
                 req.getRequestDispatcher("WEB-INF/cadastros/cadastroCliente.jsp").forward(req, resp);
             }
 

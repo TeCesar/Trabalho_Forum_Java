@@ -28,11 +28,12 @@ public class ClienteDAOImpl implements ClienteDAO {
             preparedStatement.setInt(6, clienteDTO.getEmpresaDTO().getId());
             preparedStatement.setInt(7, clienteDTO.getUsuarioDTO().getId());
 
-            preparedStatement.executeUpdate();
+            int sucesso = preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
 
-            return true;
-
+            if (sucesso != 0) {
+                return true;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -205,14 +206,14 @@ public class ClienteDAOImpl implements ClienteDAO {
 
     @Override
     public boolean excluirCliente(int id) {
-        try (Connection connection = SQLConnectionProvider.openConnection()){
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM clientes WHERE cliente_id = ?");
 
             preparedStatement.setInt(1, id);
 
             int resultado = preparedStatement.executeUpdate();
 
-            if (resultado != 0){
+            if (resultado != 0) {
                 return true;
             }
         } catch (SQLException e) {
@@ -225,14 +226,14 @@ public class ClienteDAOImpl implements ClienteDAO {
 
     @Override
     public boolean mudarEmpresaClientes(int id) {
-        try (Connection connection = SQLConnectionProvider.openConnection()){
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE clientes SET empresa_id = 6 WHERE empresa_id = ?");
 
             preparedStatement.setInt(1, id);
 
             int resultado = preparedStatement.executeUpdate();
 
-            if (resultado != 0){
+            if (resultado != 0) {
                 return true;
             }
         } catch (SQLException e) {

@@ -33,15 +33,15 @@ public class RelatoriosServlet extends HttpServlet {
             ClienteDAO clienteDAO = new ClienteDAOImpl();
             List<EmpresaDTO> listaEmpresas = empresaDAO.buscarListaEmpresas();
             List<ClienteDTO> listaClientes = clienteDAO.listarClientes();
-            req.getSession().setAttribute("listaEmpresas", listaEmpresas);
-            req.getSession().setAttribute("listaClientes", listaClientes);
+            req.setAttribute("listaEmpresas", listaEmpresas);
+            req.setAttribute("listaClientes", listaClientes);
             req.getRequestDispatcher("WEB-INF/relatorios/clienteEmpresaRelatorio.jsp").forward(req, resp);
         }
 
         if ("listaUsuarios".equalsIgnoreCase(tipo)){
             UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
             List<UsuarioDTO> listaUsuarios = usuarioDAO.listarUsuarios();
-            req.getSession().setAttribute("listaUsuarios", listaUsuarios);
+            req.setAttribute("listaUsuarios", listaUsuarios);
             req.getRequestDispatcher("WEB-INF/relatorios/usuariosRelatorio.jsp").forward(req, resp);
         }
 
@@ -53,11 +53,13 @@ public class RelatoriosServlet extends HttpServlet {
             List<ClienteDTO> listaClientes = clienteDAO.listarClientes();
             if ("semResposta".equalsIgnoreCase(situacao)){
                 listaTickets = ticketDAO.listarTickets("Sem Resposta");
-            }else {
+            }else if ("listaSemResposta".equalsIgnoreCase(situacao)){
+                listaTickets = ticketDAO.listarTickets("Sem Resposta");
+            } else {
                 listaTickets = ticketDAO.listarTickets(situacao);
             }
-            req.getSession().setAttribute("listaClientes", listaClientes);
-            req.getSession().setAttribute("listaTickets", listaTickets);
+            req.setAttribute("listaClientes", listaClientes);
+            req.setAttribute("listaTickets", listaTickets);
             req.getRequestDispatcher("WEB-INF/relatorios/ticketsPorClienteRelatorio.jsp").forward(req, resp);
         }
     }

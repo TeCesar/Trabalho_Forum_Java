@@ -40,8 +40,15 @@ public class ControllerServlet extends HttpServlet {
             req.getRequestDispatcher("editar?tipo=empresa").forward(req, resp);
         }
 
-        if ("editarCliente".equalsIgnoreCase(acao)){
+        if ("editarCliente".equalsIgnoreCase(acao)) {
             req.getRequestDispatcher("editar?tipo=cliente").forward(req, resp);
+        }
+
+        if ("topico".equalsIgnoreCase(acao)) {
+            String tipo = req.getParameter("tipo");
+            if ("criacao".equalsIgnoreCase(tipo)) {
+                req.getRequestDispatcher("topico?tipo=criacao").forward(req, resp);
+            }
         }
 
     }
@@ -79,7 +86,7 @@ public class ControllerServlet extends HttpServlet {
 
         if ("listarTickets".equalsIgnoreCase(acao)) {
             String tipo = req.getParameter("tipo");
-            req.getRequestDispatcher("listar?tipo=tickets&situacao="+tipo).forward(req, resp);
+            req.getRequestDispatcher("listar?tipo=tickets&situacao=" + tipo).forward(req, resp);
         }
 
         if ("listarClientes".equalsIgnoreCase(acao)) {
@@ -100,26 +107,39 @@ public class ControllerServlet extends HttpServlet {
             req.getRequestDispatcher("editar?tipo=cliente&idCliente=" + id).forward(req, resp);
         }
 
-        if ("excluirCliente".equalsIgnoreCase(acao)){
+        if ("excluirCliente".equalsIgnoreCase(acao)) {
             String id = req.getParameter("idCliente");
             req.getRequestDispatcher("excluir?tipo=cliente&idCliente=" + id).forward(req, resp);
         }
 
-        if ("excluirEmpresa".equalsIgnoreCase(acao)){
+        if ("excluirEmpresa".equalsIgnoreCase(acao)) {
             String id = req.getParameter("idEmpresa");
             req.getRequestDispatcher("excluir?tipo=empresa&idEmpresa=" + id).forward(req, resp);
         }
 
-        if ("relatorio".equalsIgnoreCase(acao)){
+        if ("relatorio".equalsIgnoreCase(acao)) {
             String tipo = req.getParameter("tipo");
-            if ("clienteEmpresa".equalsIgnoreCase(tipo)){
+            if ("clienteEmpresa".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("relatorio?tipo=clienteEmpresa").forward(req, resp);
-            } else if ("listaUsuarios".equalsIgnoreCase(tipo)){
+            } else if ("listaUsuarios".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("relatorio?tipo=listaUsuarios").forward(req, resp);
-            } else if ("ticketsCliente".equalsIgnoreCase(tipo)){
+            } else if ("ticketsCliente".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("relatorio?tipo=ticketsCliente&situacao=todos").forward(req, resp);
-            } else if ("ticketsClienteSemResposta".equalsIgnoreCase(tipo)){
+            } else if ("ticketsClienteSemResposta".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("relatorio?tipo=ticketsCliente&situacao=semResposta").forward(req, resp);
+            } else if ("listaTicketsSemRespCliente".equalsIgnoreCase(tipo)) {
+                req.getRequestDispatcher("relatorio?tipo=ticketsCliente&situacao=listaSemResposta").forward(req, resp);
+            }
+        }
+
+        if ("topico".equalsIgnoreCase(acao)) {
+            String tipo = req.getParameter("tipo");
+            if ("novoTopico".equalsIgnoreCase(tipo)) {
+                req.getRequestDispatcher("topico?tipo=novoTopico").forward(req, resp);
+            } else if ("pesquisarTopico".equalsIgnoreCase(tipo)) {
+                req.getRequestDispatcher("topico?tipo=pesquisarTopico").forward(req, resp);
+            } else if ("listarTopicos".equalsIgnoreCase(tipo)) {
+                req.getRequestDispatcher("topico?tipo=listarTopicos").forward(req, resp);
             }
         }
 
