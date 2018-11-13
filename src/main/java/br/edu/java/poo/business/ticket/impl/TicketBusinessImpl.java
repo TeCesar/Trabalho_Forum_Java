@@ -16,7 +16,7 @@ public class TicketBusinessImpl implements TicketBusiness {
     @Override
     public boolean cadastroTicket(TicketDTO ticketDTO, UsuarioDTO usuarioDTO) {
         if(ticketDTO != null){
-            ticketDAO.criarTicket(ticketDTO, usuarioDTO.getId());
+            ticketDAO.inicioTicket(ticketDTO, usuarioDTO.getId());
             return true;
         }
         return false;
