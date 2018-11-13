@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>forum</title>
+    <title>Fórum</title>
 
     <style>
         <%@include file="/WEB-INF/estilo/estilo.css" %>
@@ -21,7 +21,7 @@
     <label>Bem vindo ao forum</label>
     <div id="login">
         <a href="login.jsp">Entrar &nbsp;&nbsp;</a>
-        <a>Cadastrar</a>
+
     </div>
 </div>
 <br><br><br><br>

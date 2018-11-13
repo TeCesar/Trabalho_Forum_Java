@@ -258,3 +258,21 @@ a {
     cursor: pointer;
     background-color: aqua;
 }
+
+tr.border_bottom td {
+
+    background-color: gainsboro;
+}
+.abrir{
+}
+.abrir:hover{
+    background-color: #90EE90;
+    cursor: pointer;
+}
+
+.excluir{
+}
+.excluir:hover{
+    background-color: #F08080;
+    cursor: pointer;
+}

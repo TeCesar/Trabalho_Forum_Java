@@ -49,21 +49,26 @@
         </select>
         <br><br>
         <label class="txt">Selecione uma empresa: </label>
-        <select name="clienteEmpresaId" class="campo">
-            <option>Selecione uma Opção</option>
-            <c:forEach var="empresa" items="${listaEmpresas}">
-                <option value="${empresa.id}">${empresa.nomeFantasia}</option>
-            </c:forEach>
-        </select>
-        <br><br>
-        <label class="txt">Nome de Usuário:</label><input type="text" name="clienteNomeUsuario" class="campo"
-                                                          required><br><br>
+            <select name="clienteEmpresaId" class="campo">
+                <option>Selecione uma Opção</option>
+                <c:forEach var="empresa" items="${listaEmpresas}">
+                    <option value="${empresa.id}">${empresa.nomeFantasia}</option>
+                </c:forEach>
+            </select>
+
+            <br><br>
+        <label class="txt">Nome de Usuário:</label><input type="text" name="clienteNomeUsuario" class="campo" required><br><br>
     </div>
     <input type="reset" value="Limpar Campos" class="btns">
     <input type="submit" value="Cadastrar" class="btne">
+    <br><br>
 </form>
 
-    <a href="controller?acao=cadastroEmpresa"><h5>Cadastrar nova empresa</h5></a>
+    <center>
+        <a href="controller?acao=cadastroEmpresa" class="txt" style="color: red;">Cadastrar Nova Empresa ?</a>
+    </center>
+
+
 
 </body>
 </html>

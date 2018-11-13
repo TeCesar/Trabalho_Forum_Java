@@ -8,53 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Menu Principal</title>
+    <title>DKRT Fórum</title>
     <style>
         <%@include file="/WEB-INF/estilo/estilo.css" %>
     </style>
 </head>
 <body>
 
-<div id="barra">
-    <label>Bem vindo</label>
-    <div id="login">
-        <a href="../../index.jsp">Sair</a>
+<%@include file="/WEB-INF/navbar/navbarOperador.jsp" %>
 
-    </div>
-</div>
-
-<nav>
-    <ul class="menu">
-
-        <li><a href="#">Cadastrar</a>
-            <ul>
-                <li><a href="controller?acao=cadastro">Cliente</a></li>
-                <li><a href="controller?acao=cadastroEmpresa">Empresa</a></li>
-
-            </ul>
-        </li>
-
-        <li><a href="#">Relatórios</a>
-            <ul>
-                <li><a href="#">Cliente</a></li>
-                <li><a href="#">Empresa</a></li>
-                <li><a href="#">Venda</a></li>
-                <li><a href="#">Estoque</a></li>
-                <li><a href="#">Tickets</a></li>
-                <li><a href="#">Tópicos</a></li>
-            </ul>
-        </li>
-
-        <li><a href="#">Tickets</a>
-            <ul>
-                <li><a href="controller?acao=tickets">Todos</a></li>
-                <li><a href="#">Aberto</a></li>
-                <li><a href="#">Fechado</a></li>
-                <li><a href="#">Em Andamento</a></li>
-            </ul>
-
-        <li><a href="#">Tópicos</a></li>
-    </ul>
-</nav>
 </body>
 </html>
