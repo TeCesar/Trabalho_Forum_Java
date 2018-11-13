@@ -10,7 +10,7 @@ public class TopicoDTO {
     private String mensagem;
     private String status;
     private Date dataCriacao;
-    private Date dataAlteracao;
+    private Date dataTermino;
     private UsuarioDTO usuarioDTO;
 
     public int getId() {
@@ -53,12 +53,12 @@ public class TopicoDTO {
         this.dataCriacao = dataCriacao;
     }
 
-    public Date getDataAlteracao() {
-        return dataAlteracao;
+    public Date getDataTermino() {
+        return dataTermino;
     }
 
-    public void setDataAlteracao(Date dataAlteracao) {
-        this.dataAlteracao = dataAlteracao;
+    public void setDataTermino(Date dataTermino) {
+        this.dataTermino = dataTermino;
     }
 
     public UsuarioDTO getUsuarioDTO() {

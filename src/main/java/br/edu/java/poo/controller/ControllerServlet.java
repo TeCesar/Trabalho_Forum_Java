@@ -46,8 +46,8 @@ public class ControllerServlet extends HttpServlet {
 
         if ("topico".equalsIgnoreCase(acao)) {
             String tipo = req.getParameter("tipo");
-            if ("criacao".equalsIgnoreCase(tipo)) {
-                req.getRequestDispatcher("topico?tipo=criacao").forward(req, resp);
+            if ("finalizaTopico".equalsIgnoreCase(tipo)) {
+                req.getRequestDispatcher("topico?tipo=finalizaTopico").forward(req, resp);
             }
         }
 
@@ -134,8 +134,8 @@ public class ControllerServlet extends HttpServlet {
 
         if ("topico".equalsIgnoreCase(acao)) {
             String tipo = req.getParameter("tipo");
-            if ("novoTopico".equalsIgnoreCase(tipo)) {
-                req.getRequestDispatcher("topico?tipo=novoTopico").forward(req, resp);
+            if ("criaTopico".equalsIgnoreCase(tipo)) {
+                req.getRequestDispatcher("topico?tipo=criaTopico").forward(req, resp);
             } else if ("pesquisarTopico".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("topico?tipo=pesquisarTopico").forward(req, resp);
             } else if ("listarTopicos".equalsIgnoreCase(tipo)) {

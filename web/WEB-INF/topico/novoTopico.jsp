@@ -28,8 +28,8 @@
     <%@include file="/WEB-INF/navbar/navbarUsuario.jsp" %>
 </c:if>
 
-<form method="post" action="controller?acao=topico&tipo=criacao">
-    <input type="hidden" value="${novoTopico.id}" name="idTopico">
+<form method="post" action="controller?acao=topico&tipo=finalizaTopico">
+    <%--<input type="hidden" value="${novoTopico.id}" name="idTopico">--%>
     <input type="text" name="tituloTopico"><br><br>
     <input type="text" name="mensagemTopico"><br><br>
     <input type="submit" value="Criar Tópico">

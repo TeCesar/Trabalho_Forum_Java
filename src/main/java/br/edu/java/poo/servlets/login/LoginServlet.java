@@ -6,6 +6,7 @@ import br.edu.java.poo.services.login.LoginService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +34,8 @@ public class LoginServlet extends HttpServlet {
         try {
             logado = loginService.login(usuarioDTO);
             UsuarioSession usuarioSession = new UsuarioSession(usuarioDTO.getId(), usuarioDTO.getNomeConta(), usuarioDTO.getTipoAcesso());
+            Cookie cookieUsuarioSession = new Cookie("usuarioSession", usuarioSession.getNomeConta());
+            resp.addCookie(cookieUsuarioSession);
             req.getSession().setAttribute("usuario", usuarioSession);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

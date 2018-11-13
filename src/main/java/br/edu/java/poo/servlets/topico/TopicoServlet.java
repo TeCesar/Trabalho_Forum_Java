@@ -4,6 +4,7 @@ import br.edu.java.poo.dao.topico.TopicoDAO;
 import br.edu.java.poo.dao.topico.impl.TopicoDAOImpl;
 import br.edu.java.poo.model.topico.TopicoDTO;
 import br.edu.java.poo.model.usuario.UsuarioDTO;
+import br.edu.java.poo.model.usuario.UsuarioSession;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +16,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @WebServlet(urlPatterns = "/topico")
 public class TopicoServlet extends HttpServlet {
@@ -23,27 +25,29 @@ public class TopicoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String tipo = req.getParameter("tipo");
 
-        if ("criacao".equalsIgnoreCase(tipo)) {
+        if ("finalizaTopico".equalsIgnoreCase(tipo)) {
             TopicoDAO topicoDAO = new TopicoDAOImpl();
-            TopicoDTO topicoDTO = (TopicoDTO) req.getAttribute("novoTopico");
-            String idTopico = req.getParameter("idTopico");
+            TopicoDTO topicoDTO = (TopicoDTO) req.getSession().getAttribute("novoTopico");
+            req.getSession().removeAttribute("novoTopico");
             String titulo = req.getParameter("tituloTopico");
             String mensagem = req.getParameter("mensagemTopico");
 
-            topicoDTO.setId(Integer.parseInt(idTopico));
             topicoDTO.setTitulo(titulo);
             topicoDTO.setMensagem(mensagem);
+            topicoDTO.setStatus("Completo");
 
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             String data = dateFormat.format(new Date());
 
             try {
-                topicoDTO.setDataAlteracao(dateFormat.parse(data));
+                topicoDTO.setDataTermino(dateFormat.parse(data));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
 
-            topicoDAO.finalizaTopico(topicoDTO);
+            if (topicoDAO.finalizaTopico(topicoDTO)) {
+                req.getRequestDispatcher("WEB-INF/topico/novoTopico.jsp").forward(req, resp);
+            }
         }
     }
 
@@ -51,11 +55,15 @@ public class TopicoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String tipo = req.getParameter("tipo");
 
-        if ("novoTopico".equalsIgnoreCase(tipo)) {
+        if ("criaTopico".equalsIgnoreCase(tipo)) {
             TopicoDAO topicoDAO = new TopicoDAOImpl();
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             TopicoDTO topicoDTO = new TopicoDTO();
-            UsuarioDTO usuarioDTO = (UsuarioDTO) req.getAttribute("usuarioSession");
+            UsuarioDTO usuarioDTO = new UsuarioDTO();
+            UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuario");
+            usuarioDTO.setId(usuarioSession.getId());
+            usuarioDTO.setNomeConta(usuarioSession.getNomeConta());
+            usuarioDTO.setTipoAcesso(usuarioSession.getTipoAcesso());
             topicoDTO.setStatus("Incompleto");
             String data = dateFormat.format(new Date());
 
@@ -67,11 +75,17 @@ public class TopicoServlet extends HttpServlet {
 
             topicoDTO.setUsuarioDTO(usuarioDTO);
 
-            topicoDAO.iniciaTopico(topicoDTO);
+            topicoDTO.setId(topicoDAO.iniciaTopico(topicoDTO));
 
-            req.setAttribute("novoTopico", topicoDTO);
+            req.getSession().setAttribute("novoTopico", topicoDTO);
 
             req.getRequestDispatcher("WEB-INF/topico/novoTopico.jsp").forward(req, resp);
+        }
+
+        if ("listarTopicos".equalsIgnoreCase(tipo)) {
+            TopicoDAO topicoDAO = new TopicoDAOImpl();
+            List<TopicoDTO> listaTopicos = topicoDAO.listarTopicos();
+            req.setAttribute("listaTopicos", listaTopicos);
         }
     }
 }
