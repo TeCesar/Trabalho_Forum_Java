@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 05-Nov-2018 às 18:13
+-- Generation Time: 13-Nov-2018 às 14:01
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -135,12 +135,24 @@ INSERT INTO `tickets` (`ticket_id`, `ticket_titulo`, `ticket_mensagem`, `ticket_
 
 CREATE TABLE `topicos` (
   `topico_id` int(11) NOT NULL,
-  `topico_titulo` varchar(50) NOT NULL,
-  `topico_mensagem` varchar(500) NOT NULL,
+  `topico_titulo` varchar(50) DEFAULT NULL,
+  `topico_mensagem` varchar(500) DEFAULT NULL,
   `topico_status` varchar(20) NOT NULL,
-  `topico_duracao` date NOT NULL,
+  `topico_dataCriacao` date NOT NULL,
+  `topico_dataTermino` date DEFAULT NULL,
   `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `topicos`
+--
+
+INSERT INTO `topicos` (`topico_id`, `topico_titulo`, `topico_mensagem`, `topico_status`, `topico_dataCriacao`, `topico_dataTermino`, `usuario_id`) VALUES
+(9, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 14),
+(10, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 14),
+(11, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 14),
+(12, 'oi', 'oioioi', 'Completo', '2018-11-13', '2018-11-13', 14),
+(13, 'oi', 'oioioi', 'Completo', '2018-11-13', '2018-11-13', 14);
 
 -- --------------------------------------------------------
 
@@ -211,14 +223,12 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`usuario_id`, `usuario_nomeConta`, `usuario_senha`, `usuario_tipoAcesso`, `usuario_dataDeCadastro`, `usuario_dataDeAlteracao`, `usuario_apelido`, `usuario_errosLogin`, `usuario_ticketResolvidos`) VALUES
 (1, 'admin', '12345', 'administrador', '1996-11-18', NULL, 'Master', 1, 0),
-(2, 'operador', '123456789@', 'operador', '1996-11-18', NULL, 'oi', 0, 0),
+(2, 'operador', '123456789@', 'Operador', '1996-11-18', NULL, 'oi', 0, 0),
 (9, 'TesteTeste', '12345', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
 (10, 'OiOiOi', '12345', 'Cliente', '2018-10-30', '2018-11-05', NULL, 0, 0),
-(11, 'memo', '12345', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
-(12, 'memo', '12345', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
-(13, 'memo', '12345', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
-(14, 'memo5', '12345', 'Cliente', '2018-10-30', '2018-11-04', NULL, 0, 0),
-(15, 'oioitesteti', '12345', 'Cliente', '2018-11-05', NULL, NULL, 0, 0);
+(11, 'memo', '123', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
+(14, 'usuarioTeste', '123', 'Usuario', '2018-10-30', '2018-11-04', NULL, 0, 0),
+(15, 'oioi', '12345', 'Cliente', '2018-11-05', NULL, NULL, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -306,7 +316,7 @@ ALTER TABLE `tickets`
 -- AUTO_INCREMENT for table `topicos`
 --
 ALTER TABLE `topicos`
-  MODIFY `topico_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `topico_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `ufs`
