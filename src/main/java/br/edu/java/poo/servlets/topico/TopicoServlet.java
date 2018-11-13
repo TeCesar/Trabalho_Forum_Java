@@ -86,6 +86,7 @@ public class TopicoServlet extends HttpServlet {
             TopicoDAO topicoDAO = new TopicoDAOImpl();
             List<TopicoDTO> listaTopicos = topicoDAO.listarTopicos();
             req.setAttribute("listaTopicos", listaTopicos);
+            req.getRequestDispatcher("WEB-INF/topico/listagemDeTopicos.jsp").forward(req, resp);
         }
     }
 }

@@ -47,7 +47,7 @@ public class TopicoDAOImpl implements TopicoDAO {
     public List<TopicoDTO> listarTopicos() {
         List<TopicoDTO> listaTopicos = new ArrayList<>();
         String sql = "SELECT topicos.topico_id, topicos.topico_titulo, topicos.topico_mensagem, topicos.topico_status, topicos.topico_dataCriacao, " +
-                "topicos.topico_dataTermino, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso, usuarios.usuario_apelido, " +
+                "topicos.topico_dataTermino, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso, usuarios.usuario_apelido " +
                 "FROM topicos INNER JOIN usuarios ON topicos.usuario_id = usuarios.usuario_id WHERE topicos.topico_status = ?";
         try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);

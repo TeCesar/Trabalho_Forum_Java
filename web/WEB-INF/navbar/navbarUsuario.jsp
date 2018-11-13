@@ -26,8 +26,7 @@
         <li><a>Tópicos</a>
             <ul>
                 <li><a href="controller?acao=topico&tipo=criaTopico">Novo Tópico</a></li>
-                <li><a>Pesquisar</a></li>
-                <li><a href="controller?acao-topico&tipo=listarTopicos">Listar Tópicos</a></li>
+                <li><a href="controller?acao=topico&tipo=listarTopicos">Listar Tópicos</a></li>
             </ul>
         </li>
 
