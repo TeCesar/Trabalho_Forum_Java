@@ -9,6 +9,7 @@ import br.edu.java.poo.dao.ticket.impl.TicketDAOImpl;
 import br.edu.java.poo.model.cliente.ClienteDTO;
 import br.edu.java.poo.model.empresa.EmpresaDTO;
 import br.edu.java.poo.model.ticket.TicketDTO;
+import br.edu.java.poo.model.usuario.UsuarioSession;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,14 +29,14 @@ public class ListarServlet extends HttpServlet {
         if ("clientes".equalsIgnoreCase(tipo)) {
             ClienteDAO clienteDAO = new ClienteDAOImpl();
             List<ClienteDTO> listaClientes = clienteDAO.listarClientes();
-            req.getSession().setAttribute("listaClientes", listaClientes);
+            req.setAttribute("listaClientes", listaClientes);
             req.getRequestDispatcher("WEB-INF/listas/listaClientes.jsp").forward(req, resp);
         }
 
         if ("empresas".equalsIgnoreCase(tipo)) {
             EmpresaDAO empresaDAO = new EmpresaDAOImpl();
             List<EmpresaDTO> listaEmpresas = empresaDAO.buscarListaEmpresas();
-            req.getSession().setAttribute("listaEmpresas", listaEmpresas);
+            req.setAttribute("listaEmpresas", listaEmpresas);
             req.getRequestDispatcher("WEB-INF/listas/listaEmpresas.jsp").forward(req, resp);
         }
     }
@@ -47,22 +48,30 @@ public class ListarServlet extends HttpServlet {
         if ("clientes".equalsIgnoreCase(tipo)) {
             ClienteDAO clienteDAO = new ClienteDAOImpl();
             List<ClienteDTO> listaClientes = clienteDAO.listarClientes();
-            req.getSession().setAttribute("listaClientes", listaClientes);
+            req.setAttribute("listaClientes", listaClientes);
             req.getRequestDispatcher("WEB-INF/listas/listaClientes.jsp").forward(req, resp);
         }
 
         if ("empresas".equalsIgnoreCase(tipo)) {
             EmpresaDAO empresaDAO = new EmpresaDAOImpl();
             List<EmpresaDTO> listaEmpresas = empresaDAO.buscarListaEmpresas();
-            req.getSession().setAttribute("listaEmpresas", listaEmpresas);
+            req.setAttribute("listaEmpresas", listaEmpresas);
             req.getRequestDispatcher("WEB-INF/listas/listaEmpresas.jsp").forward(req, resp);
         }
 
-        if ("tickets".equalsIgnoreCase(tipo)){
+        if ("tickets".equalsIgnoreCase(tipo)) {
             String situacao = req.getParameter("situacao");
             TicketDAO ticketDAO = new TicketDAOImpl();
-            List<TicketDTO> listaTickets = ticketDAO.listarTickets(situacao);
-            req.getSession().setAttribute("listaTickets", listaTickets);
+            List<TicketDTO> listaTickets = ticketDAO.listarTicketsSituacao(situacao);
+            req.setAttribute("listaTickets", listaTickets);
+            req.getRequestDispatcher("WEB-INF/listas/listaTickets.jsp").forward(req, resp);
+        }
+
+        if ("user".equalsIgnoreCase(tipo)) {
+            TicketDAO ticketDAO = new TicketDAOImpl();
+            UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuario");
+            List<TicketDTO> listaTickets = ticketDAO.listarTicketsUser(usuarioSession.getNomeConta());
+            req.setAttribute("listaTickets", listaTickets);
             req.getRequestDispatcher("WEB-INF/listas/listaTickets.jsp").forward(req, resp);
         }
     }

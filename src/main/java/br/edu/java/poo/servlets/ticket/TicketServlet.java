@@ -3,6 +3,7 @@ package br.edu.java.poo.servlets.ticket;
 import br.edu.java.poo.business.ticket.TicketBusiness;
 import br.edu.java.poo.business.ticket.impl.TicketBusinessImpl;
 import br.edu.java.poo.model.ticket.TicketDTO;
+import br.edu.java.poo.model.usuario.UsuarioDTO;
 import br.edu.java.poo.model.usuario.UsuarioSession;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,17 +33,31 @@ public class TicketServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String tipo = req.getParameter("tipo");
-        ticketBusiness = new TicketBusinessImpl();
-        TicketDTO ticketDTO = new TicketDTO();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
-
 
         if ("inicioTicket".equalsIgnoreCase(tipo)) {
-            ticketDTO.setSituacao("Incompleto");
-            ticketDTO.setTempoInicio(date);
+            ticketBusiness = new TicketBusinessImpl();
+            TicketDTO ticketDTO = new TicketDTO();
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String data = dateFormat.format(new Date());
+
             UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuario");
-            ticketBusiness.cadastroTicket(ticketDTO, usuarioSession.getId());
+
+            UsuarioDTO usuarioDTO = new UsuarioDTO();
+
+            usuarioDTO.setId(usuarioSession.getId());
+            usuarioDTO.setNomeConta(usuarioSession.getNomeConta());
+            usuarioDTO.setTipoAcesso(usuarioSession.getTipoAcesso());
+            ticketDTO.setUsuarioDTO(usuarioDTO);
+            ticketDTO.setSituacao("Incompleto");
+
+            try {
+                ticketDTO.setTempoInicio(dateFormat.parse(data));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            ticketBusiness.cadastroTicket(ticketDTO, usuarioDTO);
         }
     }
 }

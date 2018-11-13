@@ -6,8 +6,10 @@ import java.util.List;
 
 public interface TicketDAO {
 
-    int criarTicket(TicketDTO ticketDTO, int usuarioId);
+    int inicioTicket(TicketDTO ticketDTO, int usuarioId);
 
-    List<TicketDTO> listarTickets(String tipo);
+    List<TicketDTO> listarTicketsSituacao(String tipo);
+
+    List<TicketDTO> listarTicketsUser(String usuarioNomeConta);
 
 }

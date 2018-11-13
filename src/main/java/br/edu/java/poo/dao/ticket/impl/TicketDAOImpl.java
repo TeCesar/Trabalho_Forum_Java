@@ -12,12 +12,22 @@ import java.util.List;
 public class TicketDAOImpl implements TicketDAO {
 
     @Override
-    public int criarTicket(TicketDTO ticketDTO, int usuarioId) {
+    public int inicioTicket(TicketDTO ticketDTO, int usuarioId) {
         int resultado = 0;
+        String sql = "INSERT INTO tickets (ticket_tempoInicio, ticket_estado) VALUES (?, ?)";
         try (Connection connection = SQLConnectionProvider.openConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO tickets (ticket_tempoInicio, ticket_estado) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
-            java.sql.Timestamp sqlDateIni = new java.sql.Timestamp(ticketDTO.getTempoInicio().getTime());
-            preparedStatement.setTimestamp(1, sqlDateIni);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            preparedStatement.setTimestamp(1, new java.sql.Timestamp(ticketDTO.getTempoInicio().getTime()));
+            preparedStatement.setString(2, ticketDTO.getStatus());
+
+            preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+
+            if (resultSet.next()){
+                resultado = resultSet.getInt(1);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -25,7 +35,7 @@ public class TicketDAOImpl implements TicketDAO {
     }
 
     @Override
-    public List<TicketDTO> listarTickets(String situacao) {
+    public List<TicketDTO> listarTicketsSituacao(String situacao) {
         List<TicketDTO> listaTickets = new ArrayList<>();
         String sql;
         String aux;
@@ -69,6 +79,29 @@ public class TicketDAOImpl implements TicketDAO {
 
             listaTickets = retrieveInformacoes(resultSet);
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return listaTickets;
+    }
+
+    @Override
+    public List<TicketDTO> listarTicketsUser(String usuarioNomeConta) {
+        List<TicketDTO> listaTickets = new ArrayList<>();
+        String sql = "SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_mensagem, tickets.ticket_status, tickets.ticket_tempoInicio, " +
+                "tickets.ticket_tempoFim, tickets.ticket_situacao, tickets.ticket_respondido, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso " +
+                "FROM tickets INNER JOIN usuarios ON tickets.usuario_id = usuarios.usuario_id WHERE usuarios.usuario_nomeConta = ?";
+
+        try (Connection connection = SQLConnectionProvider.openConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, usuarioNomeConta);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            listaTickets = retrieveInformacoes(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

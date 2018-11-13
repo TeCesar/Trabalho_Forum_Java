@@ -58,7 +58,10 @@ public class ControllerServlet extends HttpServlet {
         String acao = req.getParameter("acao");
 
         if ("ticket".equalsIgnoreCase(acao)) {
-            req.getRequestDispatcher("ticket?tipo=inicioTicket").forward(req, resp);
+            String tipo = req.getParameter("tipo");
+            if ("iniciarTicket".equalsIgnoreCase(tipo)) {
+                req.getRequestDispatcher("ticket?tipo=inicioTicket").forward(req, resp);
+            }
         }
 
         if ("menuPrincipal".equalsIgnoreCase(acao)) {

@@ -52,11 +52,11 @@ public class RelatoriosServlet extends HttpServlet {
             TicketDAO ticketDAO = new TicketDAOImpl();
             List<ClienteDTO> listaClientes = clienteDAO.listarClientes();
             if ("semResposta".equalsIgnoreCase(situacao)){
-                listaTickets = ticketDAO.listarTickets("Sem Resposta");
+                listaTickets = ticketDAO.listarTicketsSituacao("Sem Resposta");
             }else if ("listaSemResposta".equalsIgnoreCase(situacao)){
-                listaTickets = ticketDAO.listarTickets("Sem Resposta");
+                listaTickets = ticketDAO.listarTicketsSituacao("Sem Resposta");
             } else {
-                listaTickets = ticketDAO.listarTickets(situacao);
+                listaTickets = ticketDAO.listarTicketsSituacao(situacao);
             }
             req.setAttribute("listaClientes", listaClientes);
             req.setAttribute("listaTickets", listaTickets);
