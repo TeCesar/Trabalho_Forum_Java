@@ -20,7 +20,7 @@
 </c:if>
 
 <form method="post" action="controller?acao=ticket&tipo=finalizarTicket">
-    <input type="text" name="tituloTicket">
+    <input type="text" name="tituloTicket"><br><br>
     <input type="text" name="mensagemTicket">
     <input type="submit" value="Abrir Ticket">
 </form>

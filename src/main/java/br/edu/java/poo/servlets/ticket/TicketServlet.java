@@ -26,7 +26,28 @@ public class TicketServlet extends HttpServlet {
         String tipo = req.getParameter("tipo");
 
         if ("fimTicket".equalsIgnoreCase(tipo)) {
+            TicketBusiness ticketBusiness = new TicketBusinessImpl();
+            String titulo = req.getParameter("tituloTicket");
+            String mensagem = req.getParameter("mensagemTicket");
+            TicketDTO ticketDTO = (TicketDTO) req.getSession().getAttribute("novoTicket");
 
+            ticketDTO.setTitulo(titulo);
+            ticketDTO.setMensagem(mensagem);
+            ticketDTO.setStatus("Completo");
+            ticketDTO.setRespondido("Nao");
+            ticketDTO.setSituacao("Aberto");
+
+            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            String data = dateFormat.format(new Date());
+            try {
+                ticketDTO.setTempoFim(dateFormat.parse(data));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            ticketBusiness.finalizaTicket(ticketDTO);
+            req.getSession().removeAttribute("novoTopico");
+            req.getRequestDispatcher("WEB-INF/ticket/novoTicket.jsp").forward(req, resp);
         }
     }
 
@@ -38,7 +59,7 @@ public class TicketServlet extends HttpServlet {
             ticketBusiness = new TicketBusinessImpl();
             TicketDTO ticketDTO = new TicketDTO();
 
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
             String data = dateFormat.format(new Date());
 
             UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuario");
@@ -49,7 +70,7 @@ public class TicketServlet extends HttpServlet {
             usuarioDTO.setNomeConta(usuarioSession.getNomeConta());
             usuarioDTO.setTipoAcesso(usuarioSession.getTipoAcesso());
             ticketDTO.setUsuarioDTO(usuarioDTO);
-            ticketDTO.setSituacao("Incompleto");
+            ticketDTO.setStatus("Incompleto");
 
             try {
                 ticketDTO.setTempoInicio(dateFormat.parse(data));
@@ -57,7 +78,10 @@ public class TicketServlet extends HttpServlet {
                 e.printStackTrace();
             }
 
-            ticketBusiness.cadastroTicket(ticketDTO, usuarioDTO);
+            ticketDTO.setId(ticketBusiness.iniciaTicket(ticketDTO));
+            req.getSession().setAttribute("novoTicket", ticketDTO);
+            req.getRequestDispatcher("WEB-INF/ticket/novoTicket.jsp").forward(req, resp);
+
         }
     }
 }

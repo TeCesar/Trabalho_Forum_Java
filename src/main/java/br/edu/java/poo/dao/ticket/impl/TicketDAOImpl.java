@@ -12,14 +12,15 @@ import java.util.List;
 public class TicketDAOImpl implements TicketDAO {
 
     @Override
-    public int inicioTicket(TicketDTO ticketDTO, int usuarioId) {
+    public int inicioTicket(TicketDTO ticketDTO) {
         int resultado = 0;
-        String sql = "INSERT INTO tickets (ticket_tempoInicio, ticket_estado) VALUES (?, ?)";
+        String sql = "INSERT INTO tickets (ticket_tempoInicio, ticket_status, usuario_id) VALUES (?, ?, ?)";
         try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setTimestamp(1, new java.sql.Timestamp(ticketDTO.getTempoInicio().getTime()));
             preparedStatement.setString(2, ticketDTO.getStatus());
+            preparedStatement.setInt(3, ticketDTO.getUsuarioDTO().getId());
 
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -32,6 +33,34 @@ public class TicketDAOImpl implements TicketDAO {
             e.printStackTrace();
         }
         return resultado;
+    }
+
+    @Override
+    public boolean finalizaTicket(TicketDTO ticketDTO) {
+        String sql = "UPDATE tickets SET ticket_titulo = ?, ticket_mensagem = ?, ticket_status = ?, ticket_tempoFim = ?, ticket_situacao = ?, " +
+                "ticket_respondido = ? WHERE ticket_id = ?";
+        try (Connection connection = SQLConnectionProvider.openConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, ticketDTO.getTitulo());
+            preparedStatement.setString(2, ticketDTO.getMensagem());
+            preparedStatement.setString(3, ticketDTO.getStatus());
+            preparedStatement.setTimestamp(4, new java.sql.Timestamp(ticketDTO.getTempoInicio().getTime()));
+            preparedStatement.setString(5, ticketDTO.getSituacao());
+            preparedStatement.setString(6, ticketDTO.getRespondido());
+            preparedStatement.setInt(7, ticketDTO.getId());
+
+            int resultado = preparedStatement.executeUpdate();
+
+            if (resultado != 0){
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override

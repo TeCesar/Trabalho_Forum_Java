@@ -24,8 +24,11 @@ public class ControllerServlet extends HttpServlet {
             req.getRequestDispatcher("novaSenha").forward(req, resp);
         }
 
-        if ("criarTicket".equalsIgnoreCase(acao)) {
-            req.getRequestDispatcher("ticket?tipo=fimTicket").forward(req, resp);
+        if ("ticket".equalsIgnoreCase(acao)) {
+            String tipo = req.getParameter("tipo");
+            if ("finalizarTicket".equalsIgnoreCase(tipo)) {
+                req.getRequestDispatcher("ticket?tipo=fimTicket").forward(req, resp);
+            }
         }
 
         if ("cadastroCliente".equalsIgnoreCase(acao)) {
