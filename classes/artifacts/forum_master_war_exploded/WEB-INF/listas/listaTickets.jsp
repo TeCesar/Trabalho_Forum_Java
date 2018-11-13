@@ -41,7 +41,15 @@
             <tr style="text-align: center;" class="border_bottom">
                 <td>${ticket.id}</td>
                 <td>${ticket.titulo}</td>
-                <td>${ticket.situacao}</td>
+                <c:if test="${ticket.situacao == 'Aberto'}">
+                    <td style="background-color: #F08080;">${ticket.situacao}</td>
+                </c:if>
+                <c:if test="${ticket.situacao == 'Fechado'  && ticket.respondido == 'Sim'}">
+                    <td style="background-color: #90EE90">${ticket.situacao}</td>
+                </c:if>
+                <c:if test="${ticket.situacao == 'Fechado'  && ticket.respondido == 'Nao'}">
+                    <td style="background-color: #F08080;">${ticket.situacao}</td>
+                </c:if>
                 <td>${ticket.respondido}</td>
                 <td class="abrir"><a href="#">ABRIR</a></td>
             </tr>

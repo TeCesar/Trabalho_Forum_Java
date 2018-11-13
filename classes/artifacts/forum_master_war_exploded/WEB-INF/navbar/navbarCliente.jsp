@@ -25,14 +25,15 @@
 
         <li><a>Tickets</a>
             <ul>
-                <li><a href="controller?acao=listarTickets&tipo=todos">Meus Tickets</a></li>
-                <li><a href="controller?acao=listarTickets&tipo=Aberto">Todos os Tickets</a></li>
+                <li><a href="controller?acao=ticket&tipo=inciarTicket">Abrir Ticket</a></li>
+                <li><a href="controller?acao=listarTickets&tipo=usuario">Meus Tickets</a></li>
+                <li><a href="controller?acao=listarTickets&tipo=todos">Todos os Tickets</a></li>
             </ul>
         </li>
 
         <li><a>Tópicos</a>
             <ul>
-                <li><a href="controller?acao=topico&tipo=novoTopico">Novo Tópico</a></li>
+                <li><a href="controller?acao=topico&tipo=criaTopico">Novo Tópico</a></li>
                 <li><a href="controller?acao=topico&tipo=listarTopicos">Listar Tópicos</a></li>
             </ul>
         </li>
