@@ -117,16 +117,16 @@ public class TicketDAOImpl implements TicketDAO {
     }
 
     @Override
-    public List<TicketDTO> listarTicketsUser(String usuarioNomeConta) {
+    public List<TicketDTO> listarTicketsUser(int idUsuario) {
         List<TicketDTO> listaTickets = new ArrayList<>();
         String sql = "SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_mensagem, tickets.ticket_status, tickets.ticket_tempoInicio, " +
                 "tickets.ticket_tempoFim, tickets.ticket_situacao, tickets.ticket_respondido, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso " +
-                "FROM tickets INNER JOIN usuarios ON tickets.usuario_id = usuarios.usuario_id WHERE usuarios.usuario_nomeConta = ?";
+                "FROM tickets INNER JOIN usuarios ON tickets.usuario_id = usuarios.usuario_id WHERE usuarios.usuario_id = ?";
 
         try (Connection connection = SQLConnectionProvider.openConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, usuarioNomeConta);
+            preparedStatement.setInt(1, idUsuario);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 

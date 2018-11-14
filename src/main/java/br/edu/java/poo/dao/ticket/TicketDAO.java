@@ -13,6 +13,6 @@ public interface TicketDAO {
 
     List<TicketDTO> listarTicketsSituacao(String tipo);
 
-    List<TicketDTO> listarTicketsUser(String usuarioNomeConta);
+    List<TicketDTO> listarTicketsUser(int idUsuario);
 
 }

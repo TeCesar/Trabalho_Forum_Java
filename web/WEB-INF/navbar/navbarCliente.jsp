@@ -26,7 +26,7 @@
         <li><a>Tickets</a>
             <ul>
                 <li><a href="controller?acao=ticket&tipo=iniciarTicket">Abrir Ticket</a></li>
-                <li><a href="controller?acao=listarTickets&tipo=usuario">Meus Tickets</a></li>
+                <li><a href="controller?acao=listarTickets&tipo=user">Meus Tickets</a></li>
             </ul>
         </li>
 
