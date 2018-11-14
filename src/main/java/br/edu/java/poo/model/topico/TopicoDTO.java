@@ -11,6 +11,7 @@ public class TopicoDTO {
     private String status;
     private Date dataCriacao;
     private Date dataTermino;
+    private String situacao;
     private UsuarioDTO usuarioDTO;
 
     public int getId() {
@@ -59,6 +60,14 @@ public class TopicoDTO {
 
     public void setDataTermino(Date dataTermino) {
         this.dataTermino = dataTermino;
+    }
+
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
     }
 
     public UsuarioDTO getUsuarioDTO() {

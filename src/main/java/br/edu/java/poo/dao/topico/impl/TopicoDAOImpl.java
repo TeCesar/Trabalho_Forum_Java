@@ -47,7 +47,7 @@ public class TopicoDAOImpl implements TopicoDAO {
     public List<TopicoDTO> listarTopicos() {
         List<TopicoDTO> listaTopicos = new ArrayList<>();
         String sql = "SELECT topicos.topico_id, topicos.topico_titulo, topicos.topico_mensagem, topicos.topico_status, topicos.topico_dataCriacao, " +
-                "topicos.topico_dataTermino, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso, usuarios.usuario_apelido " +
+                "topicos.topico_dataTermino, topicos.topico_situacao, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso, usuarios.usuario_apelido " +
                 "FROM topicos INNER JOIN usuarios ON topicos.usuario_id = usuarios.usuario_id WHERE topicos.topico_status = ?";
         try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -70,6 +70,7 @@ public class TopicoDAOImpl implements TopicoDAO {
                 topicoDTO.setStatus(resultSet.getString("topico_status"));
                 topicoDTO.setDataCriacao(resultSet.getDate("topico_dataCriacao"));
                 topicoDTO.setDataTermino(resultSet.getDate("topico_dataTermino"));
+                topicoDTO.setSituacao(resultSet.getString("topico_situacao"));
                 listaTopicos.add(topicoDTO);
             }
 
@@ -85,7 +86,8 @@ public class TopicoDAOImpl implements TopicoDAO {
 
     @Override
     public boolean finalizaTopico(TopicoDTO topicoDTO) {
-        String sql = "UPDATE topicos SET topico_titulo = ?, topico_mensagem = ?, topico_status = ?, topico_dataTermino = ? WHERE topico_id = ?";
+        String sql = "UPDATE topicos SET topico_titulo = ?, topico_mensagem = ?, topico_status = ?, topico_dataTermino = ?, topico_situacao = ? " +
+                "WHERE topico_id = ?";
         try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -93,7 +95,8 @@ public class TopicoDAOImpl implements TopicoDAO {
             preparedStatement.setString(2, topicoDTO.getMensagem());
             preparedStatement.setString(3, topicoDTO.getStatus());
             preparedStatement.setDate(4, new java.sql.Date(topicoDTO.getDataTermino().getTime()));
-            preparedStatement.setInt(5, topicoDTO.getId());
+            preparedStatement.setString(5, topicoDTO.getSituacao());
+            preparedStatement.setInt(6, topicoDTO.getId());
 
             int sucesso = preparedStatement.executeUpdate();
 

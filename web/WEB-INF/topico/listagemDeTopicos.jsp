@@ -33,6 +33,7 @@
         <th>Titulo</th>
         <th>Mensagem</th>
         <th>Autor</th>
+        <th>Situação</th>
         <th colspan="2">Ações</th>
     </tr>
     <c:forEach var="topico" items="${listaTopicos}">
@@ -40,6 +41,7 @@
             <td>${topico.titulo}</td>
             <td>${topico.mensagem}</td>
             <td>${usuario.nomeConta}</td>
+            <td>${topico.situacao}</td>
         </tr>
     </c:forEach>
 </table>

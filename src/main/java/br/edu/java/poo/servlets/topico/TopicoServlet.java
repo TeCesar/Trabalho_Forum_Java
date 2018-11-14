@@ -35,6 +35,7 @@ public class TopicoServlet extends HttpServlet {
             topicoDTO.setTitulo(titulo);
             topicoDTO.setMensagem(mensagem);
             topicoDTO.setStatus("Completo");
+            topicoDTO.setSituacao("Aberto");
 
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             String data = dateFormat.format(new Date());
