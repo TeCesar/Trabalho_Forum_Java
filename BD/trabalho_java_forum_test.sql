@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 13-Nov-2018 às 14:01
+-- Generation Time: 14-Nov-2018 às 12:20
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -109,12 +109,12 @@ INSERT INTO `enderecos` (`endereco_id`, `endereco_rua`, `endereco_numero`, `ende
 
 CREATE TABLE `tickets` (
   `ticket_id` int(11) NOT NULL,
-  `ticket_titulo` varchar(100) NOT NULL,
-  `ticket_mensagem` varchar(500) NOT NULL,
+  `ticket_titulo` varchar(100) DEFAULT NULL,
+  `ticket_mensagem` varchar(500) DEFAULT NULL,
   `ticket_status` varchar(20) NOT NULL,
-  `ticket_tempoInicio` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `ticket_tempoFim` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `ticket_situacao` varchar(15) NOT NULL,
+  `ticket_tempoInicio` timestamp NULL DEFAULT NULL,
+  `ticket_tempoFim` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `ticket_situacao` varchar(15) DEFAULT NULL,
   `ticket_respondido` varchar(20) DEFAULT NULL,
   `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -124,8 +124,9 @@ CREATE TABLE `tickets` (
 --
 
 INSERT INTO `tickets` (`ticket_id`, `ticket_titulo`, `ticket_mensagem`, `ticket_status`, `ticket_tempoInicio`, `ticket_tempoFim`, `ticket_situacao`, `ticket_respondido`, `usuario_id`) VALUES
-(1, 'Ticket Teste', 'TesteTesteTesteTesteTeste', 'Completo', '2018-11-05 16:59:54', '2018-11-04 20:30:00', 'Aberto', 'Nao', 10),
-(2, 'Teste2Ticket', 'Segundo Teste De Ticket', 'Completo', '2018-11-05 17:05:31', '2018-11-05 17:00:40', 'Fechado', 'Sim', 15);
+(1, 'Ticket Teste', 'TesteTesteTesteTesteTeste', 'Completo', NULL, '2018-11-04 20:30:00', 'Aberto', 'Nao', 10),
+(2, 'Teste2Ticket', 'Segundo Teste De Ticket', 'Completo', NULL, '2018-11-05 17:00:40', 'Fechado', 'Sim', 15),
+(8, 'teste', 'testeteste', 'Completo', '2018-11-13 22:12:45', '2018-11-13 22:12:45', 'Aberto', 'Nao', 11);
 
 -- --------------------------------------------------------
 
@@ -140,6 +141,7 @@ CREATE TABLE `topicos` (
   `topico_status` varchar(20) NOT NULL,
   `topico_dataCriacao` date NOT NULL,
   `topico_dataTermino` date DEFAULT NULL,
+  `topico_situacao` varchar(50) DEFAULT NULL,
   `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -147,12 +149,19 @@ CREATE TABLE `topicos` (
 -- Extraindo dados da tabela `topicos`
 --
 
-INSERT INTO `topicos` (`topico_id`, `topico_titulo`, `topico_mensagem`, `topico_status`, `topico_dataCriacao`, `topico_dataTermino`, `usuario_id`) VALUES
-(9, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 14),
-(10, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 14),
-(11, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 14),
-(12, 'oi', 'oioioi', 'Completo', '2018-11-13', '2018-11-13', 14),
-(13, 'oi', 'oioioi', 'Completo', '2018-11-13', '2018-11-13', 14);
+INSERT INTO `topicos` (`topico_id`, `topico_titulo`, `topico_mensagem`, `topico_status`, `topico_dataCriacao`, `topico_dataTermino`, `topico_situacao`, `usuario_id`) VALUES
+(9, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 'Aberto', 14),
+(10, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 'Fechado', 14),
+(11, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 'Aberto', 14),
+(12, 'oi', 'oioioi', 'Completo', '2018-11-13', '2018-11-13', 'Fechado', 14),
+(13, 'oi', 'oioioi', 'Completo', '2018-11-13', '2018-11-13', 'Aberto', 14),
+(14, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 'Fechado', 11),
+(15, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 'Aberto', 11),
+(16, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 'Fechado', 11),
+(17, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 'Aberto', 11),
+(18, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 'Fechado', 11),
+(19, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 'Aberto', 11),
+(20, 'ioioioi', 'ioioioioio', 'Completo', '2018-11-14', '2018-11-14', 'Aberto', 11);
 
 -- --------------------------------------------------------
 
@@ -228,7 +237,7 @@ INSERT INTO `usuarios` (`usuario_id`, `usuario_nomeConta`, `usuario_senha`, `usu
 (10, 'OiOiOi', '12345', 'Cliente', '2018-10-30', '2018-11-05', NULL, 0, 0),
 (11, 'memo', '123', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
 (14, 'usuarioTeste', '123', 'Usuario', '2018-10-30', '2018-11-04', NULL, 0, 0),
-(15, 'oioi', '12345', 'Cliente', '2018-11-05', NULL, NULL, 0, 0);
+(15, 'oioi', '123', 'Cliente', '2018-11-05', NULL, NULL, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -310,13 +319,13 @@ ALTER TABLE `enderecos`
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `topicos`
 --
 ALTER TABLE `topicos`
-  MODIFY `topico_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `topico_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `ufs`
