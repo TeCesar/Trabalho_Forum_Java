@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 14-Nov-2018 às 12:20
+-- Generation Time: 15-Nov-2018 às 14:58
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -104,6 +104,22 @@ INSERT INTO `enderecos` (`endereco_id`, `endereco_rua`, `endereco_numero`, `ende
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `threads`
+--
+
+CREATE TABLE `threads` (
+  `thread_id` int(11) NOT NULL,
+  `thread_mensagem` varchar(50) NOT NULL,
+  `thread_autor` varchar(50) NOT NULL,
+  `thread_dataPostagem` timestamp NULL DEFAULT NULL,
+  `topico_id` int(11) DEFAULT NULL,
+  `ticket_id` int(11) DEFAULT NULL,
+  `usuario_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `tickets`
 --
 
@@ -118,15 +134,6 @@ CREATE TABLE `tickets` (
   `ticket_respondido` varchar(20) DEFAULT NULL,
   `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `tickets`
---
-
-INSERT INTO `tickets` (`ticket_id`, `ticket_titulo`, `ticket_mensagem`, `ticket_status`, `ticket_tempoInicio`, `ticket_tempoFim`, `ticket_situacao`, `ticket_respondido`, `usuario_id`) VALUES
-(1, 'Ticket Teste', 'TesteTesteTesteTesteTeste', 'Completo', NULL, '2018-11-04 20:30:00', 'Aberto', 'Nao', 10),
-(2, 'Teste2Ticket', 'Segundo Teste De Ticket', 'Completo', NULL, '2018-11-05 17:00:40', 'Fechado', 'Sim', 15),
-(8, 'teste', 'testeteste', 'Completo', '2018-11-13 22:12:45', '2018-11-13 22:12:45', 'Aberto', 'Nao', 11);
 
 -- --------------------------------------------------------
 
@@ -144,24 +151,6 @@ CREATE TABLE `topicos` (
   `topico_situacao` varchar(50) DEFAULT NULL,
   `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `topicos`
---
-
-INSERT INTO `topicos` (`topico_id`, `topico_titulo`, `topico_mensagem`, `topico_status`, `topico_dataCriacao`, `topico_dataTermino`, `topico_situacao`, `usuario_id`) VALUES
-(9, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 'Aberto', 14),
-(10, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 'Fechado', 14),
-(11, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 'Aberto', 14),
-(12, 'oi', 'oioioi', 'Completo', '2018-11-13', '2018-11-13', 'Fechado', 14),
-(13, 'oi', 'oioioi', 'Completo', '2018-11-13', '2018-11-13', 'Aberto', 14),
-(14, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 'Fechado', 11),
-(15, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 'Aberto', 11),
-(16, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 'Fechado', 11),
-(17, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 'Aberto', 11),
-(18, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 'Fechado', 11),
-(19, NULL, NULL, 'Incompleto', '2018-11-13', NULL, 'Aberto', 11),
-(20, 'ioioioi', 'ioioioioio', 'Completo', '2018-11-14', '2018-11-14', 'Aberto', 11);
 
 -- --------------------------------------------------------
 
@@ -268,6 +257,15 @@ ALTER TABLE `enderecos`
   ADD KEY `uf_id` (`uf_id`);
 
 --
+-- Indexes for table `threads`
+--
+ALTER TABLE `threads`
+  ADD PRIMARY KEY (`thread_id`),
+  ADD KEY `topico_id` (`topico_id`),
+  ADD KEY `ticket_id` (`ticket_id`),
+  ADD KEY `usuario_id` (`usuario_id`);
+
+--
 -- Indexes for table `tickets`
 --
 ALTER TABLE `tickets`
@@ -316,16 +314,22 @@ ALTER TABLE `enderecos`
   MODIFY `endereco_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT for table `threads`
+--
+ALTER TABLE `threads`
+  MODIFY `thread_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `topicos`
 --
 ALTER TABLE `topicos`
-  MODIFY `topico_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `topico_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `ufs`
@@ -362,6 +366,14 @@ ALTER TABLE `empresas`
 --
 ALTER TABLE `enderecos`
   ADD CONSTRAINT `enderecos_ibfk_1` FOREIGN KEY (`uf_id`) REFERENCES `ufs` (`uf_id`);
+
+--
+-- Limitadores para a tabela `threads`
+--
+ALTER TABLE `threads`
+  ADD CONSTRAINT `threads_ibfk_1` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`ticket_id`),
+  ADD CONSTRAINT `threads_ibfk_2` FOREIGN KEY (`topico_id`) REFERENCES `topicos` (`topico_id`),
+  ADD CONSTRAINT `threads_ibfk_3` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`usuario_id`);
 
 --
 -- Limitadores para a tabela `tickets`
