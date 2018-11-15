@@ -1,17 +1,18 @@
 <%--
   Created by IntelliJ IDEA.
   User: Archibald
-  Date: 13/11/2018
-  Time: 11:15
+  Date: 14/11/2018
+  Time: 11:21
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Listagem de Tópicos</title>
+    <title></title>
     <style>
         <%@include file="/WEB-INF/estilo/estilo.css" %>
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     </style>
 </head>
 <body>
@@ -28,24 +29,9 @@
     <%@include file="/WEB-INF/navbar/navbarUsuario.jsp" %>
 </c:if>
 
-<table>
-    <tr>
-        <th>Titulo</th>
-        <th>Mensagem</th>
-        <th>Autor</th>
-        <th>Situação</th>
-        <th colspan="2">Ações</th>
-    </tr>
-    <c:forEach var="topico" items="${listaTopicos}">
-        <tr>
-            <td>${topico.titulo}</td>
-            <td>${topico.mensagem}</td>
-            <td>${usuario.nomeConta}</td>
-            <td>${topico.situacao}</td>
-            <td>Abrir</td>
-        </tr>
-    </c:forEach>
-</table>
+<c:forEach var="thread" items="${listaThreads}">
+
+</c:forEach>
 
 </body>
 </html>
