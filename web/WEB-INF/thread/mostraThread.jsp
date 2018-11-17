@@ -29,9 +29,13 @@
     <%@include file="/WEB-INF/navbar/navbarUsuario.jsp" %>
 </c:if>
 
-<c:forEach var="thread" items="${listaThreads}">
-
-</c:forEach>
+<table>
+    <c:forEach var="thread" items="${listaThread}">
+        Autor: ${thread.autor}<br>
+        Mensagem: ${thread.mensagem}<br>
+        Data: <fmt:formatDate value="${thread.dataPostagem}" pattern="dd/MM/yyyy HH:mm:ss"/><br><br><br>
+    </c:forEach>
+</table>
 
 </body>
 </html>

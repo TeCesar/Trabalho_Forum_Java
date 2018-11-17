@@ -20,7 +20,7 @@ public class TopicoDAOImpl implements TopicoDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setString(1, topicoDTO.getStatus());
-            preparedStatement.setDate(2, new java.sql.Date(topicoDTO.getDataCriacao().getTime()));
+            preparedStatement.setTimestamp(2, new java.sql.Timestamp(topicoDTO.getDataCriacao().getTime()));
             preparedStatement.setInt(3, topicoDTO.getUsuarioDTO().getId());
 
             preparedStatement.executeUpdate();
@@ -46,7 +46,7 @@ public class TopicoDAOImpl implements TopicoDAO {
     @Override
     public List<TopicoDTO> listarTopicos() {
         List<TopicoDTO> listaTopicos = new ArrayList<>();
-        String sql = "SELECT topicos.topico_id, topicos.topico_titulo, topicos.topico_mensagem, topicos.topico_status, topicos.topico_dataCriacao, " +
+        String sql = "SELECT topicos.topico_id, topicos.topico_titulo, topicos.topico_status, topicos.topico_dataCriacao, " +
                 "topicos.topico_dataTermino, topicos.topico_situacao, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso, usuarios.usuario_apelido " +
                 "FROM topicos INNER JOIN usuarios ON topicos.usuario_id = usuarios.usuario_id WHERE topicos.topico_status = ?";
         try (Connection connection = SQLConnectionProvider.openConnection()) {
@@ -61,12 +61,11 @@ public class TopicoDAOImpl implements TopicoDAO {
                 usuarioDTO.setId(resultSet.getInt("usuario_id"));
                 usuarioDTO.setNomeConta(resultSet.getString("usuario_nomeConta"));
                 usuarioDTO.setTipoAcesso(resultSet.getString("usuario_tipoAcesso"));
-                usuarioDTO.setUsuarioApelido(resultSet.getString("usuario_apelido"));
+                usuarioDTO.setApelido(resultSet.getString("usuario_apelido"));
                 TopicoDTO topicoDTO = new TopicoDTO();
                 topicoDTO.setUsuarioDTO(usuarioDTO);
                 topicoDTO.setId(resultSet.getInt("topico_id"));
                 topicoDTO.setTitulo(resultSet.getString("topico_titulo"));
-                topicoDTO.setMensagem(resultSet.getString("topico_mensagem"));
                 topicoDTO.setStatus(resultSet.getString("topico_status"));
                 topicoDTO.setDataCriacao(resultSet.getDate("topico_dataCriacao"));
                 topicoDTO.setDataTermino(resultSet.getDate("topico_dataTermino"));
@@ -86,17 +85,16 @@ public class TopicoDAOImpl implements TopicoDAO {
 
     @Override
     public boolean finalizaTopico(TopicoDTO topicoDTO) {
-        String sql = "UPDATE topicos SET topico_titulo = ?, topico_mensagem = ?, topico_status = ?, topico_dataTermino = ?, topico_situacao = ? " +
+        String sql = "UPDATE topicos SET topico_titulo = ?, topico_status = ?, topico_dataTermino = ?, topico_situacao = ? " +
                 "WHERE topico_id = ?";
         try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, topicoDTO.getTitulo());
-            preparedStatement.setString(2, topicoDTO.getMensagem());
-            preparedStatement.setString(3, topicoDTO.getStatus());
-            preparedStatement.setDate(4, new java.sql.Date(topicoDTO.getDataTermino().getTime()));
-            preparedStatement.setString(5, topicoDTO.getSituacao());
-            preparedStatement.setInt(6, topicoDTO.getId());
+            preparedStatement.setString(2, topicoDTO.getStatus());
+            preparedStatement.setTimestamp(3, new java.sql.Timestamp(topicoDTO.getDataTermino().getTime()));
+            preparedStatement.setString(4, topicoDTO.getSituacao());
+            preparedStatement.setInt(5, topicoDTO.getId());
 
             int sucesso = preparedStatement.executeUpdate();
 

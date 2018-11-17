@@ -38,7 +38,7 @@
             <td>${usuario.nomeConta}</td>
             <td><fmt:formatDate value="${usuario.dataDeCadastro}" pattern="dd/MM/yyyy"/></td>
             <td><fmt:formatDate value="${usuario.dataDeAlteracao}" pattern="dd/MM/yyyy"/></td>
-            <td>${usuario.usuarioApelido}</td>
+            <td>${usuario.apelido}</td>
             <td>${usuario.errosLogin}</td>
         </tr>
     </c:forEach>

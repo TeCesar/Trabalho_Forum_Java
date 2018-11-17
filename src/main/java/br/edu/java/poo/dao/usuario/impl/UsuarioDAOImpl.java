@@ -142,7 +142,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
                 usuarioDTO.setTipoAcesso(resultSet.getString("usuario_tipoAcesso"));
                 usuarioDTO.setDataDeCadastro(resultSet.getDate("usuario_dataDeCadastro"));
                 usuarioDTO.setDataDeAlteracao(resultSet.getDate("usuario_dataDeAlteracao"));
-                usuarioDTO.setUsuarioApelido(resultSet.getString("usuario_apelido"));
+                usuarioDTO.setApelido(resultSet.getString("usuario_apelido"));
                 usuarioDTO.setErrosLogin(resultSet.getInt("usuario_errosLogin"));
                 usuarioDTO.setTicketsResolvidos(resultSet.getInt("usuario_ticketResolvidos"));
                 listaUsuarios.add(usuarioDTO);

@@ -146,6 +146,9 @@ public class ControllerServlet extends HttpServlet {
                 req.getRequestDispatcher("topico?tipo=pesquisarTopico").forward(req, resp);
             } else if ("listarTopicos".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("topico?tipo=listarTopicos").forward(req, resp);
+            } else if ("mostrarTopico".equalsIgnoreCase(tipo)){
+                String idTopico = req.getParameter("id");
+                req.getRequestDispatcher("thread?acao=threadTopico&id="+idTopico).forward(req, resp);
             }
         }
 

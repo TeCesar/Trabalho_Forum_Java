@@ -9,7 +9,7 @@ public class UsuarioDTO {
     private String tipoAcesso;
     private Date dataDeCadastro;
     private Date dataDeAlteracao;
-    private String usuarioApelido;
+    private String apelido;
     private int errosLogin;
     private int ticketsResolvidos;
 
@@ -61,12 +61,12 @@ public class UsuarioDTO {
         this.dataDeAlteracao = dataDeAlteracao;
     }
 
-    public String getUsuarioApelido() {
-        return usuarioApelido;
+    public String getApelido() {
+        return apelido;
     }
 
-    public void setUsuarioApelido(String usuarioApelido) {
-        this.usuarioApelido = usuarioApelido;
+    public void setApelido(String apelido) {
+        this.apelido = apelido;
     }
 
     public int getErrosLogin() {

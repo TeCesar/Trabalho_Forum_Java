@@ -8,10 +8,10 @@ import java.util.Date;
 
 public class ThreadDTO {
     private int id;
-    private String titulo;
     private String mensagem;
     private String autor;
-    private Date dataCriacao;
+    private int autorPergunta;
+    private Date dataPostagem;
     private TopicoDTO topicoDTO;
     private TicketDTO ticketDTO;
     private UsuarioDTO usuarioDTO;
@@ -22,14 +22,6 @@ public class ThreadDTO {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
     }
 
     public String getMensagem() {
@@ -48,12 +40,20 @@ public class ThreadDTO {
         this.autor = autor;
     }
 
-    public Date getDataCriacao() {
-        return dataCriacao;
+    public int getAutorPergunta() {
+        return autorPergunta;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setAutorPergunta(int autorPergunta) {
+        this.autorPergunta = autorPergunta;
+    }
+
+    public Date getDataPostagem() {
+        return dataPostagem;
+    }
+
+    public void setDataPostagem(Date dataPostagem) {
+        this.dataPostagem = dataPostagem;
     }
 
     public TopicoDTO getTopicoDTO() {

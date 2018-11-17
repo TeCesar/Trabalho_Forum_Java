@@ -7,7 +7,6 @@ import java.util.Date;
 public class TopicoDTO {
     private int id;
     private String titulo;
-    private String mensagem;
     private String status;
     private Date dataCriacao;
     private Date dataTermino;
@@ -28,14 +27,6 @@ public class TopicoDTO {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public String getMensagem() {
-        return mensagem;
-    }
-
-    public void setMensagem(String mensagem) {
-        this.mensagem = mensagem;
     }
 
     public String getStatus() {
