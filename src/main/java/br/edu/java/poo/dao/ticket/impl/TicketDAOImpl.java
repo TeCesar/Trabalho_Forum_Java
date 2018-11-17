@@ -37,18 +37,17 @@ public class TicketDAOImpl implements TicketDAO {
 
     @Override
     public boolean finalizaTicket(TicketDTO ticketDTO) {
-        String sql = "UPDATE tickets SET ticket_titulo = ?, ticket_mensagem = ?, ticket_status = ?, ticket_tempoFim = ?, ticket_situacao = ?, " +
+        String sql = "UPDATE tickets SET ticket_titulo = ?, ticket_status = ?, ticket_tempoFim = ?, ticket_situacao = ?, " +
                 "ticket_respondido = ? WHERE ticket_id = ?";
         try (Connection connection = SQLConnectionProvider.openConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, ticketDTO.getTitulo());
-            preparedStatement.setString(2, ticketDTO.getMensagem());
-            preparedStatement.setString(3, ticketDTO.getStatus());
-            preparedStatement.setTimestamp(4, new java.sql.Timestamp(ticketDTO.getTempoInicio().getTime()));
-            preparedStatement.setString(5, ticketDTO.getSituacao());
-            preparedStatement.setString(6, ticketDTO.getRespondido());
-            preparedStatement.setInt(7, ticketDTO.getId());
+            preparedStatement.setString(2, ticketDTO.getStatus());
+            preparedStatement.setTimestamp(3, new java.sql.Timestamp(ticketDTO.getTempoInicio().getTime()));
+            preparedStatement.setString(4, ticketDTO.getSituacao());
+            preparedStatement.setString(5, ticketDTO.getRespondido());
+            preparedStatement.setInt(6, ticketDTO.getId());
 
             int resultado = preparedStatement.executeUpdate();
 
@@ -69,7 +68,7 @@ public class TicketDAOImpl implements TicketDAO {
         String sql;
         String aux;
         if ("todos".equalsIgnoreCase(situacao)) {
-            sql = "SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_mensagem, tickets.ticket_status, tickets.ticket_tempoInicio, " +
+            sql = "SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_status, tickets.ticket_tempoInicio, " +
                     "tickets.ticket_tempoFim, tickets.ticket_situacao, tickets.ticket_respondido, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso " +
                     "FROM tickets INNER JOIN usuarios ON tickets.usuario_id = usuarios.usuario_id";
 
@@ -87,13 +86,13 @@ public class TicketDAOImpl implements TicketDAO {
             }
             return listaTickets;
         } else if ("Sem Resposta".equalsIgnoreCase(situacao)) {
-            sql = "SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_mensagem, tickets.ticket_status, tickets.ticket_tempoInicio, " +
+            sql = "SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_status, tickets.ticket_tempoInicio, " +
                     "tickets.ticket_tempoFim, tickets.ticket_situacao, tickets.ticket_respondido, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso " +
                     "FROM tickets INNER JOIN usuarios ON tickets.usuario_id = usuarios.usuario_id WHERE ticket_respondido = ?";
 
             aux = "Nao";
         } else {
-            sql = "SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_mensagem, tickets.ticket_status, tickets.ticket_tempoInicio, " +
+            sql = "SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_status, tickets.ticket_tempoInicio, " +
                     "tickets.ticket_tempoFim, tickets.ticket_situacao, tickets.ticket_respondido, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso " +
                     "FROM tickets INNER JOIN usuarios ON tickets.usuario_id = usuarios.usuario_id WHERE ticket_situacao = ?";
 
@@ -119,7 +118,7 @@ public class TicketDAOImpl implements TicketDAO {
     @Override
     public List<TicketDTO> listarTicketsUser(int idUsuario) {
         List<TicketDTO> listaTickets = new ArrayList<>();
-        String sql = "SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_mensagem, tickets.ticket_status, tickets.ticket_tempoInicio, " +
+        String sql = "SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_status, tickets.ticket_tempoInicio, " +
                 "tickets.ticket_tempoFim, tickets.ticket_situacao, tickets.ticket_respondido, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso " +
                 "FROM tickets INNER JOIN usuarios ON tickets.usuario_id = usuarios.usuario_id WHERE usuarios.usuario_id = ?";
 
@@ -150,7 +149,6 @@ public class TicketDAOImpl implements TicketDAO {
             ticketDTO.setUsuarioDTO(usuarioDTO);
             ticketDTO.setId(resultSet.getInt("ticket_id"));
             ticketDTO.setTitulo(resultSet.getString("ticket_titulo"));
-            ticketDTO.setMensagem(resultSet.getString("ticket_mensagem"));
             ticketDTO.setStatus(resultSet.getString("ticket_status"));
             ticketDTO.setTempoInicio(resultSet.getDate("ticket_tempoInicio"));
             ticketDTO.setTempoFim(resultSet.getDate("ticket_tempoFim"));

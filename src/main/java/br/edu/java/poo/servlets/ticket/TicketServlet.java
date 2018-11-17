@@ -2,6 +2,9 @@ package br.edu.java.poo.servlets.ticket;
 
 import br.edu.java.poo.business.ticket.TicketBusiness;
 import br.edu.java.poo.business.ticket.impl.TicketBusinessImpl;
+import br.edu.java.poo.dao.thread.ThreadDAO;
+import br.edu.java.poo.dao.thread.impl.ThreadDAOImpl;
+import br.edu.java.poo.model.thread.ThreadDTO;
 import br.edu.java.poo.model.ticket.TicketDTO;
 import br.edu.java.poo.model.usuario.UsuarioDTO;
 import br.edu.java.poo.model.usuario.UsuarioSession;
@@ -27,12 +30,13 @@ public class TicketServlet extends HttpServlet {
 
         if ("fimTicket".equalsIgnoreCase(tipo)) {
             TicketBusiness ticketBusiness = new TicketBusinessImpl();
+            ThreadDAO threadDAO = new ThreadDAOImpl();
             String titulo = req.getParameter("tituloTicket");
             String mensagem = req.getParameter("mensagemTicket");
             TicketDTO ticketDTO = (TicketDTO) req.getSession().getAttribute("novoTicket");
+            ThreadDTO threadDTO = new ThreadDTO();
 
             ticketDTO.setTitulo(titulo);
-            ticketDTO.setMensagem(mensagem);
             ticketDTO.setStatus("Completo");
             ticketDTO.setRespondido("Nao");
             ticketDTO.setSituacao("Aberto");
@@ -41,11 +45,20 @@ public class TicketServlet extends HttpServlet {
             String data = dateFormat.format(new Date());
             try {
                 ticketDTO.setTempoFim(dateFormat.parse(data));
+                threadDTO.setDataPostagem(dateFormat.parse(data));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
 
-            ticketBusiness.finalizaTicket(ticketDTO);
+            threadDTO.setMensagem(mensagem);
+            threadDTO.setAutor(ticketDTO.getUsuarioDTO().getNomeConta());
+            threadDTO.setAutorPergunta(1);
+            threadDTO.setTicketDTO(ticketDTO);
+            threadDTO.setUsuarioDTO(ticketDTO.getUsuarioDTO());
+
+            if (ticketBusiness.finalizaTicket(ticketDTO)){
+                threadDAO.criarThread(threadDTO);
+            }
             req.getSession().removeAttribute("novoTopico");
             req.getRequestDispatcher("WEB-INF/ticket/novoTicket.jsp").forward(req, resp);
         }

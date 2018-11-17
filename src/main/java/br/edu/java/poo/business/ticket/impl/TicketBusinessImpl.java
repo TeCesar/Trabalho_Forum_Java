@@ -25,6 +25,7 @@ public class TicketBusinessImpl implements TicketBusiness {
     public boolean finalizaTicket(TicketDTO ticketDTO) {
         if(ticketDTO != null){
             ticketDAO.finalizaTicket(ticketDTO);
+            return true;
         }
         return false;
     }

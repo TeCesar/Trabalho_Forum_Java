@@ -7,7 +7,6 @@ import java.util.Date;
 public class TicketDTO {
     private int id;
     private String titulo;
-    private String mensagem;
     private String status;
     private String situacao;
     private java.util.Date tempoInicio;
@@ -29,14 +28,6 @@ public class TicketDTO {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public String getMensagem() {
-        return mensagem;
-    }
-
-    public void setMensagem(String mensagem) {
-        this.mensagem = mensagem;
     }
 
     public String getStatus() {

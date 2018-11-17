@@ -51,7 +51,7 @@
                     <td style="background-color: #F08080;">${ticket.situacao}</td>
                 </c:if>
                 <td>${ticket.respondido}</td>
-                <td class="abrir"><a href="#">ABRIR</a></td>
+                <td class="abrir"><a href="controller?acao=ticket&tipo=mostrarTicket&id=${ticket.id}&titulo=${ticket.titulo}">ABRIR</a></td>
             </tr>
         </c:forEach>
     </table>

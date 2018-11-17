@@ -10,4 +10,6 @@ public interface ThreadDAO {
 
     List<ThreadDTO> listarThread(String tipo, int id);
 
+    String buscaNomeAutor(String tipo, int id);
+
 }

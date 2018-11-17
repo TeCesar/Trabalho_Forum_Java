@@ -54,6 +54,12 @@ public class ControllerServlet extends HttpServlet {
             }
         }
 
+        if ("respostaPostagemThread".equalsIgnoreCase(acao)) {
+            String id = req.getParameter("idPostagem");
+            String tipo = req.getParameter("tipo");
+            req.getRequestDispatcher("thread?acao=respostaPostagemThread&id=" + id + "&tipo=" + tipo);
+        }
+
     }
 
     @Override
@@ -64,6 +70,11 @@ public class ControllerServlet extends HttpServlet {
             String tipo = req.getParameter("tipo");
             if ("iniciarTicket".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("ticket?tipo=inicioTicket").forward(req, resp);
+            } else if ("mostrarTicket".equalsIgnoreCase(tipo)) {
+                String idTicket = req.getParameter("id");
+                String titulo = req.getParameter("titulo");
+                req.getSession().setAttribute("tt", "ticket");
+                req.getRequestDispatcher("thread?tipo=mostrar&id=" + idTicket + "&titulo=" + titulo).forward(req, resp);
             }
         }
 
@@ -146,10 +157,25 @@ public class ControllerServlet extends HttpServlet {
                 req.getRequestDispatcher("topico?tipo=pesquisarTopico").forward(req, resp);
             } else if ("listarTopicos".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("topico?tipo=listarTopicos").forward(req, resp);
-            } else if ("mostrarTopico".equalsIgnoreCase(tipo)){
+            } else if ("mostrarTopico".equalsIgnoreCase(tipo)) {
                 String idTopico = req.getParameter("id");
-                req.getRequestDispatcher("thread?acao=threadTopico&id="+idTopico).forward(req, resp);
+                req.getSession().setAttribute("tt", "topico");
+                req.getRequestDispatcher("thread?tipo=mostrar&id=" + idTopico).forward(req, resp);
             }
+        }
+
+        if ("responderPostagemThread".equalsIgnoreCase(acao)) {
+            String autor = req.getParameter("autorThread");
+            String titulo = req.getParameter("titulo");
+            String mensagem = req.getParameter("mensagem");
+            String id = req.getParameter("id");
+            req.getRequestDispatcher("thread?tipo=responderPostagem&autor=" + autor + "&titulo=" + titulo + "&mensagem=" + mensagem + "&id=" + id).forward(req, resp);
+        }
+
+        if ("responderThread".equalsIgnoreCase(acao)) {
+            String titulo = req.getParameter("titulo");
+            String id = req.getParameter("id");
+            String autor = req.getParameter("autorThread");
         }
 
     }
