@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 15-Nov-2018 às 14:58
+-- Generation Time: 17-Nov-2018 às 23:58
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -111,11 +111,30 @@ CREATE TABLE `threads` (
   `thread_id` int(11) NOT NULL,
   `thread_mensagem` varchar(50) NOT NULL,
   `thread_autor` varchar(50) NOT NULL,
+  `thread_autorPergunta` int(2) NOT NULL,
   `thread_dataPostagem` timestamp NULL DEFAULT NULL,
   `topico_id` int(11) DEFAULT NULL,
   `ticket_id` int(11) DEFAULT NULL,
   `usuario_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `threads`
+--
+
+INSERT INTO `threads` (`thread_id`, `thread_mensagem`, `thread_autor`, `thread_autorPergunta`, `thread_dataPostagem`, `topico_id`, `ticket_id`, `usuario_id`) VALUES
+(1, 'oioioi', 'memo', 1, '2018-11-16 02:00:00', 3, NULL, 11),
+(2, 'aqui estou testando tudo', 'memo', 1, '2018-11-17 01:41:09', 4, NULL, 11),
+(4, 'esse Ã© um superteste', 'memo', 1, '2018-11-17 16:10:36', 5, NULL, 11),
+(6, 'from the other side', 'memo', 1, '2018-11-17 19:16:13', NULL, 4, 11),
+(7, '@memo oi', 'memo', 1, '2018-11-17 22:26:57', NULL, 4, 11),
+(8, '@memo hello', 'operador', 0, '2018-11-17 22:50:56', NULL, 4, 2),
+(9, '@memo hello', 'operador', 0, '2018-11-17 22:51:05', NULL, 4, 2),
+(10, '@memo hello', 'operador', 0, '2018-11-17 22:51:08', NULL, 4, 2),
+(11, '@operador olaaa', 'memo', 1, '2018-11-17 22:52:37', NULL, 4, 11),
+(12, '@memo tudo bem?', 'operador', 0, '2018-11-17 22:54:24', NULL, 4, 2),
+(13, 'oi, vim dizer que isto aqui e um teste', 'oioi', 1, '2018-11-17 22:55:12', NULL, 5, 15),
+(14, '@oioi ola, tudo bem e contigo?', 'operador', 0, '2018-11-17 22:57:20', NULL, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -126,7 +145,6 @@ CREATE TABLE `threads` (
 CREATE TABLE `tickets` (
   `ticket_id` int(11) NOT NULL,
   `ticket_titulo` varchar(100) DEFAULT NULL,
-  `ticket_mensagem` varchar(500) DEFAULT NULL,
   `ticket_status` varchar(20) NOT NULL,
   `ticket_tempoInicio` timestamp NULL DEFAULT NULL,
   `ticket_tempoFim` timestamp NULL DEFAULT '0000-00-00 00:00:00',
@@ -134,6 +152,14 @@ CREATE TABLE `tickets` (
   `ticket_respondido` varchar(20) DEFAULT NULL,
   `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `tickets`
+--
+
+INSERT INTO `tickets` (`ticket_id`, `ticket_titulo`, `ticket_status`, `ticket_tempoInicio`, `ticket_tempoFim`, `ticket_situacao`, `ticket_respondido`, `usuario_id`) VALUES
+(4, 'hello', 'Completo', '2018-11-17 19:16:10', '2018-11-17 19:16:10', 'Aberto', 'Nao', 11),
+(5, 'estou criando um teste aqui', 'Completo', '2018-11-17 22:54:57', '2018-11-17 22:54:57', 'Aberto', 'Nao', 15);
 
 -- --------------------------------------------------------
 
@@ -144,13 +170,22 @@ CREATE TABLE `tickets` (
 CREATE TABLE `topicos` (
   `topico_id` int(11) NOT NULL,
   `topico_titulo` varchar(50) DEFAULT NULL,
-  `topico_mensagem` varchar(500) DEFAULT NULL,
   `topico_status` varchar(20) NOT NULL,
   `topico_dataCriacao` date NOT NULL,
   `topico_dataTermino` date DEFAULT NULL,
   `topico_situacao` varchar(50) DEFAULT NULL,
   `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `topicos`
+--
+
+INSERT INTO `topicos` (`topico_id`, `topico_titulo`, `topico_status`, `topico_dataCriacao`, `topico_dataTermino`, `topico_situacao`, `usuario_id`) VALUES
+(2, 'oi', 'Completo', '2018-11-16', '2018-11-16', 'Aberto', 11),
+(3, 'oi', 'Completo', '2018-11-16', '2018-11-16', 'Aberto', 11),
+(4, 'olaaa', 'Completo', '2018-11-16', '2018-11-16', 'Aberto', 11),
+(5, 'superteste', 'Completo', '2018-11-17', '2018-11-17', 'Aberto', 11);
 
 -- --------------------------------------------------------
 
@@ -221,7 +256,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`usuario_id`, `usuario_nomeConta`, `usuario_senha`, `usuario_tipoAcesso`, `usuario_dataDeCadastro`, `usuario_dataDeAlteracao`, `usuario_apelido`, `usuario_errosLogin`, `usuario_ticketResolvidos`) VALUES
 (1, 'admin', '12345', 'administrador', '1996-11-18', NULL, 'Master', 1, 0),
-(2, 'operador', '123456789@', 'Operador', '1996-11-18', NULL, 'oi', 0, 0),
+(2, 'operador', '123', 'Operador', '1996-11-18', NULL, 'oi', 0, 0),
 (9, 'TesteTeste', '12345', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
 (10, 'OiOiOi', '12345', 'Cliente', '2018-10-30', '2018-11-05', NULL, 0, 0),
 (11, 'memo', '123', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
@@ -317,19 +352,19 @@ ALTER TABLE `enderecos`
 -- AUTO_INCREMENT for table `threads`
 --
 ALTER TABLE `threads`
-  MODIFY `thread_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `thread_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `topicos`
 --
 ALTER TABLE `topicos`
-  MODIFY `topico_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `topico_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `ufs`

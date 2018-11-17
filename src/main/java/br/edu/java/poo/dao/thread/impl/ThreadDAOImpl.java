@@ -124,11 +124,11 @@ public class ThreadDAOImpl implements ThreadDAO {
     public String buscaNomeAutor(String tipo, int id) {
         String sql;
         if ("topico".equalsIgnoreCase(tipo)){
-            sql = "SELECT usuarios.usuario_nomeConta FROM topicos INNER JOIN usuarios ON topicos.usuario_id = usuarios.usuario_id " +
+            sql = "SELECT usuarios.usuario_nomeConta, topicos.topico_id FROM topicos INNER JOIN usuarios ON topicos.usuario_id = usuarios.usuario_id " +
                     "WHERE topicos.topico_id = ?";
         } else {
-            sql = "SELECT usuarios.usuario_nomeConta FROM tickets INNER JOIN usuarios ON tickets.usuario_id = usuarios.usuario_id " +
-                    "WHERE topicos.topico_id = ?";
+            sql = "SELECT usuarios.usuario_nomeConta, tickets.ticket_id FROM tickets INNER JOIN usuarios ON tickets.usuario_id = usuarios.usuario_id " +
+                    "WHERE tickets.ticket_id = ?";
         }
 
         try (Connection connection = SQLConnectionProvider.openConnection()){

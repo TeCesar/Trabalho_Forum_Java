@@ -57,7 +57,7 @@ public class ControllerServlet extends HttpServlet {
         if ("respostaPostagemThread".equalsIgnoreCase(acao)) {
             String id = req.getParameter("idPostagem");
             String tipo = req.getParameter("tipo");
-            req.getRequestDispatcher("thread?acao=respostaPostagemThread&id=" + id + "&tipo=" + tipo);
+            req.getRequestDispatcher("thread?acao=respostaPostagemThread&id=" + id + "&tipo=" + tipo).forward(req, resp);
         }
 
     }

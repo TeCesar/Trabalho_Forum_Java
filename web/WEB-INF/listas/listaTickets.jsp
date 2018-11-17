@@ -31,6 +31,7 @@
     <table width="90%" align="center" cellpadding="10">
         <tr align="center" bgcolor="#CCC">
             <td><strong>Número Ticket</strong></td>
+            <td><strong>Autor</strong></td>
             <td><strong>Titulo Assunto</strong></td>
             <td><strong>Situacao</strong></td>
             <td><strong>Respondido</strong></td>
@@ -40,6 +41,7 @@
         <c:forEach var="ticket" items="${listaTickets}">
             <tr style="text-align: center;" class="border_bottom">
                 <td>${ticket.id}</td>
+                <td>${ticket.usuarioDTO.nomeConta}</td>
                 <td>${ticket.titulo}</td>
                 <c:if test="${ticket.situacao == 'Aberto'}">
                     <td style="background-color: #F08080;">${ticket.situacao}</td>
