@@ -56,7 +56,9 @@
     </c:forEach>
     <form method="get" action="controller">
         <input type="hidden" value="responderThread" name="acao">
-        <input type="submit" value="Responder Tópico">
+        <input type="hidden" value="${titulo}" name="titulo">
+        <input type="hidden" value="${id}" name="idPostagem">
+        <input type="submit" value="Responder">
     </form>
 
 </table>

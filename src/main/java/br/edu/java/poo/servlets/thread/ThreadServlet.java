@@ -29,7 +29,7 @@ public class ThreadServlet extends HttpServlet {
         String tt = (String) req.getSession().getAttribute("tt");
 
         if ("respostaPostagemThread".equalsIgnoreCase(acao)) {
-            String id = req.getParameter("id");
+            String id = (String) req.getSession().getAttribute("id");
             String tipo = req.getParameter("tipo");
             String mensagem = req.getParameter("mensagemResposta");
             UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuario");
@@ -94,6 +94,7 @@ public class ThreadServlet extends HttpServlet {
             List<ThreadDTO> listaThread = threadDAO.listarThread(tt, Integer.parseInt(id));
             req.setAttribute("listaThread", listaThread);
             req.setAttribute("titulo", titulo);
+            req.setAttribute("id", id);
             req.getRequestDispatcher("WEB-INF/thread/mostraThread.jsp").forward(req, resp);
         }
 
@@ -105,7 +106,15 @@ public class ThreadServlet extends HttpServlet {
             req.setAttribute("autor", autor);
             req.getSession().setAttribute("titulo", titulo);
             req.setAttribute("mensagem", mensagem);
-            req.setAttribute("id", id);
+            req.getSession().setAttribute("id", id);
+            req.getRequestDispatcher("WEB-INF/thread/respostaThread.jsp").forward(req, resp);
+        }
+
+        if ("responder".equalsIgnoreCase(tipo)) {
+            String titulo = req.getParameter("titulo");
+            String id = req.getParameter("id");
+            req.getSession().setAttribute("titulo", titulo);
+            req.getSession().setAttribute("id", id);
             req.getRequestDispatcher("WEB-INF/thread/respostaThread.jsp").forward(req, resp);
         }
     }

@@ -60,6 +60,10 @@ public class ControllerServlet extends HttpServlet {
             req.getRequestDispatcher("thread?acao=respostaPostagemThread&id=" + id + "&tipo=" + tipo).forward(req, resp);
         }
 
+        if ("responderThread".equalsIgnoreCase(acao)) {
+
+        }
+
     }
 
     @Override
@@ -167,15 +171,15 @@ public class ControllerServlet extends HttpServlet {
         if ("responderPostagemThread".equalsIgnoreCase(acao)) {
             String autor = req.getParameter("autorThread");
             String titulo = req.getParameter("titulo");
-            String mensagem = req.getParameter("mensagem");
+            String mensagem = req.getParameter("mensagemThread");
             String id = req.getParameter("id");
             req.getRequestDispatcher("thread?tipo=responderPostagem&autor=" + autor + "&titulo=" + titulo + "&mensagem=" + mensagem + "&id=" + id).forward(req, resp);
         }
 
         if ("responderThread".equalsIgnoreCase(acao)) {
             String titulo = req.getParameter("titulo");
-            String id = req.getParameter("id");
-            String autor = req.getParameter("autorThread");
+            String id = req.getParameter("idPostagem");
+            req.getRequestDispatcher("thread?tipo=responder&titulo=" + titulo + "&mensagem=&id=" + id).forward(req, resp);
         }
 
     }

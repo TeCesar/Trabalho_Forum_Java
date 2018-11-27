@@ -29,7 +29,7 @@
 </c:if>
 
 <form method="post" action="controller?acao=respostaPostagemThread">
-    <input type="hidden" value="${id}" name="idPostagem">
+    <input type="hidden" value="${id}" name="id">
     <c:if test="${tt == 'topico'}">
         <input type="hidden" name="tipo" value="topico">
         <label>Titulo do Tópico: ${titulo}</label><br>
@@ -39,10 +39,16 @@
         <label>Titulo do Ticket: ${titulo}</label><br>
     </c:if>
 
-    <c:if test="${autor != null}">
-        <label>Respondendo a pergunta de: ${autor}</label><br>
-    </c:if>
-    <label>Resposta: <input type="text" value="@${autor}" name="mensagemResposta"></label>
+    <c:choose>
+        <c:when test="${autor != null}">
+            <label>Respondendo a mensagem de: ${autor}</label><br>
+            <label>Mensagem: ${mensagem}</label><br>
+            <label>Resposta: <input type="text" value="@${autor}" name="mensagemResposta"></label>
+        </c:when>
+        <c:otherwise>
+            <label>Resposta: <input type="text" name="mensagemResposta"></label>
+        </c:otherwise>
+    </c:choose>
     <input type="submit" value="Enviar Resposta">
 </form>
 

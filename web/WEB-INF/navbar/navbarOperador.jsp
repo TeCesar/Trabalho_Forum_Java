@@ -55,7 +55,11 @@
             </ul>
         </li>
 
-        <li><a>Tópicos</a></li>
+        <li><a>Tópicos</a>
+            <ul>
+                <li><a href="controller?acao=topico&tipo=listarTopicos">Listar Tópicos</a></li>
+            </ul>
+        </li>
 
         <li><a>Listar</a>
             <ul>
