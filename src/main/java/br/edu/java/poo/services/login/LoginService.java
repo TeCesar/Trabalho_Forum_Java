@@ -19,11 +19,11 @@ public class LoginService {
         UsuarioDTO usuarioBusca = usuarioDAO.validarUsuario(usuarioDTO);
 
         if (usuarioBusca != null) {
-            boolean primeiroAcesso = usuarioBusiness.conferePrimeiroLogin(usuarioBusca);
+//            boolean primeiroAcesso = usuarioBusiness.conferePrimeiroLogin(usuarioBusca);
 
-            if (primeiroAcesso) {
-                return "WEB-INF/novaSenha.jsp";
-            }
+//            if (primeiroAcesso) {
+//                return "WEB-INF/novaSenha.jsp";
+//            }
             if ("administrador".equalsIgnoreCase(usuarioBusca.getTipoAcesso())) {
                 return "WEB-INF/menus/menuAdministrador.jsp";
             }
