@@ -31,7 +31,7 @@ public class AlteraSenhaServlet extends HttpServlet {
             } else if ("operador".equalsIgnoreCase(usuario.getTipoAcesso())) {
                 req.getRequestDispatcher("WEB-INF/menus/menuOperador.jsp").forward(req, resp);
             } else if ("cliente".equalsIgnoreCase(usuario.getTipoAcesso())) {
-                req.getRequestDispatcher("WEB-INF/menus/menuCliente.jsp").forward(req, resp);
+                req.getRequestDispatcher("WEB-INF/menus/menuPrincipal.jsp").forward(req, resp);
             } else if ("usuario".equalsIgnoreCase(usuario.getTipoAcesso())) {
                 req.getRequestDispatcher("WEB-INF/menus/menuUsuario.jsp").forward(req, resp);
             }

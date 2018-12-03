@@ -26,7 +26,7 @@
 
     <div id="divLogin">
         <div id="login-box-interno">
-            <form action="/controller?acao=login" method="post">
+            <form action="controller?acao=login" method="post">
                 <div id="login-box-label">Bem vindo a D.R.T</div>
                 <div class="input-div" id="input-usuario">
                     <input type="text" placeholder="USUÁRIO" id="nomeUsuario" name="nomeUsuario">
