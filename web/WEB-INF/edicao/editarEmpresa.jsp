@@ -1,6 +1,4 @@
-<%@ page import="br.edu.java.poo.model.empresa.EmpresaDTO" %>
-<%@ page import="br.edu.java.poo.model.endereco.UfDTO" %>
-<%@ page import="java.util.List" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Archibald
   Date: 30/10/2018
