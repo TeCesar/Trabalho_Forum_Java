@@ -15,42 +15,48 @@
     </style>
 </head>
 <body>
-<c:if test="${usuario.tipoAcesso == 'Operador'}">
-    <%@include file="/WEB-INF/navbar/navbarOperador.jsp" %>
-</c:if>
-<c:if test="${usuario.tipoAcesso == 'Cliente'}">
-    <%@include file="/WEB-INF/navbar/navbarCliente.jsp" %>
-</c:if>
-<c:if test="${usuario.tipoAcesso == 'Administrador'}">
-    <%@include file="/WEB-INF/navbar/navbarAdministrador.jsp" %>
-</c:if>
-<c:if test="${usuario.tipoAcesso == 'Usuario'}">
-    <%@include file="/WEB-INF/navbar/navbarUsuario.jsp" %>
-</c:if>
+<br><br><br><br>
+<center>
 
-<form method="post" action="controller?acao=respostaPostagemThread">
-    <input type="hidden" value="${id}" name="id">
-    <c:if test="${tt == 'topico'}">
-        <input type="hidden" name="tipo" value="topico">
-        <label>Titulo do Tópico: ${titulo}</label><br>
-    </c:if>
-    <c:if test="${tt == 'ticket'}">
-        <input type="hidden" name="tipo" value="ticket">
-        <label>Titulo do Ticket: ${titulo}</label><br>
-    </c:if>
+    <div class="listarTopicos">
+        <c:if test="${usuario.tipoAcesso == 'Operador'}">
+            <%@include file="/WEB-INF/navbar/navbarOperador.jsp" %>
+        </c:if>
+        <c:if test="${usuario.tipoAcesso == 'Cliente'}">
+            <%@include file="/WEB-INF/navbar/navbarCliente.jsp" %>
+        </c:if>
+        <c:if test="${usuario.tipoAcesso == 'Administrador'}">
+            <%@include file="/WEB-INF/navbar/navbarAdministrador.jsp" %>
+        </c:if>
+        <c:if test="${usuario.tipoAcesso == 'Usuario'}">
+            <%@include file="/WEB-INF/navbar/navbarUsuario.jsp" %>
+        </c:if>
 
-    <c:choose>
-        <c:when test="${autor != null}">
-            <label>Respondendo a mensagem de: ${autor}</label><br>
-            <label>Mensagem: ${mensagem}</label><br>
-            <label>Resposta: <input type="text" value="@${autor}" name="mensagemResposta"></label>
-        </c:when>
-        <c:otherwise>
-            <label>Resposta: <input type="text" name="mensagemResposta"></label>
-        </c:otherwise>
-    </c:choose>
-    <input type="submit" value="Enviar Resposta">
-</form>
 
+        <form method="post" action="controller?acao=respostaPostagemThread">
+            <input type="hidden" value="${id}" name="id">
+            <c:if test="${tt == 'topico'}">
+                <input type="hidden" name="tipo" value="topico">
+                <label>Titulo do Tópico: ${titulo}</label><br>
+            </c:if>
+            <c:if test="${tt == 'ticket'}">
+                <input type="hidden" name="tipo" value="ticket">
+                <label>Titulo do Ticket: ${titulo}</label><br>
+            </c:if>
+
+            <c:choose>
+                <c:when test="${autor != null}">
+                    <label>Respondendo a mensagem de: ${autor}</label><br>
+                    <label>Mensagem: ${mensagem}</label><br>
+                    <label>Resposta: <input type="text" value="@${autor}" name="mensagemResposta"></label>
+                </c:when>
+                <c:otherwise>
+                    <label>Resposta: <input type="text" name="mensagemResposta"></label>
+                </c:otherwise>
+            </c:choose>
+            <input type="submit" value="Enviar Resposta" class="btne">
+        </form>
+    </div>
+</center>
 </body>
 </html>

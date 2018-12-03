@@ -139,8 +139,8 @@ a {
 .menu {
     list-style: none;
     float: left;
-    top: 25px;
-
+    top: 10px;
+    position: fixed;
 }
 
 .menu li {
@@ -227,7 +227,7 @@ a {
     display: inline-block;
     padding: 6px 10px;
     text-decoration: none;
-    margin-left: 807px;
+
     width: 150px;
     background-color: #fff;
 
@@ -275,4 +275,20 @@ tr.border_bottom td {
 .excluir:hover{
     background-color: #F08080;
     cursor: pointer;
+}
+
+.listarTopicos{
+    color:#333;
+    font-size: 18px;
+    font-family: 'DejaVu Serif', Georgia, "Times New Roman", Times, serif;
+    text-align: center;
+    border: 1px solid #25692A;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 6px 10px;
+    text-decoration: none;
+    width: 100%;
+    background-color: #dedede;
+
+
 }

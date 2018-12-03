@@ -43,8 +43,10 @@
 
     </div>
     <br>
-    <input type="reset" value="Limpar Campos" class="btns">
-    <input type="submit" value="Cadastrar" class="btne">
+    <center>
+        <input type="reset" value="Limpar Campos" class="btns">
+        <input type="submit" value="Cadastrar" class="btne">
+    </center>
 </form>
 
 </body>

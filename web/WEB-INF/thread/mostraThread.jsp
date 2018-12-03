@@ -33,6 +33,9 @@
 
 <table>
     <c:forEach var="thread" items="${listaThread}">
+
+       <div class="listarTopicos">
+
         Mensagem: ${thread.mensagem}<br>
         <c:choose>
             <c:when test="${thread.usuarioDTO.tipoAcesso == 'Administrador'}">
@@ -63,15 +66,16 @@
             </c:choose>
             <input type="hidden" value="${thread.mensagem}" name="mensagemThread">
             <input type="hidden" value="${thread.autor}" name="autorThread">
-            <input type="submit" value="Responder ${thread.autor}">
+            <input type="submit" value="Responder ${thread.autor}" class="btne">
         </form>
+       </div>
         <br><br><br>
     </c:forEach>
     <form method="get" action="controller">
         <input type="hidden" value="responderThread" name="acao">
         <input type="hidden" value="${titulo}" name="titulo">
         <input type="hidden" value="${id}" name="idPostagem">
-        <input type="submit" value="Responder">
+        <input type="submit" value="Responder" class="btne">
     </form>
 
 </table>

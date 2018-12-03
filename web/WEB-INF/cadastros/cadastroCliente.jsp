@@ -59,13 +59,15 @@
             <br><br>
         <label class="txt">Nome de Usuário:</label><input type="text" name="clienteNomeUsuario" class="campo" required><br><br>
     </div>
-    <input type="reset" value="Limpar Campos" class="btns">
-    <input type="submit" value="Cadastrar" class="btne">
+    <center>
+        <input type="reset" value="Limpar Campos" class="btns">
+        <input type="submit" value="Cadastrar" class="btne">
+    </center>
     <br><br>
 </form>
 
     <center>
-        <a href="controller?acao=cadastroEmpresa" class="txt" style="color: red;">Cadastrar Nova Empresa ?</a>
+        <a href="controller?acao=cadastroEmpresa" class="txt" style="color: green; border: 1px solid">Cadastrar Nova Empresa ?</a>
     </center>
 
 
