@@ -16,18 +16,18 @@ public class AlteraSenhaService {
     }
 
     public String atualizaSenha(String senha, String confirmaSenha, String nomeConta) {
-        String senhaValida = usuarioBusiness.confereNovaSenha(senha, confirmaSenha);
-        if (senhaValida == "sucesso") {
-            if (usuarioDAO.alteraSenha(senha, nomeConta)) {
-                return "sucesso";
-            }
-        } else if ("caracteres".equalsIgnoreCase(senhaValida)) {
-            return "caracteres";
-        } else if ("caractereEspecial".equalsIgnoreCase(senhaValida)) {
-            return "caractereEspecial";
-        } else if ("senhasDiferentes".equalsIgnoreCase(senhaValida)){
-            return "senhasDiferentes";
-        }
+//        String senhaValida = usuarioBusiness.confereNovaSenha(senha, confirmaSenha);
+//        if (senhaValida == "sucesso") {
+//            if (usuarioDAO.alteraSenha(senha, nomeConta)) {
+//                return "sucesso";
+//            }
+//        } else if ("caracteres".equalsIgnoreCase(senhaValida)) {
+//            return "caracteres";
+//        } else if ("caractereEspecial".equalsIgnoreCase(senhaValida)) {
+//            return "caractereEspecial";
+//        } else if ("senhasDiferentes".equalsIgnoreCase(senhaValida)){
+//            return "senhasDiferentes";
+//        }
         return "invalida";
     }
 }

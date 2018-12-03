@@ -1,5 +1,9 @@
 package br.edu.java.poo.servlets.edicao;
 
+import br.edu.java.poo.business.cliente.ClienteBusiness;
+import br.edu.java.poo.business.cliente.impl.ClienteBusinessImpl;
+import br.edu.java.poo.business.empresa.EmpresaBusiness;
+import br.edu.java.poo.business.empresa.impl.EmpresaBusinessImpl;
 import br.edu.java.poo.business.usuario.UsuarioBusiness;
 import br.edu.java.poo.business.usuario.impl.UsuarioBusinessImpl;
 import br.edu.java.poo.dao.cliente.ClienteDAO;
@@ -10,6 +14,9 @@ import br.edu.java.poo.dao.uf.UfDAO;
 import br.edu.java.poo.dao.uf.impl.UfDAOImpl;
 import br.edu.java.poo.dao.usuario.UsuarioDAO;
 import br.edu.java.poo.dao.usuario.impl.UsuarioDAOImpl;
+import br.edu.java.poo.mapper.BaseMapper;
+import br.edu.java.poo.mapper.impl.ClienteMapperImpl;
+import br.edu.java.poo.mapper.impl.EmpresaMapperImpl;
 import br.edu.java.poo.model.cliente.ClienteDTO;
 import br.edu.java.poo.model.empresa.EmpresaDTO;
 import br.edu.java.poo.model.endereco.EnderecoDTO;
@@ -32,9 +39,17 @@ import java.util.List;
 @WebServlet(urlPatterns = "/editar")
 public class EdicaoServlet extends HttpServlet {
     UsuarioDAO usuarioDAO;
+    ClienteBusiness clienteBusiness;
+    EmpresaBusiness empresaBusiness;
+    BaseMapper<HttpServletRequest, ClienteDTO> clienteMapper;
+    BaseMapper<HttpServletRequest, EmpresaDTO> empresaMapper;
 
-    public EdicaoServlet(){
+    public EdicaoServlet() {
         usuarioDAO = new UsuarioDAOImpl();
+        clienteBusiness = new ClienteBusinessImpl();
+        empresaBusiness = new EmpresaBusinessImpl();
+        clienteMapper = new ClienteMapperImpl();
+        empresaMapper = new EmpresaMapperImpl();
     }
 
     @Override
@@ -80,69 +95,17 @@ public class EdicaoServlet extends HttpServlet {
         }
 
         if ("cliente".equalsIgnoreCase(tipo)) {
-            UsuarioBusiness usuarioBusiness = new UsuarioBusinessImpl();
-            EditaClienteService editaClienteService = new EditaClienteService();
-            String idCliente = req.getParameter("idClienteEdit");
-            String nomeCliente = req.getParameter("nomeClienteEdit");
-            String sobrenomeCliente = req.getParameter("sobrenomeClienteEdit");
-            String dtNascCliente = req.getParameter("dtNascClienteEdit");
-            String sexoCliente = req.getParameter("sexoClienteEdit");
-            String idEnderecoCliente = req.getParameter("idEnderecoClienteEdit");
-            String nomeRuaCliente = req.getParameter("nomeRuaClienteEdit");
-            String numeroCasaCliente = req.getParameter("numeroCasaClienteEdit");
-            String bairroCliente = req.getParameter("bairroClienteEdit");
-            String cidadeCliente = req.getParameter("cidadeClienteEdit");
-            String idUfCliente = req.getParameter("idUfClienteEdit");
-            String idEmpresaCliente = req.getParameter("idEmpresaClienteEdit");
-            String idUsuarioCliente = req.getParameter("idUsuarioClienteEdit");
-            String nomeContaCliente = req.getParameter("nomeContaUsuarioClienteEdit");
-            String senhaCliente = req.getParameter("senhaUsuarioClienteEdit");
-            String nomeContaAntigoCliente = req.getParameter("nomeContaUsuarioAntigoClienteEdit");
-            String senhaAntigoCliente = req.getParameter("senhaUsuarioAntigoClienteEdit");
+            String nomeContaAntigo = req.getParameter("nomeUsuarioAntigoCliente");
+            String senhaAntigo = req.getParameter("senhaUsuarioAntigoCliente");
 
-            boolean altera = usuarioBusiness.confereAlteraUsuario(nomeContaCliente, senhaCliente, nomeContaAntigoCliente, senhaAntigoCliente);
+            ClienteDTO clienteDTO = clienteMapper.doMap(req);
 
-            ClienteDTO clienteDTO = new ClienteDTO();
-            EnderecoDTO enderecoDTO = new EnderecoDTO();
-            EmpresaDTO empresaDTO = new EmpresaDTO();
-            UfDTO ufDTO = new UfDTO();
-            UsuarioDTO usuarioDTO = new UsuarioDTO();
-
-            clienteDTO.setId(Integer.parseInt(idCliente));
-            clienteDTO.setNome(nomeCliente);
-            clienteDTO.setSobrenome(sobrenomeCliente);
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            try {
-                clienteDTO.setDtNascimento(dateFormat.parse(dtNascCliente));
-            } catch (ParseException e) {
-                e.printStackTrace();
+            if (clienteBusiness.editarCliente(clienteDTO, nomeContaAntigo, senhaAntigo)){
+                req.getRequestDispatcher("listar?tipo=clientes").forward(req, resp);
             }
-            clienteDTO.setSexo(sexoCliente);
-
-            enderecoDTO.setId(Integer.parseInt(idEnderecoCliente));
-            enderecoDTO.setRua(nomeRuaCliente);
-            enderecoDTO.setNumeroEndereco(numeroCasaCliente);
-            enderecoDTO.setBairro(bairroCliente);
-            enderecoDTO.setCidade(cidadeCliente);
-            ufDTO.setId(Integer.parseInt(idUfCliente));
-            enderecoDTO.setUfDTO(ufDTO);
-
-            empresaDTO.setId(Integer.parseInt(idEmpresaCliente));
-
-            usuarioDTO.setId(Integer.parseInt(idUsuarioCliente));
-            usuarioDTO.setNomeConta(nomeContaCliente);
-            usuarioDTO.setSenha(senhaCliente);
-
-            clienteDTO.setEnderecoDTO(enderecoDTO);
-            clienteDTO.setEmpresaDTO(empresaDTO);
-            clienteDTO.setUsuarioDTO(usuarioDTO);
-
-            editaClienteService.editaCliente(clienteDTO, altera);
-
-            req.getRequestDispatcher("listar?tipo=clientes").forward(req, resp);
         }
 
-        if ("alteraSenha".equalsIgnoreCase(tipo)){
+        if ("alteraSenha".equalsIgnoreCase(tipo)) {
 
         }
 

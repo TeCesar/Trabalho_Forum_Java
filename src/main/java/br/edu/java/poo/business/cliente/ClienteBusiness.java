@@ -8,4 +8,6 @@ public interface ClienteBusiness {
 
     boolean excluirCliente(int id);
 
+    boolean editarCliente(ClienteDTO clienteDTO, String nomeUsuarioAntigo, String senhaUsuarioAntiga);
+
 }

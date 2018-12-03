@@ -17,17 +17,18 @@ public class ClienteMapperImpl implements BaseMapper<HttpServletRequest, Cliente
     @Override
     public ClienteDTO doMap(HttpServletRequest req) {
         ClienteDTO clienteDTO = new ClienteDTO();
-        String idUf = req.getParameter("clienteUfId");
-        String nomeRua = req.getParameter("clienteNomeRua");
-        String numeroCasa = req.getParameter("clienteNumeroCasa");
-        String bairro = req.getParameter("clienteBairro");
-        String cidade = req.getParameter("clienteCidade");
-        String idEmpresa = req.getParameter("clienteEmpresaId");
-        String nome = req.getParameter("clienteNome");
-        String sobrenome = req.getParameter("clienteSobrenome");
-        String dtNasc = req.getParameter("clienteDtNasc");
-        String sexo = req.getParameter("clienteSexo");
-        String nomeUsuario = req.getParameter("clienteNomeUsuario");
+        String tipoAcao = req.getParameter("tipoAcao");
+        String idUf = req.getParameter("idUfCliente");
+        String nomeRua = req.getParameter("nomeRuaCliente");
+        String numeroCasa = req.getParameter("numeroCasaCliente");
+        String bairro = req.getParameter("bairroCliente");
+        String cidade = req.getParameter("cidadeCliente");
+        String idEmpresa = req.getParameter("idEmpresaCliente");
+        String nome = req.getParameter("nomeCliente");
+        String sobrenome = req.getParameter("sobrenomeCliente");
+        String dtNasc = req.getParameter("dtNascCliente");
+        String sexo = req.getParameter("sexoCliente");
+        String nomeUsuario = req.getParameter("nomeUsuarioCliente");
 
         UfDTO ufDTO = new UfDTO();
         ufDTO.setId(Integer.parseInt(idUf));
@@ -45,9 +46,6 @@ public class ClienteMapperImpl implements BaseMapper<HttpServletRequest, Cliente
         UsuarioDTO usuarioDTO = new UsuarioDTO();
         usuarioDTO.setNomeConta(nomeUsuario);
 
-        clienteDTO.setUsuarioDTO(usuarioDTO);
-        clienteDTO.setEnderecoDTO(enderecoDTO);
-        clienteDTO.setEmpresaDTO(empresaDTO);
         clienteDTO.setNome(nome);
         clienteDTO.setSobrenome(sobrenome);
 
@@ -60,6 +58,21 @@ public class ClienteMapperImpl implements BaseMapper<HttpServletRequest, Cliente
         }
 
         clienteDTO.setSexo(sexo);
+
+        if ("edicao".equalsIgnoreCase(tipoAcao)){
+            String idCliente = req.getParameter("idCliente");
+            String idUsuario = req.getParameter("idUsuario");
+            String idEndereco = req.getParameter("idEnderecoCliente");
+            String senha = req.getParameter("senhaUsuarioCliente");
+            usuarioDTO.setId(Integer.parseInt(idUsuario));
+            usuarioDTO.setSenha(senha);
+            enderecoDTO.setId(Integer.parseInt(idEndereco));
+            clienteDTO.setId(Integer.parseInt(idCliente));
+        }
+
+        clienteDTO.setUsuarioDTO(usuarioDTO);
+        clienteDTO.setEnderecoDTO(enderecoDTO);
+        clienteDTO.setEmpresaDTO(empresaDTO);
 
         return clienteDTO;
     }
