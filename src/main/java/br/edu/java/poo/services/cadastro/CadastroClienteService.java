@@ -44,7 +44,7 @@ public class CadastroClienteService {
     public boolean cadastroCliente(String idUf, String nomeRua, String numeroCasa, String bairro, String cidade, String idEmpresa, String nome, String sobrenome, String dtNasc, String sexo, String nomeUsuario) throws CadastrarClienteException {
         UfDTO ufBusca = ufDAO.buscarUf(Integer.parseInt(idUf));
 
-        clienteBusiness.validaCliente(nome, sobrenome, dtNasc, sexo);
+//        clienteBusiness.validaCliente(nome, sobrenome, dtNasc, sexo);
 
         EnderecoDTO enderecoBusca = new EnderecoDTO();
         enderecoBusca.setRua(nomeRua);
