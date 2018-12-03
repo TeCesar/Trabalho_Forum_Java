@@ -21,27 +21,28 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String login = req.getParameter("nomeUsuario");
-        String senha = req.getParameter("senha");
+        String tipo = req.getParameter("tipo");
 
-        UsuarioDTO usuarioDTO = new UsuarioDTO();
+        if ("logar".equalsIgnoreCase(tipo)) {
+            String login = req.getParameter("nomeUsuario");
+            String senha = req.getParameter("senha");
 
-        usuarioDTO.setNomeConta(login);
-        usuarioDTO.setSenha(senha);
+            UsuarioDTO usuarioDTO = new UsuarioDTO();
 
-        String logado = "";
+            usuarioDTO.setNomeConta(login);
+            usuarioDTO.setSenha(senha);
 
-        try {
-            logado = loginService.login(usuarioDTO);
-            UsuarioSession usuarioSession = new UsuarioSession(usuarioDTO.getId(), usuarioDTO.getNomeConta(), usuarioDTO.getTipoAcesso());
-            Cookie cookieUsuarioSession = new Cookie("usuarioSession", usuarioSession.getNomeConta());
-            resp.addCookie(cookieUsuarioSession);
-            req.getSession().setAttribute("usuario", usuarioSession);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("Falha na conexao");
+            String logado = "";
+
+            try {
+                logado = loginService.login(usuarioDTO);
+                UsuarioSession usuarioSession = new UsuarioSession(usuarioDTO.getId(), usuarioDTO.getNomeConta(), usuarioDTO.getTipoAcesso());
+                req.getSession().setAttribute("usuarioLogado", usuarioSession);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                System.out.println("Falha na conexao");
+            }
+            req.getRequestDispatcher(logado).forward(req, resp);
         }
-
-        req.getRequestDispatcher(logado).forward(req, resp);
     }
 }

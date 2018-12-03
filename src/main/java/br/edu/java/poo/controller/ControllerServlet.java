@@ -17,7 +17,7 @@ public class ControllerServlet extends HttpServlet {
         String acao = req.getParameter("acao");
 
         if ("login".equalsIgnoreCase(acao)) {
-            req.getRequestDispatcher("login").forward(req, resp);
+            req.getRequestDispatcher("login?tipo=logar").forward(req, resp);
         }
 
         if ("novaSenha".equalsIgnoreCase(acao)) {
@@ -88,7 +88,7 @@ public class ControllerServlet extends HttpServlet {
             if ("operador".equalsIgnoreCase(usuarioSession.getTipoAcesso())) {
                 tipo = "menuOperador.jsp";
             } else if ("cliente".equalsIgnoreCase(usuarioSession.getTipoAcesso())) {
-                tipo = "menuCliente.jsp";
+                tipo = "menuPrincipal.jsp";
             } else if ("usuario".equalsIgnoreCase(usuarioSession.getTipoAcesso())) {
                 tipo = "menuUsuario.jsp";
             } else if ("administrador".equalsIgnoreCase(usuarioSession.getTipoAcesso())) {
