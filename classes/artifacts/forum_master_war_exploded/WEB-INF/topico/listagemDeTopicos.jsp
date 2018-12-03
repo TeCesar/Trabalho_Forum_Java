@@ -31,15 +31,16 @@
 <table>
     <tr>
         <th>Titulo</th>
-        <th>Mensagem</th>
         <th>Autor</th>
+        <th>Situação</th>
         <th colspan="2">Ações</th>
     </tr>
     <c:forEach var="topico" items="${listaTopicos}">
         <tr>
             <td>${topico.titulo}</td>
-            <td>${topico.mensagem}</td>
             <td>${usuario.nomeConta}</td>
+            <td>${topico.situacao}</td>
+            <td><a href="controller?acao=topico&tipo=mostrarTopico&id=${topico.id}">Abrir</a></td>
         </tr>
     </c:forEach>
 </table>
