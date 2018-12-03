@@ -15,16 +15,16 @@
     </style>
 </head>
 <body>
-<c:if test="${usuario.tipoAcesso == 'Operador'}">
+<c:if test="${usuarioLogado.tipoAcesso == 'Operador'}">
     <%@include file="/WEB-INF/navbar/navbarOperador.jsp" %>
 </c:if>
-<c:if test="${usuario.tipoAcesso == 'Cliente'}">
+<c:if test="${usuarioLogado.tipoAcesso == 'Cliente'}">
     <%@include file="/WEB-INF/navbar/navbarCliente.jsp" %>
 </c:if>
-<c:if test="${usuario.tipoAcesso == 'Administrador'}">
+<c:if test="${usuarioLogado.tipoAcesso == 'Administrador'}">
     <%@include file="/WEB-INF/navbar/navbarAdministrador.jsp" %>
 </c:if>
-<c:if test="${usuario.tipoAcesso == 'Usuario'}">
+<c:if test="${usuarioLogado.tipoAcesso == 'Usuario'}">
     <%@include file="/WEB-INF/navbar/navbarUsuario.jsp" %>
 </c:if>
 

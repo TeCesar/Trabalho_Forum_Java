@@ -15,7 +15,7 @@
     </style>
 </head>
 <body>
-<c:if test="${usuario.tipoAcesso == 'Cliente'}">
+<c:if test="${usuarioLogado.tipoAcesso == 'Cliente'}">
     <%@include file="/WEB-INF/navbar/navbarCliente.jsp" %>
 </c:if>
 
