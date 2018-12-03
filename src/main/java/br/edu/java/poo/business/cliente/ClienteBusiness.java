@@ -1,8 +1,11 @@
 package br.edu.java.poo.business.cliente;
 
-import br.edu.java.poo.business.exceptions.CadastrarClienteException;
+import br.edu.java.poo.model.cliente.ClienteDTO;
 
 public interface ClienteBusiness {
 
-    boolean validaCliente(String nome, String sobrenome, String dtNasc, String sexo) throws CadastrarClienteException;
+    boolean cadastrarCliente(ClienteDTO clienteDTO);
+
+    boolean excluirCliente(int id);
+
 }

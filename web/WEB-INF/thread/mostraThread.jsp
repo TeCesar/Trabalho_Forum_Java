@@ -33,8 +33,21 @@
 
 <table>
     <c:forEach var="thread" items="${listaThread}">
-        Autor: ${thread.autor}<br>
         Mensagem: ${thread.mensagem}<br>
+        <c:choose>
+            <c:when test="${thread.usuarioDTO.tipoAcesso == 'Administrador'}">
+                Autor: <label style="color:darkgreen;">${thread.autor}(Admin)</label><br>
+            </c:when>
+            <c:when test="${thread.usuarioDTO.tipoAcesso == 'Operador'}">
+                Autor: <label style="color:darkblue;">${thread.autor}(OP)</label><br>
+            </c:when>
+            <c:when test="${thread.usuarioDTO.tipoAcesso == 'Usuario'}">
+                Autor: <label style="color:darkred;">${thread.autor}(User)</label><br>
+            </c:when>
+            <c:when test="${thread.usuarioDTO.tipoAcesso == 'Cliente'}">
+                Autor: <label style="color:darkorange;">${thread.autor}(Cliente)</label><br>
+            </c:when>
+        </c:choose>
         Data: <fmt:formatDate value="${thread.dataPostagem}" pattern="dd/MM/yyyy HH:mm:ss"/><br>
         <form method="get" action="controller">
             <input type="hidden" value="responderPostagemThread" name="acao">

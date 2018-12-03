@@ -16,6 +16,6 @@ public interface ClienteDAO {
 
     boolean excluirCliente(int id);
 
-    boolean mudarEmpresaClientes(int id);
+    boolean mudarEmpresaClientes(int idEmpresaVazia, int idEmpresa);
 
 }

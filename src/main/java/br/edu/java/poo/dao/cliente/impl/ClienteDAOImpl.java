@@ -8,7 +8,10 @@ import br.edu.java.poo.model.endereco.EnderecoDTO;
 import br.edu.java.poo.model.endereco.UfDTO;
 import br.edu.java.poo.model.usuario.UsuarioDTO;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +21,7 @@ public class ClienteDAOImpl implements ClienteDAO {
     public boolean cadastrarCliente(ClienteDTO clienteDTO) {
         try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO clientes(cliente_nome, cliente_sobrenome, cliente_dtNascimento," +
-                    "cliente_sexo, endereco_id, empresa_id, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+                    "cliente_sexo, endereco_id, empresa_id, usuario_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
             preparedStatement.setString(1, clienteDTO.getNome());
             preparedStatement.setString(2, clienteDTO.getSobrenome());
@@ -29,7 +32,6 @@ public class ClienteDAOImpl implements ClienteDAO {
             preparedStatement.setInt(7, clienteDTO.getUsuarioDTO().getId());
 
             int sucesso = preparedStatement.executeUpdate();
-            ResultSet resultSet = preparedStatement.getGeneratedKeys();
 
             if (sucesso != 0) {
                 return true;
@@ -61,40 +63,7 @@ public class ClienteDAOImpl implements ClienteDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                ClienteDTO clienteDTO = new ClienteDTO();
-                clienteDTO.setId(resultSet.getInt("cliente_id"));
-                clienteDTO.setNome(resultSet.getString("cliente_nome"));
-                clienteDTO.setSobrenome(resultSet.getString("cliente_sobrenome"));
-                clienteDTO.setDtNascimento(resultSet.getDate("cliente_dtNascimento"));
-                clienteDTO.setSexo(resultSet.getString("cliente_sexo"));
-                EmpresaDTO empresaDTO = new EmpresaDTO();
-                empresaDTO.setId(resultSet.getInt("empresa_id"));
-                empresaDTO.setNomeFantasia(resultSet.getString("empresa_nomeFantasia"));
-                empresaDTO.setCnpj(resultSet.getString("empresa_cnpj"));
-                empresaDTO.setRazaoSocial(resultSet.getString("empresa_razaoSocial"));
-                clienteDTO.setEmpresaDTO(empresaDTO);
-                EnderecoDTO enderecoDTO = new EnderecoDTO();
-                enderecoDTO.setId(resultSet.getInt("endereco_id"));
-                enderecoDTO.setRua(resultSet.getString("endereco_rua"));
-                enderecoDTO.setNumeroEndereco(resultSet.getString("endereco_numero"));
-                enderecoDTO.setBairro(resultSet.getString("endereco_bairro"));
-                enderecoDTO.setCidade(resultSet.getString("endereco_cidade"));
-                UfDTO ufDTO = new UfDTO();
-                ufDTO.setId(resultSet.getInt("uf_id"));
-                ufDTO.setSigla(resultSet.getString("uf_sigla"));
-                ufDTO.setNome(resultSet.getString("uf_nome"));
-                enderecoDTO.setUfDTO(ufDTO);
-                clienteDTO.setEnderecoDTO(enderecoDTO);
-                UsuarioDTO usuarioDTO = new UsuarioDTO();
-                usuarioDTO.setId(resultSet.getInt("usuario_id"));
-                usuarioDTO.setNomeConta(resultSet.getString("usuario_nomeConta"));
-                usuarioDTO.setTipoAcesso(resultSet.getString("usuario_tipoAcesso"));
-                usuarioDTO.setDataDeCadastro(resultSet.getDate("usuario_dataDeCadastro"));
-                usuarioDTO.setDataDeAlteracao(resultSet.getDate("usuario_dataDeAlteracao"));
-                usuarioDTO.setApelido(resultSet.getString("usuario_apelido"));
-                usuarioDTO.setErrosLogin(resultSet.getInt("usuario_errosLogin"));
-                usuarioDTO.setTicketsResolvidos(resultSet.getInt("usuario_ticketResolvidos"));
-                clienteDTO.setUsuarioDTO(usuarioDTO);
+                ClienteDTO clienteDTO = fillCliente(resultSet);
                 listaClientes.add(clienteDTO);
             }
 
@@ -111,7 +80,6 @@ public class ClienteDAOImpl implements ClienteDAO {
 
     @Override
     public ClienteDTO buscaCliente(int id) {
-        ClienteDTO clienteDTO = new ClienteDTO();
         String sql = "SELECT clientes.cliente_id, clientes.cliente_nome, clientes.cliente_sobrenome," +
                 " clientes.cliente_dtNascimento, clientes.cliente_sexo, empresas.empresa_id, empresas.empresa_nomeFantasia," +
                 " empresas.empresa_cnpj, empresas.empresa_razaoSocial, enderecos.endereco_id, enderecos.endereco_rua," +
@@ -130,51 +98,16 @@ public class ClienteDAOImpl implements ClienteDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                clienteDTO.setId(resultSet.getInt("cliente_id"));
-                clienteDTO.setNome(resultSet.getString("cliente_nome"));
-                clienteDTO.setSobrenome(resultSet.getString("cliente_sobrenome"));
-                clienteDTO.setDtNascimento(resultSet.getDate("cliente_dtNascimento"));
-                clienteDTO.setSexo(resultSet.getString("cliente_sexo"));
-                EmpresaDTO empresaDTO = new EmpresaDTO();
-                empresaDTO.setId(resultSet.getInt("empresa_id"));
-                empresaDTO.setNomeFantasia(resultSet.getString("empresa_nomeFantasia"));
-                empresaDTO.setCnpj(resultSet.getString("empresa_cnpj"));
-                empresaDTO.setRazaoSocial(resultSet.getString("empresa_razaoSocial"));
-                clienteDTO.setEmpresaDTO(empresaDTO);
-                EnderecoDTO enderecoDTO = new EnderecoDTO();
-                enderecoDTO.setId(resultSet.getInt("endereco_id"));
-                enderecoDTO.setRua(resultSet.getString("endereco_rua"));
-                enderecoDTO.setNumeroEndereco(resultSet.getString("endereco_numero"));
-                enderecoDTO.setBairro(resultSet.getString("endereco_bairro"));
-                enderecoDTO.setCidade(resultSet.getString("endereco_cidade"));
-                UfDTO ufDTO = new UfDTO();
-                ufDTO.setId(resultSet.getInt("uf_id"));
-                ufDTO.setSigla(resultSet.getString("uf_sigla"));
-                ufDTO.setNome(resultSet.getString("uf_nome"));
-                enderecoDTO.setUfDTO(ufDTO);
-                clienteDTO.setEnderecoDTO(enderecoDTO);
-                UsuarioDTO usuarioDTO = new UsuarioDTO();
-                usuarioDTO.setId(resultSet.getInt("usuario_id"));
-                usuarioDTO.setNomeConta(resultSet.getString("usuario_nomeConta"));
-                usuarioDTO.setTipoAcesso(resultSet.getString("usuario_tipoAcesso"));
-                usuarioDTO.setSenha(resultSet.getString("usuario_senha"));
-                usuarioDTO.setDataDeCadastro(resultSet.getDate("usuario_dataDeCadastro"));
-                usuarioDTO.setDataDeAlteracao(resultSet.getDate("usuario_dataDeAlteracao"));
-                usuarioDTO.setApelido(resultSet.getString("usuario_apelido"));
-                usuarioDTO.setErrosLogin(resultSet.getInt("usuario_errosLogin"));
-                usuarioDTO.setTicketsResolvidos(resultSet.getInt("usuario_ticketResolvidos"));
-                clienteDTO.setUsuarioDTO(usuarioDTO);
+                ClienteDTO clienteDTO = fillCliente(resultSet);
+                return clienteDTO;
             }
-
-            return clienteDTO;
 
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
-        return clienteDTO;
+        return null;
     }
 
     @Override
@@ -225,11 +158,12 @@ public class ClienteDAOImpl implements ClienteDAO {
     }
 
     @Override
-    public boolean mudarEmpresaClientes(int id) {
+    public boolean mudarEmpresaClientes(int idEmpresaVazia, int idEmpresa) {
         try (Connection connection = SQLConnectionProvider.openConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE clientes SET empresa_id = 6 WHERE empresa_id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE clientes SET empresa_id = ? WHERE empresa_id = ?");
 
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, idEmpresaVazia);
+            preparedStatement.setInt(2, idEmpresa);
 
             int resultado = preparedStatement.executeUpdate();
 
@@ -242,6 +176,44 @@ public class ClienteDAOImpl implements ClienteDAO {
             e.printStackTrace();
         }
         return false;
+    }
+
+    private ClienteDTO fillCliente(ResultSet resultSet) throws SQLException {
+        ClienteDTO clienteDTO = new ClienteDTO();
+        clienteDTO.setId(resultSet.getInt("cliente_id"));
+        clienteDTO.setNome(resultSet.getString("cliente_nome"));
+        clienteDTO.setSobrenome(resultSet.getString("cliente_sobrenome"));
+        clienteDTO.setDtNascimento(resultSet.getDate("cliente_dtNascimento"));
+        clienteDTO.setSexo(resultSet.getString("cliente_sexo"));
+        EmpresaDTO empresaDTO = new EmpresaDTO();
+        empresaDTO.setId(resultSet.getInt("empresa_id"));
+        empresaDTO.setNomeFantasia(resultSet.getString("empresa_nomeFantasia"));
+        empresaDTO.setCnpj(resultSet.getString("empresa_cnpj"));
+        empresaDTO.setRazaoSocial(resultSet.getString("empresa_razaoSocial"));
+        clienteDTO.setEmpresaDTO(empresaDTO);
+        EnderecoDTO enderecoDTO = new EnderecoDTO();
+        enderecoDTO.setId(resultSet.getInt("endereco_id"));
+        enderecoDTO.setRua(resultSet.getString("endereco_rua"));
+        enderecoDTO.setNumeroEndereco(resultSet.getString("endereco_numero"));
+        enderecoDTO.setBairro(resultSet.getString("endereco_bairro"));
+        enderecoDTO.setCidade(resultSet.getString("endereco_cidade"));
+        UfDTO ufDTO = new UfDTO();
+        ufDTO.setId(resultSet.getInt("uf_id"));
+        ufDTO.setSigla(resultSet.getString("uf_sigla"));
+        ufDTO.setNome(resultSet.getString("uf_nome"));
+        enderecoDTO.setUfDTO(ufDTO);
+        clienteDTO.setEnderecoDTO(enderecoDTO);
+        UsuarioDTO usuarioDTO = new UsuarioDTO();
+        usuarioDTO.setId(resultSet.getInt("usuario_id"));
+        usuarioDTO.setNomeConta(resultSet.getString("usuario_nomeConta"));
+        usuarioDTO.setTipoAcesso(resultSet.getString("usuario_tipoAcesso"));
+        usuarioDTO.setDataDeCadastro(resultSet.getDate("usuario_dataDeCadastro"));
+        usuarioDTO.setDataDeAlteracao(resultSet.getDate("usuario_dataDeAlteracao"));
+        usuarioDTO.setApelido(resultSet.getString("usuario_apelido"));
+        usuarioDTO.setErrosLogin(resultSet.getInt("usuario_errosLogin"));
+        usuarioDTO.setTicketsResolvidos(resultSet.getInt("usuario_ticketResolvidos"));
+        clienteDTO.setUsuarioDTO(usuarioDTO);
+        return clienteDTO;
     }
 
 

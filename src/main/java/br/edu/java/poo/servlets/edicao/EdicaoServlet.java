@@ -8,6 +8,8 @@ import br.edu.java.poo.dao.empresa.EmpresaDAO;
 import br.edu.java.poo.dao.empresa.impl.EmpresaDAOImpl;
 import br.edu.java.poo.dao.uf.UfDAO;
 import br.edu.java.poo.dao.uf.impl.UfDAOImpl;
+import br.edu.java.poo.dao.usuario.UsuarioDAO;
+import br.edu.java.poo.dao.usuario.impl.UsuarioDAOImpl;
 import br.edu.java.poo.model.cliente.ClienteDTO;
 import br.edu.java.poo.model.empresa.EmpresaDTO;
 import br.edu.java.poo.model.endereco.EnderecoDTO;
@@ -29,6 +31,11 @@ import java.util.List;
 
 @WebServlet(urlPatterns = "/editar")
 public class EdicaoServlet extends HttpServlet {
+    UsuarioDAO usuarioDAO;
+
+    public EdicaoServlet(){
+        usuarioDAO = new UsuarioDAOImpl();
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -133,6 +140,10 @@ public class EdicaoServlet extends HttpServlet {
             editaClienteService.editaCliente(clienteDTO, altera);
 
             req.getRequestDispatcher("listar?tipo=clientes").forward(req, resp);
+        }
+
+        if ("alteraSenha".equalsIgnoreCase(tipo)){
+
         }
 
     }

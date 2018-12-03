@@ -2,41 +2,43 @@ package br.edu.java.poo.business.cliente.impl;
 
 import br.edu.java.poo.business.cliente.ClienteBusiness;
 import br.edu.java.poo.business.exceptions.CadastrarClienteException;
+import br.edu.java.poo.dao.cliente.ClienteDAO;
+import br.edu.java.poo.dao.cliente.impl.ClienteDAOImpl;
 import br.edu.java.poo.model.cliente.ClienteDTO;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import br.edu.java.poo.validators.cliente.ClienteValidator;
+import br.edu.java.poo.validators.cliente.impl.ClienteValidatorImpl;
 
 public class ClienteBusinessImpl implements ClienteBusiness {
+    ClienteValidator clienteValidator;
+    ClienteDAO clienteDAO;
+
+    public ClienteBusinessImpl() {
+        clienteValidator = new ClienteValidatorImpl();
+        clienteDAO = new ClienteDAOImpl();
+    }
 
     @Override
-    public boolean validaCliente(String nome, String sobrenome, String dtNasc, String sexo) throws CadastrarClienteException {
-        ClienteDTO clienteDTO = new ClienteDTO();
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        clienteDTO.setNome(nome);
-        clienteDTO.setSobrenome(sobrenome);
-        try {
-            clienteDTO.setDtNascimento(dateFormat.parse(dtNasc));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        clienteDTO.setSexo(sexo);
+    public boolean cadastrarCliente(ClienteDTO clienteDTO) {
         if (clienteDTO != null) {
-            for (char c : clienteDTO.getNome().toCharArray()) {
-                if (Character.isDigit(c)) {
-                    throw new CadastrarClienteException("O nome não pode conter números.");
-                }
+            try {
+                clienteValidator.validaCliente(clienteDTO);
+            } catch (CadastrarClienteException e) {
+                e.printStackTrace();
+                return false;
             }
 
-            for (char c : clienteDTO.getSobrenome().toCharArray()) {
-                if (Character.isDigit(c)) {
-                    throw new CadastrarClienteException("O sobrenome não pode conter números.");
-                }
+            if (clienteDAO.cadastrarCliente(clienteDTO)) {
+                return true;
             }
+        }
+        return false;
+    }
 
-            if (!dtNasc.substring(2, 3).equalsIgnoreCase("/") || !dtNasc.substring(5, 6).equalsIgnoreCase("/")) {
-                throw new CadastrarClienteException("Data inválida.");
+    @Override
+    public boolean excluirCliente(int id) {
+        if (id != 0){
+            if (clienteDAO.excluirCliente(id)){
+                return true;
             }
         }
         return false;

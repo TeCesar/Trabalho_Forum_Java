@@ -4,6 +4,8 @@ import br.edu.java.poo.model.empresa.EmpresaDTO;
 
 public interface EmpresaBusiness {
 
-    boolean validaEmpresa(EmpresaDTO empresaDTO);
+    boolean cadastrarEmpresa(EmpresaDTO empresaDTO);
+
+    boolean excluirEmpresa(int id);
 
 }
