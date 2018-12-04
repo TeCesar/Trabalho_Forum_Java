@@ -106,13 +106,13 @@ public class ControllerServlet extends HttpServlet {
             req.getRequestDispatcher("listar?tipo=tickets&situacao=" + tipo).forward(req, resp);
         }
 
-        if ("listar".equalsIgnoreCase(acao)){
+        if ("listar".equalsIgnoreCase(acao)) {
             String tipo = req.getParameter("tipo");
             if ("clientes".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("listar?tipo=clientes").forward(req, resp);
             } else if ("empresas".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("listar?tipo=empresas").forward(req, resp);
-            } else if ("usuarios".equalsIgnoreCase(tipo)){
+            } else if ("usuarios".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("listar?tipo=usuarios").forward(req, resp);
             }
         }
@@ -174,6 +174,13 @@ public class ControllerServlet extends HttpServlet {
             String titulo = req.getParameter("titulo");
             String id = req.getParameter("idPostagem");
             req.getRequestDispatcher("thread?tipo=responder&titulo=" + titulo + "&mensagem=&id=" + id).forward(req, resp);
+        }
+
+        if ("usuario".equalsIgnoreCase(acao)) {
+            String tipo = req.getParameter("tipo");
+            if ("bloquearUsuario".equalsIgnoreCase(tipo)) {
+                req.getRequestDispatcher("editar?tipo=bloquearUsuario").forward(req, resp);
+            }
         }
 
     }

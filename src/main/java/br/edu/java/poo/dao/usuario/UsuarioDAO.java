@@ -21,4 +21,6 @@ public interface UsuarioDAO {
     boolean atualizaErrosLogin(UsuarioDTO usuarioDTO);
 
     List<UsuarioDTO> listarUsuarios();
+
+    boolean mudarBloqueioUsuario(UsuarioDTO usuarioDTO);
 }

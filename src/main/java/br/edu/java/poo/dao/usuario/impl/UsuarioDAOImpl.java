@@ -112,17 +112,24 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
     @Override
     public UsuarioDTO buscarUsuario(int id) {
-        UsuarioDTO usuarioBusca = new UsuarioDTO();
         try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM usuarios WHERE usuario_id = ?");
 
             preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                UsuarioDTO usuarioBusca = fillUsuario(resultSet);
+                return usuarioBusca;
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return usuarioBusca;
+        return null;
     }
 
     @Override
@@ -172,7 +179,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         List<UsuarioDTO> listaUsuarios = new ArrayList<>();
         try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT usuario_id, usuario_nomeConta, usuario_tipoAcesso, " +
-                    "usuario_dataDeCadastro, usuario_dataDeAlteracao, usuario_apelido, usuario_errosLogin, usuario_ticketResolvidos FROM usuarios");
+                    "usuario_dataDeCadastro, usuario_dataDeAlteracao, usuario_apelido, usuario_errosLogin, usuario_ticketResolvidos, usuario_bloqueado FROM usuarios");
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -189,6 +196,27 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         return listaUsuarios;
     }
 
+    @Override
+    public boolean mudarBloqueioUsuario(UsuarioDTO usuarioDTO) {
+        try (Connection connection = SQLConnectionProvider.openConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE usuarios SET usuario_bloqueado = ? WHERE usuario_id = ?");
+
+            preparedStatement.setInt(1, usuarioDTO.getBloqueado());
+            preparedStatement.setInt(2, usuarioDTO.getId());
+
+            int resultado = preparedStatement.executeUpdate();
+
+            if (resultado != 0){
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     private UsuarioDTO fillUsuario(ResultSet resultSet) throws SQLException {
         UsuarioDTO usuarioBusca = new UsuarioDTO();
         usuarioBusca.setId(resultSet.getInt("usuario_id"));
@@ -199,6 +227,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         usuarioBusca.setApelido(resultSet.getString("usuario_apelido"));
         usuarioBusca.setErrosLogin(resultSet.getInt("usuario_errosLogin"));
         usuarioBusca.setTicketsResolvidos(resultSet.getInt("usuario_ticketResolvidos"));
+        usuarioBusca.setBloqueado(resultSet.getInt("usuario_bloqueado"));
         return usuarioBusca;
     }
 

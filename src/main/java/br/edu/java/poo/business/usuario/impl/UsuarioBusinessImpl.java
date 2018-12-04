@@ -67,4 +67,19 @@ public class UsuarioBusinessImpl implements UsuarioBusiness {
             usuarioDAO.atualizaErrosLogin(usuarioBusca);
         }
     }
+
+    @Override
+    public boolean mudarBloqueioUsuario(int id) {
+        UsuarioDTO usuarioDTO = usuarioDAO.buscarUsuario(id);
+        if (usuarioDTO.getBloqueado() == 0){
+            usuarioDTO.setBloqueado(1);
+        } else {
+            usuarioDTO.setBloqueado(0);
+        }
+
+        if (usuarioDAO.mudarBloqueioUsuario(usuarioDTO)){
+            return true;
+        }
+        return false;
+    }
 }

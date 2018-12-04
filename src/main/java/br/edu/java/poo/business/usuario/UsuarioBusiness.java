@@ -10,4 +10,6 @@ public interface UsuarioBusiness {
 
     void aumentaErroLogin(String nomeConta);
 
+    boolean mudarBloqueioUsuario(int id);
+
 }
