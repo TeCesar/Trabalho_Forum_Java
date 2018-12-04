@@ -4,8 +4,6 @@ import br.edu.java.poo.business.cliente.ClienteBusiness;
 import br.edu.java.poo.business.cliente.impl.ClienteBusinessImpl;
 import br.edu.java.poo.business.empresa.EmpresaBusiness;
 import br.edu.java.poo.business.empresa.impl.EmpresaBusinessImpl;
-import br.edu.java.poo.business.usuario.UsuarioBusiness;
-import br.edu.java.poo.business.usuario.impl.UsuarioBusinessImpl;
 import br.edu.java.poo.dao.cliente.ClienteDAO;
 import br.edu.java.poo.dao.cliente.impl.ClienteDAOImpl;
 import br.edu.java.poo.dao.empresa.EmpresaDAO;
@@ -21,8 +19,6 @@ import br.edu.java.poo.model.cliente.ClienteDTO;
 import br.edu.java.poo.model.empresa.EmpresaDTO;
 import br.edu.java.poo.model.endereco.EnderecoDTO;
 import br.edu.java.poo.model.endereco.UfDTO;
-import br.edu.java.poo.model.usuario.UsuarioDTO;
-import br.edu.java.poo.services.edicao.EditaClienteService;
 import br.edu.java.poo.services.edicao.EditaEmpresaService;
 
 import javax.servlet.ServletException;
@@ -31,9 +27,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/editar")
@@ -104,11 +97,6 @@ public class EdicaoServlet extends HttpServlet {
                 req.getRequestDispatcher("listar?tipo=clientes").forward(req, resp);
             }
         }
-
-        if ("alteraSenha".equalsIgnoreCase(tipo)) {
-
-        }
-
     }
 
     @Override

@@ -46,6 +46,8 @@ public class LoginServlet extends HttpServlet {
                 logado = loginService.login(usuarioDTO);
                 UsuarioSession usuarioSession = new UsuarioSession(usuarioDTO.getId(), usuarioDTO.getNomeConta(), usuarioDTO.getTipoAcesso());
                 req.getSession().setAttribute("usuarioLogado", usuarioSession);
+                Cookie cookieUsuarioLogado = new Cookie("usuarioLogado", usuarioDTO.getNomeConta());
+                resp.addCookie(cookieUsuarioLogado);
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
                 System.out.println("Falha na conexao");
