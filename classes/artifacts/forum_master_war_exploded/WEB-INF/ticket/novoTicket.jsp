@@ -18,12 +18,18 @@
 <c:if test="${usuarioLogado.tipoAcesso == 'Cliente'}">
     <%@include file="/WEB-INF/navbar/navbarCliente.jsp" %>
 </c:if>
+<center>
+        <h1 class="titulo">Abrir novo Ticket</h1>
+    <br><br>
+    <div style="text-align: center">
+        <form method="post" action="controller?acao=ticket&tipo=finalizarTicket">
+           <strong><label class="txt">Titulo do Tickt: </label></strong><input type="text" name="tituloTicket" class="campo"><br><br>
+            <strong><label class="txt">Mensagem: </label></strong><input type="text" name="mensagemTicket" class="campo"><br><br>
+            <input type="submit" value="Abrir Ticket" class="btne">
+        </form>
+    </div>
+</center>
 
-<form method="post" action="controller?acao=ticket&tipo=finalizarTicket">
-    <input type="text" name="tituloTicket"><br><br>
-    <input type="text" name="mensagemTicket">
-    <input type="submit" value="Abrir Ticket">
-</form>
 
 </body>
 </html>
