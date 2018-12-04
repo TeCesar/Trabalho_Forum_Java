@@ -15,13 +15,13 @@ public class TicketMapperImpl implements BaseMapper<HttpServletRequest, TicketDT
 
     @Override
     public TicketDTO doMap(HttpServletRequest req) {
-        String tipoTicketMapper = req.getParameter("tipoTicketMapper");
+        String tipoTicketMapper = (String) req.getAttribute("tipoTicketMapper");
         TicketDTO ticketBusca = new TicketDTO();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         if ("inicioTicket".equalsIgnoreCase(tipoTicketMapper)){
             String data = dateFormat.format(new Date());
 
-            UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuario");
+            UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuarioLogado");
 
             UsuarioDTO usuarioDTO = new UsuarioDTO();
 
@@ -33,6 +33,20 @@ public class TicketMapperImpl implements BaseMapper<HttpServletRequest, TicketDT
 
             try {
                 ticketBusca.setTempoInicio(dateFormat.parse(data));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        } else {
+            String titulo = req.getParameter("tituloTicket");
+            ticketBusca = (TicketDTO) req.getSession().getAttribute("novoTicket");
+            ticketBusca.setTitulo(titulo);
+            ticketBusca.setStatus("Completo");
+            ticketBusca.setRespondido("Nao");
+            ticketBusca.setSituacao("Aberto");
+            String data = dateFormat.format(new Date());
+
+            try {
+                ticketBusca.setTempoFim(dateFormat.parse(data));
             } catch (ParseException e) {
                 e.printStackTrace();
             }

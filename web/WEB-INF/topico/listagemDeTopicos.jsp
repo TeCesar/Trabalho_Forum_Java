@@ -49,7 +49,7 @@
                     <c:if test="${topico.situacao == 'Fechado'  && topico.respondido == 'Nao'}">
                         <td style="background-color: #F08080;">${topico.situacao}</td>
                     </c:if>
-                    <td class="linkCor"><a  href="controller?acao=topico&tipo=mostrarTopico&id=${topico.id}">Abrir</a></td>
+                    <td class="linkCor"><a  href="controller?acao=topico&tipo=mostrarTopico&id=${topico.id}&tt=topico&titulo=${topico.titulo}">Abrir</a></td>
                 </tr>
             </c:forEach>
         </table>

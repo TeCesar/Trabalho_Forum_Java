@@ -40,6 +40,7 @@ public class TopicoServlet extends HttpServlet {
             req.getSession().setAttribute("tipoTopicoMapper", tipo);
             TopicoDTO topicoDTO = topicoMapper.doMap(req);
             req.setAttribute("threadMapperTopico", topicoDTO);
+            req.setAttribute("tipoThreadMapper", "topico");
             ThreadDTO threadDTO = threadMapper.doMap(req);
             req.getSession().removeAttribute("novoTopico");
 

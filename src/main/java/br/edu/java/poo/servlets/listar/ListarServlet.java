@@ -39,6 +39,17 @@ public class ListarServlet extends HttpServlet {
             req.setAttribute("listaEmpresas", listaEmpresas);
             req.getRequestDispatcher("WEB-INF/listas/listaEmpresas.jsp").forward(req, resp);
         }
+
+        if ("tickets".equalsIgnoreCase(tipo)) {
+            String situacao = req.getParameter("situacao");
+            if ("user".equalsIgnoreCase(situacao)) {
+                TicketDAO ticketDAO = new TicketDAOImpl();
+                UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuarioLogado");
+                List<TicketDTO> listaTickets = ticketDAO.listarTicketsUser(usuarioSession.getId());
+                req.setAttribute("listaTickets", listaTickets);
+                req.getRequestDispatcher("WEB-INF/listas/listaTickets.jsp").forward(req, resp);
+            }
+        }
     }
 
     @Override
@@ -63,7 +74,7 @@ public class ListarServlet extends HttpServlet {
             String situacao = req.getParameter("situacao");
             if ("user".equalsIgnoreCase(situacao)) {
                 TicketDAO ticketDAO = new TicketDAOImpl();
-                UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuario");
+                UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuarioLogado");
                 List<TicketDTO> listaTickets = ticketDAO.listarTicketsUser(usuarioSession.getId());
                 req.setAttribute("listaTickets", listaTickets);
                 req.getRequestDispatcher("WEB-INF/listas/listaTickets.jsp").forward(req, resp);

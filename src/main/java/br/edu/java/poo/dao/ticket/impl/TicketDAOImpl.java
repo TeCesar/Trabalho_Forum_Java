@@ -25,7 +25,7 @@ public class TicketDAOImpl implements TicketDAO {
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
 
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 resultado = resultSet.getInt(1);
             }
 
@@ -39,7 +39,7 @@ public class TicketDAOImpl implements TicketDAO {
     public boolean finalizaTicket(TicketDTO ticketDTO) {
         String sql = "UPDATE tickets SET ticket_titulo = ?, ticket_status = ?, ticket_tempoFim = ?, ticket_situacao = ?, " +
                 "ticket_respondido = ? WHERE ticket_id = ?";
-        try (Connection connection = SQLConnectionProvider.openConnection()){
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, ticketDTO.getTitulo());
@@ -51,7 +51,7 @@ public class TicketDAOImpl implements TicketDAO {
 
             int resultado = preparedStatement.executeUpdate();
 
-            if (resultado != 0){
+            if (resultado != 0) {
                 return true;
             }
         } catch (SQLException e) {
@@ -77,7 +77,11 @@ public class TicketDAOImpl implements TicketDAO {
 
                 ResultSet resultSet = preparedStatement.executeQuery();
 
-                listaTickets = retrieveInformacoes(resultSet);
+                while (resultSet.next()){
+                    TicketDTO ticketDTO = fillTicket(resultSet);
+                    listaTickets.add(ticketDTO);
+                }
+
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -105,7 +109,11 @@ public class TicketDAOImpl implements TicketDAO {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            listaTickets = retrieveInformacoes(resultSet);
+            while (resultSet.next()){
+                TicketDTO ticketDTO = fillTicket(resultSet);
+                listaTickets.add(ticketDTO);
+            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -122,14 +130,18 @@ public class TicketDAOImpl implements TicketDAO {
                 "tickets.ticket_tempoFim, tickets.ticket_situacao, tickets.ticket_respondido, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso " +
                 "FROM tickets INNER JOIN usuarios ON tickets.usuario_id = usuarios.usuario_id WHERE usuarios.usuario_id = ?";
 
-        try (Connection connection = SQLConnectionProvider.openConnection()){
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setInt(1, idUsuario);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            listaTickets = retrieveInformacoes(resultSet);
+            while (resultSet.next()) {
+                TicketDTO ticketDTO = fillTicket(resultSet);
+                listaTickets.add(ticketDTO);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -138,24 +150,20 @@ public class TicketDAOImpl implements TicketDAO {
         return listaTickets;
     }
 
-    private List<TicketDTO> retrieveInformacoes(ResultSet resultSet) throws SQLException {
-        List<TicketDTO> listaTickets = new ArrayList<>();
-        while (resultSet.next()) {
-            UsuarioDTO usuarioDTO = new UsuarioDTO();
-            usuarioDTO.setId(resultSet.getInt("usuario_id"));
-            usuarioDTO.setNomeConta(resultSet.getString("usuario_nomeConta"));
-            usuarioDTO.setTipoAcesso(resultSet.getString("usuario_tipoAcesso"));
-            TicketDTO ticketDTO = new TicketDTO();
-            ticketDTO.setUsuarioDTO(usuarioDTO);
-            ticketDTO.setId(resultSet.getInt("ticket_id"));
-            ticketDTO.setTitulo(resultSet.getString("ticket_titulo"));
-            ticketDTO.setStatus(resultSet.getString("ticket_status"));
-            ticketDTO.setTempoInicio(resultSet.getDate("ticket_tempoInicio"));
-            ticketDTO.setTempoFim(resultSet.getDate("ticket_tempoFim"));
-            ticketDTO.setSituacao(resultSet.getString("ticket_situacao"));
-            ticketDTO.setRespondido(resultSet.getString("ticket_respondido"));
-            listaTickets.add(ticketDTO);
-        }
-        return listaTickets;
+    private TicketDTO fillTicket(ResultSet resultSet) throws SQLException {
+        UsuarioDTO usuarioDTO = new UsuarioDTO();
+        usuarioDTO.setId(resultSet.getInt("usuario_id"));
+        usuarioDTO.setNomeConta(resultSet.getString("usuario_nomeConta"));
+        usuarioDTO.setTipoAcesso(resultSet.getString("usuario_tipoAcesso"));
+        TicketDTO ticketDTO = new TicketDTO();
+        ticketDTO.setUsuarioDTO(usuarioDTO);
+        ticketDTO.setId(resultSet.getInt("ticket_id"));
+        ticketDTO.setTitulo(resultSet.getString("ticket_titulo"));
+        ticketDTO.setStatus(resultSet.getString("ticket_status"));
+        ticketDTO.setTempoInicio(resultSet.getDate("ticket_tempoInicio"));
+        ticketDTO.setTempoFim(resultSet.getDate("ticket_tempoFim"));
+        ticketDTO.setSituacao(resultSet.getString("ticket_situacao"));
+        ticketDTO.setRespondido(resultSet.getString("ticket_respondido"));
+        return ticketDTO;
     }
 }
