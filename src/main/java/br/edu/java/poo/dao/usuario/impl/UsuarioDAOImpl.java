@@ -23,6 +23,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
                 usuarioDTO.setNomeConta(resultSet.getString("usuario_nomeConta"));
                 usuarioDTO.setSenha(resultSet.getString("usuario_senha"));
                 usuarioDTO.setTipoAcesso(resultSet.getString("usuario_tipoAcesso"));
+                usuarioDTO.setBloqueado(resultSet.getInt("usuario_bloqueado"));
             } else {
                 return null;
             }

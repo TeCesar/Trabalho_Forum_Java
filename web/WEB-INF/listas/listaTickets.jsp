@@ -22,6 +22,9 @@
 <c:if test="${usuarioLogado.tipoAcesso == 'Cliente'}">
     <%@include file="/WEB-INF/navbar/navbarCliente.jsp" %>
 </c:if>
+<c:if test="${usuarioLogado.tipoAcesso == 'Administrador'}">
+    <%@include file="/WEB-INF/navbar/navbarAdministrador.jsp" %>
+</c:if>
 <br><br><br><br><br><br>
 
 <h1 class="titulo">Todos Tickets</h1>

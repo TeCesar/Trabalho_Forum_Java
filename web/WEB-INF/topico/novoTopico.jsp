@@ -33,8 +33,8 @@
     <div style="text-align: center">
         <form method="post" action="controller?acao=topico&tipo=finalizaTopico">
             <%--<input type="hidden" value="${novoTopico.id}" name="idTopico">--%>
-            <strong><label class="txt">Titulo: </label></strong><input type="text" name="tituloTopico" class="campo"><br><br>
-            <strong><label class="txt">Mensagem: </label></strong><input type="text" name="mensagemTopico" class="campo"><br><br>
+            <strong><label class="txt">Titulo: </label></strong><input type="text" name="tituloTopico" class="campo" required><br><br>
+            <strong><label class="txt">Mensagem: </label></strong><input type="text" name="mensagemTopico" class="campo" required><br><br>
             <input type="submit" value="Criar Tópico" class="btne">
         </form>
     </div>

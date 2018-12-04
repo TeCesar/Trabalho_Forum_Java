@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 04-Dez-2018 às 23:00
+-- Generation Time: 05-Dez-2018 às 00:07
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -127,7 +127,86 @@ INSERT INTO `acoes` (`acao_id`, `acao_acao`, `acao_tipo`, `usuario_id`) VALUES
 (92, '[Ljava.lang.String;@47a4cfd1', '[Ljava.lang.String;@2c2b81e6', 2),
 (93, '[Ljava.lang.String;@452b0fa0', '[Ljava.lang.String;@479cd252', 2),
 (94, '[Ljava.lang.String;@421e5e70', '[Ljava.lang.String;@4cd9b843', 2),
-(95, '[Ljava.lang.String;@37d59967', '[Ljava.lang.String;@376d46ef', 2);
+(95, '[Ljava.lang.String;@37d59967', '[Ljava.lang.String;@376d46ef', 2),
+(96, '[Ljava.lang.String;@6a327ac0', '[Ljava.lang.String;@5d4e1c81', 2),
+(97, '[Ljava.lang.String;@775da7e0', '[Ljava.lang.String;@740147de', 2),
+(98, '[Ljava.lang.String;@6985d45d', '[Ljava.lang.String;@704d1243', 2),
+(99, '[Ljava.lang.String;@4b7ee573', '[Ljava.lang.String;@3f005c40', 2),
+(100, '[Ljava.lang.String;@16b555df', '[Ljava.lang.String;@18382acc', 2),
+(101, '[Ljava.lang.String;@c35c545', '[Ljava.lang.String;@51287f8', 2),
+(102, '[Ljava.lang.String;@21f613cd', '[Ljava.lang.String;@678d6f86', 2),
+(103, '[Ljava.lang.String;@2b041885', '[Ljava.lang.String;@25c3e395', 1),
+(104, '[Ljava.lang.String;@7c4711c6', '[Ljava.lang.String;@4d954ec4', 1),
+(105, '[Ljava.lang.String;@58432731', '[Ljava.lang.String;@1d41a25d', 1),
+(106, '[Ljava.lang.String;@454d22a2', '[Ljava.lang.String;@4b8ad47b', 1),
+(107, '[Ljava.lang.String;@7e76e1d9', NULL, 1),
+(108, '[Ljava.lang.String;@5d2429e2', NULL, 1),
+(109, '[Ljava.lang.String;@54fcc798', '[Ljava.lang.String;@7c8e19fe', 1),
+(110, '[Ljava.lang.String;@13ce2ac5', '[Ljava.lang.String;@1d09c6cc', 1),
+(111, NULL, NULL, 1),
+(112, NULL, NULL, 1),
+(113, '[Ljava.lang.String;@381695a1', NULL, 1),
+(115, '[Ljava.lang.String;@373186fb', NULL, 15),
+(116, '[Ljava.lang.String;@ae81db6', NULL, 15),
+(117, '[Ljava.lang.String;@12ec3b72', NULL, 15),
+(119, '[Ljava.lang.String;@12565f36', '[Ljava.lang.String;@62c90148', 2),
+(120, '[Ljava.lang.String;@78040b0a', '[Ljava.lang.String;@307f7a73', 2),
+(121, '[Ljava.lang.String;@30a12ad5', NULL, 2),
+(122, '[Ljava.lang.String;@3c8cbd57', '[Ljava.lang.String;@576ab2b0', 2),
+(123, '[Ljava.lang.String;@a4aaf7f', NULL, 2),
+(124, '[Ljava.lang.String;@5175362f', NULL, 2),
+(125, '[Ljava.lang.String;@2f295f6c', NULL, 2),
+(126, '[Ljava.lang.String;@6d03a582', '[Ljava.lang.String;@41133415', 2),
+(127, '[Ljava.lang.String;@2cbcdeb0', '[Ljava.lang.String;@69be4543', 2),
+(128, '[Ljava.lang.String;@1eaa24bd', NULL, 2),
+(129, '[Ljava.lang.String;@605ef271', '[Ljava.lang.String;@333086e2', 2),
+(130, '[Ljava.lang.String;@7483db48', NULL, 2),
+(131, '[Ljava.lang.String;@78188884', NULL, 2),
+(132, '[Ljava.lang.String;@16292e32', '[Ljava.lang.String;@18eed287', 2),
+(133, '[Ljava.lang.String;@6106fd1b', '[Ljava.lang.String;@6fc10f4b', 2),
+(134, '[Ljava.lang.String;@35d7371', '[Ljava.lang.String;@24b64f8e', 2),
+(135, '[Ljava.lang.String;@62642d00', NULL, 2),
+(136, '[Ljava.lang.String;@4cfbc24f', '[Ljava.lang.String;@4603a93f', 2),
+(137, '[Ljava.lang.String;@6a8b24b', NULL, 2),
+(138, '[Ljava.lang.String;@2ba426b4', NULL, 2),
+(139, '[Ljava.lang.String;@6406d5eb', '[Ljava.lang.String;@f11defe', 2),
+(140, '[Ljava.lang.String;@29249bf3', '[Ljava.lang.String;@6d76a367', 2),
+(141, '[Ljava.lang.String;@6bde1d1a', NULL, 2),
+(142, '[Ljava.lang.String;@4495e152', '[Ljava.lang.String;@7bff6e26', 2),
+(143, '[Ljava.lang.String;@3200fef', NULL, 2),
+(144, '[Ljava.lang.String;@15a7b99e', NULL, 2),
+(145, '[Ljava.lang.String;@4a9dc055', '[Ljava.lang.String;@73f08d21', 2),
+(146, '[Ljava.lang.String;@1808ab6f', '[Ljava.lang.String;@4113253f', 2),
+(147, '[Ljava.lang.String;@20a85ce4', NULL, 2),
+(148, '[Ljava.lang.String;@269a4069', '[Ljava.lang.String;@4855dbb0', 2),
+(149, '[Ljava.lang.String;@1bcc288d', '[Ljava.lang.String;@533fc2df', 2),
+(150, '[Ljava.lang.String;@249322db', '[Ljava.lang.String;@684a08ba', 2),
+(151, '[Ljava.lang.String;@7bd01454', NULL, 2),
+(152, '[Ljava.lang.String;@7e1fc0d1', '[Ljava.lang.String;@7f136f5b', 2),
+(153, '[Ljava.lang.String;@17c793f3', NULL, 2),
+(154, '[Ljava.lang.String;@4aa0b548', NULL, 2),
+(155, '[Ljava.lang.String;@624d2751', '[Ljava.lang.String;@6c8ac568', 2),
+(156, '[Ljava.lang.String;@24466a56', '[Ljava.lang.String;@2a8180ae', 2),
+(157, '[Ljava.lang.String;@669a56c9', NULL, 2),
+(158, '[Ljava.lang.String;@15da4a63', '[Ljava.lang.String;@3bafe00c', 2),
+(159, '[Ljava.lang.String;@18307870', NULL, 2),
+(160, '[Ljava.lang.String;@62917ed9', NULL, 2),
+(161, '[Ljava.lang.String;@4c9460af', '[Ljava.lang.String;@4253974d', 2),
+(162, '[Ljava.lang.String;@7d7dd62d', '[Ljava.lang.String;@73ba27f2', 2),
+(163, '[Ljava.lang.String;@4853d21b', NULL, 2),
+(164, '[Ljava.lang.String;@1faa2417', '[Ljava.lang.String;@5d86fcc3', 2),
+(165, '[Ljava.lang.String;@5490e170', NULL, 2),
+(166, '[Ljava.lang.String;@d04d16b', '[Ljava.lang.String;@7fcba1b', 2),
+(167, '[Ljava.lang.String;@1f76a46a', '[Ljava.lang.String;@11b149f4', 2),
+(168, '[Ljava.lang.String;@4d3079a0', '[Ljava.lang.String;@c01d1a0', 2),
+(169, '[Ljava.lang.String;@4fc2488e', NULL, 2),
+(170, '[Ljava.lang.String;@1c4a59d9', '[Ljava.lang.String;@16b232a9', 2),
+(171, '[Ljava.lang.String;@7c29a20', NULL, 2),
+(172, '[Ljava.lang.String;@cab793b', '[Ljava.lang.String;@653124b', 2),
+(173, '[Ljava.lang.String;@3559aae0', NULL, 2),
+(174, '[Ljava.lang.String;@4c80c707', '[Ljava.lang.String;@1d7d1010', 2),
+(175, '[Ljava.lang.String;@5f65a138', NULL, 2),
+(176, '[Ljava.lang.String;@2b51095e', '[Ljava.lang.String;@48125a6', 2);
 
 -- --------------------------------------------------------
 
@@ -218,7 +297,7 @@ INSERT INTO `enderecos` (`endereco_id`, `endereco_rua`, `endereco_numero`, `ende
 
 CREATE TABLE `threads` (
   `thread_id` int(11) NOT NULL,
-  `thread_mensagem` varchar(50) NOT NULL,
+  `thread_mensagem` varchar(500) NOT NULL,
   `thread_autor` varchar(50) NOT NULL,
   `thread_autorPergunta` int(2) NOT NULL,
   `thread_dataPostagem` timestamp NULL DEFAULT NULL,
@@ -246,7 +325,19 @@ INSERT INTO `threads` (`thread_id`, `thread_mensagem`, `thread_autor`, `thread_a
 (47, 'teste', 'operador', 0, '2018-12-04 21:37:35', NULL, 11, 2),
 (48, '@operador qqqq', 'operador', 0, '2018-12-04 21:40:47', NULL, 11, 2),
 (49, '', 'usuarioTeste', 1, '2018-12-04 21:44:00', 22, NULL, 14),
-(50, '@usuarioTeste', 'usuarioTeste', 1, '2018-12-04 21:44:28', 22, NULL, 14);
+(50, '@usuarioTeste', 'usuarioTeste', 1, '2018-12-04 21:44:28', 22, NULL, 14),
+(51, 'teste', 'operador', 0, '2018-12-04 22:56:39', 22, NULL, 2),
+(52, 'qqqqqq', 'operador', 0, '2018-12-04 22:57:31', 22, NULL, 2),
+(54, '@operador qq', 'operador', 0, '2018-12-04 22:57:47', 22, NULL, 2),
+(55, '@operador qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 22:58:29', 22, NULL, 2),
+(56, 'qq', 'operador', 0, '2018-12-04 22:58:47', 22, NULL, 2),
+(57, 'qqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 22:59:25', 18, NULL, 2),
+(58, 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 23:01:31', 16, NULL, 2),
+(59, 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 23:03:57', 16, NULL, 2),
+(60, 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 23:06:26', 16, NULL, 2),
+(61, 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 23:06:30', 16, NULL, 2),
+(62, '@operador qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 23:06:37', 16, NULL, 2),
+(63, 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr', 'operador', 0, '2018-12-04 23:06:41', 16, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -363,22 +454,23 @@ CREATE TABLE `usuarios` (
   `usuario_dataDeAlteracao` date DEFAULT NULL,
   `usuario_apelido` varchar(50) DEFAULT NULL,
   `usuario_errosLogin` int(4) NOT NULL,
-  `usuario_ticketResolvidos` int(4) NOT NULL
+  `usuario_ticketResolvidos` int(4) NOT NULL,
+  `usuario_bloqueado` int(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`usuario_id`, `usuario_nomeConta`, `usuario_senha`, `usuario_tipoAcesso`, `usuario_dataDeCadastro`, `usuario_dataDeAlteracao`, `usuario_apelido`, `usuario_errosLogin`, `usuario_ticketResolvidos`) VALUES
-(1, 'admin', '123', 'Administrador', '1996-11-18', NULL, 'Master', 2, 0),
-(2, 'operador', '123', 'Operador', '1996-11-18', NULL, 'oi', 3, 0),
-(9, 'TesteTeste', '123456789@', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
-(10, 'OiOiOi', '12345', 'Cliente', '2018-10-30', '2018-11-05', NULL, 0, 0),
-(11, 'memo', '123', 'Cliente', '2018-10-30', NULL, NULL, 1, 0),
-(14, 'usuarioTeste', '123', 'Usuario', '2018-10-30', '2018-11-04', NULL, 0, 0),
-(15, 'oioi', '', 'Cliente', '2018-11-05', '2018-12-04', NULL, 0, 0),
-(16, 'CidadeDeDeus', '12345', 'Cliente', '2018-12-03', '2018-12-04', NULL, 0, 0);
+INSERT INTO `usuarios` (`usuario_id`, `usuario_nomeConta`, `usuario_senha`, `usuario_tipoAcesso`, `usuario_dataDeCadastro`, `usuario_dataDeAlteracao`, `usuario_apelido`, `usuario_errosLogin`, `usuario_ticketResolvidos`, `usuario_bloqueado`) VALUES
+(1, 'admin', '123', 'Administrador', '1996-11-18', NULL, 'Master', 2, 0, 0),
+(2, 'operador', '123', 'Operador', '1996-11-18', NULL, 'oi', 3, 0, 0),
+(9, 'TesteTeste', '123456789@', 'Cliente', '2018-10-30', NULL, NULL, 0, 0, 0),
+(10, 'OiOiOi', '12345', 'Cliente', '2018-10-30', '2018-11-05', NULL, 0, 0, 0),
+(11, 'memo', '123', 'Cliente', '2018-10-30', NULL, NULL, 1, 0, 0),
+(14, 'usuarioTeste', '123', 'Usuario', '2018-10-30', '2018-11-04', NULL, 0, 0, 0),
+(15, 'oioi', '123', 'Cliente', '2018-11-05', '2018-12-04', NULL, 6, 0, 1),
+(16, 'CidadeDeDeus', '12345', 'Cliente', '2018-12-03', '2018-12-04', NULL, 0, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -458,7 +550,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `acoes`
 --
 ALTER TABLE `acoes`
-  MODIFY `acao_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `acao_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
 
 --
 -- AUTO_INCREMENT for table `clientes`
@@ -482,7 +574,7 @@ ALTER TABLE `enderecos`
 -- AUTO_INCREMENT for table `threads`
 --
 ALTER TABLE `threads`
-  MODIFY `thread_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `thread_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `tickets`
