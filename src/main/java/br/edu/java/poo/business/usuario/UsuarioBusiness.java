@@ -6,4 +6,6 @@ public interface UsuarioBusiness {
 
     UsuarioDTO criarClientePadrao(UsuarioDTO usuarioDTO);
 
+    String alteraSenha(String senha, String confirmaSenha, String nomeConta);
+
 }

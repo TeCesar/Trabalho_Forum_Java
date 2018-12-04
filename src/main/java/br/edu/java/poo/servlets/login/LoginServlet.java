@@ -1,5 +1,7 @@
 package br.edu.java.poo.servlets.login;
 
+import br.edu.java.poo.business.usuario.UsuarioBusiness;
+import br.edu.java.poo.business.usuario.impl.UsuarioBusinessImpl;
 import br.edu.java.poo.model.usuario.UsuarioDTO;
 import br.edu.java.poo.model.usuario.UsuarioSession;
 import br.edu.java.poo.services.login.LoginService;
@@ -17,7 +19,13 @@ public class LoginServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    private LoginService loginService = new LoginService();
+    private LoginService loginService;
+    UsuarioBusiness usuarioBusiness;
+
+    public LoginServlet(){
+        loginService = new LoginService();
+        usuarioBusiness = new UsuarioBusinessImpl();
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -43,6 +51,19 @@ public class LoginServlet extends HttpServlet {
                 System.out.println("Falha na conexao");
             }
             req.getRequestDispatcher(logado).forward(req, resp);
+        }
+
+        if ("alteraSenha".equalsIgnoreCase(tipo)){
+            String novaSenha = req.getParameter("novaSenha");
+            String confirmaSenha = req.getParameter("confirmaSenha");
+            UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuarioLogado");
+            String sucesso = usuarioBusiness.alteraSenha(novaSenha, confirmaSenha, usuarioSession.getNomeConta());
+            if ("sucesso".equalsIgnoreCase(sucesso)){
+                req.getRequestDispatcher("WEB-INF/menus/menuPrincipal.jsp").forward(req, resp);
+            } else {
+                req.setAttribute("erro", sucesso);
+                req.getRequestDispatcher("WEB-INF/novaSenha.jsp").forward(req, resp);
+            }
         }
     }
 }

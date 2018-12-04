@@ -4,6 +4,8 @@ import br.edu.java.poo.business.usuario.UsuarioBusiness;
 import br.edu.java.poo.dao.usuario.UsuarioDAO;
 import br.edu.java.poo.dao.usuario.impl.UsuarioDAOImpl;
 import br.edu.java.poo.model.usuario.UsuarioDTO;
+import br.edu.java.poo.validators.usuario.UsuarioValidator;
+import br.edu.java.poo.validators.usuario.impl.UsuarioValidatorImpl;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -12,9 +14,11 @@ import java.util.Date;
 
 public class UsuarioBusinessImpl implements UsuarioBusiness {
     UsuarioDAO usuarioDAO;
+    UsuarioValidator usuarioValidator;
 
     public UsuarioBusinessImpl(){
         usuarioDAO = new UsuarioDAOImpl();
+        usuarioValidator = new UsuarioValidatorImpl();
     }
 
     @Override
@@ -36,5 +40,22 @@ public class UsuarioBusinessImpl implements UsuarioBusiness {
             return usuarioDTO;
         }
         return null;
+    }
+
+    @Override
+    public String alteraSenha(String senha, String confirmaSenha, String nomeConta) {
+        String senhaValida = usuarioValidator.confereNovaSenha(senha, confirmaSenha);
+        if (senhaValida == "sucesso") {
+            if (usuarioDAO.alteraSenha(senha, nomeConta)) {
+                return "sucesso";
+            }
+        } else if ("caracteres".equalsIgnoreCase(senhaValida)) {
+            return "caracteres";
+        } else if ("caractereEspecial".equalsIgnoreCase(senhaValida)) {
+            return "caractereEspecial";
+        } else if ("senhasDiferentes".equalsIgnoreCase(senhaValida)){
+            return "senhasDiferentes";
+        }
+        return "invalida";
     }
 }

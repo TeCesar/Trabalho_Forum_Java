@@ -21,7 +21,7 @@ public class ControllerServlet extends HttpServlet {
         }
 
         if ("novaSenha".equalsIgnoreCase(acao)) {
-            req.getRequestDispatcher("novaSenha").forward(req, resp);
+            req.getRequestDispatcher("login?tipo=alteraSenha").forward(req, resp);
         }
 
         if ("ticket".equalsIgnoreCase(acao)) {
