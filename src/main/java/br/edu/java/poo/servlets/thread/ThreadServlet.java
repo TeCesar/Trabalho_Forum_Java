@@ -30,9 +30,10 @@ public class ThreadServlet extends HttpServlet {
         if ("respostaPostagemThread".equalsIgnoreCase(tipo)) {
             String id = (String) req.getSession().getAttribute("id");
             String mensagem = req.getParameter("mensagemResposta");
-            UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuario");
+            String tt = (String) req.getSession().getAttribute("tt");
+            UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuarioLogado");
             ThreadDAO threadDAO = new ThreadDAOImpl();
-            String nomeAutor = threadDAO.buscaNomeAutor(tipo, Integer.parseInt(id));
+            String nomeAutor = threadDAO.buscaNomeAutor(tt, Integer.parseInt(id));
             ThreadDTO threadDTO = new ThreadDTO();
             UsuarioDTO usuarioDTO = new UsuarioDTO();
             usuarioDTO.setId(usuarioSession.getId());
@@ -53,7 +54,7 @@ public class ThreadServlet extends HttpServlet {
                 e.printStackTrace();
             }
 
-            if ("topico".equalsIgnoreCase(tipo)) {
+            if ("topico".equalsIgnoreCase(tt)) {
                 TopicoDTO topicoDTO = new TopicoDTO();
                 topicoDTO.setId(Integer.parseInt(id));
                 threadDTO.setTicketDTO(null);
@@ -67,16 +68,11 @@ public class ThreadServlet extends HttpServlet {
 
             threadDTO.setId(threadDAO.criarThread(threadDTO));
 
-//            List<ThreadDTO> listaThread = threadDAO.listarThread(tt, Integer.parseInt(id));
-//            req.setAttribute("listaThread", listaThread);
-
+            List<ThreadDTO> listaThread = threadDAO.listarThread(tt, Integer.parseInt(id));
+            req.setAttribute("listaThread", listaThread);
+            req.getSession().removeAttribute("tt");
+            req.getSession().removeAttribute("id");
             req.getRequestDispatcher("WEB-INF/thread/mostraThread.jsp").forward(req, resp);
-
-
-        }
-
-        if ("threadTicket".equalsIgnoreCase(tipo)) {
-
         }
     }
 
@@ -93,13 +89,14 @@ public class ThreadServlet extends HttpServlet {
             req.setAttribute("listaThread", listaThread);
             req.setAttribute("titulo", titulo);
             req.setAttribute("id", id);
+            req.getSession().setAttribute("tt", tt);
             req.getRequestDispatcher("WEB-INF/thread/mostraThread.jsp").forward(req, resp);
         }
 
         if ("responderPostagem".equalsIgnoreCase(tipo)) {
-            String autor = req.getParameter("autor");
+            String autor = req.getParameter("autorThread");
             String titulo = req.getParameter("titulo");
-            String mensagem = req.getParameter("mensagem");
+            String mensagem = req.getParameter("mensagemThread");
             String id = req.getParameter("id");
             req.setAttribute("autor", autor);
             req.getSession().setAttribute("titulo", titulo);

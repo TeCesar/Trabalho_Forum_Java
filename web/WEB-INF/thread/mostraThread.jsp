@@ -55,7 +55,7 @@
         <form method="get" action="controller">
             <input type="hidden" value="responderPostagemThread" name="acao">
             <c:choose>
-                <c:when test="${thread.topicoDTO.titulo != null}">
+                <c:when test="${thread.topicoDTO != null}">
                     <input type="hidden" value="${thread.topicoDTO.titulo}" name="titulo">
                     <input type="hidden" value="${thread.topicoDTO.id}" name="id">
                 </c:when>
