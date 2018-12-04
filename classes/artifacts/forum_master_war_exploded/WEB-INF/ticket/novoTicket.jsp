@@ -23,8 +23,8 @@
     <br><br>
     <div style="text-align: center">
         <form method="post" action="controller?acao=ticket&tipo=finalizarTicket">
-           <strong><label class="txt">Titulo do Tickt: </label></strong><input type="text" name="tituloTicket" class="campo"><br><br>
-            <strong><label class="txt">Mensagem: </label></strong><input type="text" name="mensagemTicket" class="campo"><br><br>
+           <strong><label class="txt">Titulo do Tickt: </label></strong><input type="text" name="tituloTicket" class="campo" required><br><br>
+            <strong><label class="txt">Mensagem: </label></strong><input type="text" name="mensagemTicket" class="campo" required><br><br>
             <input type="submit" value="Abrir Ticket" class="btne">
         </form>
     </div>

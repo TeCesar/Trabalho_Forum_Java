@@ -49,16 +49,16 @@
 <script>
     var erro = document.getElementById("erro").value;
 
-    if (erro == "É necessário digitar pelo menos 8 caracteres.") {
-        alert(erro);
+    if (erro == "caracteres") {
+        alert("É necessário digitar pelo menos 8 caracteres.");
     }
 
-    if (erro == "É necessário ter ao menos 1(um) caractere especial (@, # ou .)") {
-        alert(erro);
+    if (erro == "caractereEspecial") {
+        alert("É necessário ter ao menos 1(um) caractere especial (@, # ou .)");
     }
 
-    if (erro == "As senhas não conferem") {
-        alert(erro);
+    if (erro == "senhasDiferentes") {
+        alert("As senhas não conferem");
     }
 </script>
 

@@ -22,6 +22,9 @@
 <c:if test="${usuarioLogado.tipoAcesso == 'Cliente'}">
     <%@include file="/WEB-INF/navbar/navbarCliente.jsp" %>
 </c:if>
+<c:if test="${usuarioLogado.tipoAcesso == 'Administrador'}">
+    <%@include file="/WEB-INF/navbar/navbarAdministrador.jsp" %>
+</c:if>
 <br><br><br><br><br><br>
 
 <h1 class="titulo">Todos Tickets</h1>
@@ -53,7 +56,7 @@
                     <td style="background-color: #F08080;">${ticket.situacao}</td>
                 </c:if>
                 <td>${ticket.respondido}</td>
-                <td class="abrir"><a href="controller?acao=ticket&tipo=mostrarTicket&id=${ticket.id}&titulo=${ticket.titulo}">ABRIR</a></td>
+                <td class="abrir"><a href="controller?acao=ticket&tipo=mostrarTicket&id=${ticket.id}&titulo=${ticket.titulo}&tt=ticket">ABRIR</a></td>
             </tr>
         </c:forEach>
     </table>

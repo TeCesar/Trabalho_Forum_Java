@@ -26,22 +26,22 @@
 <br><br><br><br><br><br>
 
 <center>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Login</th>
-        <th>Tipo de Acesso</th>
-        <th>Data de Cadastro</th>
-        <th>Última Alteração</th>
-        <th>Apelido</th>
-        <th>Erros de Login</th>
-        <th>Tickets Resolvidos</th>
+<table width="90%" align="center" cellpadding="10">
+    <tr align="center" bgcolor="#CCC">
+        <td><strong>ID</strong></td>
+        <td><strong>Login</strong></td>
+        <td><strong>Tipo de Acesso</strong></td>
+        <td><strong>Data de Cadastro</strong></td>
+        <td><strong>Última Alteração</strong></td>
+        <td><strong>Apelido</strong></td>
+        <td><strong>Erros de Login</strong></td>
+        <td><strong>Tickets Resolvidos</strong></td>
         <c:if test="${usuarioLogado.tipoAcesso == 'Administrador'}">
             <th>Ação</th>
         </c:if>
     </tr>
     <c:forEach var="usuario" items="${listaUsuarios}">
-        <tr>
+        <tr style="text-align: center;" class="border_bottom">
             <td>${usuario.id}</td>
             <td>${usuario.nomeConta}</td>
             <td>${usuario.tipoAcesso}</td>

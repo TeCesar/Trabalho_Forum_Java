@@ -22,6 +22,7 @@
 <h1 class="titulo">Editar Cliente</h1>
 <form method="post" action="controller?acao=editarCliente">
     <div style="text-align: center">
+        <input type="hidden" value="edicao" name="tipoAcao">
         <input class="campo" type="hidden" name="idCliente" value="${clienteBusca.id}"/>
         <label class="txt">Nome: </label><input class="campo" type="text" name="nomeCliente" value="${clienteBusca.nome}" required><br><br>
         <label class="txt">Sobrenome: </label><input class="campo" type="text" name="sobrenomeCliente" value="${clienteBusca.sobrenome}" required><br><br>
@@ -65,7 +66,7 @@
         </select>
 
         <input class="campo" type="hidden" name="idUsuarioCliente" value="${clienteBusca.usuarioDTO.id}"><br><br>
-        <label class="txt">Nome de Usuario: </label><input class="campo" type="text" name="nomeContaUsuarioCliente" value="${clienteBusca.usuarioDTO.nomeConta}">
+        <label class="txt">Nome de Usuario: </label><input class="campo" type="text" name="nomeUsuarioCliente" value="${clienteBusca.usuarioDTO.nomeConta}">
         <input class="campo" type="hidden" name="nomeContaUsuarioAntigoCliente" value="${clienteBusca.usuarioDTO.nomeConta}"><br><br>
         <label class="txt">Senha: </label><input class="campo" type="text" name="senhaUsuarioCliente" value="${clienteBusca.usuarioDTO.senha}"><br><br>
         <input class="campo" type="hidden" name="senhaUsuarioAntigoCliente" value="${clienteBusca.usuarioDTO.senha}">

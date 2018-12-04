@@ -27,6 +27,7 @@
     <div id="divLogin">
         <div id="login-box-interno">
             <form action="controller?acao=login" method="post">
+                <input type="hidden" value="${erro}" id="erro">
                 <div id="login-box-label">Bem vindo a D.R.T</div>
                 <div class="input-div" id="input-usuario">
                     <input type="text" placeholder="USUÁRIO" id="nomeUsuario" name="nomeUsuario">
@@ -41,5 +42,17 @@
             </form>
         </div>
     </div>
+
+<script>
+    var erro = document.getElementById("erro").value;
+
+    if (erro == "usuarioBloqueado"){
+        alert("O seu usuário foi bloqueado pelo Administrador.");
+    }
+
+    if (erro == "loginSenhaErrados"){
+        alert("Usuário e/ou senha inválido(s)");
+    }
+</script>
 </body>
 </html>
