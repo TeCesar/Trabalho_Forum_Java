@@ -2,11 +2,15 @@ package br.edu.java.poo.business.cliente.impl;
 
 import br.edu.java.poo.business.cliente.ClienteBusiness;
 import br.edu.java.poo.business.exceptions.CadastrarClienteException;
+import br.edu.java.poo.business.usuario.UsuarioBusiness;
+import br.edu.java.poo.business.usuario.impl.UsuarioBusinessImpl;
 import br.edu.java.poo.dao.cliente.ClienteDAO;
 import br.edu.java.poo.dao.cliente.impl.ClienteDAOImpl;
 import br.edu.java.poo.dao.endereco.EnderecoDAO;
 import br.edu.java.poo.dao.endereco.impl.EnderecoDAOImpl;
 import br.edu.java.poo.model.cliente.ClienteDTO;
+import br.edu.java.poo.model.endereco.EnderecoDTO;
+import br.edu.java.poo.model.usuario.UsuarioDTO;
 import br.edu.java.poo.validators.cliente.ClienteValidator;
 import br.edu.java.poo.validators.cliente.impl.ClienteValidatorImpl;
 import br.edu.java.poo.validators.usuario.UsuarioValidator;
@@ -17,12 +21,14 @@ public class ClienteBusinessImpl implements ClienteBusiness {
     UsuarioValidator usuarioValidator;
     ClienteDAO clienteDAO;
     EnderecoDAO enderecoDAO;
+    UsuarioBusiness usuarioBusiness;
 
     public ClienteBusinessImpl() {
         clienteValidator = new ClienteValidatorImpl();
         usuarioValidator = new UsuarioValidatorImpl();
         clienteDAO = new ClienteDAOImpl();
         enderecoDAO = new EnderecoDAOImpl();
+        usuarioBusiness = new UsuarioBusinessImpl();
     }
 
     @Override
@@ -34,6 +40,12 @@ public class ClienteBusinessImpl implements ClienteBusiness {
                 e.printStackTrace();
                 return false;
             }
+
+            EnderecoDTO enderecoBusca = enderecoDAO.buscaEndereco(clienteDTO.getEnderecoDTO(), clienteDTO.getEnderecoDTO().getUfDTO().getId());
+            UsuarioDTO usuarioBusca = usuarioBusiness.criarClientePadrao(clienteDTO.getUsuarioDTO());
+
+            clienteDTO.setEnderecoDTO(enderecoBusca);
+            clienteDTO.setUsuarioDTO(usuarioBusca);
 
             if (clienteDAO.cadastrarCliente(clienteDTO)) {
                 return true;

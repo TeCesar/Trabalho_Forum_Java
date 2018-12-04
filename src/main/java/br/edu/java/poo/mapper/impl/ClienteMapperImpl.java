@@ -50,9 +50,8 @@ public class ClienteMapperImpl implements BaseMapper<HttpServletRequest, Cliente
         clienteDTO.setSobrenome(sobrenome);
 
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String dataNasc = dateFormat.format(dtNasc);
         try {
-            clienteDTO.setDtNascimento(dateFormat.parse(dataNasc));
+            clienteDTO.setDtNascimento(dateFormat.parse(dtNasc));
         } catch (ParseException e) {
             e.printStackTrace();
         }
