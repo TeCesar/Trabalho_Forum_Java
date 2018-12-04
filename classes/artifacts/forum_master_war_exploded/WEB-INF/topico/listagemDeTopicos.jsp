@@ -15,35 +15,51 @@
     </style>
 </head>
 <body>
-<c:if test="${usuario.tipoAcesso == 'Operador'}">
-    <%@include file="/WEB-INF/navbar/navbarOperador.jsp" %>
-</c:if>
-<c:if test="${usuario.tipoAcesso == 'Cliente'}">
-    <%@include file="/WEB-INF/navbar/navbarCliente.jsp" %>
-</c:if>
-<c:if test="${usuario.tipoAcesso == 'Administrador'}">
-    <%@include file="/WEB-INF/navbar/navbarAdministrador.jsp" %>
-</c:if>
-<c:if test="${usuario.tipoAcesso == 'Usuario'}">
-    <%@include file="/WEB-INF/navbar/navbarUsuario.jsp" %>
-</c:if>
+<br><br><br>
+        <c:if test="${usuarioLogado.tipoAcesso == 'Operador'}">
+            <%@include file="/WEB-INF/navbar/navbarOperador.jsp" %>
+        </c:if>
+        <c:if test="${usuarioLogado.tipoAcesso == 'Cliente'}">
+            <%@include file="/WEB-INF/navbar/navbarCliente.jsp" %>
+        </c:if>
+        <c:if test="${usuarioLogado.tipoAcesso == 'Administrador'}">
+            <%@include file="/WEB-INF/navbar/navbarAdministrador.jsp" %>
+        </c:if>
+        <c:if test="${usuarioLogado.tipoAcesso == 'Usuario'}">
+            <%@include file="/WEB-INF/navbar/navbarUsuario.jsp" %>
+        </c:if>
 
-<table>
-    <tr>
-        <th>Titulo</th>
-        <th>Autor</th>
-        <th>Situação</th>
-        <th colspan="2">Ações</th>
-    </tr>
-    <c:forEach var="topico" items="${listaTopicos}">
-        <tr>
-            <td>${topico.titulo}</td>
-            <td>${usuario.nomeConta}</td>
-            <td>${topico.situacao}</td>
-            <td><a href="controller?acao=topico&tipo=mostrarTopico&id=${topico.id}">Abrir</a></td>
-        </tr>
-    </c:forEach>
-</table>
+        <table width="90%" align="center" cellpadding="10">
+            <tr  align="center" bgcolor="#CCC">
+                <td><strong>Titulo</strong></td>
+                <td><strong>Autor</strong></td>
+                <td><strong>Situação</strong></td>
+                <td colspan="2">Ações</td>
+            </tr>
+            <c:forEach var="topico" items="${listaTopicos}">
+                <tr style="text-align: center;" class="border_bottom">
+                    <td>${topico.titulo}</td>
+                    <td>${usuario.nomeConta}</td>
+                    <c:if test="${topico.situacao == 'Aberto'}">
+                        <td style="background-color: #F08080;">${topico.situacao}</td>
+                    </c:if>
+                    <c:if test="${topico.situacao == 'Fechado'  && topico.respondido == 'Sim'}">
+                        <td style="background-color: #90EE90">${topico.situacao}</td>
+                    </c:if>
+                    <c:if test="${topico.situacao == 'Fechado'  && topico.respondido == 'Nao'}">
+                        <td style="background-color: #F08080;">${topico.situacao}</td>
+                    </c:if>
+                    <td class="linkCor"><a  href="controller?acao=topico&tipo=mostrarTopico&id=${topico.id}">Abrir</a></td>
+                </tr>
+
+
+
+
+
+
+
+            </c:forEach>
+        </table>
 
 </body>
 </html>
