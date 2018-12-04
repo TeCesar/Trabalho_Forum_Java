@@ -38,7 +38,7 @@
             <td><strong>Tickets Resolvidos</strong></td>
             <td><strong>Situação</strong></td>
             <c:if test="${usuarioLogado.tipoAcesso == 'Administrador'}">
-                <th>Ação</th>
+                <td><strong>Ações</strong></td>
             </c:if>
         </tr>
         <c:forEach var="usuario" items="${listaUsuarios}">
@@ -59,11 +59,11 @@
                 </c:if>
                 <c:if test="${usuarioLogado.tipoAcesso == 'Administrador'}">
                     <c:if test="${usuario.bloqueado == 0}">
-                        <td><a href="controller?acao=usuario&tipo=bloquearUsuario&id=${usuario.id}">Bloquear Usuário</a>
+                        <td class="excluir"><a href="controller?acao=usuario&tipo=bloquearUsuario&id=${usuario.id}">Bloquear Usuário</a>
                         </td>
                     </c:if>
                     <c:if test="${usuario.bloqueado == 1}">
-                        <td><a href="controller?acao=usuario&tipo=bloquearUsuario&id=${usuario.id}">Desbloquear
+                        <td class="abrir"><a href="controller?acao=usuario&tipo=bloquearUsuario&id=${usuario.id}">Desbloquear
                             Usuário</a></td>
                     </c:if>
                 </c:if>
