@@ -16,5 +16,9 @@ public interface UsuarioDAO {
 
     UsuarioDTO buscarUsuario(int id);
 
+    UsuarioDTO buscarUsuarioPorNome(String nomeConta);
+
+    boolean atualizaErrosLogin(UsuarioDTO usuarioDTO);
+
     List<UsuarioDTO> listarUsuarios();
 }

@@ -125,6 +125,48 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     }
 
     @Override
+    public UsuarioDTO buscarUsuarioPorNome(String nomeConta) {
+        try (Connection connection = SQLConnectionProvider.openConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM usuarios WHERE usuario_nomeConta = ?");
+
+            preparedStatement.setString(1, nomeConta);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                UsuarioDTO usuarioDTO = fillUsuario(resultSet);
+                return usuarioDTO;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public boolean atualizaErrosLogin(UsuarioDTO usuarioDTO) {
+        try (Connection connection = SQLConnectionProvider.openConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE usuarios SET usuario_errosLogin = ? WHERE usuario_id = ?");
+
+            preparedStatement.setInt(1, usuarioDTO.getErrosLogin());
+            preparedStatement.setInt(2, usuarioDTO.getId());
+
+            int resultado = preparedStatement.executeUpdate();
+
+            if (resultado != 0){
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
     public List<UsuarioDTO> listarUsuarios() {
         List<UsuarioDTO> listaUsuarios = new ArrayList<>();
         try (Connection connection = SQLConnectionProvider.openConnection()) {
@@ -133,15 +175,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                UsuarioDTO usuarioDTO = new UsuarioDTO();
-                usuarioDTO.setId(resultSet.getInt("usuario_id"));
-                usuarioDTO.setNomeConta(resultSet.getString("usuario_nomeConta"));
-                usuarioDTO.setTipoAcesso(resultSet.getString("usuario_tipoAcesso"));
-                usuarioDTO.setDataDeCadastro(resultSet.getDate("usuario_dataDeCadastro"));
-                usuarioDTO.setDataDeAlteracao(resultSet.getDate("usuario_dataDeAlteracao"));
-                usuarioDTO.setApelido(resultSet.getString("usuario_apelido"));
-                usuarioDTO.setErrosLogin(resultSet.getInt("usuario_errosLogin"));
-                usuarioDTO.setTicketsResolvidos(resultSet.getInt("usuario_ticketResolvidos"));
+                UsuarioDTO usuarioDTO = fillUsuario(resultSet);
                 listaUsuarios.add(usuarioDTO);
             }
 
@@ -151,6 +185,19 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             e.printStackTrace();
         }
         return listaUsuarios;
+    }
+
+    private UsuarioDTO fillUsuario(ResultSet resultSet) throws SQLException {
+        UsuarioDTO usuarioBusca = new UsuarioDTO();
+        usuarioBusca.setId(resultSet.getInt("usuario_id"));
+        usuarioBusca.setNomeConta(resultSet.getString("usuario_nomeConta"));
+        usuarioBusca.setTipoAcesso(resultSet.getString("usuario_tipoAcesso"));
+        usuarioBusca.setDataDeCadastro(resultSet.getDate("usuario_dataDeCadastro"));
+        usuarioBusca.setDataDeAlteracao(resultSet.getDate("usuario_dataDeAlteracao"));
+        usuarioBusca.setApelido(resultSet.getString("usuario_apelido"));
+        usuarioBusca.setErrosLogin(resultSet.getInt("usuario_errosLogin"));
+        usuarioBusca.setTicketsResolvidos(resultSet.getInt("usuario_ticketResolvidos"));
+        return usuarioBusca;
     }
 
 }

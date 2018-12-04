@@ -8,4 +8,6 @@ public interface UsuarioBusiness {
 
     String alteraSenha(String senha, String confirmaSenha, String nomeConta);
 
+    void aumentaErroLogin(String nomeConta);
+
 }

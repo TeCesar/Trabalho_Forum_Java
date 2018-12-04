@@ -58,4 +58,13 @@ public class UsuarioBusinessImpl implements UsuarioBusiness {
         }
         return "invalida";
     }
+
+    @Override
+    public void aumentaErroLogin(String nomeConta) {
+        UsuarioDTO usuarioBusca = usuarioDAO.buscarUsuarioPorNome(nomeConta);
+        if (usuarioBusca != null){
+            usuarioBusca.setErrosLogin(usuarioBusca.getErrosLogin()+1);
+            usuarioDAO.atualizaErrosLogin(usuarioBusca);
+        }
+    }
 }
