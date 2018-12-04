@@ -23,7 +23,9 @@ public class EmpresaDAOImpl implements EmpresaDAO {
             preparedStatement.setString(3, empresaDTO.getRazaoSocial());
             preparedStatement.setInt(4, empresaDTO.getEnderecoDTO().getId());
 
-            if (preparedStatement.execute()) {
+            int resultado = preparedStatement.executeUpdate();
+
+            if (resultado != 0) {
                 return true;
             }
 
