@@ -22,7 +22,7 @@ public class LoginService {
     public String login(UsuarioDTO usuarioDTO) throws ClassNotFoundException {
         UsuarioDTO usuarioBusca = usuarioDAO.validarUsuario(usuarioDTO);
 
-        if (usuarioBusca != null) {
+        if (usuarioBusca != null && usuarioBusca.getBloqueado() != 1) {
             boolean primeiroAcesso = usuarioValidator.conferePrimeiroLogin(usuarioBusca);
 
             if (primeiroAcesso) {
@@ -30,10 +30,15 @@ public class LoginService {
             } else {
                 return "WEB-INF/menus/menuPrincipal.jsp";
             }
-        } else {
+        } else if (usuarioBusca == null){
             usuarioBusiness.aumentaErroLogin(usuarioDTO.getNomeConta());
         }
-        return "/login.jsp";
+        if (usuarioBusca != null) {
+            if (usuarioBusca.getBloqueado() == 1) {
+                return "usuarioBloqueado";
+            }
+        }
+        return "loginSenhaErrados";
     }
 
 }

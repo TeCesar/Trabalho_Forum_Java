@@ -70,8 +70,6 @@ public class ThreadServlet extends HttpServlet {
 
             List<ThreadDTO> listaThread = threadDAO.listarThread(tt, Integer.parseInt(id));
             req.setAttribute("listaThread", listaThread);
-            req.getSession().removeAttribute("tt");
-            req.getSession().removeAttribute("id");
             req.getRequestDispatcher("WEB-INF/thread/mostraThread.jsp").forward(req, resp);
         }
     }

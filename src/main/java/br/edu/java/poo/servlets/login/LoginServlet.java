@@ -52,6 +52,13 @@ public class LoginServlet extends HttpServlet {
                 e.printStackTrace();
                 System.out.println("Falha na conexao");
             }
+            if ("usuarioBloqueado".equalsIgnoreCase(logado)){
+                req.setAttribute("erro", logado);
+                logado = "/login.jsp";
+            } else if ("loginSenhaErrados".equalsIgnoreCase(logado)){
+                req.setAttribute("erro", logado);
+                logado = "/login.jsp";
+            }
             req.getRequestDispatcher(logado).forward(req, resp);
         }
 
