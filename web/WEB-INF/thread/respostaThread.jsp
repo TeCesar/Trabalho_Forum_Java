@@ -47,14 +47,16 @@
 
             <c:choose>
                 <c:when test="${autor != null}">
-                    <label>Respondendo a mensagem de: ${autor}</label><br>
-                    <label>Mensagem: ${mensagem}</label><br>
+                    <label>Respondendo a mensagem de: ${autor}</label><br><br>
+                    <label>Mensagem: ${mensagem}</label><br><br>
                     <label>Resposta: <input type="text" value="@${autor}" name="mensagemResposta"></label>
                 </c:when>
                 <c:otherwise>
-                    <label>Resposta: <input type="text" name="mensagemResposta"></label>
+                    <br>
+                    <label>Resposta: <input type="text" name="mensagemResposta"></label><br>
                 </c:otherwise>
             </c:choose>
+            <br><br>
             <input type="submit" value="Enviar Resposta" class="btne">
         </form>
     </div>
