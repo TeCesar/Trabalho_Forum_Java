@@ -27,13 +27,17 @@
 <c:if test="${usuarioLogado.tipoAcesso == 'Usuario'}">
     <%@include file="/WEB-INF/navbar/navbarUsuario.jsp" %>
 </c:if>
-
-<form method="post" action="controller?acao=topico&tipo=finalizaTopico">
-    <%--<input type="hidden" value="${novoTopico.id}" name="idTopico">--%>
-    <input type="text" name="tituloTopico"><br><br>
-    <input type="text" name="mensagemTopico"><br><br>
-    <input type="submit" value="Criar Tópico">
-</form>
-
+<center>
+    <h1 class="titulo">Abrir novo Topico</h1>
+    <br><br>
+    <div style="text-align: center">
+        <form method="post" action="controller?acao=topico&tipo=finalizaTopico">
+            <%--<input type="hidden" value="${novoTopico.id}" name="idTopico">--%>
+            <strong><label class="txt">Titulo: </label></strong><input type="text" name="tituloTopico" class="campo"><br><br>
+            <strong><label class="txt">Mensagem: </label></strong><input type="text" name="mensagemTopico" class="campo"><br><br>
+            <input type="submit" value="Criar Tópico" class="btne">
+        </form>
+    </div>
+</center>
 </body>
 </html>
