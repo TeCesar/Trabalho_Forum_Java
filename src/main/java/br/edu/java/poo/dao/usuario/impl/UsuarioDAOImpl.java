@@ -170,7 +170,8 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     public List<UsuarioDTO> listarUsuarios() {
         List<UsuarioDTO> listaUsuarios = new ArrayList<>();
         try (Connection connection = SQLConnectionProvider.openConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM usuarios");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT usuario_id, usuario_nomeConta, usuario_tipoAcesso, " +
+                    "usuario_dataDeCadastro, usuario_dataDeAlteracao, usuario_apelido, usuario_errosLogin, usuario_ticketResolvidos FROM usuarios");
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
