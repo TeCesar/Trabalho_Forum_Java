@@ -37,7 +37,6 @@
                 </div>
                 <div id="botoes">
                         <input type="submit" value="Logar" class="botao">
-                    <div id="lembrar-senha"><input type="checkbox">Lembrar minha senha</div>
                 </div>
             </form>
         </div>
