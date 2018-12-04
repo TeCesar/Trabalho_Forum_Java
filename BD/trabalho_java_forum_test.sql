@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 17-Nov-2018 às 23:58
+-- Generation Time: 04-Dez-2018 às 19:14
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -21,6 +21,33 @@ SET time_zone = "+00:00";
 --
 -- Database: `trabalho_java_forum_test`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `acoes`
+--
+
+CREATE TABLE `acoes` (
+  `acao_id` int(11) NOT NULL,
+  `acao_acao` varchar(50) DEFAULT NULL,
+  `acao_tipo` varchar(50) DEFAULT NULL,
+  `usuario_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `acoes`
+--
+
+INSERT INTO `acoes` (`acao_id`, `acao_acao`, `acao_tipo`, `usuario_id`) VALUES
+(1, '[Ljava.lang.String;@62eeba2f', NULL, 2),
+(2, '[Ljava.lang.String;@48125a6', NULL, 2),
+(3, '[Ljava.lang.String;@64787852', NULL, 2),
+(4, '[Ljava.lang.String;@16b232a9', NULL, 2),
+(5, NULL, NULL, 2),
+(6, NULL, NULL, 2),
+(7, '[Ljava.lang.String;@6675eb78', NULL, 2),
+(8, '[Ljava.lang.String;@3b5f8ac4', '[Ljava.lang.String;@596ba82e', 11);
 
 -- --------------------------------------------------------
 
@@ -45,8 +72,8 @@ CREATE TABLE `clientes` (
 
 INSERT INTO `clientes` (`cliente_id`, `cliente_nome`, `cliente_sobrenome`, `cliente_dtNascimento`, `cliente_sexo`, `endereco_id`, `empresa_id`, `usuario_id`) VALUES
 (9, 'SegundoTeste4', 'TesteSegundo4', '2010-10-10', 'M', 8, 9, 9),
-(10, 'SegundoTeste3', 'TesteSegundo3', '1996-11-18', 'M', 9, 9, 10),
-(11, 'titeste', 'testeti', '1997-12-19', 'M', 15, 10, 15);
+(11, 'titeste', 'testeti', '1997-12-19', 'M', 15, 9, 15),
+(15, 'Meu', 'Teste', '1990-10-19', 'M', 16, 9, 16);
 
 -- --------------------------------------------------------
 
@@ -69,7 +96,7 @@ CREATE TABLE `empresas` (
 INSERT INTO `empresas` (`empresa_id`, `empresa_nomeFantasia`, `empresa_cnpj`, `empresa_razaoSocial`, `endereco_id`) VALUES
 (6, 'N/A', '0', 'N/A', 11),
 (9, 'TesteTeste', '12342', 'Teste', 12),
-(10, 'oioiteste', '2371', 'oioioi', 14);
+(11, 'Empresa Teste', '19284920', 'Minha', 17);
 
 -- --------------------------------------------------------
 
@@ -99,7 +126,9 @@ INSERT INTO `enderecos` (`endereco_id`, `endereco_rua`, `endereco_numero`, `ende
 (12, 'Rua do Teste', '123', 'Bairro do Teste', 'Cidade do Teste', 1),
 (13, 'Rua do Teste2', '1232', 'Bairro do Teste2', 'Cidade do Teste2', 14),
 (14, 'oioiteste', 'oioiteste2', 'oioiteste3', 'oioiteste4', 2),
-(15, 'ruatesteti', '1324', 'bairrotesteti', 'cidadetesteti', 2);
+(15, 'ruatesteti', '1324', 'bairrotesteti', 'cidadetesteti', 2),
+(16, 'Essa rua do teste', '999', 'Biarrando do Teste', 'Cidade de Deus', 1),
+(17, 'Rua de deussss', '999', 'Bairro de deus', 'Cidade de deus', 1);
 
 -- --------------------------------------------------------
 
@@ -123,18 +152,14 @@ CREATE TABLE `threads` (
 --
 
 INSERT INTO `threads` (`thread_id`, `thread_mensagem`, `thread_autor`, `thread_autorPergunta`, `thread_dataPostagem`, `topico_id`, `ticket_id`, `usuario_id`) VALUES
-(1, 'oioioi', 'memo', 1, '2018-11-16 02:00:00', 3, NULL, 11),
-(2, 'aqui estou testando tudo', 'memo', 1, '2018-11-17 01:41:09', 4, NULL, 11),
-(4, 'esse Ã© um superteste', 'memo', 1, '2018-11-17 16:10:36', 5, NULL, 11),
-(6, 'from the other side', 'memo', 1, '2018-11-17 19:16:13', NULL, 4, 11),
-(7, '@memo oi', 'memo', 1, '2018-11-17 22:26:57', NULL, 4, 11),
-(8, '@memo hello', 'operador', 0, '2018-11-17 22:50:56', NULL, 4, 2),
-(9, '@memo hello', 'operador', 0, '2018-11-17 22:51:05', NULL, 4, 2),
-(10, '@memo hello', 'operador', 0, '2018-11-17 22:51:08', NULL, 4, 2),
-(11, '@operador olaaa', 'memo', 1, '2018-11-17 22:52:37', NULL, 4, 11),
-(12, '@memo tudo bem?', 'operador', 0, '2018-11-17 22:54:24', NULL, 4, 2),
-(13, 'oi, vim dizer que isto aqui e um teste', 'oioi', 1, '2018-11-17 22:55:12', NULL, 5, 15),
-(14, '@oioi ola, tudo bem e contigo?', 'operador', 0, '2018-11-17 22:57:20', NULL, 5, 2);
+(29, 'from the other side', 'memo', 1, '2018-12-04 12:42:00', NULL, 11, 11),
+(30, 'aqui estou testando tudo', 'memo', 1, '2018-12-04 12:44:00', 16, NULL, 11),
+(31, 'esse Ã© um superteste', 'oioi', 1, '2018-12-04 12:47:00', 17, NULL, 15),
+(32, 'esse Ã© um superteste', 'memo', 1, '2018-12-04 12:47:00', 18, NULL, 11),
+(40, 'teste', 'memo', 1, '2018-12-04 13:59:51', 18, NULL, 11),
+(41, 'teste', 'operador', 0, '2018-12-04 14:01:18', NULL, 11, 2),
+(42, '@memo oi', 'operador', 0, '2018-12-04 14:01:24', NULL, 11, 2),
+(43, '@memo oi', 'operador', 0, '2018-12-04 14:06:17', NULL, 11, 2);
 
 -- --------------------------------------------------------
 
@@ -158,8 +183,7 @@ CREATE TABLE `tickets` (
 --
 
 INSERT INTO `tickets` (`ticket_id`, `ticket_titulo`, `ticket_status`, `ticket_tempoInicio`, `ticket_tempoFim`, `ticket_situacao`, `ticket_respondido`, `usuario_id`) VALUES
-(4, 'hello', 'Completo', '2018-11-17 19:16:10', '2018-11-17 19:16:10', 'Aberto', 'Nao', 11),
-(5, 'estou criando um teste aqui', 'Completo', '2018-11-17 22:54:57', '2018-11-17 22:54:57', 'Aberto', 'Nao', 15);
+(11, 'teste', 'Completo', '2018-12-04 12:42:34', '2018-12-04 12:42:34', 'Aberto', 'Nao', 11);
 
 -- --------------------------------------------------------
 
@@ -182,10 +206,12 @@ CREATE TABLE `topicos` (
 --
 
 INSERT INTO `topicos` (`topico_id`, `topico_titulo`, `topico_status`, `topico_dataCriacao`, `topico_dataTermino`, `topico_situacao`, `usuario_id`) VALUES
-(2, 'oi', 'Completo', '2018-11-16', '2018-11-16', 'Aberto', 11),
-(3, 'oi', 'Completo', '2018-11-16', '2018-11-16', 'Aberto', 11),
-(4, 'olaaa', 'Completo', '2018-11-16', '2018-11-16', 'Aberto', 11),
-(5, 'superteste', 'Completo', '2018-11-17', '2018-11-17', 'Aberto', 11);
+(14, NULL, 'Incompleto', '2018-12-04', NULL, NULL, 11),
+(15, NULL, 'Incompleto', '2018-12-04', NULL, NULL, 11),
+(16, 'olaaa', 'Completo', '2018-12-04', '2018-12-04', 'Aberto', 11),
+(17, 'olaaa', 'Completo', '2018-12-04', '2018-12-04', 'Aberto', 15),
+(18, 'teste usuario', 'Completo', '2018-12-04', '2018-12-04', 'Aberto', 11),
+(19, NULL, 'Incompleto', '2018-12-04', NULL, NULL, 11);
 
 -- --------------------------------------------------------
 
@@ -255,17 +281,25 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`usuario_id`, `usuario_nomeConta`, `usuario_senha`, `usuario_tipoAcesso`, `usuario_dataDeCadastro`, `usuario_dataDeAlteracao`, `usuario_apelido`, `usuario_errosLogin`, `usuario_ticketResolvidos`) VALUES
-(1, 'admin', '12345', 'administrador', '1996-11-18', NULL, 'Master', 1, 0),
+(1, 'admin', '12345', 'Administrador', '1996-11-18', NULL, 'Master', 1, 0),
 (2, 'operador', '123', 'Operador', '1996-11-18', NULL, 'oi', 0, 0),
-(9, 'TesteTeste', '12345', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
+(9, 'TesteTeste', '123456789@', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
 (10, 'OiOiOi', '12345', 'Cliente', '2018-10-30', '2018-11-05', NULL, 0, 0),
 (11, 'memo', '123', 'Cliente', '2018-10-30', NULL, NULL, 0, 0),
 (14, 'usuarioTeste', '123', 'Usuario', '2018-10-30', '2018-11-04', NULL, 0, 0),
-(15, 'oioi', '123', 'Cliente', '2018-11-05', NULL, NULL, 0, 0);
+(15, 'oioi', '', 'Cliente', '2018-11-05', '2018-12-04', NULL, 0, 0),
+(16, 'CidadeDeDeus', '12345', 'Cliente', '2018-12-03', '2018-12-04', NULL, 0, 0);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `acoes`
+--
+ALTER TABLE `acoes`
+  ADD PRIMARY KEY (`acao_id`),
+  ADD KEY `usuario_id` (`usuario_id`);
 
 --
 -- Indexes for table `clientes`
@@ -331,40 +365,46 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT for table `acoes`
+--
+ALTER TABLE `acoes`
+  MODIFY `acao_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `cliente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `cliente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `empresas`
 --
 ALTER TABLE `empresas`
-  MODIFY `empresa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `empresa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `enderecos`
 --
 ALTER TABLE `enderecos`
-  MODIFY `endereco_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `endereco_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `threads`
 --
 ALTER TABLE `threads`
-  MODIFY `thread_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `thread_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `topicos`
 --
 ALTER TABLE `topicos`
-  MODIFY `topico_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `topico_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `ufs`
@@ -376,11 +416,17 @@ ALTER TABLE `ufs`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Limitadores para a tabela `acoes`
+--
+ALTER TABLE `acoes`
+  ADD CONSTRAINT `acoes_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`usuario_id`);
 
 --
 -- Limitadores para a tabela `clientes`
