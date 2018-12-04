@@ -33,19 +33,6 @@
 
 
     <div class="listarTopicos">
-        <c:if test="${usuario.tipoAcesso == 'Operador'}">
-            <%@include file="/WEB-INF/navbar/navbarOperador.jsp" %>
-        </c:if>
-        <c:if test="${usuario.tipoAcesso == 'Cliente'}">
-            <%@include file="/WEB-INF/navbar/navbarCliente.jsp" %>
-        </c:if>
-        <c:if test="${usuario.tipoAcesso == 'Administrador'}">
-            <%@include file="/WEB-INF/navbar/navbarAdministrador.jsp" %>
-        </c:if>
-        <c:if test="${usuario.tipoAcesso == 'Usuario'}">
-            <%@include file="/WEB-INF/navbar/navbarUsuario.jsp" %>
-        </c:if>
-
 
         <form method="post" action="controller?acao=respostaPostagemThread">
             <input type="hidden" value="${id}" name="id">
