@@ -8,6 +8,8 @@ import br.edu.java.poo.dao.cliente.ClienteDAO;
 import br.edu.java.poo.dao.cliente.impl.ClienteDAOImpl;
 import br.edu.java.poo.dao.endereco.EnderecoDAO;
 import br.edu.java.poo.dao.endereco.impl.EnderecoDAOImpl;
+import br.edu.java.poo.dao.usuario.UsuarioDAO;
+import br.edu.java.poo.dao.usuario.impl.UsuarioDAOImpl;
 import br.edu.java.poo.model.cliente.ClienteDTO;
 import br.edu.java.poo.model.endereco.EnderecoDTO;
 import br.edu.java.poo.model.usuario.UsuarioDTO;
@@ -21,6 +23,7 @@ public class ClienteBusinessImpl implements ClienteBusiness {
     UsuarioValidator usuarioValidator;
     ClienteDAO clienteDAO;
     EnderecoDAO enderecoDAO;
+    UsuarioDAO usuarioDAO;
     UsuarioBusiness usuarioBusiness;
 
     public ClienteBusinessImpl() {
@@ -28,6 +31,7 @@ public class ClienteBusinessImpl implements ClienteBusiness {
         usuarioValidator = new UsuarioValidatorImpl();
         clienteDAO = new ClienteDAOImpl();
         enderecoDAO = new EnderecoDAOImpl();
+        usuarioDAO = new UsuarioDAOImpl();
         usuarioBusiness = new UsuarioBusinessImpl();
     }
 
@@ -67,12 +71,13 @@ public class ClienteBusinessImpl implements ClienteBusiness {
     @Override
     public boolean editarCliente(ClienteDTO clienteDTO, String nomeUsuarioAntigo, String senhaUsuarioAntiga) {
         if (clienteDTO != null) {
-            if (!usuarioValidator.confereAlteraUsuario(clienteDTO.getUsuarioDTO(), nomeUsuarioAntigo, senhaUsuarioAntiga)) {
-                return false;
-            }
+//            if (!usuarioValidator.confereAlteraUsuario(clienteDTO.getUsuarioDTO(), nomeUsuarioAntigo, senhaUsuarioAntiga)) {
+//                return false;
+//            }
 
             if (clienteDAO.atualizaCliente(clienteDTO)) {
                 enderecoDAO.atualizaEndereco(clienteDTO.getEnderecoDTO());
+                usuarioDAO.atualizaUsuario(clienteDTO.getUsuarioDTO());
                 return true;
             }
         }

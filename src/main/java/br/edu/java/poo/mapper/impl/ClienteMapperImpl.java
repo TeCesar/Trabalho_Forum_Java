@@ -60,7 +60,7 @@ public class ClienteMapperImpl implements BaseMapper<HttpServletRequest, Cliente
 
         if ("edicao".equalsIgnoreCase(tipoAcao)){
             String idCliente = req.getParameter("idCliente");
-            String idUsuario = req.getParameter("idUsuario");
+            String idUsuario = req.getParameter("idUsuarioCliente");
             String idEndereco = req.getParameter("idEnderecoCliente");
             String senha = req.getParameter("senhaUsuarioCliente");
             usuarioDTO.setId(Integer.parseInt(idUsuario));

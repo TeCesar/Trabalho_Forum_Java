@@ -12,7 +12,7 @@ public interface UsuarioDAO {
 
     int criarUsuarioCliente(UsuarioDTO usuarioDTO);
 
-    boolean atualizaUsuario(UsuarioDTO usuarioDTO, boolean altera);
+    boolean atualizaUsuario(UsuarioDTO usuarioDTO);
 
     UsuarioDTO buscarUsuario(int id);
 

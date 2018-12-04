@@ -22,7 +22,7 @@ public class EditaClienteService {
     public boolean editaCliente(ClienteDTO clienteDTO, boolean altera){
         if (clienteDTO != null){
             enderecoDAO.atualizaEndereco(clienteDTO.getEnderecoDTO());
-            usuarioDAO.atualizaUsuario(clienteDTO.getUsuarioDTO(), altera);
+            usuarioDAO.atualizaUsuario(clienteDTO.getUsuarioDTO());
             clienteDAO.atualizaCliente(clienteDTO);
         }
         return false;

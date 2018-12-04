@@ -66,7 +66,7 @@
         </select>
 
         <input class="campo" type="hidden" name="idUsuarioCliente" value="${clienteBusca.usuarioDTO.id}"><br><br>
-        <label class="txt">Nome de Usuario: </label><input class="campo" type="text" name="nomeContaUsuarioCliente" value="${clienteBusca.usuarioDTO.nomeConta}">
+        <label class="txt">Nome de Usuario: </label><input class="campo" type="text" name="nomeUsuarioCliente" value="${clienteBusca.usuarioDTO.nomeConta}">
         <input class="campo" type="hidden" name="nomeContaUsuarioAntigoCliente" value="${clienteBusca.usuarioDTO.nomeConta}"><br><br>
         <label class="txt">Senha: </label><input class="campo" type="text" name="senhaUsuarioCliente" value="${clienteBusca.usuarioDTO.senha}"><br><br>
         <input class="campo" type="hidden" name="senhaUsuarioAntigoCliente" value="${clienteBusca.usuarioDTO.senha}">

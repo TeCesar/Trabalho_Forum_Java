@@ -1,7 +1,7 @@
 package br.edu.java.poo.dao.usuario.impl;
 
-import br.edu.java.poo.dao.usuario.UsuarioDAO;
 import br.edu.java.poo.dao.conexao.SQLConnectionProvider;
+import br.edu.java.poo.dao.usuario.UsuarioDAO;
 import br.edu.java.poo.model.usuario.UsuarioDTO;
 
 import java.sql.*;
@@ -72,7 +72,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
 
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 id = resultSet.getInt(1);
             }
         } catch (SQLException e) {
@@ -84,30 +84,27 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     }
 
     @Override
-    public boolean atualizaUsuario(UsuarioDTO usuarioDTO, boolean altera) {
-        if (altera) {
-            try (Connection connection = SQLConnectionProvider.openConnection()) {
-                PreparedStatement preparedStatement = connection.prepareStatement("UPDATE usuarios SET usuario_nomeConta = ?, usuario_senha = ?, " +
-                        "usuario_dataDeAlteracao = ? WHERE usuario_id = ?");
+    public boolean atualizaUsuario(UsuarioDTO usuarioDTO) {
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE usuarios SET usuario_nomeConta = ?, usuario_senha = ?, " +
+                    "usuario_dataDeAlteracao = ? WHERE usuario_id = ?");
 
-                preparedStatement.setString(1, usuarioDTO.getNomeConta());
-                preparedStatement.setString(2, usuarioDTO.getSenha());
-                usuarioDTO.setDataDeAlteracao(new java.util.Date());
-                preparedStatement.setDate(3, new java.sql.Date(usuarioDTO.getDataDeAlteracao().getTime()));
-                preparedStatement.setInt(4, usuarioDTO.getId());
+            preparedStatement.setString(1, usuarioDTO.getNomeConta());
+            preparedStatement.setString(2, usuarioDTO.getSenha());
+            usuarioDTO.setDataDeAlteracao(new java.util.Date());
+            preparedStatement.setDate(3, new java.sql.Date(usuarioDTO.getDataDeAlteracao().getTime()));
+            preparedStatement.setInt(4, usuarioDTO.getId());
 
-                boolean sucesso = preparedStatement.execute();
+            int resultado = preparedStatement.executeUpdate();
 
-                if (!sucesso){
-                    return true;
-                }
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+            if (resultado != 0) {
+                return true;
             }
-            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
         return false;
     }
@@ -130,12 +127,12 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     @Override
     public List<UsuarioDTO> listarUsuarios() {
         List<UsuarioDTO> listaUsuarios = new ArrayList<>();
-        try (Connection connection = SQLConnectionProvider.openConnection()){
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM usuarios");
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 UsuarioDTO usuarioDTO = new UsuarioDTO();
                 usuarioDTO.setId(resultSet.getInt("usuario_id"));
                 usuarioDTO.setNomeConta(resultSet.getString("usuario_nomeConta"));
