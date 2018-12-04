@@ -147,6 +147,7 @@ a {
     position: relative;
     float: left;
     border-right: 1px solid #c0c0c0;
+    top: -2px;
 }
 
 .menu li a {
