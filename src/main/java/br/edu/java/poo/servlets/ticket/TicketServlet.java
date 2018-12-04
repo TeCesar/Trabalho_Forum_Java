@@ -4,6 +4,8 @@ import br.edu.java.poo.business.ticket.TicketBusiness;
 import br.edu.java.poo.business.ticket.impl.TicketBusinessImpl;
 import br.edu.java.poo.dao.thread.ThreadDAO;
 import br.edu.java.poo.dao.thread.impl.ThreadDAOImpl;
+import br.edu.java.poo.mapper.BaseMapper;
+import br.edu.java.poo.mapper.impl.TicketMapperImpl;
 import br.edu.java.poo.model.thread.ThreadDTO;
 import br.edu.java.poo.model.ticket.TicketDTO;
 import br.edu.java.poo.model.usuario.UsuarioDTO;
@@ -23,13 +25,18 @@ import java.util.Date;
 @WebServlet(urlPatterns = "/ticket")
 public class TicketServlet extends HttpServlet {
     TicketBusiness ticketBusiness;
+    BaseMapper<HttpServletRequest, TicketDTO> ticketMapper;
+
+    public TicketServlet(){
+        ticketBusiness = new TicketBusinessImpl();
+        ticketMapper = new TicketMapperImpl();
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String tipo = req.getParameter("tipo");
 
         if ("fimTicket".equalsIgnoreCase(tipo)) {
-            TicketBusiness ticketBusiness = new TicketBusinessImpl();
             ThreadDAO threadDAO = new ThreadDAOImpl();
             String titulo = req.getParameter("tituloTicket");
             String mensagem = req.getParameter("mensagemTicket");
@@ -69,28 +76,8 @@ public class TicketServlet extends HttpServlet {
         String tipo = req.getParameter("tipo");
 
         if ("inicioTicket".equalsIgnoreCase(tipo)) {
-            ticketBusiness = new TicketBusinessImpl();
-            TicketDTO ticketDTO = new TicketDTO();
-
-            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-            String data = dateFormat.format(new Date());
-
-            UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuario");
-
-            UsuarioDTO usuarioDTO = new UsuarioDTO();
-
-            usuarioDTO.setId(usuarioSession.getId());
-            usuarioDTO.setNomeConta(usuarioSession.getNomeConta());
-            usuarioDTO.setTipoAcesso(usuarioSession.getTipoAcesso());
-            ticketDTO.setUsuarioDTO(usuarioDTO);
-            ticketDTO.setStatus("Incompleto");
-
-            try {
-                ticketDTO.setTempoInicio(dateFormat.parse(data));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
+            req.setAttribute("tipoTicketMapper", tipo);
+            TicketDTO ticketDTO = ticketMapper.doMap(req);
             ticketDTO.setId(ticketBusiness.iniciaTicket(ticketDTO));
             req.getSession().setAttribute("novoTicket", ticketDTO);
             req.getRequestDispatcher("WEB-INF/ticket/novoTicket.jsp").forward(req, resp);

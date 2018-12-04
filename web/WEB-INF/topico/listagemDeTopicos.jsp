@@ -39,7 +39,7 @@
             <c:forEach var="topico" items="${listaTopicos}">
                 <tr style="text-align: center;" class="border_bottom">
                     <td>${topico.titulo}</td>
-                    <td>${usuario.nomeConta}</td>
+                    <td>${topico.usuarioDTO.nomeConta}</td>
                     <c:if test="${topico.situacao == 'Aberto'}">
                         <td style="background-color: #F08080;">${topico.situacao}</td>
                     </c:if>
@@ -51,13 +51,6 @@
                     </c:if>
                     <td class="linkCor"><a  href="controller?acao=topico&tipo=mostrarTopico&id=${topico.id}">Abrir</a></td>
                 </tr>
-
-
-
-
-
-
-
             </c:forEach>
         </table>
 

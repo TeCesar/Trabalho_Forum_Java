@@ -22,6 +22,7 @@
 <h1 class="titulo">Editar Cliente</h1>
 <form method="post" action="controller?acao=editarCliente">
     <div style="text-align: center">
+        <input type="hidden" value="edicao" name="tipoAcao">
         <input class="campo" type="hidden" name="idCliente" value="${clienteBusca.id}"/>
         <label class="txt">Nome: </label><input class="campo" type="text" name="nomeCliente" value="${clienteBusca.nome}" required><br><br>
         <label class="txt">Sobrenome: </label><input class="campo" type="text" name="sobrenomeCliente" value="${clienteBusca.sobrenome}" required><br><br>

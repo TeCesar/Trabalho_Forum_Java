@@ -25,12 +25,10 @@ public class ThreadServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String acao = req.getParameter("acao");
-        String tt = (String) req.getSession().getAttribute("tt");
+        String tipo = req.getParameter("acao");
 
-        if ("respostaPostagemThread".equalsIgnoreCase(acao)) {
+        if ("respostaPostagemThread".equalsIgnoreCase(tipo)) {
             String id = (String) req.getSession().getAttribute("id");
-            String tipo = req.getParameter("tipo");
             String mensagem = req.getParameter("mensagemResposta");
             UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuario");
             ThreadDAO threadDAO = new ThreadDAOImpl();
@@ -69,15 +67,15 @@ public class ThreadServlet extends HttpServlet {
 
             threadDTO.setId(threadDAO.criarThread(threadDTO));
 
-            List<ThreadDTO> listaThread = threadDAO.listarThread(tt, Integer.parseInt(id));
-            req.setAttribute("listaThread", listaThread);
+//            List<ThreadDTO> listaThread = threadDAO.listarThread(tt, Integer.parseInt(id));
+//            req.setAttribute("listaThread", listaThread);
 
             req.getRequestDispatcher("WEB-INF/thread/mostraThread.jsp").forward(req, resp);
 
 
         }
 
-        if ("threadTicket".equalsIgnoreCase(acao)) {
+        if ("threadTicket".equalsIgnoreCase(tipo)) {
 
         }
     }
@@ -87,10 +85,10 @@ public class ThreadServlet extends HttpServlet {
         String tipo = req.getParameter("tipo");
 
         if ("mostrar".equalsIgnoreCase(tipo)) {
-            String tt = (String) req.getSession().getAttribute("tt");
             ThreadDAO threadDAO = new ThreadDAOImpl();
             String id = req.getParameter("id");
             String titulo = req.getParameter("titulo");
+            String tt = req.getParameter("tt");
             List<ThreadDTO> listaThread = threadDAO.listarThread(tt, Integer.parseInt(id));
             req.setAttribute("listaThread", listaThread);
             req.setAttribute("titulo", titulo);

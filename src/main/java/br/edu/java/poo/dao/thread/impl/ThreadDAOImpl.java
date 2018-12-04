@@ -70,47 +70,18 @@ public class ThreadDAOImpl implements ThreadDAO {
                     "FROM threads INNER JOIN tickets ON threads.ticket_id = tickets.ticket_id INNER JOIN usuarios ON threads.usuario_id = usuarios.usuario_id " +
                     "WHERE threads.ticket_id = ?";
         }
-        try (Connection connection = SQLConnectionProvider.openConnection()){
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setInt(1, id);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
-                ThreadDTO threadDTO = new ThreadDTO();
-                if ("topico".equalsIgnoreCase(tipo)){
-                    TopicoDTO topicoDTO = new TopicoDTO();
-                    topicoDTO.setId(resultSet.getInt("topico_id"));
-                    topicoDTO.setTitulo(resultSet.getString("topico_titulo"));
-                    topicoDTO.setStatus(resultSet.getString("topico_status"));
-                    topicoDTO.setDataCriacao(resultSet.getTimestamp("topico_dataCriacao"));
-                    topicoDTO.setDataTermino(resultSet.getTimestamp("topico_dataTermino"));
-                    topicoDTO.setSituacao(resultSet.getString("topico_situacao"));
-                    threadDTO.setTopicoDTO(topicoDTO);
-                } else {
-                    TicketDTO ticketDTO = new TicketDTO();
-                    ticketDTO.setId(resultSet.getInt("ticket_id"));
-                    ticketDTO.setTitulo(resultSet.getString("ticket_titulo"));
-                    ticketDTO.setStatus(resultSet.getString("ticket_status"));
-                    ticketDTO.setTempoInicio(resultSet.getTimestamp("ticket_tempoInicio"));
-                    ticketDTO.setTempoFim(resultSet.getTimestamp("ticket_tempoFim"));
-                    ticketDTO.setSituacao(resultSet.getString("ticket_situacao"));
-                    threadDTO.setTicketDTO(ticketDTO);
-                }
-                UsuarioDTO usuarioDTO = new UsuarioDTO();
-                usuarioDTO.setId(resultSet.getInt("usuario_id"));
-                usuarioDTO.setNomeConta(resultSet.getString("usuario_nomeConta"));
-                usuarioDTO.setTipoAcesso(resultSet.getString("usuario_tipoAcesso"));
-                usuarioDTO.setApelido(resultSet.getString("usuario_apelido"));
-                threadDTO.setUsuarioDTO(usuarioDTO);
-                threadDTO.setId(resultSet.getInt("thread_id"));
-                threadDTO.setMensagem(resultSet.getString("thread_mensagem"));
-                threadDTO.setAutor(resultSet.getString("thread_autor"));
-                threadDTO.setAutorPergunta(resultSet.getInt("thread_autorPergunta"));
-                threadDTO.setDataPostagem(resultSet.getTimestamp("thread_dataPostagem"));
+            while (resultSet.next()) {
+                ThreadDTO threadDTO = fillThread(resultSet, tipo);
                 listaThread.add(threadDTO);
             }
+
             return listaThread;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -123,7 +94,7 @@ public class ThreadDAOImpl implements ThreadDAO {
     @Override
     public String buscaNomeAutor(String tipo, int id) {
         String sql;
-        if ("topico".equalsIgnoreCase(tipo)){
+        if ("topico".equalsIgnoreCase(tipo)) {
             sql = "SELECT usuarios.usuario_nomeConta, topicos.topico_id FROM topicos INNER JOIN usuarios ON topicos.usuario_id = usuarios.usuario_id " +
                     "WHERE topicos.topico_id = ?";
         } else {
@@ -131,14 +102,14 @@ public class ThreadDAOImpl implements ThreadDAO {
                     "WHERE tickets.ticket_id = ?";
         }
 
-        try (Connection connection = SQLConnectionProvider.openConnection()){
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setInt(1, id);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 return resultSet.getString("usuario_nomeConta");
             }
         } catch (SQLException e) {
@@ -147,5 +118,40 @@ public class ThreadDAOImpl implements ThreadDAO {
             e.printStackTrace();
         }
         return "Falha";
+    }
+
+    private ThreadDTO fillThread(ResultSet resultSet, String tipo) throws SQLException {
+        ThreadDTO threadBusca = new ThreadDTO();
+        if ("topico".equalsIgnoreCase(tipo)) {
+            TopicoDTO topicoDTO = new TopicoDTO();
+            topicoDTO.setId(resultSet.getInt("topico_id"));
+            topicoDTO.setTitulo(resultSet.getString("topico_titulo"));
+            topicoDTO.setStatus(resultSet.getString("topico_status"));
+            topicoDTO.setDataCriacao(resultSet.getTimestamp("topico_dataCriacao"));
+            topicoDTO.setDataTermino(resultSet.getTimestamp("topico_dataTermino"));
+            topicoDTO.setSituacao(resultSet.getString("topico_situacao"));
+            threadBusca.setTopicoDTO(topicoDTO);
+        } else {
+            TicketDTO ticketDTO = new TicketDTO();
+            ticketDTO.setId(resultSet.getInt("ticket_id"));
+            ticketDTO.setTitulo(resultSet.getString("ticket_titulo"));
+            ticketDTO.setStatus(resultSet.getString("ticket_status"));
+            ticketDTO.setTempoInicio(resultSet.getTimestamp("ticket_tempoInicio"));
+            ticketDTO.setTempoFim(resultSet.getTimestamp("ticket_tempoFim"));
+            ticketDTO.setSituacao(resultSet.getString("ticket_situacao"));
+            threadBusca.setTicketDTO(ticketDTO);
+        }
+        UsuarioDTO usuarioDTO = new UsuarioDTO();
+        usuarioDTO.setId(resultSet.getInt("usuario_id"));
+        usuarioDTO.setNomeConta(resultSet.getString("usuario_nomeConta"));
+        usuarioDTO.setTipoAcesso(resultSet.getString("usuario_tipoAcesso"));
+        usuarioDTO.setApelido(resultSet.getString("usuario_apelido"));
+        threadBusca.setUsuarioDTO(usuarioDTO);
+        threadBusca.setId(resultSet.getInt("thread_id"));
+        threadBusca.setMensagem(resultSet.getString("thread_mensagem"));
+        threadBusca.setAutor(resultSet.getString("thread_autor"));
+        threadBusca.setAutorPergunta(resultSet.getInt("thread_autorPergunta"));
+        threadBusca.setDataPostagem(resultSet.getTimestamp("thread_dataPostagem"));
+        return threadBusca;
     }
 }
