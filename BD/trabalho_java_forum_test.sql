@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 05-Dez-2018 às 05:01
+-- Generation Time: 05-Dez-2018 às 22:13
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -477,7 +477,103 @@ INSERT INTO `acoes` (`acao_id`, `acao_acao`, `acao_tipo`, `usuario_id`) VALUES
 (448, '[Ljava.lang.String;@470f6630', '[Ljava.lang.String;@18468999', 11),
 (449, '[Ljava.lang.String;@725fdfc6', '[Ljava.lang.String;@2152fa82', 11),
 (450, '[Ljava.lang.String;@106dfc5a', '[Ljava.lang.String;@79ecd805', 11),
-(451, '[Ljava.lang.String;@6cd768d7', '[Ljava.lang.String;@220670a1', 11);
+(451, '[Ljava.lang.String;@6cd768d7', '[Ljava.lang.String;@220670a1', 11),
+(452, '[Ljava.lang.String;@7fcfd2b2', '[Ljava.lang.String;@3b125d34', 11),
+(453, '[Ljava.lang.String;@d00c9ab', '[Ljava.lang.String;@c4a5a9', 11),
+(454, NULL, NULL, 11),
+(455, '[Ljava.lang.String;@5377669b', NULL, 11),
+(456, '[Ljava.lang.String;@404082f4', '[Ljava.lang.String;@2f5256a8', 1),
+(457, '[Ljava.lang.String;@6b96277b', '[Ljava.lang.String;@4431b098', 1),
+(458, '[Ljava.lang.String;@4ca9dca6', '[Ljava.lang.String;@c12c904', 1),
+(459, '[Ljava.lang.String;@233571a', '[Ljava.lang.String;@44a39b50', 1),
+(460, '[Ljava.lang.String;@10e3af4a', '[Ljava.lang.String;@5739d700', 1),
+(461, '[Ljava.lang.String;@6bf68555', '[Ljava.lang.String;@6291578b', 1),
+(462, '[Ljava.lang.String;@72be1921', '[Ljava.lang.String;@3c5d58fd', 1),
+(463, '[Ljava.lang.String;@3400058f', '[Ljava.lang.String;@26b2125b', 1),
+(464, '[Ljava.lang.String;@4cfbc24f', '[Ljava.lang.String;@423c35a0', 1),
+(465, '[Ljava.lang.String;@4dcca9a0', '[Ljava.lang.String;@5fd51a85', 1),
+(466, '[Ljava.lang.String;@3d15b705', '[Ljava.lang.String;@43e447c5', 1),
+(467, '[Ljava.lang.String;@2644b5c0', '[Ljava.lang.String;@28834f78', 1),
+(468, '[Ljava.lang.String;@a7a3167', '[Ljava.lang.String;@4bdce58', 1),
+(469, '[Ljava.lang.String;@4547b1aa', '[Ljava.lang.String;@7f358df0', 1),
+(470, '[Ljava.lang.String;@5175362f', '[Ljava.lang.String;@5fb2c271', 1),
+(471, '[Ljava.lang.String;@339b87b1', '[Ljava.lang.String;@76990fa6', 1),
+(472, '[Ljava.lang.String;@787f7424', '[Ljava.lang.String;@76b8855b', 1),
+(473, '[Ljava.lang.String;@7484d09f', '[Ljava.lang.String;@7a43207f', 1),
+(474, NULL, NULL, 1),
+(475, '[Ljava.lang.String;@16bedc84', NULL, 1),
+(476, '[Ljava.lang.String;@6aa3b29b', '[Ljava.lang.String;@9f2c57f', 2),
+(477, '[Ljava.lang.String;@72f21de5', '[Ljava.lang.String;@7a72e16f', 2),
+(478, '[Ljava.lang.String;@7697294f', '[Ljava.lang.String;@639ffedc', 2),
+(479, NULL, NULL, 2),
+(480, '[Ljava.lang.String;@5e222374', NULL, 2),
+(481, '[Ljava.lang.String;@7fcba1b', '[Ljava.lang.String;@42fe3480', 1),
+(482, '[Ljava.lang.String;@b6a270c', '[Ljava.lang.String;@383a6af3', 1),
+(483, '[Ljava.lang.String;@77918364', '[Ljava.lang.String;@7e79929a', 1),
+(484, '[Ljava.lang.String;@689df054', '[Ljava.lang.String;@2767090c', 1),
+(485, '[Ljava.lang.String;@52bbcd1d', '[Ljava.lang.String;@7a9ff732', 1),
+(486, '[Ljava.lang.String;@2111bdfc', '[Ljava.lang.String;@4a8249c2', 1),
+(487, '[Ljava.lang.String;@4bfd6589', '[Ljava.lang.String;@17cbe845', 1),
+(488, '[Ljava.lang.String;@17a3ab83', '[Ljava.lang.String;@7e7e7305', 1),
+(489, '[Ljava.lang.String;@5d57374e', '[Ljava.lang.String;@195b066', 1),
+(490, '[Ljava.lang.String;@6bb38e60', '[Ljava.lang.String;@1f8f83c3', 1),
+(491, '[Ljava.lang.String;@5a326878', '[Ljava.lang.String;@31a8be9b', 1),
+(492, '[Ljava.lang.String;@325bf844', '[Ljava.lang.String;@3c9c107f', 1),
+(493, '[Ljava.lang.String;@624d2751', '[Ljava.lang.String;@6c8ac568', 1),
+(494, '[Ljava.lang.String;@5fec0149', '[Ljava.lang.String;@5f3c4108', 1),
+(495, '[Ljava.lang.String;@18245e6f', '[Ljava.lang.String;@16e3b31b', 1),
+(496, '[Ljava.lang.String;@325bf844', '[Ljava.lang.String;@3c9c107f', 1),
+(497, '[Ljava.lang.String;@6315e14f', '[Ljava.lang.String;@6dd2035d', 1),
+(498, '[Ljava.lang.String;@50f2a14e', '[Ljava.lang.String;@5e355520', 1),
+(499, '[Ljava.lang.String;@598455a7', '[Ljava.lang.String;@5743a0e7', 1),
+(500, '[Ljava.lang.String;@75742573', '[Ljava.lang.String;@351ac72a', 1),
+(501, '[Ljava.lang.String;@297214d3', '[Ljava.lang.String;@27b5ff8d', 1),
+(502, '[Ljava.lang.String;@1c4a59d9', '[Ljava.lang.String;@128db420', 1),
+(503, '[Ljava.lang.String;@4fc2488e', '[Ljava.lang.String;@4105af06', 1),
+(504, '[Ljava.lang.String;@6e161fd4', '[Ljava.lang.String;@60d1fc66', 1),
+(505, '[Ljava.lang.String;@1119ea3c', '[Ljava.lang.String;@1fde166f', 1),
+(506, '[Ljava.lang.String;@39d3bad3', '[Ljava.lang.String;@e904ba8', 1),
+(507, '[Ljava.lang.String;@4dd62a96', '[Ljava.lang.String;@8d4ad48', 1),
+(508, '[Ljava.lang.String;@181376ea', '[Ljava.lang.String;@16d49b98', 1),
+(509, '[Ljava.lang.String;@57d25337', '[Ljava.lang.String;@5915a7bd', 1),
+(510, '[Ljava.lang.String;@669a56c9', '[Ljava.lang.String;@685db46a', 1),
+(511, '[Ljava.lang.String;@18307870', '[Ljava.lang.String;@4cc0f629', 1),
+(513, '[Ljava.lang.String;@47c2f478', '[Ljava.lang.String;@490512f0', 1),
+(514, '[Ljava.lang.String;@6dc8a686', '[Ljava.lang.String;@630f554f', 1),
+(515, '[Ljava.lang.String;@3df20b4', '[Ljava.lang.String;@2c64cfe7', 1),
+(516, '[Ljava.lang.String;@5cfdcd19', '[Ljava.lang.String;@523a28f6', 1),
+(517, '[Ljava.lang.String;@208a4f2', '[Ljava.lang.String;@ccf5ac3', 1),
+(518, '[Ljava.lang.String;@2499542', '[Ljava.lang.String;@c8e6b7b', 1),
+(519, '[Ljava.lang.String;@f2541aa', '[Ljava.lang.String;@4ca4f916', 1),
+(520, '[Ljava.lang.String;@7ebac270', '[Ljava.lang.String;@707d33d7', 1),
+(521, '[Ljava.lang.String;@322feedb', '[Ljava.lang.String;@3ce806ee', 1),
+(522, '[Ljava.lang.String;@7ebfbf58', '[Ljava.lang.String;@70784eff', 1),
+(523, '[Ljava.lang.String;@44446dc4', '[Ljava.lang.String;@4a838b3c', 1),
+(524, '[Ljava.lang.String;@288c9e9', '[Ljava.lang.String;@c4f37c8', 1),
+(525, '[Ljava.lang.String;@40b5efe', '[Ljava.lang.String;@73e03423', 1),
+(526, '[Ljava.lang.String;@5e464254', '[Ljava.lang.String;@5081a7ec', 1),
+(527, '[Ljava.lang.String;@43449568', '[Ljava.lang.String;@4d836370', 1),
+(528, '[Ljava.lang.String;@335d75ef', '[Ljava.lang.String;@3d9a8df4', 1),
+(529, '[Ljava.lang.String;@d48b2bb', '[Ljava.lang.String;@31980f2e', 1),
+(530, '[Ljava.lang.String;@47c2f478', '[Ljava.lang.String;@490512f0', 1),
+(531, '[Ljava.lang.String;@6730cdf6', '[Ljava.lang.String;@22325f74', 1),
+(532, '[Ljava.lang.String;@5c704855', '[Ljava.lang.String;@52b7ac73', 1),
+(533, '[listarTickets]', '[todos]', 1),
+(534, '[listarTickets]', '[Aberto]', 1),
+(535, '[topico]', '[listarTopicos]', 1),
+(536, '[cadastro]', '[cliente]', 1),
+(537, '[cadastro]', '[empresa]', 1),
+(538, '[cadastro]', '[operador]', 1),
+(539, '[relatorio]', '[clienteEmpresa]', 1),
+(540, '[listarTickets]', '[todos]', 1),
+(541, '[listarTickets]', '[Fechado]', 1),
+(542, '[listarTickets]', '[todos]', 1),
+(543, '[ticket]', '[mostrarTicket]', 1),
+(544, '[thread]', '[editaMensagemOperador]', 1),
+(545, '[thread]', '[alterarMensagem]', 1),
+(546, '[login]', NULL, 1),
+(547, '[listarTickets]', '[todos]', 1),
+(548, '[ticket]', '[mostrarTicket]', 1);
 
 -- --------------------------------------------------------
 
@@ -572,6 +668,8 @@ CREATE TABLE `threads` (
   `thread_autor` varchar(50) NOT NULL,
   `thread_autorPergunta` int(2) NOT NULL,
   `thread_dataPostagem` timestamp NULL DEFAULT NULL,
+  `thread_dataAlteracao` timestamp NULL DEFAULT NULL,
+  `thread_usuarioEdicao` varchar(100) DEFAULT NULL,
   `topico_id` int(11) DEFAULT NULL,
   `ticket_id` int(11) DEFAULT NULL,
   `usuario_id` int(11) DEFAULT NULL
@@ -581,42 +679,44 @@ CREATE TABLE `threads` (
 -- Extraindo dados da tabela `threads`
 --
 
-INSERT INTO `threads` (`thread_id`, `thread_mensagem`, `thread_autor`, `thread_autorPergunta`, `thread_dataPostagem`, `topico_id`, `ticket_id`, `usuario_id`) VALUES
-(29, 'from the other side', 'memo', 1, '2018-12-04 12:42:00', NULL, 11, 11),
-(30, 'aqui estou testando tudo', 'memo', 1, '2018-12-04 12:44:00', 16, NULL, 11),
-(31, 'esse Ã© um superteste', 'oioi', 1, '2018-12-04 12:47:00', 17, NULL, 15),
-(32, 'esse Ã© um superteste', 'memo', 1, '2018-12-04 12:47:00', 18, NULL, 11),
-(40, 'teste', 'memo', 1, '2018-12-04 13:59:51', 18, NULL, 11),
-(41, 'teste', 'operador', 0, '2018-12-04 14:01:18', NULL, 11, 2),
-(42, '@memo oi', 'operador', 0, '2018-12-04 14:01:24', NULL, 11, 2),
-(43, '@memo oi', 'operador', 0, '2018-12-04 14:06:17', NULL, 11, 2),
-(44, '@operador teste', 'operador', 0, '2018-12-04 21:30:51', NULL, 11, 2),
-(45, 'teste', 'memo', 1, '2018-12-04 21:33:48', 18, NULL, 11),
-(46, '@memo oi', 'operador', 0, '2018-12-04 21:36:19', 18, NULL, 2),
-(47, 'teste', 'operador', 0, '2018-12-04 21:37:35', NULL, 11, 2),
-(48, '@operador qqqq', 'operador', 0, '2018-12-04 21:40:47', NULL, 11, 2),
-(49, '', 'usuarioTeste', 1, '2018-12-04 21:44:00', 22, NULL, 14),
-(50, '@usuarioTeste', 'usuarioTeste', 1, '2018-12-04 21:44:28', 22, NULL, 14),
-(51, 'teste', 'operador', 0, '2018-12-04 22:56:39', 22, NULL, 2),
-(52, 'qqqqqq', 'operador', 0, '2018-12-04 22:57:31', 22, NULL, 2),
-(54, '@operador qq', 'operador', 0, '2018-12-04 22:57:47', 22, NULL, 2),
-(55, '@operador qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 22:58:29', 22, NULL, 2),
-(56, 'qq', 'operador', 0, '2018-12-04 22:58:47', 22, NULL, 2),
-(57, 'qqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 22:59:25', 18, NULL, 2),
-(58, 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 23:01:31', 16, NULL, 2),
-(59, 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 23:03:57', 16, NULL, 2),
-(60, 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 23:06:26', 16, NULL, 2),
-(61, 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 23:06:30', 16, NULL, 2),
-(62, '@operador qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 23:06:37', 16, NULL, 2),
-(63, 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr', 'operador', 0, '2018-12-04 23:06:41', 16, NULL, 2),
-(64, 'aa', 'admin', 0, '2018-12-05 01:55:17', NULL, 11, 1),
-(65, 'eoq', 'operadorTeste', 0, '2018-12-05 01:59:48', NULL, 11, 17),
-(66, 'wwwwwwwwww', 'oioi', 1, '2018-12-05 02:16:00', NULL, 13, 15),
-(67, '@oioi teste', 'oioi', 1, '2018-12-05 02:16:52', NULL, 13, 15),
-(68, '@oioi q foi', 'operador', 0, '2018-12-05 02:17:07', NULL, 13, 2),
-(69, 'ausdhaisrhweifgqcf2gefkqehqiedcqd', 'oioi', 1, '2018-12-05 03:04:00', NULL, 14, 15),
-(70, '@oioi falae', 'operadorTeste', 0, '2018-12-05 03:05:14', NULL, 14, 17),
-(71, '@memo essa e a resposta', 'operadorTeste', 0, '2018-12-05 03:58:40', NULL, 11, 17);
+INSERT INTO `threads` (`thread_id`, `thread_mensagem`, `thread_autor`, `thread_autorPergunta`, `thread_dataPostagem`, `thread_dataAlteracao`, `thread_usuarioEdicao`, `topico_id`, `ticket_id`, `usuario_id`) VALUES
+(29, 'from the other side', 'memo', 1, '2018-12-04 12:42:00', NULL, NULL, NULL, 11, 11),
+(30, 'aqui estou testando tudo', 'memo', 1, '2018-12-04 12:44:00', NULL, NULL, 16, NULL, 11),
+(31, 'esse Ã© um superteste', 'oioi', 1, '2018-12-04 12:47:00', NULL, NULL, 17, NULL, 15),
+(32, 'esse Ã© um superteste', 'memo', 1, '2018-12-04 12:47:00', NULL, NULL, 18, NULL, 11),
+(40, 'teste', 'memo', 1, '2018-12-04 13:59:51', NULL, NULL, 18, NULL, 11),
+(41, 'teste', 'operador', 0, '2018-12-04 14:01:18', NULL, NULL, NULL, 11, 2),
+(42, '@memo oi', 'operador', 0, '2018-12-04 14:01:24', NULL, NULL, NULL, 11, 2),
+(43, '@memo oi', 'operador', 0, '2018-12-04 14:06:17', NULL, NULL, NULL, 11, 2),
+(44, '@operador teste', 'operador', 0, '2018-12-04 21:30:51', NULL, NULL, NULL, 11, 2),
+(45, 'teste', 'memo', 1, '2018-12-04 21:33:48', NULL, NULL, 18, NULL, 11),
+(46, '@memo oi', 'operador', 0, '2018-12-04 21:36:19', NULL, NULL, 18, NULL, 2),
+(47, 'teste', 'operador', 0, '2018-12-04 21:37:35', NULL, NULL, NULL, 11, 2),
+(48, '@operador qqqq', 'operador', 0, '2018-12-04 21:40:47', NULL, NULL, NULL, 11, 2),
+(49, '', 'usuarioTeste', 1, '2018-12-04 21:44:00', NULL, NULL, 22, NULL, 14),
+(50, '@usuarioTeste', 'usuarioTeste', 1, '2018-12-04 21:44:28', NULL, NULL, 22, NULL, 14),
+(51, 'teste', 'operador', 0, '2018-12-04 22:56:39', NULL, NULL, 22, NULL, 2),
+(52, 'qqqqqq', 'operador', 0, '2018-12-04 22:57:31', NULL, NULL, 22, NULL, 2),
+(54, '@operador qq', 'operador', 0, '2018-12-04 22:57:47', NULL, NULL, 22, NULL, 2),
+(55, '@operador qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 22:58:29', NULL, NULL, 22, NULL, 2),
+(56, 'qq', 'operador', 0, '2018-12-04 22:58:47', NULL, NULL, 22, NULL, 2),
+(57, 'qqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 22:59:25', NULL, NULL, 18, NULL, 2),
+(58, 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 23:01:31', NULL, NULL, 16, NULL, 2),
+(59, 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 23:03:57', NULL, NULL, 16, NULL, 2),
+(60, 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 23:06:26', NULL, NULL, 16, NULL, 2),
+(61, 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 23:06:30', NULL, NULL, 16, NULL, 2),
+(62, '@operador qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', 'operador', 0, '2018-12-04 23:06:37', NULL, NULL, 16, NULL, 2),
+(63, 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr', 'operador', 0, '2018-12-04 23:06:41', NULL, NULL, 16, NULL, 2),
+(64, 'aa', 'admin', 0, '2018-12-05 01:55:17', NULL, NULL, NULL, 11, 1),
+(65, 'eoq', 'operadorTeste', 0, '2018-12-05 01:59:48', NULL, NULL, NULL, 11, 17),
+(66, 'wwwwwwwwww', 'oioi', 1, '2018-12-05 02:16:00', NULL, NULL, NULL, 13, 15),
+(67, '@oioi teste', 'oioi', 1, '2018-12-05 02:16:52', NULL, NULL, NULL, 13, 15),
+(68, '@oioi q foi', 'operador', 0, '2018-12-05 02:17:07', NULL, NULL, NULL, 13, 2),
+(69, 'ausdhaisrhweifgqcf2gefkqehqiedcqd', 'oioi', 1, '2018-12-05 03:04:00', NULL, NULL, NULL, 14, 15),
+(70, '@oioi rwarw', 'operadorTeste', 0, '2018-12-05 03:05:14', '2018-12-05 20:31:16', 'admin', NULL, 14, 17),
+(71, '@memo essa e a resposta', 'operadorTeste', 0, '2018-12-05 03:58:40', NULL, NULL, NULL, 11, 17),
+(72, '@memo oioi', 'admin', 0, '2018-12-05 18:30:42', NULL, NULL, NULL, 11, 1),
+(73, 'qwerty', 'admin', 0, '2018-12-05 18:31:06', NULL, NULL, NULL, 11, 1);
 
 -- --------------------------------------------------------
 
@@ -673,7 +773,8 @@ INSERT INTO `topicos` (`topico_id`, `topico_titulo`, `topico_status`, `topico_da
 (19, NULL, 'Incompleto', '2018-12-04', NULL, NULL, 11),
 (20, NULL, 'Incompleto', '2018-12-04', NULL, NULL, 14),
 (21, NULL, 'Incompleto', '2018-12-04', NULL, NULL, 14),
-(22, '', 'Completo', '2018-12-04', '2018-12-04', 'Aberto', 14);
+(22, '', 'Completo', '2018-12-04', '2018-12-04', 'Aberto', 14),
+(23, NULL, 'Incompleto', '2018-12-05', NULL, NULL, 11);
 
 -- --------------------------------------------------------
 
@@ -744,7 +845,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`usuario_id`, `usuario_nomeConta`, `usuario_senha`, `usuario_tipoAcesso`, `usuario_dataDeCadastro`, `usuario_dataDeAlteracao`, `usuario_apelido`, `usuario_errosLogin`, `usuario_ticketResolvidos`, `usuario_bloqueado`) VALUES
-(1, 'admin', '123', 'Administrador', '1996-11-18', NULL, NULL, 2, 0, 0),
+(1, 'admin', '123', 'Administrador', '1996-11-18', NULL, NULL, 3, 0, 0),
 (2, 'operador', '123', 'Operador', '1996-11-18', NULL, NULL, 3, 5, 0),
 (9, 'TesteTeste', '123', 'Cliente', '2018-10-30', NULL, NULL, 0, 0, 0),
 (10, 'OiOiOi', '123', 'Cliente', '2018-10-30', '2018-11-05', NULL, 0, 0, 0),
@@ -832,7 +933,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `acoes`
 --
 ALTER TABLE `acoes`
-  MODIFY `acao_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=452;
+  MODIFY `acao_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=549;
 
 --
 -- AUTO_INCREMENT for table `clientes`
@@ -856,7 +957,7 @@ ALTER TABLE `enderecos`
 -- AUTO_INCREMENT for table `threads`
 --
 ALTER TABLE `threads`
-  MODIFY `thread_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `thread_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `tickets`
@@ -868,7 +969,7 @@ ALTER TABLE `tickets`
 -- AUTO_INCREMENT for table `topicos`
 --
 ALTER TABLE `topicos`
-  MODIFY `topico_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `topico_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `ufs`
