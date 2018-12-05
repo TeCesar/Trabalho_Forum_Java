@@ -12,4 +12,8 @@ public interface ThreadDAO {
 
     String buscaNomeAutor(String tipo, int id);
 
+    ThreadDTO buscaThread(int id, String tipo);
+
+    boolean atualizaEdicaoThread(ThreadDTO threadDTO);
+
 }

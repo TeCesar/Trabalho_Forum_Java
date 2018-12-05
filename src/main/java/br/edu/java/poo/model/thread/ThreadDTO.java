@@ -12,6 +12,8 @@ public class ThreadDTO {
     private String autor;
     private int autorPergunta;
     private Date dataPostagem;
+    private Date dataAlteracao;
+    private String usuarioEdicao;
     private TopicoDTO topicoDTO;
     private TicketDTO ticketDTO;
     private UsuarioDTO usuarioDTO;
@@ -54,6 +56,22 @@ public class ThreadDTO {
 
     public void setDataPostagem(Date dataPostagem) {
         this.dataPostagem = dataPostagem;
+    }
+
+    public Date getDataAlteracao() {
+        return dataAlteracao;
+    }
+
+    public void setDataAlteracao(Date dataAlteracao) {
+        this.dataAlteracao = dataAlteracao;
+    }
+
+    public String getUsuarioEdicao() {
+        return usuarioEdicao;
+    }
+
+    public void setUsuarioEdicao(String usuarioEdicao) {
+        this.usuarioEdicao = usuarioEdicao;
     }
 
     public TopicoDTO getTopicoDTO() {

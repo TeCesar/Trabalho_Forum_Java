@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +29,7 @@ public class AcoesFilter implements Filter {
         HashMap<String, String> map = new HashMap<>();
 
         if (req.getParameterMap() != null) {
-            req.getParameterMap().forEach((key, value) -> map.put(key, value.toString()));
+            req.getParameterMap().forEach((key, value) -> map.put(key, Arrays.toString(value)));
         }
         AcaoDTO acaoDTO = new AcaoDTO();
         for (Map.Entry<String, String> entry : map.entrySet()){

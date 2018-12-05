@@ -70,12 +70,21 @@
                         <input type="submit" value="Responder ${thread.autor}" class="btne">
                     </c:if>
                 </form>
+                <c:if test="${thread.usuarioDTO.tipoAcesso == 'Operador' && usuarioLogado.tipoAcesso == 'Administrador'}">
+                    <form method="get" action="controller">
+                        <input type="hidden" value="thread" name="acao">
+                        <input type="hidden" value="editaMensagemOperador" name="tipo">
+                        <input type="hidden" value="${thread.id}" name="idThread">
+                        <input type="hidden" value="${conteudoBusca.id}" name="idConteudo">
+                        <input type="submit" value="Alterar resposta do Operador">
+                    </form>
+                </c:if>
                 <c:if test="${thread.usuarioDTO.tipoAcesso == 'Operador' && conteudoBusca.usuarioDTO.nomeConta == usuarioLogado.nomeConta && conteudoBusca.situacao != 'Fechado' && tipoAcao == 'ticket'}">
                     <form method="get" action="controller">
-                        <input type="hidden" value="${conteudoBusca.id}" name="idConteudo">
                         <input type="hidden" value="ticket" name="acao">
                         <input type="hidden" value="ticketRespondido" name="tipo">
                         <input type="hidden" value="${thread.usuarioDTO.id}" name="idThread">
+                        <input type="hidden" value="${conteudoBusca.id}" name="idConteudo">
                         <input type="submit" value="Marcar Ticket resolvido por ${thread.usuarioDTO.nomeConta}">
                     </form>
                 </c:if>

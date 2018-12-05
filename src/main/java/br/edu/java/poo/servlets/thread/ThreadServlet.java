@@ -1,5 +1,7 @@
 package br.edu.java.poo.servlets.thread;
 
+import br.edu.java.poo.business.thread.ThreadBusiness;
+import br.edu.java.poo.business.thread.impl.ThreadBusinessImpl;
 import br.edu.java.poo.business.ticket.TicketBusiness;
 import br.edu.java.poo.business.ticket.impl.TicketBusinessImpl;
 import br.edu.java.poo.business.topico.TopicoBusiness;
@@ -38,6 +40,7 @@ public class ThreadServlet extends HttpServlet {
     UsuarioBusiness usuarioBusiness;
     TicketBusiness ticketBusiness;
     TopicoBusiness topicoBusiness;
+    ThreadBusiness threadBusiness;
 
     public ThreadServlet() {
         threadDAO = new ThreadDAOImpl();
@@ -46,11 +49,12 @@ public class ThreadServlet extends HttpServlet {
         usuarioBusiness = new UsuarioBusinessImpl();
         ticketBusiness = new TicketBusinessImpl();
         topicoBusiness = new TopicoBusinessImpl();
+        threadBusiness = new ThreadBusinessImpl();
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String tipo = req.getParameter("acao");
+        String tipo = req.getParameter("tipo");
 
         if ("respostaPostagemThread".equalsIgnoreCase(tipo)) {
             String id = (String) req.getSession().getAttribute("id");
@@ -95,6 +99,16 @@ public class ThreadServlet extends HttpServlet {
             List<ThreadDTO> listaThread = threadDAO.listarThread(tt, Integer.parseInt(id));
             req.setAttribute("listaThread", listaThread);
             req.getRequestDispatcher("WEB-INF/thread/mostraThread.jsp").forward(req, resp);
+        }
+
+        if ("alterarMensagem".equalsIgnoreCase(tipo)){
+            String idThread = req.getParameter("idThread");
+            String mensagem = req.getParameter("mensagemThread");
+            String tt = (String) req.getSession().getAttribute("tt");
+            UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuarioLogado");
+            if (threadBusiness.alteraMensagem(Integer.parseInt(idThread), mensagem, tt, usuarioSession.getNomeConta())){
+                req.getRequestDispatcher("login.jsp").forward(req, resp);
+            }
         }
     }
 
@@ -165,11 +179,19 @@ public class ThreadServlet extends HttpServlet {
             }
         }
 
-        if ("fecharTopico".equalsIgnoreCase(tipo)){
+        if ("fecharTopico".equalsIgnoreCase(tipo)) {
             String idTopico = req.getParameter("id");
-            if (topicoBusiness.fecharTopico(Integer.parseInt(idTopico))){
+            if (topicoBusiness.fecharTopico(Integer.parseInt(idTopico))) {
                 req.getRequestDispatcher("topico?tipo=listarTopicos").forward(req, resp);
             }
+        }
+
+        if ("editaMensagemOperador".equalsIgnoreCase(tipo)) {
+            String idThread = req.getParameter("idThread");
+            String tt = (String) req.getSession().getAttribute("tt");
+            ThreadDTO threadBusca = threadDAO.buscaThread(Integer.parseInt(idThread), tt);
+            req.setAttribute("threadBusca", threadBusca);
+            req.getRequestDispatcher("WEB-INF/thread/alteraMensagem.jsp").forward(req, resp);
         }
     }
 }

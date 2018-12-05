@@ -62,10 +62,17 @@ public class ControllerServlet extends HttpServlet {
 
         }
 
-        if ("cadastro".equalsIgnoreCase(acao)){
+        if ("cadastro".equalsIgnoreCase(acao)) {
             String tipo = req.getParameter("tipo");
-            if ("operador".equalsIgnoreCase(tipo)){
+            if ("operador".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("cadastro?tipo=operador").forward(req, resp);
+            }
+        }
+
+        if ("thread".equalsIgnoreCase(acao)) {
+            String tipo = req.getParameter("tipo");
+            if ("alterarMensagem".equalsIgnoreCase(tipo)) {
+                req.getRequestDispatcher("thread?tipo=alterarMensagem").forward(req, resp);
             }
         }
 
@@ -100,13 +107,20 @@ public class ControllerServlet extends HttpServlet {
             req.getRequestDispatcher("WEB-INF/menus/" + tipo).forward(req, resp);
         }
 
-        if ("cadastroCliente".equalsIgnoreCase(acao)) {
-            req.getRequestDispatcher("cadastro?tipo=cliente").forward(req, resp);
+        if ("cadastro".equalsIgnoreCase(acao)){
+            String tipo = req.getParameter("tipo");
+            if ("cliente".equalsIgnoreCase(tipo)) {
+                req.getRequestDispatcher("cadastro?tipo=cliente").forward(req, resp);
+            } else if ("empresa".equalsIgnoreCase(tipo)) {
+                req.getRequestDispatcher("cadastro?tipo=empresa").forward(req, resp);
+            } else if ("operador".equalsIgnoreCase(tipo)) {
+                req.getRequestDispatcher("cadastro?tipo=operador").forward(req, resp);
+            }
         }
 
-        if ("cadastroEmpresa".equalsIgnoreCase(acao)) {
-            req.getRequestDispatcher("cadastro?tipo=empresa").forward(req, resp);
-        }
+
+
+
 
         if ("listarTickets".equalsIgnoreCase(acao)) {
             String tipo = req.getParameter("tipo");
@@ -121,7 +135,7 @@ public class ControllerServlet extends HttpServlet {
                 req.getRequestDispatcher("listar?tipo=empresas").forward(req, resp);
             } else if ("usuarios".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("listar?tipo=usuarios").forward(req, resp);
-            } else if ("usuariosBloqueados".equalsIgnoreCase(tipo)){
+            } else if ("usuariosBloqueados".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("listar?tipo=usuariosBloqueados").forward(req, resp);
             }
         }
@@ -192,26 +206,21 @@ public class ControllerServlet extends HttpServlet {
             }
         }
 
-        if ("cadastro".equalsIgnoreCase(acao)){
+        if ("ticket".equalsIgnoreCase(acao)) {
             String tipo = req.getParameter("tipo");
-            if ("operador".equalsIgnoreCase(tipo)){
-                req.getRequestDispatcher("cadastro?tipo=operador").forward(req, resp);
-            }
-        }
-
-        if ("ticket".equalsIgnoreCase(acao)){
-            String tipo = req.getParameter("tipo");
-            if ("ticketRespondido".equalsIgnoreCase(tipo)){
+            if ("ticketRespondido".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("thread?tipo=ticketRespondido").forward(req, resp);
             }
         }
 
-        if ("thread".equalsIgnoreCase(acao)){
+        if ("thread".equalsIgnoreCase(acao)) {
             String tipo = req.getParameter("tipo");
-            if ("reabrir".equalsIgnoreCase(tipo)){
+            if ("reabrir".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("thread?tipo=reabrirThread").forward(req, resp);
-            } else if ("fecharTopico".equalsIgnoreCase(tipo)){
+            } else if ("fecharTopico".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("thread?tipo=fecharTopico").forward(req, resp);
+            } else if ("editaMensagemOperador".equalsIgnoreCase(tipo)) {
+                req.getRequestDispatcher("thread?tipo=editaMensagemOperador").forward(req, resp);
             }
         }
 
