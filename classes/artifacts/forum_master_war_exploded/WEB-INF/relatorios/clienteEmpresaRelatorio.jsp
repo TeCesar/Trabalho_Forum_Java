@@ -24,7 +24,7 @@
 
     <h1>Relatório Clientes por Empresa</h1>
     <c:forEach var="empresa" items="${listaEmpresas}">
-        <h3>Empresa: ${empresa.nomeFantasia}</h3><br>
+        <h3 c>Empresa: ${empresa.nomeFantasia}</h3><br>
 
         <table width="90%" align="center" cellpadding="10">
 

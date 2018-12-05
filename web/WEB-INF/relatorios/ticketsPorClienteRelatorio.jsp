@@ -24,7 +24,7 @@
     <h1>Relatório Tickets por Cliente</h1><br>
 
 <c:forEach var="cliente" items="${listaClientes}">
-    <h3>Cliente: ${cliente.nome} ${cliente.sobrenome}</h3>
+    <h3 class="txtLeft">Cliente: ${cliente.nome} ${cliente.sobrenome}</h3>
 
 
     <table width="90%" align="center" cellpadding="10">

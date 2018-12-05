@@ -295,3 +295,7 @@ tr.border_bottom td {
     cursor: pointer;
     background-color: lawngreen;
 }
+
+.txtLeft{
+    text-align: left;
+}
