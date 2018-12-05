@@ -29,7 +29,7 @@ public class AcoesFilter implements Filter {
         HashMap<String, String> map = new HashMap<>();
 
         if (req.getParameterMap() != null) {
-            req.getParameterMap().forEach((key, value) -> map.put(key, Arrays.toString(value)));
+            req.getParameterMap().forEach((key, value) -> map.put(key, value[0]));
         }
         AcaoDTO acaoDTO = new AcaoDTO();
         for (Map.Entry<String, String> entry : map.entrySet()){

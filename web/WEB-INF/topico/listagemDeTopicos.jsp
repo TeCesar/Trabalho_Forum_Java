@@ -51,7 +51,7 @@
                     <td class="linkCor"><a
                             href="controller?acao=topico&tipo=mostrarTopico&id=${topico.id}&tt=topico&titulo=${topico.titulo}">Abrir</a>
                     </td>
-                    <td class="linkCor"><a
+                    <td class="linkCorFinaliza"><a
                             href="controller?acao=thread&tipo=fecharTopico&id=${topico.id}">Finalizar Topico</a>
                     </td>
                 </c:when>

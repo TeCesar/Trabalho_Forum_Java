@@ -5,6 +5,11 @@ import br.edu.java.poo.dao.ticket.TicketDAO;
 import br.edu.java.poo.dao.ticket.impl.TicketDAOImpl;
 import br.edu.java.poo.model.ticket.TicketDTO;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class TicketBusinessImpl implements TicketBusiness {
     TicketDAO ticketDAO;
 
@@ -24,6 +29,13 @@ public class TicketBusinessImpl implements TicketBusiness {
     @Override
     public boolean finalizaTicket(TicketDTO ticketDTO) {
         if(ticketDTO != null){
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            String dataAtual = dateFormat.format(new Date());
+            try {
+                ticketDTO.setTempoFim(dateFormat.parse(dataAtual));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             ticketDAO.finalizaTicket(ticketDTO);
             return true;
         }

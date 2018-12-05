@@ -1,7 +1,5 @@
 package br.edu.java.poo.controller;
 
-import br.edu.java.poo.model.usuario.UsuarioSession;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -92,22 +90,22 @@ public class ControllerServlet extends HttpServlet {
             }
         }
 
-        if ("menuPrincipal".equalsIgnoreCase(acao)) {
-            UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuario");
-            String tipo = "";
-            if ("operador".equalsIgnoreCase(usuarioSession.getTipoAcesso())) {
-                tipo = "menuOperador.jsp";
-            } else if ("cliente".equalsIgnoreCase(usuarioSession.getTipoAcesso())) {
-                tipo = "menuPrincipal.jsp";
-            } else if ("usuario".equalsIgnoreCase(usuarioSession.getTipoAcesso())) {
-                tipo = "menuUsuario.jsp";
-            } else if ("administrador".equalsIgnoreCase(usuarioSession.getTipoAcesso())) {
-                tipo = "menuAdministrador.jsp";
-            }
-            req.getRequestDispatcher("WEB-INF/menus/" + tipo).forward(req, resp);
-        }
+//        if ("menuPrincipal".equalsIgnoreCase(acao)) {
+//            UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuario");
+//            String tipo = "";
+//            if ("operador".equalsIgnoreCase(usuarioSession.getTipoAcesso())) {
+//                tipo = "menuOperador.jsp";
+//            } else if ("cliente".equalsIgnoreCase(usuarioSession.getTipoAcesso())) {
+//                tipo = "menuPrincipal.jsp";
+//            } else if ("usuario".equalsIgnoreCase(usuarioSession.getTipoAcesso())) {
+//                tipo = "menuUsuario.jsp";
+//            } else if ("administrador".equalsIgnoreCase(usuarioSession.getTipoAcesso())) {
+//                tipo = "menuAdministrador.jsp";
+//            }
+//            req.getRequestDispatcher("WEB-INF/menus/" + tipo).forward(req, resp);
+//        }
 
-        if ("cadastro".equalsIgnoreCase(acao)){
+        if ("cadastro".equalsIgnoreCase(acao)) {
             String tipo = req.getParameter("tipo");
             if ("cliente".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("cadastro?tipo=cliente").forward(req, resp);
@@ -117,9 +115,6 @@ public class ControllerServlet extends HttpServlet {
                 req.getRequestDispatcher("cadastro?tipo=operador").forward(req, resp);
             }
         }
-
-
-
 
 
         if ("listarTickets".equalsIgnoreCase(acao)) {
@@ -221,6 +216,13 @@ public class ControllerServlet extends HttpServlet {
                 req.getRequestDispatcher("thread?tipo=fecharTopico").forward(req, resp);
             } else if ("editaMensagemOperador".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("thread?tipo=editaMensagemOperador").forward(req, resp);
+            }
+        }
+
+        if ("login".equalsIgnoreCase(acao)){
+            String tipo = req.getParameter("tipo");
+            if ("logoff".equalsIgnoreCase(tipo)){
+                req.getRequestDispatcher("login?tipo=logoff").forward(req, resp);
             }
         }
 

@@ -6,4 +6,6 @@ public interface AcaoBusiness {
 
     boolean insereAcao(AcaoDTO acaoDTO);
 
+    boolean insereAcaoLogin(AcaoDTO acaoDTO);
+
 }

@@ -44,7 +44,7 @@ public class TicketDAOImpl implements TicketDAO {
 
             preparedStatement.setString(1, ticketDTO.getTitulo());
             preparedStatement.setString(2, ticketDTO.getStatus());
-            preparedStatement.setTimestamp(3, new java.sql.Timestamp(ticketDTO.getTempoInicio().getTime()));
+            preparedStatement.setTimestamp(3, new java.sql.Timestamp(ticketDTO.getTempoFim().getTime()));
             preparedStatement.setString(4, ticketDTO.getSituacao());
             preparedStatement.setString(5, ticketDTO.getRespondido());
             preparedStatement.setInt(6, ticketDTO.getId());
