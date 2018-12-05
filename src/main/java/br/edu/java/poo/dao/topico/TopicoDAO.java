@@ -14,4 +14,8 @@ public interface TopicoDAO {
     List<TopicoDTO> listarTopicos();
 
     boolean finalizaTopico(TopicoDTO topicoDTO);
+
+    TopicoDTO buscaTopico(int id);
+
+    boolean mudarSituacaoTopico(TopicoDTO topicoDTO);
 }

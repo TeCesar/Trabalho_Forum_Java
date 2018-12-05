@@ -62,6 +62,13 @@ public class ControllerServlet extends HttpServlet {
 
         }
 
+        if ("cadastro".equalsIgnoreCase(acao)){
+            String tipo = req.getParameter("tipo");
+            if ("operador".equalsIgnoreCase(tipo)){
+                req.getRequestDispatcher("cadastro?tipo=operador").forward(req, resp);
+            }
+        }
+
     }
 
     @Override
@@ -114,6 +121,8 @@ public class ControllerServlet extends HttpServlet {
                 req.getRequestDispatcher("listar?tipo=empresas").forward(req, resp);
             } else if ("usuarios".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("listar?tipo=usuarios").forward(req, resp);
+            } else if ("usuariosBloqueados".equalsIgnoreCase(tipo)){
+                req.getRequestDispatcher("listar?tipo=usuariosBloqueados").forward(req, resp);
             }
         }
 
@@ -180,6 +189,29 @@ public class ControllerServlet extends HttpServlet {
             String tipo = req.getParameter("tipo");
             if ("bloquearUsuario".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("editar?tipo=bloquearUsuario").forward(req, resp);
+            }
+        }
+
+        if ("cadastro".equalsIgnoreCase(acao)){
+            String tipo = req.getParameter("tipo");
+            if ("operador".equalsIgnoreCase(tipo)){
+                req.getRequestDispatcher("cadastro?tipo=operador").forward(req, resp);
+            }
+        }
+
+        if ("ticket".equalsIgnoreCase(acao)){
+            String tipo = req.getParameter("tipo");
+            if ("ticketRespondido".equalsIgnoreCase(tipo)){
+                req.getRequestDispatcher("thread?tipo=ticketRespondido").forward(req, resp);
+            }
+        }
+
+        if ("thread".equalsIgnoreCase(acao)){
+            String tipo = req.getParameter("tipo");
+            if ("reabrir".equalsIgnoreCase(tipo)){
+                req.getRequestDispatcher("thread?tipo=reabrirThread").forward(req, resp);
+            } else if ("fecharTopico".equalsIgnoreCase(tipo)){
+                req.getRequestDispatcher("thread?tipo=fecharTopico").forward(req, resp);
             }
         }
 

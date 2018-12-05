@@ -8,4 +8,8 @@ public interface TicketBusiness {
 
     boolean finalizaTicket(TicketDTO ticketDTO);
 
+    boolean ticketRespondido(int id);
+
+    boolean reabrirTicket(int id);
+
 }

@@ -25,7 +25,6 @@ public class AcoesFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
-        String uri = req.getRequestURI();
         HashMap<String, String> map = new HashMap<>();
 
         if (req.getParameterMap() != null) {

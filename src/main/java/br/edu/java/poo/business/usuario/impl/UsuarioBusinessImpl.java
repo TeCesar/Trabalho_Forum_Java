@@ -16,14 +16,14 @@ public class UsuarioBusinessImpl implements UsuarioBusiness {
     UsuarioDAO usuarioDAO;
     UsuarioValidator usuarioValidator;
 
-    public UsuarioBusinessImpl(){
+    public UsuarioBusinessImpl() {
         usuarioDAO = new UsuarioDAOImpl();
         usuarioValidator = new UsuarioValidatorImpl();
     }
 
     @Override
     public UsuarioDTO criarClientePadrao(UsuarioDTO usuarioDTO) {
-        if (usuarioDTO != null){
+        if (usuarioDTO != null) {
             usuarioDTO.setSenha("12345");
             usuarioDTO.setTipoAcesso("Cliente");
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -53,7 +53,7 @@ public class UsuarioBusinessImpl implements UsuarioBusiness {
             return "caracteres";
         } else if ("caractereEspecial".equalsIgnoreCase(senhaValida)) {
             return "caractereEspecial";
-        } else if ("senhasDiferentes".equalsIgnoreCase(senhaValida)){
+        } else if ("senhasDiferentes".equalsIgnoreCase(senhaValida)) {
             return "senhasDiferentes";
         }
         return "invalida";
@@ -62,8 +62,8 @@ public class UsuarioBusinessImpl implements UsuarioBusiness {
     @Override
     public void aumentaErroLogin(String nomeConta) {
         UsuarioDTO usuarioBusca = usuarioDAO.buscarUsuarioPorNome(nomeConta);
-        if (usuarioBusca != null){
-            usuarioBusca.setErrosLogin(usuarioBusca.getErrosLogin()+1);
+        if (usuarioBusca != null) {
+            usuarioBusca.setErrosLogin(usuarioBusca.getErrosLogin() + 1);
             usuarioDAO.atualizaErrosLogin(usuarioBusca);
         }
     }
@@ -71,14 +71,45 @@ public class UsuarioBusinessImpl implements UsuarioBusiness {
     @Override
     public boolean mudarBloqueioUsuario(int id) {
         UsuarioDTO usuarioDTO = usuarioDAO.buscarUsuario(id);
-        if (usuarioDTO.getBloqueado() == 0){
+        if (usuarioDTO.getBloqueado() == 0) {
             usuarioDTO.setBloqueado(1);
         } else {
             usuarioDTO.setBloqueado(0);
         }
 
-        if (usuarioDAO.mudarBloqueioUsuario(usuarioDTO)){
+        if (usuarioDAO.mudarBloqueioUsuario(usuarioDTO)) {
             return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean criarOperador(String nomeUsuario) {
+        UsuarioDTO usuarioDTO = new UsuarioDTO();
+        usuarioDTO.setNomeConta(nomeUsuario);
+        usuarioDTO.setSenha("12345");
+        usuarioDTO.setTipoAcesso("Operador");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String dataAtual = dateFormat.format(new Date());
+        try {
+            usuarioDTO.setDataDeCadastro(dateFormat.parse(dataAtual));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (usuarioDAO.criarOperador(usuarioDTO)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean ticketRespondido(int id) {
+        UsuarioDTO usuarioDTO = usuarioDAO.buscarUsuario(id);
+        if (usuarioDTO != null){
+            usuarioDTO.setTicketsResolvidos(usuarioDTO.getTicketsResolvidos()+1);
+            if (usuarioDAO.aumentaTicketsResolvidos(usuarioDTO)){
+                return true;
+            }
         }
         return false;
     }

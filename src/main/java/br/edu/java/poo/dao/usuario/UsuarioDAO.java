@@ -20,7 +20,11 @@ public interface UsuarioDAO {
 
     boolean atualizaErrosLogin(UsuarioDTO usuarioDTO);
 
-    List<UsuarioDTO> listarUsuarios();
+    List<UsuarioDTO> listarUsuarios(String tipo);
 
     boolean mudarBloqueioUsuario(UsuarioDTO usuarioDTO);
+
+    boolean criarOperador(UsuarioDTO usuarioDTO);
+
+    boolean aumentaTicketsResolvidos(UsuarioDTO usuarioDTO);
 }

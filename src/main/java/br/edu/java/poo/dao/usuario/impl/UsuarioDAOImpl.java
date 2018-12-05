@@ -119,7 +119,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 UsuarioDTO usuarioBusca = fillUsuario(resultSet);
                 return usuarioBusca;
             }
@@ -134,14 +134,14 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
     @Override
     public UsuarioDTO buscarUsuarioPorNome(String nomeConta) {
-        try (Connection connection = SQLConnectionProvider.openConnection()){
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM usuarios WHERE usuario_nomeConta = ?");
 
             preparedStatement.setString(1, nomeConta);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 UsuarioDTO usuarioDTO = fillUsuario(resultSet);
                 return usuarioDTO;
             }
@@ -155,7 +155,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
     @Override
     public boolean atualizaErrosLogin(UsuarioDTO usuarioDTO) {
-        try (Connection connection = SQLConnectionProvider.openConnection()){
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE usuarios SET usuario_errosLogin = ? WHERE usuario_id = ?");
 
             preparedStatement.setInt(1, usuarioDTO.getErrosLogin());
@@ -163,7 +163,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
             int resultado = preparedStatement.executeUpdate();
 
-            if (resultado != 0){
+            if (resultado != 0) {
                 return true;
             }
         } catch (SQLException e) {
@@ -175,11 +175,18 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     }
 
     @Override
-    public List<UsuarioDTO> listarUsuarios() {
+    public List<UsuarioDTO> listarUsuarios(String tipo) {
         List<UsuarioDTO> listaUsuarios = new ArrayList<>();
+        String sql = "";
+        if ("todos".equalsIgnoreCase(tipo)) {
+            sql = "SELECT usuario_id, usuario_nomeConta, usuario_tipoAcesso, " +
+                    "usuario_dataDeCadastro, usuario_dataDeAlteracao, usuario_apelido, usuario_errosLogin, usuario_ticketResolvidos, usuario_bloqueado FROM usuarios";
+        } else {
+            sql = "SELECT usuario_id, usuario_nomeConta, usuario_tipoAcesso, " +
+                    "usuario_dataDeCadastro, usuario_dataDeAlteracao, usuario_apelido, usuario_errosLogin, usuario_ticketResolvidos, usuario_bloqueado FROM usuarios WHERE usuario_bloqueado = 1";
+        }
         try (Connection connection = SQLConnectionProvider.openConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT usuario_id, usuario_nomeConta, usuario_tipoAcesso, " +
-                    "usuario_dataDeCadastro, usuario_dataDeAlteracao, usuario_apelido, usuario_errosLogin, usuario_ticketResolvidos, usuario_bloqueado FROM usuarios");
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -198,10 +205,55 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
     @Override
     public boolean mudarBloqueioUsuario(UsuarioDTO usuarioDTO) {
-        try (Connection connection = SQLConnectionProvider.openConnection()){
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE usuarios SET usuario_bloqueado = ? WHERE usuario_id = ?");
 
             preparedStatement.setInt(1, usuarioDTO.getBloqueado());
+            preparedStatement.setInt(2, usuarioDTO.getId());
+
+            int resultado = preparedStatement.executeUpdate();
+
+            if (resultado != 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean criarOperador(UsuarioDTO usuarioDTO) {
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO usuarios (usuario_nomeConta, usuario_senha, " +
+                    "usuario_tipoAcesso, usuario_dataDeCadastro) VALUES (?, ?, ?, ?)");
+
+            preparedStatement.setString(1, usuarioDTO.getNomeConta());
+            preparedStatement.setString(2, usuarioDTO.getSenha());
+            preparedStatement.setString(3, usuarioDTO.getTipoAcesso());
+            preparedStatement.setDate(4, new java.sql.Date(usuarioDTO.getDataDeCadastro().getTime()));
+
+            int resultado = preparedStatement.executeUpdate();
+
+            if (resultado != 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean aumentaTicketsResolvidos(UsuarioDTO usuarioDTO) {
+        try (Connection connection = SQLConnectionProvider.openConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE usuarios SET usuario_ticketResolvidos = ? WHERE usuario_id = ?");
+
+            preparedStatement.setInt(1, usuarioDTO.getTicketsResolvidos());
             preparedStatement.setInt(2, usuarioDTO.getId());
 
             int resultado = preparedStatement.executeUpdate();

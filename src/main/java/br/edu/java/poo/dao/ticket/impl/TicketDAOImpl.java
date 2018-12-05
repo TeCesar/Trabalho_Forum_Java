@@ -150,6 +150,50 @@ public class TicketDAOImpl implements TicketDAO {
         return listaTickets;
     }
 
+    @Override
+    public TicketDTO buscarTicket(int id) {
+        try (Connection connection = SQLConnectionProvider.openConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_status, tickets.ticket_tempoInicio, " +
+                    "tickets.ticket_tempoFim, tickets.ticket_situacao, tickets.ticket_respondido, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso " +
+                    "FROM tickets INNER JOIN usuarios ON tickets.usuario_id = usuarios.usuario_id WHERE tickets.ticket_id = ?");
+
+            preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                TicketDTO ticketBusca = fillTicket(resultSet);
+                return ticketBusca;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public boolean mudaSituacaoTicket(TicketDTO ticketDTO) {
+        try (Connection connection = SQLConnectionProvider.openConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE tickets SET ticket_situacao = ? WHERE ticket_id = ?");
+
+            preparedStatement.setString(1, ticketDTO.getSituacao());
+            preparedStatement.setInt(2, ticketDTO.getId());
+
+            int resultado = preparedStatement.executeUpdate();
+
+            if (resultado != 0){
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     private TicketDTO fillTicket(ResultSet resultSet) throws SQLException {
         UsuarioDTO usuarioDTO = new UsuarioDTO();
         usuarioDTO.setId(resultSet.getInt("usuario_id"));

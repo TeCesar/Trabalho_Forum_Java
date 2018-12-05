@@ -4,6 +4,8 @@ import br.edu.java.poo.business.cliente.ClienteBusiness;
 import br.edu.java.poo.business.cliente.impl.ClienteBusinessImpl;
 import br.edu.java.poo.business.empresa.EmpresaBusiness;
 import br.edu.java.poo.business.empresa.impl.EmpresaBusinessImpl;
+import br.edu.java.poo.business.usuario.UsuarioBusiness;
+import br.edu.java.poo.business.usuario.impl.UsuarioBusinessImpl;
 import br.edu.java.poo.dao.empresa.EmpresaDAO;
 import br.edu.java.poo.dao.empresa.impl.EmpresaDAOImpl;
 import br.edu.java.poo.dao.uf.UfDAO;
@@ -29,6 +31,7 @@ public class CadastroServlet extends HttpServlet {
     EmpresaDAO empresaDAO;
     EmpresaBusiness empresaBusiness;
     ClienteBusiness clienteBusiness;
+    UsuarioBusiness usuarioBusiness;
     BaseMapper<HttpServletRequest, ClienteDTO> clienteMapper;
     BaseMapper<HttpServletRequest, EmpresaDTO> empresaMapper;
 
@@ -37,6 +40,7 @@ public class CadastroServlet extends HttpServlet {
         empresaDAO = new EmpresaDAOImpl();
         empresaBusiness = new EmpresaBusinessImpl();
         clienteBusiness = new ClienteBusinessImpl();
+        usuarioBusiness = new UsuarioBusinessImpl();
         clienteMapper = new ClienteMapperImpl();
         empresaMapper = new EmpresaMapperImpl();
     }
@@ -60,6 +64,13 @@ public class CadastroServlet extends HttpServlet {
             EmpresaDTO empresaDTO = empresaMapper.doMap(req);
             if (empresaBusiness.cadastrarEmpresa(empresaDTO)) {
                 req.getRequestDispatcher("WEB-INF/cadastros/cadastroEmpresa.jsp").forward(req, resp);
+            }
+        }
+
+        if ("operador".equalsIgnoreCase(tipo)) {
+            String nomeUsuario = req.getParameter("nomeUsuario");
+            if (usuarioBusiness.criarOperador(nomeUsuario)) {
+                req.getRequestDispatcher("listar?tipo=usuarios").forward(req, resp);
             }
         }
 
@@ -91,6 +102,10 @@ public class CadastroServlet extends HttpServlet {
             List<UfDTO> listaUfs = ufDAO.buscarListaUfs();
             req.getSession().setAttribute("listaUfs", listaUfs);
             req.getRequestDispatcher("WEB-INF/cadastros/cadastroEmpresa.jsp").forward(req, resp);
+        }
+
+        if ("operador".equalsIgnoreCase(tipo)) {
+            req.getRequestDispatcher("WEB-INF/cadastros/cadastroOperador.jsp").forward(req, resp);
         }
     }
 }

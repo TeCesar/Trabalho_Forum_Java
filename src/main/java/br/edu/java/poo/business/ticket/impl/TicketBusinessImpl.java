@@ -29,4 +29,24 @@ public class TicketBusinessImpl implements TicketBusiness {
         }
         return false;
     }
+
+    @Override
+    public boolean ticketRespondido(int id) {
+        TicketDTO ticketDTO = ticketDAO.buscarTicket(id);
+        ticketDTO.setSituacao("Fechado");
+        if (ticketDAO.mudaSituacaoTicket(ticketDTO)){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean reabrirTicket(int id) {
+        TicketDTO ticketDTO = ticketDAO.buscarTicket(id);
+        ticketDTO.setSituacao("Aberto");
+        if (ticketDAO.mudaSituacaoTicket(ticketDTO)){
+            return true;
+        }
+        return false;
+    }
 }

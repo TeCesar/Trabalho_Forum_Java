@@ -61,6 +61,12 @@ public class ListarServlet extends HttpServlet {
                 req.getRequestDispatcher("WEB-INF/listas/listaTickets.jsp").forward(req, resp);
             }
         }
+
+        if ("usuarios".equalsIgnoreCase(tipo)){
+            List<UsuarioDTO> listaUsuarios = usuarioDAO.listarUsuarios("todos");
+            req.setAttribute("listaUsuarios", listaUsuarios);
+            req.getRequestDispatcher("WEB-INF/listas/listaUsuarios.jsp").forward(req, resp);
+        }
     }
 
     @Override
@@ -80,7 +86,7 @@ public class ListarServlet extends HttpServlet {
         }
 
         if ("usuarios".equalsIgnoreCase(tipo)){
-            List<UsuarioDTO> listaUsuarios = usuarioDAO.listarUsuarios();
+            List<UsuarioDTO> listaUsuarios = usuarioDAO.listarUsuarios("todos");
             req.setAttribute("listaUsuarios", listaUsuarios);
             req.getRequestDispatcher("WEB-INF/listas/listaUsuarios.jsp").forward(req, resp);
         }
@@ -98,6 +104,12 @@ public class ListarServlet extends HttpServlet {
                 req.getRequestDispatcher("WEB-INF/listas/listaTickets.jsp").forward(req, resp);
             }
 
+        }
+
+        if ("usuariosBloqueados".equalsIgnoreCase(tipo)){
+            List<UsuarioDTO> listaUsuarios = usuarioDAO.listarUsuarios("bloqueados");
+            req.setAttribute("listaUsuarios", listaUsuarios);
+            req.getRequestDispatcher("WEB-INF/listas/listaUsuarios.jsp").forward(req, resp);
         }
 
 

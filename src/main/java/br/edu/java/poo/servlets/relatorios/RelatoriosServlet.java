@@ -40,7 +40,7 @@ public class RelatoriosServlet extends HttpServlet {
 
         if ("listaUsuarios".equalsIgnoreCase(tipo)){
             UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
-            List<UsuarioDTO> listaUsuarios = usuarioDAO.listarUsuarios();
+            List<UsuarioDTO> listaUsuarios = usuarioDAO.listarUsuarios("todos");
             req.setAttribute("listaUsuarios", listaUsuarios);
             req.getRequestDispatcher("WEB-INF/relatorios/usuariosRelatorio.jsp").forward(req, resp);
         }

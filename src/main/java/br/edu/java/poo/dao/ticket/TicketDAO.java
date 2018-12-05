@@ -15,4 +15,8 @@ public interface TicketDAO {
 
     List<TicketDTO> listarTicketsUser(int idUsuario);
 
+    TicketDTO buscarTicket(int id);
+
+    boolean mudaSituacaoTicket(TicketDTO ticketDTO);
+
 }

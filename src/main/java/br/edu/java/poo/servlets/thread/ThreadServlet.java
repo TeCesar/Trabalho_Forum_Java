@@ -1,7 +1,17 @@
 package br.edu.java.poo.servlets.thread;
 
+import br.edu.java.poo.business.ticket.TicketBusiness;
+import br.edu.java.poo.business.ticket.impl.TicketBusinessImpl;
+import br.edu.java.poo.business.topico.TopicoBusiness;
+import br.edu.java.poo.business.topico.impl.TopicoBusinessImpl;
+import br.edu.java.poo.business.usuario.UsuarioBusiness;
+import br.edu.java.poo.business.usuario.impl.UsuarioBusinessImpl;
 import br.edu.java.poo.dao.thread.ThreadDAO;
 import br.edu.java.poo.dao.thread.impl.ThreadDAOImpl;
+import br.edu.java.poo.dao.ticket.TicketDAO;
+import br.edu.java.poo.dao.ticket.impl.TicketDAOImpl;
+import br.edu.java.poo.dao.topico.TopicoDAO;
+import br.edu.java.poo.dao.topico.impl.TopicoDAOImpl;
 import br.edu.java.poo.model.thread.ThreadDTO;
 import br.edu.java.poo.model.ticket.TicketDTO;
 import br.edu.java.poo.model.topico.TopicoDTO;
@@ -22,6 +32,21 @@ import java.util.List;
 
 @WebServlet(urlPatterns = "/thread")
 public class ThreadServlet extends HttpServlet {
+    ThreadDAO threadDAO;
+    TicketDAO ticketDAO;
+    TopicoDAO topicoDAO;
+    UsuarioBusiness usuarioBusiness;
+    TicketBusiness ticketBusiness;
+    TopicoBusiness topicoBusiness;
+
+    public ThreadServlet() {
+        threadDAO = new ThreadDAOImpl();
+        ticketDAO = new TicketDAOImpl();
+        topicoDAO = new TopicoDAOImpl();
+        usuarioBusiness = new UsuarioBusinessImpl();
+        ticketBusiness = new TicketBusinessImpl();
+        topicoBusiness = new TopicoBusinessImpl();
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,7 +57,6 @@ public class ThreadServlet extends HttpServlet {
             String mensagem = req.getParameter("mensagemResposta");
             String tt = (String) req.getSession().getAttribute("tt");
             UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuarioLogado");
-            ThreadDAO threadDAO = new ThreadDAOImpl();
             String nomeAutor = threadDAO.buscaNomeAutor(tt, Integer.parseInt(id));
             ThreadDTO threadDTO = new ThreadDTO();
             UsuarioDTO usuarioDTO = new UsuarioDTO();
@@ -79,10 +103,18 @@ public class ThreadServlet extends HttpServlet {
         String tipo = req.getParameter("tipo");
 
         if ("mostrar".equalsIgnoreCase(tipo)) {
-            ThreadDAO threadDAO = new ThreadDAOImpl();
             String id = req.getParameter("id");
             String titulo = req.getParameter("titulo");
             String tt = req.getParameter("tt");
+            if ("ticket".equalsIgnoreCase(tt)) {
+                TicketDTO ticketDTO = ticketDAO.buscarTicket(Integer.parseInt(id));
+                req.getSession().setAttribute("conteudoBusca", ticketDTO);
+                req.setAttribute("tipoAcao", "ticket");
+            } else {
+                TopicoDTO topicoDTO = topicoDAO.buscaTopico(Integer.parseInt(id));
+                req.getSession().setAttribute("conteudoBusca", topicoDTO);
+                req.setAttribute("tipoAcao", "topico");
+            }
             List<ThreadDTO> listaThread = threadDAO.listarThread(tt, Integer.parseInt(id));
             req.setAttribute("listaThread", listaThread);
             req.setAttribute("titulo", titulo);
@@ -109,6 +141,35 @@ public class ThreadServlet extends HttpServlet {
             req.getSession().setAttribute("titulo", titulo);
             req.getSession().setAttribute("id", id);
             req.getRequestDispatcher("WEB-INF/thread/respostaThread.jsp").forward(req, resp);
+        }
+
+        if ("ticketRespondido".equalsIgnoreCase(tipo)) {
+            String idThread = req.getParameter("idThread");
+            String idConteudo = req.getParameter("idConteudo");
+            usuarioBusiness.ticketRespondido(Integer.parseInt(idThread));
+            ticketBusiness.ticketRespondido(Integer.parseInt(idConteudo));
+            req.getRequestDispatcher("listar?tipo=tickets&situacao=user").forward(req, resp);
+        }
+
+        if ("reabrirThread".equalsIgnoreCase(tipo)) {
+            String idConteudo = req.getParameter("idConteudo");
+            String tipoAcao = req.getParameter("tipoAcao");
+            if ("ticket".equalsIgnoreCase(tipoAcao)) {
+                if (ticketBusiness.reabrirTicket(Integer.parseInt(idConteudo))) {
+                    req.getRequestDispatcher("listar?tipo=tickets&situacao=user").forward(req, resp);
+                }
+            } else {
+                if (topicoBusiness.reabrirTopico(Integer.parseInt(idConteudo))) {
+                    req.getRequestDispatcher("topico?tipo=listarTopicos").forward(req, resp);
+                }
+            }
+        }
+
+        if ("fecharTopico".equalsIgnoreCase(tipo)){
+            String idTopico = req.getParameter("id");
+            if (topicoBusiness.fecharTopico(Integer.parseInt(idTopico))){
+                req.getRequestDispatcher("topico?tipo=listarTopicos").forward(req, resp);
+            }
         }
     }
 }

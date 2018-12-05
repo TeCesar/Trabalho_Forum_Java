@@ -12,4 +12,8 @@ public interface UsuarioBusiness {
 
     boolean mudarBloqueioUsuario(int id);
 
+    boolean criarOperador(String nomeUsuario);
+
+    boolean ticketRespondido(int id);
+
 }

@@ -26,6 +26,7 @@
             <ul>
                 <li><a href="controller?acao=cadastroCliente">Cliente</a></li>
                 <li><a href="controller?acao=cadastroEmpresa">Empresa</a></li>
+                <li><a href="controller?acao=cadastro&tipo=operador">Operador</a></li>
 
             </ul>
         </li>
@@ -65,6 +66,7 @@
                 <li><a href="controller?acao=listar&tipo=clientes">Clientes</a></li>
                 <li><a href="controller?acao=listar&tipo=empresas">Empresas</a></li>
                 <li><a href="controller?acao=listar&tipo=usuarios">Usuários</a></li>
+                <li><a href="controller?acao=listar&tipo=usuariosBloqueados">Usuários Bloqueados</a></li>
             </ul>
         </li>
     </ul>
