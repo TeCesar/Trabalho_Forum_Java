@@ -27,4 +27,6 @@ public interface UsuarioDAO {
     boolean criarUsuario(UsuarioDTO usuarioDTO);
 
     boolean aumentaTicketsResolvidos(UsuarioDTO usuarioDTO);
+
+    boolean aumentaTicketsReabertos(UsuarioDTO usuarioDTO);
 }

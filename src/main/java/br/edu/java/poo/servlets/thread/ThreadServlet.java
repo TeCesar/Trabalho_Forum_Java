@@ -178,8 +178,9 @@ public class ThreadServlet extends HttpServlet {
         if ("reabrirThread".equalsIgnoreCase(tipo)) {
             String idConteudo = req.getParameter("idConteudo");
             String tipoAcao = req.getParameter("tipoAcao");
+            UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuarioLogado");
             if ("ticket".equalsIgnoreCase(tipoAcao)) {
-                if (ticketBusiness.reabrirTicket(Integer.parseInt(idConteudo))) {
+                if (ticketBusiness.reabrirTicket(Integer.parseInt(idConteudo), usuarioSession.getId())) {
                     req.getRequestDispatcher("listar?tipo=tickets&situacao=user").forward(req, resp);
                 }
             } else {

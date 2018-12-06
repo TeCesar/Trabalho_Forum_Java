@@ -12,6 +12,7 @@ public class UsuarioDTO {
     private String apelido;
     private int errosLogin;
     private int ticketsResolvidos;
+    private int ticketsReabertos;
     private int bloqueado;
 
     public int getId() {
@@ -84,6 +85,14 @@ public class UsuarioDTO {
 
     public void setTicketsResolvidos(int ticketsResolvidos) {
         this.ticketsResolvidos = ticketsResolvidos;
+    }
+
+    public int getTicketsReabertos() {
+        return ticketsReabertos;
+    }
+
+    public void setTicketsReabertos(int ticketsReabertos) {
+        this.ticketsReabertos = ticketsReabertos;
     }
 
     public int getBloqueado() {

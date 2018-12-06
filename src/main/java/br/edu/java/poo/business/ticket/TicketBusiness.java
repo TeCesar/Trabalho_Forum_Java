@@ -2,8 +2,6 @@ package br.edu.java.poo.business.ticket;
 
 import br.edu.java.poo.model.ticket.TicketDTO;
 
-import java.util.List;
-
 public interface TicketBusiness {
 
     int iniciaTicket(TicketDTO ticketDTO);
@@ -12,6 +10,6 @@ public interface TicketBusiness {
 
     boolean ticketRespondido(int id);
 
-    boolean reabrirTicket(int id);
+    boolean reabrirTicket(int id, int idUsuario);
 
 }
