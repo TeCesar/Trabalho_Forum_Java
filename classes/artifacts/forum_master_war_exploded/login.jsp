@@ -30,7 +30,7 @@
                 <input type="hidden" value="${erro}" id="erro">
                 <div id="login-box-label">Bem vindo a D.R.T</div>
                 <div class="input-div" id="input-usuario">
-                    <input type="text" placeholder="USUÁRIO" id="nomeUsuario" name="nomeUsuario">
+                    <input type="text" placeholder="USUÁRIO" id="nomeUsuario" name="nomeUsuario" autofocus>
                 </div>
                 <div class="input-div" id="input-senha">
                     <input type="password" id="senha" name="senha" placeholder="SENHA">

@@ -25,8 +25,8 @@
 
         <li><a>Cadastrar</a>
             <ul>
-                <li><a href="controller?acao=cadastroCliente">Cliente</a></li>
-                <li><a href="controller?acao=cadastroEmpresa">Empresa</a></li>
+                <li><a href="controller?acao=cadastro&tipo=cliente">Cliente</a></li>
+                <li><a href="controller?acao=cadastro&tipo=empresa">Empresa</a></li>
 
             </ul>
         </li>

@@ -39,7 +39,7 @@
             </div>
             <input type="hidden" value="${erro}" id="erro">
             <div id="botoes">
-                <input type="submit" value="SALVAR" onclick="chamaErro()">
+                <input type="submit" value="SALVAR" onclick="chamaErro()" class="botao">
             </div>
 
         </form>
