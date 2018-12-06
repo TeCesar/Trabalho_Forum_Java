@@ -26,7 +26,7 @@
 
     <div id="divLogin">
         <div id="login-box-interno">
-            <form action="controller?acao=login" method="post">
+            <form  method="post">
                 <div id="login-box-label">Bem vindo a D.R.T</div>
                 <div class="input-div" id="input-usuario">
 
@@ -34,10 +34,13 @@
                 </div>
                <p style="text-align: center;">A senha padrão e 12345 assim que logar pela primeira vez será pedido para alterar a senha.</p><br>
                 <div id="botoes">
-                        <input type="submit" value="Cadastrar" class="botao"><br><br>
-                    <a href="login.jsp"><input type="submit" value="Voltar" class="botao"></a>
+                        <input type="submit" value="Cadastrar" class="botao"><br>
                 </div>
             </form>
+            <div class="botoes">
+                 <a href="login.jsp"><input type="submit" value="Voltar" class="botao"></a>
+            </div>
+
         </div>
     </div>
 </body>
