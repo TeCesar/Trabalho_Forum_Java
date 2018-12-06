@@ -24,7 +24,7 @@
     <form method="post" action="controller">
         <input type="hidden" value="cadastro" name="acao">
         <input type="hidden" value="operador" name="tipo">
-        <label class="txt">Login: </label><input type="text" name="nomeUsuario" class="campo"><br><br>
+        <label class="txt">Login: </label><input type="text" name="nomeUsuario" class="campo" required oninvalid="setCustomValidity('O nome do operador e obrigatório')" onchange="try{setCustomValidity('')}catch(e){}"><br><br>
         <input type="submit" value="CADASTRAR OPERADOR" class="btne">
     </form>
 </center>
