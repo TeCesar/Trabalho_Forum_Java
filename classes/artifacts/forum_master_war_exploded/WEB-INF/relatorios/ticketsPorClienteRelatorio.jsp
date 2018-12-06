@@ -17,7 +17,12 @@
 </head>
 <body>
 
-<%@include file="/WEB-INF/navbar/navbarOperador.jsp" %>
+<c:if test="${usuarioLogado.tipoAcesso == 'Operador'}">
+    <%@include file="/WEB-INF/navbar/navbarOperador.jsp" %>
+</c:if>
+<c:if test="${usuarioLogado.tipoAcesso == 'Administrador'}">
+    <%@include file="/WEB-INF/navbar/navbarAdministrador.jsp" %>
+</c:if>
 <br><br><br><br>
 
 <center>
