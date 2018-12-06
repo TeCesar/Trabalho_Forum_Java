@@ -27,7 +27,7 @@
 </c:if>
 <br><br><br><br><br><br>
 
-<h1 class="titulo">Todos Tickets</h1>
+<h1 class="titulo">Tickets</h1>
 
 <input type="text" name="buscar" placeholder="BUSCAR" class="busca">
 <form>
@@ -51,7 +51,18 @@
                 <c:if test="${ticket.situacao == 'Fechado'}">
                     <td style="background-color: #90EE90">${ticket.situacao}</td>
                 </c:if>
-                <td class="abrir"><a href="controller?acao=ticket&tipo=mostrarTicket&id=${ticket.id}&titulo=${ticket.titulo}&tt=ticket">ABRIR</a></td>
+                <c:choose>
+                    <c:when test="${relatorio == 'sim'}">
+                        <td class="abrir"><a
+                                href="controller?acao=ticket&tipo=mostrarTicket&id=${ticket.id}&titulo=${ticket.titulo}&tt=ticket">RESPONDER</a>
+                        </td>
+                    </c:when>
+                    <c:otherwise>
+                        <td class="abrir"><a
+                                href="controller?acao=ticket&tipo=mostrarTicket&id=${ticket.id}&titulo=${ticket.titulo}&tt=ticket">ABRIR</a>
+                        </td>
+                    </c:otherwise>
+                </c:choose>
             </tr>
         </c:forEach>
     </table>
