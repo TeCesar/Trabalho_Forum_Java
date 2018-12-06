@@ -37,7 +37,6 @@
             <td><strong>Autor</strong></td>
             <td><strong>Titulo Assunto</strong></td>
             <td><strong>Situacao</strong></td>
-            <td><strong>Respondido</strong></td>
             <td><strong>Ação</strong></td>
         </tr>
 
@@ -49,13 +48,9 @@
                 <c:if test="${ticket.situacao == 'Aberto'}">
                     <td style="background-color: #F08080;">${ticket.situacao}</td>
                 </c:if>
-                <c:if test="${ticket.situacao == 'Fechado'  && ticket.respondido == 'Sim'}">
+                <c:if test="${ticket.situacao == 'Fechado'}">
                     <td style="background-color: #90EE90">${ticket.situacao}</td>
                 </c:if>
-                <c:if test="${ticket.situacao == 'Fechado'  && ticket.respondido == 'Nao'}">
-                    <td style="background-color: #F08080;">${ticket.situacao}</td>
-                </c:if>
-                <td>${ticket.respondido}</td>
                 <td class="abrir"><a href="controller?acao=ticket&tipo=mostrarTicket&id=${ticket.id}&titulo=${ticket.titulo}&tt=ticket">ABRIR</a></td>
             </tr>
         </c:forEach>

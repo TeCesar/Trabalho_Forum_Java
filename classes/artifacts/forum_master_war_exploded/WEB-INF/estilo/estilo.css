@@ -296,6 +296,11 @@ tr.border_bottom td {
     background-color: lawngreen;
 }
 
+.linkCorFinaliza:hover{
+    cursor: pointer;
+    background-color: #F08080;
+}
+
 .txtLeft{
     text-align: left;
 }

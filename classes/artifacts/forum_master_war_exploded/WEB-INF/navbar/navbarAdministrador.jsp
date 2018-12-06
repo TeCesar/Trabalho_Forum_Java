@@ -12,9 +12,9 @@
 </head>
 <body>
 <div id="barra">
-    <label>Bem vindo</label>
+    <label>Bem vindo, ${usuarioLogado.nomeConta}</label>
     <div id="login">
-        <a href="../../login.jsp">Sair</a>
+        <a href="controller?acao=login&tipo=logoff">Sair</a>
 
     </div>
 </div>
@@ -24,8 +24,9 @@
 
         <li><a>Cadastrar</a>
             <ul>
-                <li><a href="controller?acao=cadastroCliente">Cliente</a></li>
-                <li><a href="controller?acao=cadastroEmpresa">Empresa</a></li>
+                <li><a href="controller?acao=cadastro&tipo=cliente">Cliente</a></li>
+                <li><a href="controller?acao=cadastro&tipo=empresa">Empresa</a></li>
+                <li><a href="controller?acao=cadastro&tipo=operador">Operador</a></li>
 
             </ul>
         </li>
@@ -50,7 +51,6 @@
                 <li><a href="controller?acao=listarTickets&tipo=todos">Todos</a></li>
                 <li><a href="controller?acao=listarTickets&tipo=Aberto">Aberto</a></li>
                 <li><a href="controller?acao=listarTickets&tipo=Fechado">Fechado</a></li>
-                <li><a href="controller?acao=listarTickets&tipo=Andamento">Em Andamento</a></li>
             </ul>
         </li>
 
@@ -65,6 +65,7 @@
                 <li><a href="controller?acao=listar&tipo=clientes">Clientes</a></li>
                 <li><a href="controller?acao=listar&tipo=empresas">Empresas</a></li>
                 <li><a href="controller?acao=listar&tipo=usuarios">Usuários</a></li>
+                <li><a href="controller?acao=listar&tipo=usuariosBloqueados">Usuários Bloqueados</a></li>
             </ul>
         </li>
     </ul>

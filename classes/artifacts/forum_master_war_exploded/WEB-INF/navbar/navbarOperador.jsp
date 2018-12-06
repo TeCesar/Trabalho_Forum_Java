@@ -13,9 +13,9 @@
 <body>
 
 <div id="barra">
-    <label>Bem vindo</label>
+    <label>Bem vindo, ${usuarioLogado.nomeConta}</label>
     <div id="login">
-        <a href="../../login.jsp">Sair</a>
+        <a href="controller?acao=login&tipo=logoff">Sair</a>
 
     </div>
 </div>
@@ -51,7 +51,6 @@
                 <li><a href="controller?acao=listarTickets&tipo=todos">Todos</a></li>
                 <li><a href="controller?acao=listarTickets&tipo=Aberto">Aberto</a></li>
                 <li><a href="controller?acao=listarTickets&tipo=Fechado">Fechado</a></li>
-                <li><a href="controller?acao=listarTickets&tipo=Andamento">Em Andamento</a></li>
             </ul>
         </li>
 
