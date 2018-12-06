@@ -29,7 +29,7 @@
 
 <h1 class="titulo">Tickets</h1>
 
-<input type="text" name="buscar" placeholder="BUSCAR" class="busca">
+
 <form>
     <table width="90%" align="center" cellpadding="10">
         <tr align="center" bgcolor="#CCC">
