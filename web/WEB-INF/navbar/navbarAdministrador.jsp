@@ -33,6 +33,10 @@
 
         <li><a>Relatórios</a>
             <ul>
+                <li><a href="controller?acao=relatorio&tipo=logAcesso">Log de Acesso</a></li>
+                <li><a href="controller?acao=relatorio&tipo=acoes">Ações</a></li>
+                <li><a href="controller?acao=relatorio&tipo=duracaoTT">Duração de Tickets/Tópicos</a></li>
+                <li><a href="controller?acao=relatorio&tipo=errosLoginTckResolvido">Erros de Login e Tickets Resolvidos</a></li>
                 <li><a href="controller?acao=relatorio&tipo=clienteEmpresa">Clientes por Empresa</a></li>
                 <li><a href="controller?acao=relatorio&tipo=listaUsuarios">Lista de Usuários</a></li>
                 <li><a href="controller?acao=relatorio&tipo=ticketsCliente">Quantidade de Tickets por Cliente</a></li>

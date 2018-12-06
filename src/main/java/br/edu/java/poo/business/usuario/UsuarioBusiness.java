@@ -16,4 +16,6 @@ public interface UsuarioBusiness {
 
     boolean ticketRespondido(int id);
 
+    boolean novoUsuario(String nomeConta);
+
 }

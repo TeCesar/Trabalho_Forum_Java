@@ -105,9 +105,19 @@ public class ThreadServlet extends HttpServlet {
             String idThread = req.getParameter("idThread");
             String mensagem = req.getParameter("mensagemThread");
             String tt = (String) req.getSession().getAttribute("tt");
+            int idConteudo = (int) req.getSession().getAttribute("idConteudo");
             UsuarioSession usuarioSession = (UsuarioSession) req.getSession().getAttribute("usuarioLogado");
             if (threadBusiness.alteraMensagem(Integer.parseInt(idThread), mensagem, tt, usuarioSession.getNomeConta())){
-                req.getRequestDispatcher("login.jsp").forward(req, resp);
+                List<ThreadDTO> listaThread = threadDAO.listarThread(tt, idConteudo);
+                req.setAttribute("listaThread", listaThread);
+                if ("topico".equalsIgnoreCase(tt)){
+                    TopicoDTO conteudoBusca = topicoDAO.buscaTopico(idConteudo);
+                    req.setAttribute("conteudoBusca", conteudoBusca);
+                } else {
+                    TicketDTO conteudoBusca = ticketDAO.buscarTicket(idConteudo);
+                    req.setAttribute("conteudoBusca", conteudoBusca);
+                }
+                req.getRequestDispatcher("WEB-INF/thread/mostraThread.jsp").forward(req, resp);
             }
         }
     }
@@ -188,9 +198,11 @@ public class ThreadServlet extends HttpServlet {
 
         if ("editaMensagemOperador".equalsIgnoreCase(tipo)) {
             String idThread = req.getParameter("idThread");
+            String idConteudo = req.getParameter("idConteudo");
             String tt = (String) req.getSession().getAttribute("tt");
             ThreadDTO threadBusca = threadDAO.buscaThread(Integer.parseInt(idThread), tt);
             req.setAttribute("threadBusca", threadBusca);
+            req.getSession().setAttribute("idConteudo", Integer.parseInt(idConteudo));
             req.getRequestDispatcher("WEB-INF/thread/alteraMensagem.jsp").forward(req, resp);
         }
     }

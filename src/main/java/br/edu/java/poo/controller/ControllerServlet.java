@@ -64,6 +64,8 @@ public class ControllerServlet extends HttpServlet {
             String tipo = req.getParameter("tipo");
             if ("operador".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("cadastro?tipo=operador").forward(req, resp);
+            } else if ("usuario".equalsIgnoreCase(tipo)){
+                req.getRequestDispatcher("cadastro?tipo=usuario").forward(req, resp);
             }
         }
 
@@ -167,6 +169,14 @@ public class ControllerServlet extends HttpServlet {
                 req.getRequestDispatcher("relatorio?tipo=ticketsCliente&situacao=semResposta").forward(req, resp);
             } else if ("listaTicketsSemRespCliente".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("relatorio?tipo=ticketsCliente&situacao=listaSemResposta").forward(req, resp);
+            } else if ("logAcesso".equalsIgnoreCase(tipo)){
+                req.getRequestDispatcher("relatorio?tipo=logAcesso").forward(req, resp);
+            } else if ("acoes".equalsIgnoreCase(tipo)){
+                req.getRequestDispatcher("relatorio?tipo=acoes").forward(req, resp);
+            } else if ("duracaoTT".equalsIgnoreCase(tipo)){
+                req.getRequestDispatcher("relatorio?tipo=duracaoTT").forward(req, resp);
+            } else if ("errosLoginTckResolvido".equalsIgnoreCase(tipo)){
+                req.getRequestDispatcher("relatorio?tipo=errosLoginTckResolvido").forward(req, resp);
             }
         }
 

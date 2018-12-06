@@ -24,7 +24,7 @@ public interface UsuarioDAO {
 
     boolean mudarBloqueioUsuario(UsuarioDTO usuarioDTO);
 
-    boolean criarOperador(UsuarioDTO usuarioDTO);
+    boolean criarUsuario(UsuarioDTO usuarioDTO);
 
     boolean aumentaTicketsResolvidos(UsuarioDTO usuarioDTO);
 }

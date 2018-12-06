@@ -74,6 +74,13 @@ public class CadastroServlet extends HttpServlet {
             }
         }
 
+        if ("usuario".equalsIgnoreCase(tipo)){
+            String nomeConta = req.getParameter("nomeConta");
+            if (usuarioBusiness.novoUsuario(nomeConta)){
+                req.getRequestDispatcher("login.jsp").forward(req, resp);
+            }
+        }
+
     }
 
     @Override

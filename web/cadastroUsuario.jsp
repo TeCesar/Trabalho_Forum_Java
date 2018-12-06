@@ -20,17 +20,18 @@
     </style>
 
 
-    <title>Login</title>
+    <title>Cadastro de Usuário</title>
 </head>
 <body>
 
     <div id="divLogin">
         <div id="login-box-interno">
-            <form  method="post">
+            <form method="post" action="controller">
+                <input type="hidden" value="cadastro" name="acao">
+                <input type="hidden" value="usuario" name="tipo">
                 <div id="login-box-label">Bem vindo a D.R.T</div>
                 <div class="input-div" id="input-usuario">
-
-                    <input type="text" placeholder="Nome Usuario" id="novoUsuario" name="novoUsuario">
+                    <input type="text" placeholder="Nome Usuario" id="novoUsuario" name="nomeConta">
                 </div>
                <p style="text-align: center;">A senha padrão e 12345 assim que logar pela primeira vez será pedido para alterar a senha.</p><br>
                 <div id="botoes">

@@ -72,6 +72,31 @@ public class TopicoDAOImpl implements TopicoDAO {
     }
 
     @Override
+    public List<TopicoDTO> listarTopicosTempo() {
+        List<TopicoDTO> listaTopicos = new ArrayList<>();
+        try (Connection connection = SQLConnectionProvider.openConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT topicos.topico_id, topicos.topico_titulo, topicos.topico_status, " +
+                    "topicos.topico_dataCriacao, topicos.topico_dataTermino, topicos.topico_situacao, usuarios.usuario_id, usuarios.usuario_nomeConta, " +
+                    "usuarios.usuario_tipoAcesso, usuarios.usuario_apelido, convert(abs(timediff(topico_dataCriacao, topico_dataTermino)), TIME) AS duracao " +
+                    "FROM topicos INNER JOIN usuarios ON topicos.usuario_id = usuarios.usuario_id");
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                TopicoDTO topicoDTO = fillTopico(resultSet);
+                topicoDTO.setDuracao(resultSet.getTimestamp("duracao"));
+                listaTopicos.add(topicoDTO);
+            }
+            return listaTopicos;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public boolean finalizaTopico(TopicoDTO topicoDTO) {
         String sql = "UPDATE topicos SET topico_titulo = ?, topico_status = ?, topico_dataTermino = ?, topico_situacao = ? " +
                 "WHERE topico_id = ?";

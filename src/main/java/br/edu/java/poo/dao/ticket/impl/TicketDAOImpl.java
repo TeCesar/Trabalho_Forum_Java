@@ -151,6 +151,31 @@ public class TicketDAOImpl implements TicketDAO {
     }
 
     @Override
+    public List<TicketDTO> listarTicketsTempo() {
+        List<TicketDTO> listaTickets = new ArrayList<>();
+        String sql = "SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_status, tickets.ticket_tempoInicio, " +
+                "tickets.ticket_tempoFim, tickets.ticket_situacao, tickets.ticket_respondido, convert(abs(timediff(tickets.ticket_tempoInicio, tickets.ticket_tempoFim)), TIME) AS duracao, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso " +
+                "FROM tickets INNER JOIN usuarios ON tickets.usuario_id = usuarios.usuario_id";
+        try (Connection connection = SQLConnectionProvider.openConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                TicketDTO ticketDTO = fillTicket(resultSet);
+                ticketDTO.setDuracao(resultSet.getTimestamp("duracao"));
+                listaTickets.add(ticketDTO);
+            }
+            return listaTickets;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public TicketDTO buscarTicket(int id) {
         try (Connection connection = SQLConnectionProvider.openConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_status, tickets.ticket_tempoInicio, " +

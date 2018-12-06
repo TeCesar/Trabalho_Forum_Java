@@ -69,6 +69,9 @@
                         <input type="hidden" value="${thread.autor}" name="autorThread">
                         <input type="submit" value="Responder ${thread.autor}" class="btne">
                     </c:if>
+                    <c:if test="${thread.dataAlteracao != null}">
+                        <br><label>Mensagem editada por: ${thread.usuarioEdicao} em <fmt:formatDate value="${thread.dataAlteracao}" pattern="dd/MM/yyyy HH:mm:ss"/></label>
+                    </c:if>
                 </form>
                 <c:if test="${thread.usuarioDTO.tipoAcesso == 'Operador' && usuarioLogado.tipoAcesso == 'Administrador'}">
                     <form method="get" action="controller">

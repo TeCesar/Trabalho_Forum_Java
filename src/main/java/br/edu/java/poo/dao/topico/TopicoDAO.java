@@ -13,6 +13,8 @@ public interface TopicoDAO {
 
     List<TopicoDTO> listarTopicos();
 
+    List<TopicoDTO> listarTopicosTempo();
+
     boolean finalizaTopico(TopicoDTO topicoDTO);
 
     TopicoDTO buscaTopico(int id);

@@ -96,7 +96,7 @@ public class UsuarioBusinessImpl implements UsuarioBusiness {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        if (usuarioDAO.criarOperador(usuarioDTO)) {
+        if (usuarioDAO.criarUsuario(usuarioDTO)) {
             return true;
         }
         return false;
@@ -105,11 +105,31 @@ public class UsuarioBusinessImpl implements UsuarioBusiness {
     @Override
     public boolean ticketRespondido(int id) {
         UsuarioDTO usuarioDTO = usuarioDAO.buscarUsuario(id);
-        if (usuarioDTO != null){
-            usuarioDTO.setTicketsResolvidos(usuarioDTO.getTicketsResolvidos()+1);
-            if (usuarioDAO.aumentaTicketsResolvidos(usuarioDTO)){
+        if (usuarioDTO != null) {
+            usuarioDTO.setTicketsResolvidos(usuarioDTO.getTicketsResolvidos() + 1);
+            if (usuarioDAO.aumentaTicketsResolvidos(usuarioDTO)) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean novoUsuario(String nomeConta) {
+        UsuarioDTO usuarioDTO = new UsuarioDTO();
+        usuarioDTO.setNomeConta(nomeConta);
+        usuarioDTO.setSenha("12345");
+        usuarioDTO.setTipoAcesso("Usuario");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String dataAtual = dateFormat.format(new Date());
+        try {
+            usuarioDTO.setDataDeCadastro(dateFormat.parse(dataAtual));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if (usuarioDAO.criarUsuario(usuarioDTO)){
+            return true;
         }
         return false;
     }
