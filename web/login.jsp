@@ -30,10 +30,10 @@
                 <input type="hidden" value="${erro}" id="erro">
                 <div id="login-box-label">Bem vindo a D.R.T</div>
                 <div class="input-div" id="input-usuario">
-                    <input type="text" placeholder="USUÁRIO" id="nomeUsuario" name="nomeUsuario" autofocus>
+                    <input type="text" placeholder="USUÁRIO*" id="nomeUsuario" name="nomeUsuario" autofocus required="required" oninvalid="this.setCustomValidity('O nome de usuário e obrigatório')" onchange="try{setCustomValidity('')}catch(e){}">
                 </div>
                 <div class="input-div" id="input-senha">
-                    <input type="password" id="senha" name="senha" placeholder="SENHA">
+                    <input type="password" id="senha" name="senha" placeholder="SENHA*" required="required" oninvalid="this.setCustomValidity('A senha e obrigatório')" onchange="try{setCustomValidity('')}catch(e){}">
                 </div>
                 <div id="botoes">
                         <input type="submit" value="Logar" class="botao"><br><br>

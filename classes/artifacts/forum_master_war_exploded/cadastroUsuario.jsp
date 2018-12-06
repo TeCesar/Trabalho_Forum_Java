@@ -31,11 +31,11 @@
                 <input type="hidden" value="usuario" name="tipo">
                 <div id="login-box-label">Bem vindo a D.R.T</div>
                 <div class="input-div" id="input-usuario">
-                    <input type="text" placeholder="Nome Usuario" id="novoUsuario" name="nomeConta">
+                    <input type="text" placeholder="Nome Usuario*" id="novoUsuario" name="nomeConta" required="required" oninvalid="this.setCustomValidity('O nome de usuário e obrigatório')">
                 </div>
                <p style="text-align: center;">A senha padrão e 12345 assim que logar pela primeira vez será pedido para alterar a senha.</p><br>
                 <div id="botoes">
-                        <input type="submit" value="Cadastrar" class="botao"><br>
+                        <input type="submit" value="Cadastrar" class="botao" ><br>
                 </div>
             </form>
             <div class="botoes">

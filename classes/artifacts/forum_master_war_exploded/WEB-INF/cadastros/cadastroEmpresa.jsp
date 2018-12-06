@@ -27,16 +27,15 @@
 
 <form method="post" action="controller?acao=cadastroEmpresa">
     <div style="text-align: center">
-        <label class="txt">Razão Social: </label><input type="text" name="razaoSocial" class="campo"><br><br>
-        <label class="txt">Nome Fantasia: </label><input type="text" name="nomeFantasia" class="campo"><br><br>
-        <label class="txt">CNPJ: </label><input type="text" name="cnpj" class="campo"><br><br>
-        <label class="txt">Nome da Rua: </label><input type="text" name="empresaNomeRua" class="campo" required><br><br>
-        <label class="txt">Número do Endereço: </label><input type="text" name="empresaNumeroEndereco" class="campo"
-                                                              required><br><br>
-        <label class="txt">Bairro: </label><input type="text" name="empresaBairro" class="campo" required><br><br>
-        <label class="txt">Cidade: </label><input type="text" name="empresaCidade" class="campo" required><br><br>
+        <label class="txt">Razão Social: </label><input type="text" name="razaoSocial" class="campo" required oninvalid="setCustomValidity('Razão Social e obrigatório')" onchange="try{setCustomValidity('')}catch(e){}"><br><br>
+        <label class="txt">Nome Fantasia: </label><input type="text" name="nomeFantasia" class="campo" required oninvalid="setCustomValidity('Nome fantasia e obrigatório')" onchange="try{setCustomValidity('')}catch(e){}"><br><br>
+        <label class="txt">CNPJ: </label><input type="text" name="cnpj" class="campo"required oninvalid="setCustomValidity('CNPJ e obrigatório')" onchange="try{setCustomValidity('')}catch(e){}"><br><br>
+        <label class="txt">Nome da Rua: </label><input type="text" name="empresaNomeRua" class="campo" required oninvalid="setCustomValidity('O nome da rua e obrigatório')" onchange="try{setCustomValidity('')}catch(e){}"><br><br>
+        <label class="txt">Número do Endereço: </label><input type="text" name="empresaNumeroEndereco" class="campo" required oninvalid="setCustomValidity('O número e obrigatório')" onchange="try{setCustomValidity('')}catch(e){}"><br><br>
+        <label class="txt">Bairro: </label><input type="text" name="empresaBairro" class="campo" required oninvalid="setCustomValidity('O bairro de usuário e obrigatório')" onchange="try{setCustomValidity('')}catch(e){}"><br><br>
+        <label class="txt">Cidade: </label><input type="text" name="empresaCidade" class="campo" required oninvalid="setCustomValidity('A cidade e obrigatório')" onchange="try{setCustomValidity('')}catch(e){}"><br><br>
         <label class="txt">UF:</label>
-        <select name="empresaUfId" class="campo">
+        <select name="empresaUfId" class="campo" onchange="habilitaBtn()" id="opcao">
             <option>Selecione uma opção</option>
             <c:forEach var="uf" items="${listaUfs}">
                 <c:if test="${uf.sigla != 'N/A'}">
@@ -49,9 +48,23 @@
     <br>
     <center>
         <input type="reset" value="Limpar Campos" class="btns">
-        <input type="submit" value="Cadastrar" class="btne">
+        <input type="submit" value="Cadastrar" class="btne" id="cadastrar" disabled="disabled">
     </center>
 </form>
+
+<script type="text/javascript">
+    function habilitaBtn(){
+        var op = document.getElementById("opcao").value;
+
+        if(op == "Selecione uma Opção"){
+            if(!document.getElementById('cadastrar').disabled) document.getElementById('cadastrar').disabled=true;
+        }
+        else{
+            if(document.getElementById('cadastrar').disabled) document.getElementById('cadastrar').disabled=false;
+        }
+    }
+</script>
+
 
 </body>
 </html>

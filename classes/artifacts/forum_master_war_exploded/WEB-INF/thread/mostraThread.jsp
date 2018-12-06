@@ -70,7 +70,7 @@
                         <input type="submit" value="Responder ${thread.autor}" class="btne">
                     </c:if>
                     <c:if test="${thread.dataAlteracao != null}">
-                        <br><label>Mensagem editada por: ${thread.usuarioEdicao} em <fmt:formatDate value="${thread.dataAlteracao}" pattern="dd/MM/yyyy HH:mm:ss"/></label>
+                        <br><br><label>Mensagem editada por: ${thread.usuarioEdicao} em <fmt:formatDate value="${thread.dataAlteracao}" pattern="dd/MM/yyyy HH:mm:ss"/></label>
                     </c:if>
                 </form>
                 <c:if test="${thread.usuarioDTO.tipoAcesso == 'Operador' && usuarioLogado.tipoAcesso == 'Administrador'}">
@@ -79,7 +79,7 @@
                         <input type="hidden" value="editaMensagemOperador" name="tipo">
                         <input type="hidden" value="${thread.id}" name="idThread">
                         <input type="hidden" value="${conteudoBusca.id}" name="idConteudo">
-                        <input type="submit" value="Alterar resposta do Operador">
+                        <input type="submit" value="Alterar resposta do Operador" class="btne">
                     </form>
                 </c:if>
                 <c:if test="${thread.usuarioDTO.tipoAcesso == 'Operador' && conteudoBusca.usuarioDTO.nomeConta == usuarioLogado.nomeConta && conteudoBusca.situacao != 'Fechado' && tipoAcao == 'ticket'}">

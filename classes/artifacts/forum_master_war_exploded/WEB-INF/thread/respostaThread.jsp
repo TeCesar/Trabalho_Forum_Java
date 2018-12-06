@@ -49,11 +49,11 @@
                 <c:when test="${autor != null}">
                     <label>Respondendo a mensagem de: ${autor}</label><br><br>
                     <label>Mensagem: ${mensagem}</label><br><br>
-                    <label>Resposta: <input type="text" value="@${autor}" name="mensagemResposta"></label>
+                    <label>Resposta: <input type="text" value="@${autor}" name="mensagemResposta" required oninvalid="setCustomValidity('Menssagem obrigatório')" onchange="try{setCustomValidity('')}catch(e){}"></label>
                 </c:when>
                 <c:otherwise>
                     <br>
-                    <label>Resposta: <input type="text" name="mensagemResposta"></label><br>
+                    <label>Resposta: <input type="text" name="mensagemResposta" required oninvalid="setCustomValidity('Menssagem obrigatório')" onchange="try{setCustomValidity('')}catch(e){}"></label><br>
                 </c:otherwise>
             </c:choose>
             <br><br>

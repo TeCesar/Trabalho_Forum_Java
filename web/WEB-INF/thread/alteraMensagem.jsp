@@ -17,11 +17,13 @@
 <%@include file="/WEB-INF/navbar/navbarAdministrador.jsp" %>
 
 <form method="post" action="controller">
-    <input type="hidden" value="thread" name="acao">
-    <input type="hidden" value="alterarMensagem" name="tipo">
-    <input type="hidden" value="${threadBusca.id}" name="idThread">
-    <input type="text" value="${threadBusca.mensagem}" name="mensagemThread">
-    <input type="submit" value="Alterar Mensagem">
+    <div class="listarTopicos" ">
+        <input type="hidden" value="thread" name="acao">
+        <input type="hidden" value="alterarMensagem" name="tipo">
+        <input type="hidden" value="${threadBusca.id}" name="idThread">
+        <input type="text" value="${threadBusca.mensagem}" name="mensagemThread" style="width: 500px;"><br><br>
+        <input type="submit" value="Alterar Mensagem" class="btne">
+    </div>
 </form>
 
 </body>
