@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 06-Dez-2018 às 06:00
+-- Generation Time: 06-Dez-2018 às 21:23
 -- Versão do servidor: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -186,7 +186,179 @@ INSERT INTO `acoes` (`acao_id`, `acao_acao`, `acao_tipo`, `acao_dataAcao`, `usua
 (823, 'login', 'logoff', '2018-12-06 04:42:53', 1),
 (824, 'login', NULL, '2018-12-06 04:56:30', 18),
 (825, 'novaSenha', NULL, '2018-12-06 04:56:37', 18),
-(826, 'login', 'logoff', '2018-12-06 04:57:29', 18);
+(826, 'login', 'logoff', '2018-12-06 04:57:29', 18),
+(827, 'login', NULL, '2018-12-06 11:16:24', 2),
+(828, 'listarTickets', 'Fechado', '2018-12-06 11:16:29', 2),
+(829, 'listarTickets', 'Aberto', '2018-12-06 11:16:32', 2),
+(830, 'listarTickets', 'Aberto', '2018-12-06 11:17:13', 2),
+(831, 'listarTickets', 'Fechado', '2018-12-06 11:17:15', 2),
+(832, 'listarTickets', 'todos', '2018-12-06 11:17:17', 2),
+(833, 'listarTickets', 'Fechado', '2018-12-06 11:21:28', 2),
+(834, 'listarTickets', 'Aberto', '2018-12-06 11:21:39', 2),
+(835, 'listarTickets', 'todos', '2018-12-06 11:21:40', 2),
+(836, 'login', NULL, '2018-12-06 11:24:51', 2),
+(837, 'relatorio', 'ticketsClienteSemResposta', '2018-12-06 11:24:55', 2),
+(838, 'relatorio', 'ticketSemResp', '2018-12-06 11:25:32', 2),
+(839, 'login', NULL, '2018-12-06 11:26:51', 2),
+(840, 'relatorio', 'ticketSemResp', '2018-12-06 11:26:56', 2),
+(841, 'login', NULL, '2018-12-06 11:29:28', 2),
+(842, 'relatorio', 'ticketSemResp', '2018-12-06 11:29:32', 2),
+(843, 'login', NULL, '2018-12-06 11:32:08', 2),
+(844, 'relatorio', 'ticketsClienteSemResposta', '2018-12-06 11:32:12', 2),
+(846, 'login', NULL, '2018-12-06 11:34:10', 2),
+(847, 'relatorio', 'ticketSemResp', '2018-12-06 11:34:13', 2),
+(848, 'ticket', 'mostrarTicket', '2018-12-06 11:34:40', 2),
+(849, 'login', NULL, '2018-12-06 11:35:21', 2),
+(850, 'relatorio', 'listaUsuarios', '2018-12-06 11:35:23', 2),
+(851, 'relatorio', 'clienteEmpresa', '2018-12-06 11:35:45', 2),
+(852, 'relatorio', 'listaUsuarios', '2018-12-06 11:38:59', 2),
+(853, 'relatorio', 'ticketsClienteSemResposta', '2018-12-06 11:39:01', 2),
+(854, 'relatorio', 'ticketSemResp', '2018-12-06 11:39:05', 2),
+(855, 'listarTickets', 'todos', '2018-12-06 11:39:42', 2),
+(856, 'topico', 'listarTopicos', '2018-12-06 11:39:44', 2),
+(857, 'topico', 'mostrarTopico', '2018-12-06 11:39:55', 2),
+(858, 'listar', 'clientes', '2018-12-06 11:40:07', 2),
+(859, 'listar', 'empresas', '2018-12-06 11:40:21', 2),
+(860, 'listar', 'usuarios', '2018-12-06 11:40:29', 2),
+(861, 'login', NULL, '2018-12-06 15:54:03', 2),
+(862, 'listarTickets', 'Aberto', '2018-12-06 15:54:07', 2),
+(863, 'ticket', 'mostrarTicket', '2018-12-06 15:54:42', 2),
+(864, 'responderThread', NULL, '2018-12-06 15:54:46', 2),
+(865, 'respostaPostagemThread', 'ticket', '2018-12-06 15:54:52', 2),
+(866, 'login', NULL, '2018-12-06 15:58:22', 2),
+(867, 'listarTickets', 'todos', '2018-12-06 15:58:26', 2),
+(868, 'ticket', 'mostrarTicket', '2018-12-06 15:58:34', 2),
+(869, 'responderThread', NULL, '2018-12-06 15:58:37', 2),
+(870, 'login', NULL, '2018-12-06 15:59:42', 2),
+(871, 'login', NULL, '2018-12-06 16:00:07', 2),
+(872, 'login', NULL, '2018-12-06 16:00:45', 2),
+(873, 'listarTickets', 'todos', '2018-12-06 16:00:48', 2),
+(874, 'ticket', 'mostrarTicket', '2018-12-06 16:00:55', 2),
+(875, 'responderThread', NULL, '2018-12-06 16:00:57', 2),
+(876, 'login', NULL, '2018-12-06 16:02:09', 2),
+(877, 'listarTickets', 'todos', '2018-12-06 16:02:11', 2),
+(878, 'ticket', 'mostrarTicket', '2018-12-06 16:02:19', 2),
+(879, 'responderThread', NULL, '2018-12-06 16:02:20', 2),
+(880, 'respostaPostagemThread', 'ticket', '2018-12-06 16:02:25', 2),
+(881, 'login', NULL, '2018-12-06 16:05:45', 2),
+(882, 'listarTickets', 'todos', '2018-12-06 16:05:47', 2),
+(883, 'ticket', 'mostrarTicket', '2018-12-06 16:05:53', 2),
+(884, 'responderThread', NULL, '2018-12-06 16:05:55', 2),
+(885, 'respostaPostagemThread', 'ticket', '2018-12-06 16:05:58', 2),
+(886, 'login', NULL, '2018-12-06 16:07:38', 2),
+(887, 'listarTickets', 'todos', '2018-12-06 16:07:42', 2),
+(888, 'ticket', 'mostrarTicket', '2018-12-06 16:07:48', 2),
+(889, 'responderThread', NULL, '2018-12-06 16:07:51', 2),
+(890, 'respostaPostagemThread', 'ticket', '2018-12-06 16:07:54', 2),
+(891, 'login', NULL, '2018-12-06 16:09:57', 2),
+(892, 'listarTickets', 'todos', '2018-12-06 16:10:00', 2),
+(893, 'ticket', 'mostrarTicket', '2018-12-06 16:10:13', 2),
+(894, 'responderPostagemThread', NULL, '2018-12-06 16:10:14', 2),
+(895, 'responderThread', NULL, '2018-12-06 16:10:16', 2),
+(896, 'respostaPostagemThread', 'ticket', '2018-12-06 16:10:19', 2),
+(897, 'login', NULL, '2018-12-06 16:11:31', 2),
+(898, 'listarTickets', 'todos', '2018-12-06 16:11:33', 2),
+(899, 'ticket', 'mostrarTicket', '2018-12-06 16:11:38', 2),
+(900, 'responderThread', NULL, '2018-12-06 16:11:40', 2),
+(901, 'respostaPostagemThread', 'ticket', '2018-12-06 16:11:43', 2),
+(902, 'login', NULL, '2018-12-06 16:14:35', 2),
+(903, 'listarTickets', 'todos', '2018-12-06 16:14:38', 2),
+(904, 'ticket', 'mostrarTicket', '2018-12-06 16:14:46', 2),
+(905, 'responderThread', NULL, '2018-12-06 16:14:48', 2),
+(906, 'respostaPostagemThread', 'ticket', '2018-12-06 16:14:50', 2),
+(907, 'login', NULL, '2018-12-06 16:15:30', 2),
+(908, 'listarTickets', 'todos', '2018-12-06 16:15:32', 2),
+(909, 'ticket', 'mostrarTicket', '2018-12-06 16:15:40', 2),
+(910, 'responderThread', NULL, '2018-12-06 16:15:42', 2),
+(911, 'respostaPostagemThread', 'ticket', '2018-12-06 16:15:45', 2),
+(912, 'login', NULL, '2018-12-06 16:17:42', 2),
+(913, 'listarTickets', 'todos', '2018-12-06 16:17:44', 2),
+(914, 'ticket', 'mostrarTicket', '2018-12-06 16:17:50', 2),
+(915, 'responderThread', NULL, '2018-12-06 16:17:52', 2),
+(916, 'login', NULL, '2018-12-06 16:22:18', 2),
+(917, 'listarTickets', 'todos', '2018-12-06 16:22:20', 2),
+(918, 'ticket', 'mostrarTicket', '2018-12-06 16:22:26', 2),
+(919, 'responderThread', NULL, '2018-12-06 16:22:29', 2),
+(920, 'respostaPostagemThread', 'ticket', '2018-12-06 16:22:33', 2),
+(921, 'login', NULL, '2018-12-06 16:27:20', 2),
+(922, 'listarTickets', 'todos', '2018-12-06 16:27:23', 2),
+(923, 'ticket', 'mostrarTicket', '2018-12-06 16:27:29', 2),
+(924, 'responderThread', NULL, '2018-12-06 16:27:31', 2),
+(925, 'respostaPostagemThread', 'ticket', '2018-12-06 16:27:37', 2),
+(926, 'login', NULL, '2018-12-06 16:42:05', 2),
+(927, 'listarTickets', 'todos', '2018-12-06 16:42:09', 2),
+(928, 'ticket', 'mostrarTicket', '2018-12-06 16:42:12', 2),
+(929, 'relatorio', 'clienteEmpresa', '2018-12-06 16:42:31', 2),
+(930, 'relatorio', 'listaUsuarios', '2018-12-06 16:42:37', 2),
+(931, 'relatorio', 'ticketSemResp', '2018-12-06 16:42:39', 2),
+(932, 'relatorio', 'qtdTicketsCliente', '2018-12-06 16:42:44', 2),
+(933, 'login', NULL, '2018-12-06 19:38:39', 2),
+(934, 'relatorio', 'ticketsClienteSemResposta', '2018-12-06 19:38:42', 2),
+(935, 'relatorio', 'qtdTicketsCliente', '2018-12-06 19:38:45', 2),
+(936, 'login', NULL, '2018-12-06 19:50:02', 2),
+(937, 'relatorio', 'qtdTicketsCliente', '2018-12-06 19:50:03', 2),
+(938, 'relatorio', 'pesquisaClienteQtd', '2018-12-06 19:50:07', 2),
+(939, 'relatorio', 'ticketSemResp', '2018-12-06 19:50:28', 2),
+(940, 'relatorio', 'qtdTicketsCliente', '2018-12-06 19:50:30', 2),
+(941, 'relatorio', 'pesquisaClienteQtd', '2018-12-06 19:50:32', 2),
+(942, 'login', NULL, '2018-12-06 19:54:50', 2),
+(943, 'relatorio', 'qtdTicketsCliente', '2018-12-06 19:54:52', 2),
+(944, 'relatorio', 'pesquisaClienteQtd', '2018-12-06 19:54:55', 2),
+(945, 'relatorio', 'qtdTicketsCliente', '2018-12-06 19:54:57', 2),
+(946, 'relatorio', 'pesquisaClienteQtd', '2018-12-06 19:55:10', 2),
+(947, 'relatorio', 'ticketSemResp', '2018-12-06 19:55:18', 2),
+(948, 'relatorio', 'qtdTicketsCliente', '2018-12-06 19:55:20', 2),
+(949, 'relatorio', 'pesquisaClienteQtd', '2018-12-06 19:56:13', 2),
+(950, 'login', NULL, '2018-12-06 19:56:54', 2),
+(951, 'relatorio', 'qtdTicketsCliente', '2018-12-06 19:56:57', 2),
+(952, 'relatorio', 'pesquisaClienteQtd', '2018-12-06 19:57:09', 2),
+(953, 'login', NULL, '2018-12-06 19:57:52', 2),
+(954, 'relatorio', 'qtdTicketsCliente', '2018-12-06 19:57:56', 2),
+(955, 'relatorio', 'pesquisaClienteQtd', '2018-12-06 19:58:10', 2),
+(956, 'login', 'logoff', '2018-12-06 19:58:32', 2),
+(957, 'login', NULL, '2018-12-06 19:59:00', 15),
+(958, 'listarTickets', 'user', '2018-12-06 19:59:03', 15),
+(959, 'ticket', 'mostrarTicket', '2018-12-06 19:59:05', 15),
+(960, 'thread', 'reabrir', '2018-12-06 19:59:07', 15),
+(961, 'login', 'logoff', '2018-12-06 19:59:09', 15),
+(962, 'login', NULL, '2018-12-06 19:59:11', 2),
+(963, 'relatorio', 'qtdTicketsCliente', '2018-12-06 19:59:13', 2),
+(964, 'relatorio', 'pesquisaClienteQtd', '2018-12-06 19:59:16', 2),
+(965, 'login', NULL, '2018-12-06 20:00:11', 2),
+(966, 'relatorio', 'qtdTicketsCliente', '2018-12-06 20:00:16', 2),
+(967, 'relatorio', 'pesquisaClienteQtd', '2018-12-06 20:00:19', 2),
+(968, 'relatorio', 'pesquisaClienteQtd', '2018-12-06 20:00:22', 2),
+(969, 'login', NULL, '2018-12-06 20:12:57', 15),
+(970, 'listarTickets', 'user', '2018-12-06 20:12:59', 15),
+(971, 'ticket', 'mostrarTicket', '2018-12-06 20:13:01', 15),
+(972, 'thread', 'reabrir', '2018-12-06 20:13:04', 15),
+(973, 'login', NULL, '2018-12-06 20:15:50', 15),
+(974, 'listarTickets', 'user', '2018-12-06 20:15:52', 15),
+(975, 'ticket', 'mostrarTicket', '2018-12-06 20:15:53', 15),
+(976, 'ticket', 'ticketRespondido', '2018-12-06 20:15:55', 15),
+(977, 'ticket', 'mostrarTicket', '2018-12-06 20:15:56', 15),
+(978, 'ticket', 'ticketRespondido', '2018-12-06 20:15:58', 15),
+(979, 'ticket', 'mostrarTicket', '2018-12-06 20:15:59', 15),
+(980, 'thread', 'reabrir', '2018-12-06 20:16:00', 15),
+(981, 'ticket', 'mostrarTicket', '2018-12-06 20:16:01', 15),
+(982, 'thread', 'reabrir', '2018-12-06 20:16:02', 15),
+(983, 'ticket', 'mostrarTicket', '2018-12-06 20:16:17', 15),
+(984, 'ticket', 'ticketRespondido', '2018-12-06 20:16:18', 15),
+(985, 'ticket', 'mostrarTicket', '2018-12-06 20:16:20', 15),
+(986, 'thread', 'reabrir', '2018-12-06 20:16:21', 15),
+(987, 'login', NULL, '2018-12-06 20:19:08', 15),
+(988, 'listarTickets', 'user', '2018-12-06 20:19:10', 15),
+(989, 'ticket', 'mostrarTicket', '2018-12-06 20:19:15', 15),
+(990, 'ticket', 'ticketRespondido', '2018-12-06 20:19:17', 15),
+(991, 'ticket', 'mostrarTicket', '2018-12-06 20:19:18', 15),
+(992, 'ticket', 'ticketRespondido', '2018-12-06 20:19:20', 15),
+(993, 'ticket', 'mostrarTicket', '2018-12-06 20:19:21', 15),
+(994, 'thread', 'reabrir', '2018-12-06 20:19:23', 15),
+(995, 'ticket', 'mostrarTicket', '2018-12-06 20:19:24', 15),
+(996, 'thread', 'reabrir', '2018-12-06 20:19:25', 15),
+(997, 'login', 'logoff', '2018-12-06 20:20:19', 15),
+(998, 'login', NULL, '2018-12-06 20:20:22', 2),
+(999, 'relatorio', 'ticketsClienteSemResposta', '2018-12-06 20:20:24', 2);
 
 -- --------------------------------------------------------
 
@@ -338,7 +510,17 @@ INSERT INTO `threads` (`thread_id`, `thread_mensagem`, `thread_autor`, `thread_a
 (79, 'aasdatetea', 'usuarioTeste', 1, '2018-12-05 22:05:00', NULL, NULL, 25, NULL, 14),
 (80, 'asdasd', 'memo', 1, '2018-12-05 22:08:00', NULL, NULL, NULL, 16, 11),
 (81, '234123123', 'memo', 1, '2018-12-05 22:17:00', NULL, NULL, NULL, 17, 11),
-(82, 'lalallalalaa', 'usuarioTeste', 1, '2018-12-06 02:44:00', NULL, NULL, 26, NULL, 14);
+(82, 'lalallalalaa', 'usuarioTeste', 1, '2018-12-06 02:44:00', NULL, NULL, 26, NULL, 14),
+(83, 'Ã¡Ã©Ã­Ã³Ãº', 'operador', 0, '2018-12-06 15:58:03', NULL, NULL, NULL, 15, 2),
+(84, 'Ã¡Ã©Ã­Ã³Ãº', 'operador', 0, '2018-12-06 16:04:00', NULL, NULL, NULL, 15, 2),
+(85, 'Ã¡Ã©Ã­Ã³Ãº', 'operador', 0, '2018-12-06 16:07:18', NULL, NULL, NULL, 15, 2),
+(86, 'Ã¡Ã©Ã­Ã³Ãº', 'operador', 0, '2018-12-06 16:08:02', NULL, NULL, NULL, 15, 2),
+(87, 'Ã¡Ã©Ã­Ã³Ãº', 'operador', 0, '2018-12-06 16:10:32', NULL, NULL, NULL, 15, 2),
+(88, 'Ã¡Ã©Ã­Ã³Ãº', 'operador', 0, '2018-12-06 16:11:50', NULL, NULL, NULL, 15, 2),
+(89, 'Ã¡Ã©Ã­Ã³Ãº', 'operador', 0, '2018-12-06 16:15:09', NULL, NULL, NULL, 15, 2),
+(90, 'Ã¡Ã©Ã­Ã³Ãº', 'operador', 0, '2018-12-06 16:16:04', NULL, NULL, NULL, 15, 2),
+(91, 'Ã¡Ã©Ã­Ã³Ãº', 'operador', 0, '2018-12-06 16:22:53', NULL, NULL, NULL, 15, 2),
+(92, 'Ã©Ã­Ã³ÃºÃ¡', 'operador', 0, '2018-12-06 16:28:14', NULL, NULL, NULL, 15, 2);
 
 -- --------------------------------------------------------
 
@@ -363,8 +545,8 @@ CREATE TABLE `tickets` (
 
 INSERT INTO `tickets` (`ticket_id`, `ticket_titulo`, `ticket_status`, `ticket_tempoInicio`, `ticket_tempoFim`, `ticket_situacao`, `ticket_respondido`, `usuario_id`) VALUES
 (11, 'teste', 'Completo', '2018-12-04 12:42:34', '2018-12-04 12:42:34', 'Fechado', 'Nao', 11),
-(13, 'qqqqqqqqq', 'Completo', '2018-12-05 02:16:34', '2018-12-05 02:16:34', 'Fechado', 'Nao', 15),
-(14, 'segundo teste', 'Completo', '2018-12-05 03:04:34', '2018-12-05 03:04:34', 'Fechado', 'Nao', 15),
+(13, 'qqqqqqqqq', 'Completo', '2018-12-05 02:16:34', '2018-12-05 02:16:34', 'Aberto', 'Nao', 15),
+(14, 'segundo teste', 'Completo', '2018-12-05 03:04:34', '2018-12-05 03:04:34', 'Aberto', 'Nao', 15),
 (15, 'qualquer coisa', 'Completo', '2018-12-05 21:44:27', '2018-12-05 21:44:27', 'Aberto', 'Nao', 11),
 (16, 'sdasdasd', 'Completo', '2018-12-05 22:07:47', '2018-12-05 22:07:47', 'Aberto', 'Nao', 11),
 (17, 'teste', 'Completo', '2018-12-02 22:10:52', '2018-12-05 22:17:44', 'Aberto', 'Nao', 11);
@@ -465,6 +647,7 @@ CREATE TABLE `usuarios` (
   `usuario_apelido` varchar(50) DEFAULT NULL,
   `usuario_errosLogin` int(4) NOT NULL DEFAULT '0',
   `usuario_ticketResolvidos` int(4) NOT NULL DEFAULT '0',
+  `usuario_ticketsReabertos` int(11) DEFAULT '0',
   `usuario_bloqueado` int(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -472,17 +655,17 @@ CREATE TABLE `usuarios` (
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`usuario_id`, `usuario_nomeConta`, `usuario_senha`, `usuario_tipoAcesso`, `usuario_dataDeCadastro`, `usuario_dataDeAlteracao`, `usuario_apelido`, `usuario_errosLogin`, `usuario_ticketResolvidos`, `usuario_bloqueado`) VALUES
-(1, 'admin', '123', 'Administrador', '1996-11-18', NULL, NULL, 3, 0, 0),
-(2, 'operador', '123', 'Operador', '1996-11-18', NULL, NULL, 3, 6, 0),
-(9, 'TesteTeste', '123', 'Operador', '2018-10-30', NULL, NULL, 0, 10, 0),
-(10, 'OiOiOi', '123', 'Cliente', '2018-10-30', '2018-11-05', NULL, 0, 0, 0),
-(11, 'memo', '123', 'Cliente', '2018-10-30', NULL, NULL, 2, 0, 0),
-(14, 'usuarioTeste', '123', 'Usuario', '2018-10-30', '2018-11-04', NULL, 0, 0, 0),
-(15, 'oioi', '123', 'Cliente', '2018-11-05', '2018-12-04', NULL, 6, 0, 0),
-(16, 'CidadeDeDeus', '123', 'Cliente', '2018-12-03', '2018-12-04', NULL, 1, 0, 1),
-(17, 'operadorTeste', '123', 'Operador', '2018-12-04', NULL, NULL, 1, 3, 0),
-(18, 'testedoteste', '123456789@', 'Usuario', '2018-12-06', NULL, NULL, 0, 0, 0);
+INSERT INTO `usuarios` (`usuario_id`, `usuario_nomeConta`, `usuario_senha`, `usuario_tipoAcesso`, `usuario_dataDeCadastro`, `usuario_dataDeAlteracao`, `usuario_apelido`, `usuario_errosLogin`, `usuario_ticketResolvidos`, `usuario_ticketsReabertos`, `usuario_bloqueado`) VALUES
+(1, 'admin', '123', 'Administrador', '1996-11-18', NULL, NULL, 3, 0, 0, 0),
+(2, 'operador', '123', 'Operador', '1996-11-18', NULL, NULL, 3, 9, 0, 0),
+(9, 'TesteTeste', '123', 'Operador', '2018-10-30', NULL, NULL, 0, 10, 0, 0),
+(10, 'OiOiOi', '123', 'Cliente', '2018-10-30', '2018-11-05', NULL, 0, 0, 0, 0),
+(11, 'memo', '123', 'Cliente', '2018-10-30', NULL, NULL, 2, 0, 0, 0),
+(14, 'usuarioTeste', '123', 'Usuario', '2018-10-30', '2018-11-04', NULL, 0, 0, 0, 0),
+(15, 'oioi', '123', 'Cliente', '2018-11-05', '2018-12-04', NULL, 6, 0, 3, 0),
+(16, 'CidadeDeDeus', '123', 'Cliente', '2018-12-03', '2018-12-04', NULL, 1, 0, 0, 1),
+(17, 'operadorTeste', '123', 'Operador', '2018-12-04', NULL, NULL, 1, 5, 0, 0),
+(18, 'testedoteste', '123456789@', 'Usuario', '2018-12-06', NULL, NULL, 0, 0, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -562,7 +745,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `acoes`
 --
 ALTER TABLE `acoes`
-  MODIFY `acao_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=827;
+  MODIFY `acao_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000;
 
 --
 -- AUTO_INCREMENT for table `clientes`
@@ -586,7 +769,7 @@ ALTER TABLE `enderecos`
 -- AUTO_INCREMENT for table `threads`
 --
 ALTER TABLE `threads`
-  MODIFY `thread_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `thread_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `tickets`
