@@ -37,12 +37,7 @@
                 <li><a href="controller?acao=relatorio&tipo=listaUsuarios">Lista de Usuários</a></li>
                 <li><a href="controller?acao=relatorio&tipo=ticketSemResp">Lista de Tickets sem Resposta por Cliente</a></li>
                 <li><a href="controller?acao=relatorio&tipo=qtdTicketsCliente">Relatório de Quantidades Cliente</a></li>
-                <li><a href="controller?acao=relatorio&tipo=ticketsClienteSemResposta">Quantidade de Tickets sem Resposta por Cliente</a></li>
-                <li><a href="controller?acao=relatorio">Quantidade de Tickets Resolvidos por Cliente</a></li>
-                <li><a href="controller?acao=relatorio">Quantidade de Tickets Reabertos por Cliente</a></li>
-                <li><a href="controller?acao=relatorio">Quantidade de Tópicos por Usuário</a></li>
-                <li><a href="controller?acao=relatorio">Quantidade de Tópicos sem Resposta</a></li>
-                <li><a href="controller?acao=relatorio">Quantidade de Tópicos Marcados como Resolvidos</a></li>
+
             </ul>
         </li>
 
