@@ -8,6 +8,7 @@ import br.edu.java.poo.model.ticket.TicketDTO;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -61,10 +62,5 @@ public class TicketBusinessImpl implements TicketBusiness {
             return true;
         }
         return false;
-    }
-
-    @Override
-    public List<List<TicketDTO>> buscarClientesETickets() {
-        return null;
     }
 }

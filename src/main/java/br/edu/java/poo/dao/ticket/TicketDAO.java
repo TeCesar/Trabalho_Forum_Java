@@ -15,6 +15,8 @@ public interface TicketDAO {
 
     List<TicketDTO> listarTicketsUser(int idUsuario);
 
+    List<TicketDTO> listarTicketsUserSit(int idUsuario, String situacao);
+
     List<TicketDTO> listarTicketsTempo();
 
     TicketDTO buscarTicket(int id);

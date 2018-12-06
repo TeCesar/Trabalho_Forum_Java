@@ -180,6 +180,8 @@ public class ControllerServlet extends HttpServlet {
                 req.getRequestDispatcher("relatorio?tipo=errosLoginTckResolvido").forward(req, resp);
             } else if ("qtdTicketsCliente".equalsIgnoreCase(tipo)){
                 req.getRequestDispatcher("relatorio?tipo=qtdTicketsCliente").forward(req, resp);
+            } else if ("pesquisaClienteQtd".equalsIgnoreCase(tipo)){
+                req.getRequestDispatcher("relatorio?tipo=pesquisaClienteQtd").forward(req, resp);
             }
         }
 

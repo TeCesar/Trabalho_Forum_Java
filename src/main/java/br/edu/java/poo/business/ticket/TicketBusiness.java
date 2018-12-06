@@ -14,6 +14,4 @@ public interface TicketBusiness {
 
     boolean reabrirTicket(int id);
 
-    List<List<TicketDTO>> buscarClientesETickets();
-
 }

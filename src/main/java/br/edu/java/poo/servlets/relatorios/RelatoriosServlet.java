@@ -112,7 +112,29 @@ public class RelatoriosServlet extends HttpServlet {
         }
 
         if ("qtdTicketsCliente".equalsIgnoreCase(tipo)){
-            List<List<TicketDTO>> listaClientesTickets = ticketBusiness.buscarClientesETickets();
+            List<ClienteDTO> listaClientes = clienteDAO.listarClientes();
+            req.setAttribute("listaClientes", listaClientes);
+            req.setAttribute("mostraDetalhe", "nao");
+            req.getRequestDispatcher("WEB-INF/relatorios/relatorioQuantidades.jsp").forward(req, resp);
+        }
+
+        if ("pesquisaClienteQtd".equalsIgnoreCase(tipo)){
+            String idCliente = req.getParameter("selecionaCliente");
+            req.setAttribute("mostraDetalhe", "sim");
+            ClienteDTO clienteDTO = clienteDAO.buscaCliente(Integer.parseInt(idCliente));
+            req.setAttribute("clienteBusca", clienteDTO);
+            List<TicketDTO> listaTickets = ticketDAO.listarTicketsUser(clienteDTO.getUsuarioDTO().getId());
+            int quantidadeTickets = listaTickets.size();
+            req.setAttribute("quantidadeTickets", quantidadeTickets);
+            listaTickets = ticketDAO.listarTicketsUserSit(clienteDTO.getUsuarioDTO().getId(), "Aberto");
+            int quantidadeTicketsSemResposta = listaTickets.size();
+            req.setAttribute("quantidadeTicketsSemResposta", quantidadeTicketsSemResposta);
+            listaTickets = ticketDAO.listarTicketsUserSit(clienteDTO.getUsuarioDTO().getId(), "Fechado");
+            int quantidadeTicketsRespondidos = listaTickets.size();
+            req.setAttribute("quantidadeTicketsRespondidos", quantidadeTicketsRespondidos);
+            List<ClienteDTO> listaClientes = clienteDAO.listarClientes();
+            req.setAttribute("listaClientes", listaClientes);
+            req.getRequestDispatcher("WEB-INF/relatorios/relatorioQuantidades.jsp").forward(req, resp);
         }
     }
 }

@@ -151,6 +151,68 @@ public class TicketDAOImpl implements TicketDAO {
     }
 
     @Override
+    public List<TicketDTO> listarTicketsUserSit(int idUsuario, String situacao) {
+        List<TicketDTO> listaTickets = new ArrayList<>();
+        String sql;
+        String aux;
+        if ("todos".equalsIgnoreCase(situacao)) {
+            sql = "SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_status, tickets.ticket_tempoInicio, " +
+                    "tickets.ticket_tempoFim, tickets.ticket_situacao, tickets.ticket_respondido, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso " +
+                    "FROM tickets INNER JOIN usuarios ON tickets.usuario_id = usuarios.usuario_id";
+
+            try (Connection connection = SQLConnectionProvider.openConnection()) {
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                while (resultSet.next()){
+                    TicketDTO ticketDTO = fillTicket(resultSet);
+                    listaTickets.add(ticketDTO);
+                }
+
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            return listaTickets;
+        } else if ("Sem Resposta".equalsIgnoreCase(situacao)) {
+            sql = "SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_status, tickets.ticket_tempoInicio, " +
+                    "tickets.ticket_tempoFim, tickets.ticket_situacao, tickets.ticket_respondido, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso " +
+                    "FROM tickets INNER JOIN usuarios ON tickets.usuario_id = usuarios.usuario_id WHERE ticket_respondido = ? AND tickets.usuario_id = ?";
+
+            aux = "Nao";
+        } else {
+            sql = "SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_status, tickets.ticket_tempoInicio, " +
+                    "tickets.ticket_tempoFim, tickets.ticket_situacao, tickets.ticket_respondido, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_tipoAcesso " +
+                    "FROM tickets INNER JOIN usuarios ON tickets.usuario_id = usuarios.usuario_id WHERE ticket_situacao = ? AND tickets.usuario_id = ?";
+
+            aux = situacao;
+        }
+        try (Connection connection = SQLConnectionProvider.openConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, aux);
+            preparedStatement.setInt(2, idUsuario);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                TicketDTO ticketDTO = fillTicket(resultSet);
+                listaTickets.add(ticketDTO);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return listaTickets;
+    }
+
+    @Override
     public List<TicketDTO> listarTicketsTempo() {
         List<TicketDTO> listaTickets = new ArrayList<>();
         String sql = "SELECT tickets.ticket_id, tickets.ticket_titulo, tickets.ticket_status, tickets.ticket_tempoInicio, " +
