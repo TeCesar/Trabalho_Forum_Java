@@ -36,9 +36,12 @@
                     <input type="password" id="senha" name="senha" placeholder="SENHA">
                 </div>
                 <div id="botoes">
-                        <input type="submit" value="Logar" class="botao">
+                        <input type="submit" value="Logar" class="botao"><br><br>
+                    <a href="cadastroUsuario.jsp"><input type="button" value="Cadastre-se" class="botao"></a></input>
                 </div>
             </form>
+
+
         </div>
     </div>
 

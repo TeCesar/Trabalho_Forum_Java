@@ -30,31 +30,15 @@
                 <input type="hidden" value="${erro}" id="erro">
                 <div id="login-box-label">Bem vindo a D.R.T</div>
                 <div class="input-div" id="input-usuario">
-                    <input type="text" placeholder="USUÁRIO" id="nomeUsuario" name="nomeUsuario">
+
+                    <input type="text" placeholder="Nome Usuario" id="novoUsuario" name="novoUsuario">
                 </div>
-                <div class="input-div" id="input-senha">
-                    <input type="password" id="senha" name="senha" placeholder="SENHA">
-                </div>
+               <p style="text-align: center;">A senha padrão e 12345 assim que logar pela primeira vez será pedido para alterar a senha.</p><br><br>
                 <div id="botoes">
-                        <input type="submit" value="Logar" class="botao"><br><br>
-                    <a href="cadastroUsuario.jsp"><input type="button" value="Cadastre-se" class="botao"></a></input>
+                        <input type="submit" value="Cadastrar" class="botao">
                 </div>
             </form>
-
-
         </div>
     </div>
-
-<script>
-    var erro = document.getElementById("erro").value;
-
-    if (erro == "usuarioBloqueado"){
-        alert("O seu usuário foi bloqueado pelo Administrador.");
-    }
-
-    if (erro == "loginSenhaErrados"){
-        alert("Usuário e/ou senha inválido(s)");
-    }
-</script>
 </body>
 </html>
