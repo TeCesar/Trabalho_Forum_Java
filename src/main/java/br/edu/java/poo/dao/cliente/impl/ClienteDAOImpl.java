@@ -53,7 +53,7 @@ public class ClienteDAOImpl implements ClienteDAO {
                 " enderecos.endereco_numero, enderecos.endereco_bairro, enderecos.endereco_cidade," +
                 " ufs.uf_id, ufs.uf_sigla, ufs.uf_nome, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_senha, " +
                 " usuarios.usuario_tipoAcesso, usuarios.usuario_dataDeCadastro, usuarios.usuario_dataDeAlteracao, usuarios.usuario_apelido," +
-                " usuarios.usuario_errosLogin, usuarios.usuario_ticketResolvidos FROM clientes INNER JOIN enderecos ON clientes.endereco_id = enderecos.endereco_id" +
+                " usuarios.usuario_errosLogin, usuarios.usuario_ticketResolvidos, usuarios.usuario_ticketsReabertos FROM clientes INNER JOIN enderecos ON clientes.endereco_id = enderecos.endereco_id" +
                 " INNER JOIN empresas ON clientes.empresa_id = empresas.empresa_id INNER JOIN usuarios ON clientes.usuario_id = usuarios.usuario_id" +
                 " INNER JOIN ufs ON enderecos.uf_id = ufs.uf_id";
 
@@ -86,7 +86,7 @@ public class ClienteDAOImpl implements ClienteDAO {
                 " enderecos.endereco_numero, enderecos.endereco_bairro, enderecos.endereco_cidade," +
                 " ufs.uf_id, ufs.uf_sigla, ufs.uf_nome, usuarios.usuario_id, usuarios.usuario_nomeConta, usuarios.usuario_senha, " +
                 " usuarios.usuario_tipoAcesso, usuarios.usuario_dataDeCadastro, usuarios.usuario_dataDeAlteracao, usuarios.usuario_apelido," +
-                " usuarios.usuario_errosLogin, usuarios.usuario_ticketResolvidos FROM clientes INNER JOIN enderecos ON clientes.endereco_id = enderecos.endereco_id" +
+                " usuarios.usuario_errosLogin, usuarios.usuario_ticketResolvidos, usuarios.usuario_ticketsReabertos FROM clientes INNER JOIN enderecos ON clientes.endereco_id = enderecos.endereco_id" +
                 " INNER JOIN empresas ON clientes.empresa_id = empresas.empresa_id INNER JOIN usuarios ON clientes.usuario_id = usuarios.usuario_id" +
                 " INNER JOIN ufs ON enderecos.uf_id = ufs.uf_id WHERE clientes.cliente_id = ?";
 
@@ -213,6 +213,7 @@ public class ClienteDAOImpl implements ClienteDAO {
         usuarioDTO.setApelido(resultSet.getString("usuario_apelido"));
         usuarioDTO.setErrosLogin(resultSet.getInt("usuario_errosLogin"));
         usuarioDTO.setTicketsResolvidos(resultSet.getInt("usuario_ticketResolvidos"));
+        usuarioDTO.setTicketsReabertos(resultSet.getInt("usuario_ticketsReabertos"));
         clienteDTO.setUsuarioDTO(usuarioDTO);
         return clienteDTO;
     }
