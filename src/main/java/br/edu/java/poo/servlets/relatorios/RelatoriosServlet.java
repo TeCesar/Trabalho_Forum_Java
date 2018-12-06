@@ -1,5 +1,7 @@
 package br.edu.java.poo.servlets.relatorios;
 
+import br.edu.java.poo.business.ticket.TicketBusiness;
+import br.edu.java.poo.business.ticket.impl.TicketBusinessImpl;
 import br.edu.java.poo.dao.acao.AcaoDAO;
 import br.edu.java.poo.dao.acao.impl.AcaoDAOImpl;
 import br.edu.java.poo.dao.cliente.ClienteDAO;
@@ -35,6 +37,7 @@ public class RelatoriosServlet extends HttpServlet {
     TicketDAO ticketDAO;
     TopicoDAO topicoDAO;
     AcaoDAO acaoDAO;
+    TicketBusiness ticketBusiness;
 
     public RelatoriosServlet() {
         clienteDAO = new ClienteDAOImpl();
@@ -43,6 +46,7 @@ public class RelatoriosServlet extends HttpServlet {
         ticketDAO = new TicketDAOImpl();
         topicoDAO = new TopicoDAOImpl();
         acaoDAO = new AcaoDAOImpl();
+        ticketBusiness = new TicketBusinessImpl();
     }
 
     @Override
@@ -105,6 +109,10 @@ public class RelatoriosServlet extends HttpServlet {
             List<UsuarioDTO> listaUsuarios = usuarioDAO.listarUsuarios("todos");
             req.setAttribute("listaUsuarios", listaUsuarios);
             req.getRequestDispatcher("WEB-INF/relatorios/errosLoginTcksResolvidos.jsp").forward(req, resp);
+        }
+
+        if ("qtdTicketsCliente".equalsIgnoreCase(tipo)){
+            List<List<TicketDTO>> listaClientesTickets = ticketBusiness.buscarClientesETickets();
         }
     }
 }

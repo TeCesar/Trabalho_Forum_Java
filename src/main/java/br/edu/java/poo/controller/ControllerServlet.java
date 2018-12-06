@@ -167,8 +167,9 @@ public class ControllerServlet extends HttpServlet {
                 req.getRequestDispatcher("relatorio?tipo=ticketsCliente&situacao=todos").forward(req, resp);
             } else if ("ticketsClienteSemResposta".equalsIgnoreCase(tipo)) {
                 req.getRequestDispatcher("relatorio?tipo=ticketsCliente&situacao=semResposta").forward(req, resp);
-            } else if ("listaTicketsSemRespCliente".equalsIgnoreCase(tipo)) {
-                req.getRequestDispatcher("relatorio?tipo=ticketsCliente&situacao=listaSemResposta").forward(req, resp);
+            } else if ("ticketSemResp".equalsIgnoreCase(tipo)) {
+                req.setAttribute("relatorio", "sim");
+                req.getRequestDispatcher("listar?tipo=tickets&situacao=Aberto").forward(req, resp);
             } else if ("logAcesso".equalsIgnoreCase(tipo)){
                 req.getRequestDispatcher("relatorio?tipo=logAcesso").forward(req, resp);
             } else if ("acoes".equalsIgnoreCase(tipo)){
@@ -177,6 +178,8 @@ public class ControllerServlet extends HttpServlet {
                 req.getRequestDispatcher("relatorio?tipo=duracaoTT").forward(req, resp);
             } else if ("errosLoginTckResolvido".equalsIgnoreCase(tipo)){
                 req.getRequestDispatcher("relatorio?tipo=errosLoginTckResolvido").forward(req, resp);
+            } else if ("qtdTicketsCliente".equalsIgnoreCase(tipo)){
+                req.getRequestDispatcher("relatorio?tipo=qtdTicketsCliente").forward(req, resp);
             }
         }
 

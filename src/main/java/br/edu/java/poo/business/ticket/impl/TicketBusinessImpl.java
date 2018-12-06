@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class TicketBusinessImpl implements TicketBusiness {
     TicketDAO ticketDAO;
@@ -60,5 +61,10 @@ public class TicketBusinessImpl implements TicketBusiness {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<List<TicketDTO>> buscarClientesETickets() {
+        return null;
     }
 }
